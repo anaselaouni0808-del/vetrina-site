@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maison Escoubès · Boulangerie aux Chartrons, Bordeaux</title>
+<meta name="description" content="Boulangerie-pâtisserie aux Chartrons : pain au levain, canelés et chocolatines. Horaires, fournées du jour et commande en ligne.">
+<meta property="og:title" content="Maison Escoubès · Boulangerie aux Chartrons">
+<meta property="og:description" content="Pain au levain, canelés et chocolatines. Commandez la veille, retirez en boutique.">
+<meta name="theme-color" content="#173a2b">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23173a2b'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='40' fill='%23c9a24c'%3EE%3C/text%3E%3C/svg%3E">
+<style>
+html { -webkit-text-size-adjust: 100%; color-scheme: light; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700&family=Gloock&display=swap">
+<style>
+/* Layout: a painted shopfront (striped awning over a green, gilt-lettered panel) opens the page; below, flour-white sections with asymmetric two-column splits; everything stacks to one column under 860px. */
+:root {
+  --flour: #f5f5ef;
+  --paper: #fdfdfa;
+  --tint: #eaede3;
+  --ink: #1a2720;
+  --muted: #55655c;
+  --line: #d8dccf;
+  --shop: #173a2b;
+  --shop-deep: #0f281d;
+  --shop-ink: #f2ead6;
+  --gold: #c9a24c;
+  --crust: #8d3b13;
+  --kraft: #c9a56f;
+  --kraft-ink: #33240f;
+  --kraft-line: #a07d49;
+  --field: #fbf6ec;
+  --stamp: #173a2b;
+  --river: #a9c8ca;
+  --awning-light: #f2eee2;
+  --awning-dark: #2c6b4e;
+  --slate: #232b28;
+  --chalk: #f0efe8;
+  --wood: #6c4a2b;
+  --ok: #86d9a0;
+  --shut: #f2a582;
+  --gilt: linear-gradient(100deg, #8a6420 0%, #e9cf86 18%, #b98d35 34%, #f7e6ab 50%, #b0832d 66%, #e7c97c 82%, #8a6420 100%);
+  --font-display: "Gloock", "Didot", "Bodoni 72", Georgia, serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-chalk: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --stripe: 46px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --flour: #0e1512; --paper: #151f1a; --tint: #1c2721; --ink: #ebe7db; --muted: #a6b2aa; --line: #2b3931;
+    --shop: #143325; --shop-deep: #0b1f16; --gold: #d8b45d; --crust: #e48c58;
+    --kraft: #5b4730; --kraft-ink: #f1e4c9; --kraft-line: #8a6f4b; --field: #45362a; --stamp: #e3cd98;
+    --river: #284c50; --awning-light: #d9d3c1; --awning-dark: #2a5f46; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --flour: #0e1512; --paper: #151f1a; --tint: #1c2721; --ink: #ebe7db; --muted: #a6b2aa; --line: #2b3931;
+  --shop: #143325; --shop-deep: #0b1f16; --gold: #d8b45d; --crust: #e48c58;
+  --kraft: #5b4730; --kraft-ink: #f1e4c9; --kraft-line: #8a6f4b; --field: #45362a; --stamp: #e3cd98;
+  --river: #284c50; --awning-light: #d9d3c1; --awning-dark: #2a5f46; color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  background: var(--flour);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+body.has-bag main { padding-bottom: 96px; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.wrap { max-width: 1180px; margin-inline: auto; padding-inline: 20px; }
+.section { padding-block: 72px; }
+.section-head { display: grid; gap: 14px; align-content: start; }
+.eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--crust); }
+.section h2 { font-size: clamp(2.1rem, 4.8vw, 3.2rem); line-height: 1.04; letter-spacing: -0.01em; }
+.lead { color: var(--muted); max-width: 54ch; font-size: 1.05rem; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--font-body); font-weight: 650; font-size: 1rem; letter-spacing: 0.01em;
+  padding-block: 14px; padding-inline: 22px; border-radius: 4px; border: 1.5px solid transparent;
+  text-decoration: none; cursor: pointer; transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.btn-gold { background: var(--gold); color: #17221b; }
+.btn-gold:hover { transform: translateY(-1px); }
+.btn-outline { color: var(--shop-ink); border-color: color-mix(in srgb, var(--shop-ink) 55%, transparent); background: transparent; }
+.btn-outline:hover { background: color-mix(in srgb, var(--shop-ink) 10%, transparent); }
+.btn-shop { background: var(--shop); color: var(--shop-ink); }
+.btn-shop:hover { background: var(--shop-deep); }
+
+/* Demo notice */
+.demo-note { background: var(--ink); color: var(--flour); font-size: 0.8rem; text-align: center; padding-block: 7px; padding-inline: 16px; }
+
+/* Shopfront */
+.front { position: relative; }
+.awning { position: relative; z-index: 2; filter: drop-shadow(0 10px 9px rgba(0, 0, 0, 0.42)); margin-bottom: calc(var(--stripe) / -2); transform-origin: top; animation: unroll 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.awning-band {
+  height: 62px; border-top: 7px solid var(--shop-deep);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0.2)),
+    repeating-linear-gradient(90deg, var(--awning-dark) 0 var(--stripe), var(--awning-light) var(--stripe) calc(var(--stripe) * 2));
+}
+.awning-edge {
+  height: calc(var(--stripe) / 2);
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.06)),
+    repeating-linear-gradient(90deg, var(--awning-dark) 0 var(--stripe), var(--awning-light) var(--stripe) calc(var(--stripe) * 2));
+  -webkit-mask: radial-gradient(circle at 50% 0, #000 calc(var(--stripe) / 2 - 0.5px), transparent calc(var(--stripe) / 2)) 0 0 / var(--stripe) 100% repeat-x;
+  mask: radial-gradient(circle at 50% 0, #000 calc(var(--stripe) / 2 - 0.5px), transparent calc(var(--stripe) / 2)) 0 0 / var(--stripe) 100% repeat-x;
+}
+.front-panel {
+  position: relative; overflow: hidden; color: var(--shop-ink);
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.022) 0 2px, transparent 2px 9px, rgba(0, 0, 0, 0.05) 9px 10px, transparent 10px 23px),
+    var(--shop);
+  padding-block: calc(var(--stripe) / 2 + 28px) 72px;
+}
+.front-panel::before {
+  content: ""; position: absolute; inset: calc(var(--stripe) / 2 + 12px) 12px 12px; pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); border-radius: 2px;
+  box-shadow: inset 0 0 0 5px var(--shop), inset 0 0 0 6px color-mix(in srgb, var(--gold) 25%, transparent);
+}
+.front-panel::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.12; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.front-inner { position: relative; z-index: 1; display: grid; gap: 40px; padding-inline: 32px; }
+.front-nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 0.9rem; }
+.since { font-family: var(--font-display); color: var(--gold); letter-spacing: 0.08em; }
+.front-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; }
+.front-nav a { text-decoration: none; opacity: 0.88; }
+.front-nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+.front-nav .nav-vitrine { display: none; }
+.front-grid { display: grid; gap: 48px; align-items: center; }
+.front-copy { display: grid; gap: 22px; min-width: 0; }
+.kicker { font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.85; }
+.gilt {
+  background: var(--gilt); background-size: 230% 100%; background-position: 100% 0;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.45));
+  animation: gild 2.6s ease-out 0.4s both;
+}
+.front h1 { display: grid; line-height: 0.9; }
+.front h1 .h1-small { font-size: clamp(1.1rem, 2.4vw, 1.6rem); letter-spacing: 0.42em; text-transform: uppercase; padding-left: 0.2em; margin-bottom: 0.35em; }
+.front h1 .h1-big { font-size: clamp(3.6rem, 11vw, 7.4rem); letter-spacing: -0.01em; }
+.front-lead { font-size: 1.12rem; max-width: 42ch; opacity: 0.92; }
+.live { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; font-size: 0.93rem; }
+.status {
+  display: inline-flex; align-items: center; gap: 9px; padding-block: 7px; padding-inline: 13px; border-radius: 999px;
+  background: rgba(0, 0, 0, 0.24); border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent); font-weight: 600;
+}
+.status i { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 22%, transparent); }
+.status.closed i { background: var(--shut); box-shadow: 0 0 0 4px color-mix(in srgb, var(--shut) 22%, transparent); }
+.next-bake { opacity: 0.85; }
+.front-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.window {
+  justify-self: center; width: min(100%, 380px); aspect-ratio: 5 / 6; padding: 10px;
+  border-radius: 999px 999px 6px 6px; background: var(--shop-deep);
+  border: 2px solid var(--gold);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 45%, transparent), 0 34px 60px -30px rgba(0, 0, 0, 0.65);
+}
+.glass {
+  position: relative; height: 100%; border-radius: 999px 999px 3px 3px; overflow: hidden;
+  background: radial-gradient(ellipse 85% 62% at 50% 38%, #fff5de 0%, #f1dbad 46%, #c89a5d 100%);
+}
+.glass::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 28%, rgba(255, 255, 255, 0.32) 36%, transparent 44%, transparent 60%, rgba(255, 255, 255, 0.14) 64%, transparent 69%);
+}
+.glass svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.glass .tag-text { font-family: var(--font-chalk); fill: #2b2620; }
+.glass .arc-text { font-family: var(--font-display); font-size: 13px; letter-spacing: 2px; }
+
+/* Bakes */
+.bakes-grid { display: grid; gap: 40px; }
+.bake-board { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding-block: 18px 6px; padding-inline: 24px; min-width: 0; }
+.bake-day { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); padding-bottom: 12px; }
+.bake-list { list-style: none; margin: 0; padding: 0; border-top: 1px dashed var(--line); }
+.bake { display: grid; grid-template-columns: 7rem minmax(0, 1fr) auto; gap: 6px 20px; align-items: center; padding-block: 18px; border-bottom: 1px dashed var(--line); }
+.bake:last-child { border-bottom: 0; }
+.bake time { font-family: var(--font-display); font-size: 2.05rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.bake .what { font-size: 1rem; }
+.bake .chip { font-size: 0.8rem; font-weight: 700; padding-block: 5px; padding-inline: 11px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.bake.done time, .bake.done .what { color: var(--muted); }
+.bake.next time { color: var(--crust); }
+.bake.next .chip { background: var(--shop); border-color: var(--shop); color: var(--shop-ink); }
+
+/* Products */
+.vitrine-head { display: grid; gap: 14px; margin-bottom: 36px; }
+.products { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 18px; }
+.product { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+.product-art { aspect-ratio: 3 / 2; display: grid; place-items: center; background: radial-gradient(ellipse 70% 70% at 50% 58%, var(--paper) 0%, var(--tint) 75%); border-bottom: 1px solid var(--line); }
+.product-art svg { width: 76%; height: auto; max-width: 100%; }
+.product-body { display: flex; flex-direction: column; gap: 8px; padding-block: 18px 20px; padding-inline: 20px; min-width: 0; }
+.product h3 { font-size: 1.5rem; line-height: 1.1; }
+.product p { color: var(--muted); font-size: 0.95rem; }
+.product-foot { margin-top: auto; padding-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.price { font-weight: 700; font-size: 1.12rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.price small { font-weight: 500; font-size: 0.82rem; color: var(--muted); margin-left: 6px; }
+.add { font: inherit; font-weight: 650; font-size: 0.92rem; background: var(--shop); color: var(--shop-ink); border: 0; border-radius: 4px; padding-block: 10px; padding-inline: 16px; cursor: pointer; }
+.add:hover { background: var(--shop-deep); }
+.stepper { display: inline-flex; align-items: center; border: 1.5px solid var(--shop); border-radius: 4px; overflow: hidden; }
+.stepper button { font: inherit; font-size: 1.15rem; line-height: 1; width: 40px; height: 40px; border: 0; background: transparent; color: var(--ink); cursor: pointer; }
+.stepper button:hover { background: var(--tint); }
+.stepper span { min-width: 2ch; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* Order */
+.order { background: var(--tint); }
+.order-grid { display: grid; gap: 32px; align-items: start; margin-top: 36px; }
+.ardoise {
+  background:
+    radial-gradient(ellipse 60% 40% at 30% 20%, rgba(255, 255, 255, 0.07), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 75% 80%, rgba(255, 255, 255, 0.05), transparent 70%),
+    var(--slate);
+  color: var(--chalk); border: 12px solid var(--wood); border-radius: 6px;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.35), 0 22px 34px -22px rgba(0, 0, 0, 0.55);
+  padding-block: 26px 28px; padding-inline: 26px; font-family: var(--font-chalk); display: grid; gap: 18px;
+}
+.ardoise h3 { font-family: var(--font-chalk); font-weight: 700; font-size: 2.3rem; line-height: 1; transform: rotate(-1.5deg); }
+.ardoise ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.ardoise li { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; }
+.ardoise li span, .ardoise li b { font-size: 1.65rem; line-height: 1.1; font-weight: 700; }
+.ardoise li small { grid-column: 1 / -1; font-size: 1.28rem; line-height: 1.2; opacity: 0.78; }
+.ardoise .chalk-note { font-size: 1.45rem; opacity: 0.85; transform: rotate(-2deg); justify-self: end; border-top: 2px dashed rgba(240, 239, 232, 0.35); padding-top: 10px; }
+
+.bag { position: relative; color: var(--kraft-ink); filter: drop-shadow(0 22px 20px rgba(0, 0, 0, 0.18)); min-width: 0; }
+.bag-top {
+  height: 14px;
+  background:
+    linear-gradient(45deg, var(--kraft) 10px, transparent 0) 0 0 / 20px 14px repeat-x,
+    linear-gradient(-45deg, var(--kraft) 10px, transparent 0) 0 0 / 20px 14px repeat-x;
+}
+.bag-body {
+  background: repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.025) 0 1px, transparent 1px 7px), var(--kraft);
+  box-shadow: inset 22px 0 26px -24px rgba(0, 0, 0, 0.35), inset -22px 0 26px -24px rgba(0, 0, 0, 0.35);
+  border-radius: 0 0 6px 6px; padding-block: 22px 28px; padding-inline: 26px; display: grid; gap: 18px;
+}
+.bag-head { display: flex; align-items: center; gap: 16px; }
+.stamp { width: 86px; height: 86px; flex: none; color: var(--stamp); transform: rotate(-9deg); opacity: 0.9; }
+.bag-head h3 { font-size: 2rem; line-height: 1; }
+.bag-sub { font-size: 0.95rem; opacity: 0.85; }
+.bag-lines { list-style: none; margin: 0; padding: 0; }
+.bag-lines li { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr) auto; gap: 10px; padding-block: 9px; border-bottom: 1px dashed color-mix(in srgb, var(--kraft-ink) 30%, transparent); font-variant-numeric: tabular-nums; }
+.bag-lines .q { font-weight: 700; }
+.bag-empty { font-size: 0.98rem; opacity: 0.85; }
+.bag-total { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.05rem; }
+.bag-total strong { font-family: var(--font-display); font-weight: 400; font-size: 1.9rem; font-variant-numeric: tabular-nums; }
+.order-form { display: grid; gap: 14px; }
+.field { display: grid; gap: 6px; }
+.field label { font-weight: 650; font-size: 0.9rem; }
+.field input, .field select {
+  font: inherit; font-size: 1rem; color: var(--kraft-ink); background: var(--field);
+  border: 1.5px solid var(--kraft-line); border-radius: 4px; padding-block: 11px; padding-inline: 13px; width: 100%;
+}
+.field input:focus, .field select:focus { outline: none; border-color: var(--kraft-ink); }
+.row-2 { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }
+.order-form .btn { width: 100%; }
+.form-status { font-size: 0.95rem; background: var(--field); border-radius: 4px; padding-block: 12px; padding-inline: 14px; border: 1px solid var(--kraft-line); }
+
+/* Story */
+.story-grid { display: grid; gap: 44px; align-items: center; }
+.story-quote { margin: 0; font-family: var(--font-display); font-size: clamp(1.9rem, 4.2vw, 2.9rem); line-height: 1.12; color: var(--ink); display: grid; gap: 18px; }
+.story-quote::before { content: "«"; font-size: 4.4rem; line-height: 0.5; color: var(--gold); }
+.story-quote cite { font-family: var(--font-body); font-style: normal; font-size: 0.95rem; color: var(--muted); }
+.story-text { display: grid; gap: 18px; min-width: 0; }
+.story-text p { color: var(--muted); max-width: 58ch; }
+.specs { margin: 8px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); border-top: 1px solid var(--line); }
+.specs div { padding-block: 14px; padding-inline: 0 16px; border-bottom: 1px solid var(--line); display: grid; gap: 2px; }
+.specs dt { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.specs dd { margin: 0; font-family: var(--font-display); font-size: 1.35rem; }
+
+/* Reviews */
+.reviews-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 32px; }
+.rating { display: grid; gap: 4px; justify-items: end; text-align: right; }
+.rating strong { font-family: var(--font-display); font-weight: 400; font-size: 2.6rem; line-height: 1; }
+.rating .stars { color: var(--gold); letter-spacing: 3px; }
+.rating small { color: var(--muted); }
+.reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.review { margin: 0; padding-block: 26px; padding-inline: 0 28px; display: grid; gap: 14px; align-content: start; border-bottom: 1px solid var(--line); }
+.review blockquote { margin: 0; font-size: 1.08rem; }
+.review figcaption { font-size: 0.9rem; color: var(--muted); }
+.badge { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 3px; padding-block: 2px; padding-inline: 7px; }
+
+/* Infos */
+.infos-grid { display: grid; gap: 40px; align-items: start; }
+.infos-left { display: grid; gap: 26px; min-width: 0; }
+.hours { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.hours th, .hours td { text-align: left; padding-block: 10px; border-bottom: 1px solid var(--line); font-weight: 400; }
+.hours td { text-align: right; color: var(--muted); }
+.hours tr.today th, .hours tr.today td { font-weight: 700; color: var(--ink); }
+.hours .tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--shop); color: var(--shop-ink); border-radius: 3px; padding-block: 2px; padding-inline: 6px; margin-left: 8px; vertical-align: 2px; }
+.address { display: grid; gap: 4px; }
+.address strong { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; }
+.address span { color: var(--muted); }
+.map-card { margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.map-card svg { display: block; width: 100%; height: auto; }
+.map-card .m-street { stroke: var(--line); fill: none; }
+.map-card .m-river { stroke: var(--river); fill: none; }
+.map-card .m-label { font-family: var(--font-body); font-size: 12px; fill: var(--muted); }
+.map-card .m-river-label { font-family: var(--font-display); font-size: 15px; fill: var(--paper); letter-spacing: 2px; }
+.map-card .m-pin { fill: var(--shop); stroke: var(--gold); stroke-width: 3; }
+.map-card .m-pin-dot { fill: var(--gold); }
+.map-card .m-name { font-family: var(--font-display); font-size: 15px; fill: var(--ink); }
+.map-card .m-tram { fill: var(--crust); }
+.map-card figcaption { font-size: 0.85rem; color: var(--muted); padding-block: 10px; padding-inline: 16px; border-top: 1px solid var(--line); }
+
+/* Footer */
+.site-footer { background: var(--shop-deep); color: var(--shop-ink); padding-block: 48px 56px; }
+.site-footer .wrap { display: grid; gap: 22px; }
+.foot-name { font-family: var(--font-display); font-size: 2.2rem; line-height: 1; animation: none; }
+.foot-cols { display: grid; gap: 8px; font-size: 0.88rem; opacity: 0.82; }
+
+/* Bag bar */
+.bagbar {
+  position: fixed; z-index: 40; left: 50%; transform: translateX(-50%);
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px)); width: min(560px, calc(100% - 24px));
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--shop); color: var(--shop-ink); border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent);
+  border-radius: 8px; padding-block: 9px; padding-inline: 18px 9px; box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.55);
+}
+.bagbar .btn { padding-block: 10px; padding-inline: 16px; }
+.bagbar span { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+@keyframes gild { from { background-position: 0% 0; } to { background-position: 100% 0; } }
+@keyframes unroll { from { transform: scaleY(0.6); } to { transform: none; } }
+
+@media (min-width: 640px) {
+  .front-nav .nav-vitrine { display: list-item; }
+}
+@media (min-width: 860px) {
+  :root { --stripe: 52px; }
+  .section { padding-block: 104px; }
+  .front-panel { padding-block: calc(var(--stripe) / 2 + 36px) 96px; }
+  .front-grid { grid-template-columns: 1.1fr 0.9fr; gap: 56px; }
+  .bakes-grid { grid-template-columns: 0.85fr 1.15fr; gap: 64px; align-items: start; }
+  .order-grid { grid-template-columns: 0.9fr 1.1fr; gap: 48px; }
+  .story-grid { grid-template-columns: 1fr 1fr; gap: 72px; }
+  .infos-grid { grid-template-columns: 0.85fr 1.15fr; gap: 56px; }
+  .foot-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+}
+@media (max-width: 560px) {
+  .front-inner { padding-inline: 30px; gap: 32px; }
+  .front-panel::before { inset: calc(var(--stripe) / 2 + 10px) 10px 10px; }
+  .kicker { font-size: 0.72rem; letter-spacing: 0.14em; }
+  .front-nav ul { gap: 16px; }
+  .front-nav { font-size: 0.86rem; }
+  .bake { grid-template-columns: 5.4rem minmax(0, 1fr); }
+  .bake .chip { grid-column: 2; justify-self: start; }
+  .bake time { font-size: 1.7rem; }
+  .product { grid-template-columns: 118px minmax(0, 1fr); grid-template-rows: auto; }
+  .product-art { aspect-ratio: auto; border-bottom: 0; border-right: 1px solid var(--line); }
+  .product-art svg { width: 92%; }
+  .product-body { padding-block: 14px 16px; padding-inline: 16px; gap: 6px; }
+  .product h3 { font-size: 1.28rem; }
+  .product p { font-size: 0.88rem; }
+  .product-foot { flex-wrap: wrap; }
+  .rating { justify-items: start; text-align: left; }
+  .ardoise { padding-inline: 18px; }
+  .bag-body { padding-inline: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .awning, .gilt { animation: none; }
+  .btn, .btn-gold:hover { transition: none; transform: none; }
+}
+
+/* ---------- Motion layer ---------- */
+.drop { transform-box: fill-box; animation: drop 0.75s cubic-bezier(0.3, 1.45, 0.5, 1) both; }
+@keyframes drop { from { transform: translateY(-170px); opacity: 0; } 55% { opacity: 1; } to { transform: none; opacity: 1; } }
+.tag-swing { transform-box: view-box; transform-origin: 262px 126px; animation: swing 2.6s ease-out 1.5s both; }
+@keyframes swing { 0% { transform: rotate(0); } 18% { transform: rotate(-9deg); } 38% { transform: rotate(6deg); } 58% { transform: rotate(-3deg); } 78% { transform: rotate(1.5deg); } 100% { transform: rotate(0); } }
+
+.story { background: var(--shop-deep); color: var(--shop-ink); position: relative; overflow: hidden; }
+.story::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+  background: radial-gradient(ellipse 60% 50% at 75% 55%, rgba(226, 96, 58, var(--heat, 0)), transparent 70%);
+}
+.story-wrap { position: relative; min-height: 100vh; min-height: 100svh; display: grid; align-items: center; padding-block: 48px; }
+.story-grid { display: grid; gap: 22px; align-items: center; }
+.story-text { display: grid; gap: 16px; align-content: center; min-width: 0; }
+.story .eyebrow { color: var(--gold); }
+.story h2 { color: var(--shop-ink); font-size: clamp(1.9rem, 4.2vw, 3rem); line-height: 1.05; }
+.clock-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.clock { font-family: var(--font-display); font-size: clamp(3rem, 8.5vw, 5.6rem); line-height: 0.95; color: var(--gold); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.clock-day { font-family: var(--font-chalk); font-size: 1.7rem; color: var(--shop-ink); opacity: 0.8; }
+.chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.chapters li { display: grid; grid-template-columns: 6.4rem minmax(0, 1fr); column-gap: 14px; padding-block: 10px; border-top: 1px solid rgba(242, 234, 214, 0.16); opacity: 0.5; transition: opacity 0.35s ease; }
+.chapters li.on { opacity: 1; }
+.chapters time { font-family: var(--font-display); color: var(--gold); font-variant-numeric: tabular-nums; }
+.chapters b { font-weight: 650; }
+.chapters p { grid-column: 2; font-size: 0.95rem; line-height: 1.45; opacity: 0.85; margin-top: 2px; }
+.oven { margin: 0; display: grid; gap: 14px; min-width: 0; }
+.oven svg { display: block; width: 100%; height: auto; max-height: 52svh; }
+.temp { display: flex; align-items: center; gap: 12px; font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+.temp .bar { flex: 1; height: 6px; border-radius: 3px; background: rgba(242, 234, 214, 0.14); overflow: hidden; }
+.temp .bar i { display: block; height: 100%; width: 3%; border-radius: 3px; background: linear-gradient(90deg, #c9a24c, #e2603a); }
+.temp b { min-width: 4.6rem; text-align: right; font-weight: 650; }
+.dots { display: none; gap: 6px; }
+.dots i { width: 22px; height: 4px; border-radius: 2px; background: rgba(242, 234, 214, 0.22); transition: background-color 0.3s; }
+.dots i.on { background: var(--gold); }
+.steam path { stroke-dasharray: 0.18 0.12; animation: steam 2.4s linear infinite; }
+.steam path:nth-child(2) { animation-duration: 2.9s; }
+.steam path:nth-child(3) { animation-duration: 2.1s; }
+@keyframes steam { to { stroke-dashoffset: -0.6; } }
+.story.static .chapters li { opacity: 1; }
+
+@media (min-width: 900px) {
+  .story-grid { grid-template-columns: 0.95fr 1.05fr; gap: 56px; }
+}
+@media (max-width: 899px) {
+  .story-wrap { padding-block: 28px; }
+  .oven { order: -1; }
+  .story h2 { display: none; }
+  .dots { display: flex; }
+  .story:not(.static) .chapters li:not(.on) { display: none; }
+  .story:not(.static) .chapters li { border-top: 0; padding-top: 0; }
+  .oven svg { max-height: 40svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drop, .tag-swing, .steam path { animation: none; }
+}
+</style>
+
+</head>
+<body>
+<!-- Illustrations: one sprite, reused in the window and the product cards -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="cnl-body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4a1a07"/>
+      <stop offset="0.35" stop-color="#8f3f17"/>
+      <stop offset="0.55" stop-color="#a64e1e"/>
+      <stop offset="1" stop-color="#3b1405"/>
+    </linearGradient>
+    <symbol id="canele" viewBox="0 0 60 62">
+      <path d="M9 14 C8 30 6 44 4 54 C4 58 18 61 30 61 C42 61 56 58 56 54 C54 44 52 30 51 14 Z" fill="url(#cnl-body)"/>
+      <g fill="none" stroke="#2f1004" stroke-opacity="0.55" stroke-width="1.6">
+        <path d="M15 16 C14 30 12 44 10 58"/><path d="M21 17 C20 32 19 46 18 60"/><path d="M27 17 C27 32 26 46 26 61"/>
+        <path d="M33 17 C33 32 34 46 34 61"/><path d="M39 17 C40 32 41 46 42 60"/><path d="M45 16 C46 30 48 44 50 58"/>
+      </g>
+      <path d="M13 20 C12 32 11 44 10 52" fill="none" stroke="#ffd9b0" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round"/>
+      <ellipse cx="30" cy="14" rx="21.5" ry="7" fill="#3a1405"/>
+      <ellipse cx="30" cy="13" rx="14" ry="4" fill="#5e230a"/>
+      <ellipse cx="25" cy="12" rx="5" ry="1.4" fill="#ffd9b0" fill-opacity="0.25"/>
+    </symbol>
+    <symbol id="ill-baguette" viewBox="0 0 120 80">
+      <ellipse cx="60" cy="66" rx="48" ry="4" fill="#000" fill-opacity="0.1"/>
+      <g transform="rotate(-6 60 42)">
+        <path d="M4 46 C14 34 30 31 60 29 C92 27 108 30 116 38 C108 50 92 54 60 55 C30 56 14 54 4 46 Z" fill="#d49a52" stroke="#7d4a1d" stroke-width="2"/>
+        <path d="M18 41 C34 35 60 32 100 33" fill="none" stroke="#ebc387" stroke-width="5" stroke-linecap="round" stroke-opacity="0.6"/>
+        <g fill="none" stroke="#f5deae" stroke-width="3.5" stroke-linecap="round">
+          <path d="M24 44 C30 38 38 36 44 37"/><path d="M42 42 C48 36 56 34 62 35"/><path d="M60 41 C66 35 74 33 80 34"/><path d="M78 40 C84 34 92 33 98 34"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="ill-levain" viewBox="0 0 120 80">
+      <ellipse cx="60" cy="72" rx="36" ry="4" fill="#000" fill-opacity="0.1"/>
+      <ellipse cx="60" cy="46" rx="40" ry="26" fill="#b4733a" stroke="#6b3e17" stroke-width="2"/>
+      <ellipse cx="60" cy="40" rx="32" ry="16" fill="#c98a4c"/>
+      <path d="M38 33 C50 39 70 45 84 50 M40 52 C54 44 70 38 82 31" fill="none" stroke="#f1dcb4" stroke-width="4" stroke-linecap="round"/>
+      <g fill="#f6eedd" fill-opacity="0.9">
+        <circle cx="46" cy="30" r="1.6"/><circle cx="70" cy="28" r="1.2"/><circle cx="79" cy="41" r="1.4"/>
+        <circle cx="52" cy="57" r="1.2"/><circle cx="66" cy="52" r="1"/><circle cx="40" cy="44" r="1.1"/><circle cx="58" cy="25" r="1"/>
+      </g>
+    </symbol>
+    <symbol id="ill-croissant" viewBox="0 0 120 80">
+      <ellipse cx="60" cy="68" rx="44" ry="4" fill="#000" fill-opacity="0.1"/>
+      <g fill="#d8964a" stroke="#7f4a1c" stroke-width="2">
+        <ellipse cx="20" cy="54" rx="9" ry="12" transform="rotate(-52 20 54)"/>
+        <ellipse cx="100" cy="54" rx="9" ry="12" transform="rotate(52 100 54)"/>
+        <ellipse cx="36" cy="46" rx="12" ry="16" transform="rotate(-32 36 46)"/>
+        <ellipse cx="84" cy="46" rx="12" ry="16" transform="rotate(32 84 46)"/>
+        <ellipse cx="60" cy="42" rx="15" ry="20"/>
+      </g>
+      <g fill="#efbd78" fill-opacity="0.75">
+        <ellipse cx="55" cy="33" rx="5" ry="8"/><ellipse cx="32" cy="40" rx="3.5" ry="6" transform="rotate(-32 32 40)"/>
+        <ellipse cx="80" cy="40" rx="3.5" ry="6" transform="rotate(32 80 40)"/><ellipse cx="17" cy="50" rx="2.5" ry="4" transform="rotate(-52 17 50)"/>
+        <ellipse cx="96" cy="50" rx="2.5" ry="4" transform="rotate(52 96 50)"/>
+      </g>
+    </symbol>
+    <symbol id="ill-chocolatine" viewBox="0 0 120 80">
+      <ellipse cx="60" cy="68" rx="42" ry="4" fill="#000" fill-opacity="0.1"/>
+      <g fill="#3a2015"><rect x="14" y="35" width="10" height="7" rx="2"/><rect x="14" y="47" width="10" height="7" rx="2"/><rect x="96" y="35" width="10" height="7" rx="2"/><rect x="96" y="47" width="10" height="7" rx="2"/></g>
+      <rect x="20" y="26" width="80" height="36" rx="12" fill="#d69a54" stroke="#7d4a1d" stroke-width="2"/>
+      <path d="M26 38 C46 34 74 34 94 38 M26 49 C46 45 74 45 94 49" fill="none" stroke="#a96f33" stroke-width="2"/>
+      <path d="M30 31 C50 28 70 28 90 31" fill="none" stroke="#f2cd92" stroke-width="4" stroke-linecap="round" stroke-opacity="0.85"/>
+    </symbol>
+    <symbol id="ill-canele" viewBox="0 0 120 80">
+      <ellipse cx="60" cy="74" rx="40" ry="4" fill="#000" fill-opacity="0.1"/>
+      <use href="#canele" x="58" y="22" width="44" height="46"/>
+      <use href="#canele" x="20" y="12" width="56" height="60"/>
+    </symbol>
+    <symbol id="ill-flan" viewBox="0 0 120 80">
+      <ellipse cx="66" cy="74" rx="42" ry="3.5" fill="#000" fill-opacity="0.1"/>
+      <path d="M18 66 L28 72 L28 46 L18 40 Z" fill="#d9a948" stroke="#7a4a1a" stroke-width="1.5"/>
+      <path d="M28 46 L108 36 L108 62 L28 72 Z" fill="#f2cf6a" stroke="#7a4a1a" stroke-width="1.5"/>
+      <path d="M28 68 L108 58 L108 62 L28 72 Z" fill="#c08443"/>
+      <path d="M18 40 L98 30 L108 36 L28 46 Z" fill="#9a5220" stroke="#7a4a1a" stroke-width="1.5"/>
+      <path d="M30 41 L90 33" stroke="#c87a3e" stroke-width="2" stroke-linecap="round" stroke-opacity="0.7"/>
+      <g fill="#5a3a1e" fill-opacity="0.55"><circle cx="48" cy="56" r="0.9"/><circle cx="66" cy="52" r="0.8"/><circle cx="84" cy="55" r="0.9"/><circle cx="96" cy="48" r="0.7"/><circle cx="58" cy="62" r="0.8"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="demo-note">Site de démonstration réalisé par <a href="/" style="color:inherit;font-weight:700">Vetrina</a> : la boulangerie, son adresse, son numéro et ses avis sont fictifs.</div>
+
+<header class="front" id="top">
+  <div class="awning" aria-hidden="true"><div class="awning-band"></div><div class="awning-edge"></div></div>
+  <div class="front-panel">
+    <div class="wrap front-inner">
+      <nav class="front-nav" aria-label="Navigation principale">
+        <span class="since">Depuis 1994</span>
+        <ul>
+          <li class="nav-vitrine"><a href="#vitrine">La vitrine</a></li>
+          <li><a href="#commande">Commander</a></li>
+          <li><a href="#infos">Horaires</a></li>
+        </ul>
+      </nav>
+      <div class="front-grid">
+        <div class="front-copy">
+          <p class="kicker">Boulangerie · Pâtisserie · Chartrons</p>
+          <h1><span class="h1-small gilt">Maison</span><span class="h1-big gilt">Escoubès</span></h1>
+          <p class="front-lead">Pain au levain, canelés et chocolatines, cuits chaque jour dans notre four à sole, au cœur des Chartrons.</p>
+          <div class="live">
+            <span class="status" id="status"><i aria-hidden="true"></i><span id="status-text">Ouvert du jeudi au mardi</span></span>
+            <span class="next-bake" id="hero-bake">Fournées à 6 h 45, 11 h 30 et 16 h 30</span>
+          </div>
+          <div class="front-actions">
+            <a class="btn btn-gold" href="#vitrine">Commander en ligne</a>
+            <a class="btn btn-outline" href="#infos">Horaires et accès</a>
+          </div>
+        </div>
+
+        <div class="window">
+          <div class="glass">
+            <svg viewBox="0 0 300 360" preserveAspectRatio="xMidYMax meet" role="img" aria-label="Vitrine de la boulangerie : une pyramide de canelés sur un présentoir, des baguettes dans un panier">
+              <defs>
+                <linearGradient id="win-gold" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#9a7128"/><stop offset="0.45" stop-color="#e2c272"/><stop offset="1" stop-color="#8f6622"/>
+                </linearGradient>
+                <path id="arch-path" d="M34 140 A116 116 0 0 1 266 140"/>
+              </defs>
+              <text class="arc-text" fill="url(#win-gold)"><textPath href="#arch-path" startOffset="40" textLength="284" lengthAdjust="spacingAndGlyphs">PAIN · VIENNOISERIE · PÂTISSERIE</textPath></text>
+              <rect x="0" y="300" width="300" height="60" fill="#6d4a2b"/>
+              <rect x="0" y="296" width="300" height="8" fill="#8a6038"/>
+              <g fill="#d49a52" stroke="#7d4a1d" stroke-width="1.5">
+                <rect x="36" y="150" width="16" height="112" rx="8" transform="rotate(-12 44 256)"/>
+                <rect x="52" y="140" width="16" height="122" rx="8" transform="rotate(-3 60 256)"/>
+                <rect x="66" y="156" width="16" height="106" rx="8" transform="rotate(9 74 256)"/>
+              </g>
+              <path d="M26 246 L94 246 L87 300 L33 300 Z" fill="#a77a45" stroke="#6e4c27" stroke-width="1.5"/>
+              <g stroke="#835a30" stroke-width="1.5"><path d="M28 262 H92"/><path d="M30 278 H90"/><path d="M32 292 H88"/></g>
+              <ellipse cx="180" cy="296" rx="36" ry="6" fill="#efe6d6" stroke="#cdbb9d"/>
+              <rect x="171" y="264" width="18" height="30" fill="#f1e9db" stroke="#cdbb9d"/>
+              <ellipse cx="180" cy="262" rx="84" ry="9" fill="#faf6ee" stroke="#cdbb9d"/>
+              <use class="drop" style="animation-delay:1.34s" href="#canele" x="155" y="124" width="50" height="52"/>
+              <use class="drop" style="animation-delay:1.08s" href="#canele" x="127" y="164" width="50" height="52"/>
+              <use class="drop" style="animation-delay:1.2s" href="#canele" x="182" y="164" width="50" height="52"/>
+              <use class="drop" style="animation-delay:0.7s" href="#canele" x="100" y="206" width="50" height="52"/>
+              <use class="drop" style="animation-delay:0.82s" href="#canele" x="155" y="206" width="50" height="52"/>
+              <use class="drop" style="animation-delay:0.94s" href="#canele" x="210" y="206" width="50" height="52"/>
+              <path d="M262 126 V140" stroke="#6e4c27" stroke-width="1.2"/>
+              <g class="tag-swing"><g transform="rotate(7 262 160)">
+                <rect x="234" y="140" width="56" height="42" rx="4" fill="#fbf5e8" stroke="#b9a27e"/>
+                <circle cx="262" cy="146" r="2" fill="#b9a27e"/>
+                <text class="tag-text" x="262" y="163" text-anchor="middle" font-size="15">Canelé</text>
+                <text class="tag-text" x="262" y="178" text-anchor="middle" font-size="16" font-weight="700">1,90 €</text>
+              </g></g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="story" id="nuit" aria-labelledby="nuit-title">
+    <div class="wrap story-wrap">
+      <div class="story-grid">
+        <div class="story-text">
+          <p class="eyebrow">La nuit d'une baguette</p>
+          <h2 id="nuit-title">De la farine au comptoir, il faut une nuit entière</h2>
+          <div class="clock-row" aria-hidden="true">
+            <span class="clock" id="clock">11 h 00</span>
+            <span class="clock-day" id="clock-day">la veille</span>
+          </div>
+          <div class="dots" id="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+          <ol class="chapters" id="chapters">
+            <li class="on"><time>Veille, 11 h</time><b>Pétrissage</b><p>Farine T65, eau, sel et levain. Puis 18 heures de repos au frais : c'est là que naît le goût.</p></li>
+            <li><time>4 h 30</time><b>Façonnage</b><p>Chaque baguette est roulée à la main, une par une.</p></li>
+            <li><time>5 h 50</time><b>La grigne</b><p>Cinq coups de lame, la signature du boulanger. C'est par là que la mie respire.</p></li>
+            <li><time>6 h 15</time><b>Four à sole</b><p>25 minutes à 250 °C sur la pierre. La pâte gonfle et la croûte se colore.</p></li>
+            <li><time>6 h 45</time><b>Sortie du four</b><p>La croûte chante en refroidissant. Les premiers clients poussent la porte.</p></li>
+          </ol>
+        </div>
+        <figure class="oven">
+          <svg viewBox="0 0 640 440" role="img" aria-label="Une baguette devant la bouche du four : elle lève, est grignée, puis dore pendant la cuisson">
+            <defs>
+              <radialGradient id="ov-glow" cx="50%" cy="72%" r="62%">
+                <stop offset="0" stop-color="#ffd98a"/>
+                <stop offset="0.45" stop-color="#f08a3c"/>
+                <stop offset="1" stop-color="#5a1a08"/>
+              </radialGradient>
+              <linearGradient id="ov-peel" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#b98652"/>
+                <stop offset="1" stop-color="#8a5a30"/>
+              </linearGradient>
+              <pattern id="ov-bricks" width="64" height="32" patternUnits="userSpaceOnUse">
+                <rect width="64" height="32" fill="#2c1912"/>
+                <path d="M0 0.5H64M0 16.5H64M32 0V16M0 16V32M64 16V32" stroke="#3c2419" stroke-width="2"/>
+              </pattern>
+            </defs>
+            <rect width="640" height="440" rx="18" fill="url(#ov-bricks)"/>
+            <path d="M130 318 V196 A190 160 0 0 1 510 196 V318 Z" fill="#110704"/>
+            <path id="ov-light" d="M130 318 V196 A190 160 0 0 1 510 196 V318 Z" fill="url(#ov-glow)" opacity="0"/>
+            <path d="M130 318 V196 A190 160 0 0 1 510 196 V318" fill="none" stroke="#6b3a22" stroke-width="18"/>
+            <path d="M130 318 V196 A190 160 0 0 1 510 196 V318" fill="none" stroke="#8a4c2c" stroke-width="2" stroke-dasharray="14 22"/>
+            <rect x="139" y="300" width="362" height="18" fill="#3a2015"/>
+            <rect x="40" y="338" width="520" height="26" rx="13" fill="url(#ov-peel)"/>
+            <rect x="548" y="343" width="92" height="16" rx="6" fill="#7a4f2a"/>
+            <g id="flour" fill="#f6f1e6">
+              <circle cx="96" cy="332" r="3"/><circle cx="130" cy="326" r="2"/><circle cx="520" cy="330" r="2.5"/><circle cx="486" cy="324" r="2"/>
+              <circle cx="210" cy="334" r="1.6"/><circle cx="420" cy="335" r="1.8"/><circle cx="300" cy="333" r="1.4"/><circle cx="560" cy="334" r="2"/>
+            </g>
+            <g id="loaf">
+              <path id="crust" d="M92 318 C112 282 190 270 320 268 C450 266 528 278 548 312 C528 342 450 352 320 354 C190 356 112 348 92 318 Z" fill="#efe3cc" stroke="#00000026" stroke-width="2"/>
+              <path d="M140 296 C210 284 300 280 450 284" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="7" stroke-linecap="round"/>
+              <g id="grignes" fill="none" stroke="#b89c74" stroke-width="5" stroke-linecap="round">
+                <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M150 318 C170 298 196 290 226 288"/>
+                <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M222 316 C242 296 268 288 298 286"/>
+                <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M294 316 C314 296 340 288 370 286"/>
+                <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M366 316 C386 296 412 288 442 286"/>
+                <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M438 316 C458 298 482 292 508 292"/>
+              </g>
+            </g>
+            <g class="steam" id="steam" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="5" stroke-linecap="round" opacity="0">
+              <path pathLength="1" d="M250 262 C236 236 264 218 250 192 C238 170 260 152 250 130"/>
+              <path pathLength="1" d="M326 258 C312 230 340 212 326 186 C314 162 336 144 326 118"/>
+              <path pathLength="1" d="M402 262 C388 236 416 218 402 192 C390 170 412 152 402 130"/>
+            </g>
+          </svg>
+          <div class="temp" aria-hidden="true"><span>Four</span><span class="bar"><i id="temp-bar"></i></span><b id="temp-val">20 °C</b></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="fournees" aria-labelledby="bakes-title">
+    <div class="wrap bakes-grid">
+      <div class="section-head">
+        <p class="eyebrow">Les fournées</p>
+        <h2 id="bakes-title">Le pain sort du four trois fois par jour</h2>
+        <p class="lead">Passez à l'heure de la fournée : la croûte chante encore quand on vous tend votre baguette.</p>
+      </div>
+      <div class="bake-board">
+        <p class="bake-day" id="bake-day">Du jeudi au mardi</p>
+        <ol class="bake-list" id="bake-list">
+          <li class="bake later"><time>6 h 45</time><span class="what">Tradition, levain et viennoiseries</span><span class="chip">Fournée</span></li>
+          <li class="bake later"><time>11 h 30</time><span class="what">Tradition et sandwichs du midi</span><span class="chip">Fournée</span></li>
+          <li class="bake later"><time>16 h 30</time><span class="what">Tradition et levain pour le soir</span><span class="chip">Fournée</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="vitrine" aria-labelledby="vitrine-title" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="vitrine-head">
+        <p class="eyebrow">La vitrine</p>
+        <h2 id="vitrine-title">Ajoutez au sac, on vous le met de côté</h2>
+        <p class="lead">Choisissez vos pains et vos pâtisseries, puis votre heure de retrait. Vous payez en boutique.</p>
+      </div>
+      <div class="products">
+        <article class="product" data-id="tradition" data-name="Baguette tradition" data-price="1.30">
+          <div class="product-art"><svg viewBox="0 0 120 80" aria-hidden="true"><use href="#ill-baguette"/></svg></div>
+          <div class="product-body">
+            <h3>Baguette tradition</h3>
+            <p>Pétrie le matin, 18 h de fermentation lente, croûte fine et mie crème.</p>
+            <div class="product-foot"><span class="price">1,30 €<small>la pièce</small></span><div class="ctrl"><button class="add" type="button" data-act="add">Ajouter</button></div></div>
+          </div>
+        </article>
+        <article class="product" data-id="levain" data-name="Pain au levain" data-price="4.80">
+          <div class="product-art"><svg viewBox="0 0 120 80" aria-hidden="true"><use href="#ill-levain"/></svg></div>
+          <div class="product-body">
+            <h3>Pain au levain</h3>
+            <p>Farine T80 Label Rouge et notre levain de 32 ans. Se garde cinq jours.</p>
+            <div class="product-foot"><span class="price">4,80 €<small>les 800 g</small></span><div class="ctrl"><button class="add" type="button" data-act="add">Ajouter</button></div></div>
+          </div>
+        </article>
+        <article class="product" data-id="canele" data-name="Canelé bordelais" data-price="1.90">
+          <div class="product-art"><svg viewBox="0 0 120 80" aria-hidden="true"><use href="#ill-canele"/></svg></div>
+          <div class="product-body">
+            <h3>Canelé bordelais</h3>
+            <p>Cuit dans des moules en cuivre : croûte caramélisée, cœur vanille et rhum.</p>
+            <div class="product-foot"><span class="price">1,90 €<small>la pièce</small></span><div class="ctrl"><button class="add" type="button" data-act="add">Ajouter</button></div></div>
+          </div>
+        </article>
+        <article class="product" data-id="chocolatine" data-name="Chocolatine" data-price="1.40">
+          <div class="product-art"><svg viewBox="0 0 120 80" aria-hidden="true"><use href="#ill-chocolatine"/></svg></div>
+          <div class="product-body">
+            <h3>Chocolatine</h3>
+            <p>Beurre AOP Charentes-Poitou et deux barres de chocolat noir. Ici, on ne dit pas autrement.</p>
+            <div class="product-foot"><span class="price">1,40 €<small>la pièce</small></span><div class="ctrl"><button class="add" type="button" data-act="add">Ajouter</button></div></div>
+          </div>
+        </article>
+        <article class="product" data-id="croissant" data-name="Croissant au beurre" data-price="1.30">
+          <div class="product-art"><svg viewBox="0 0 120 80" aria-hidden="true"><use href="#ill-croissant"/></svg></div>
+          <div class="product-body">
+            <h3>Croissant au beurre</h3>
+            <p>Feuilleté sur trois jours, doré au four à sole. Le meilleur sort à 6 h 45.</p>
+            <div class="product-foot"><span class="price">1,30 €<small>la pièce</small></span><div class="ctrl"><button class="add" type="button" data-act="add">Ajouter</button></div></div>
+          </div>
+        </article>
+        <article class="product" data-id="flan" data-name="Flan pâtissier" data-price="3.20">
+          <div class="product-art"><svg viewBox="0 0 120 80" aria-hidden="true"><use href="#ill-flan"/></svg></div>
+          <div class="product-body">
+            <h3>Flan pâtissier</h3>
+            <p>Pâte feuilletée maison, crème à la vanille de Madagascar, dessus bien brûlé.</p>
+            <div class="product-foot"><span class="price">3,20 €<small>la part</small></span><div class="ctrl"><button class="add" type="button" data-act="add">Ajouter</button></div></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section order" id="commande" aria-labelledby="order-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Commande en ligne</p>
+        <h2 id="order-title">Commandez la veille, votre sac vous attend</h2>
+        <p class="lead">Votre commande est préparée à l'heure choisie et rangée à votre nom derrière le comptoir. Pas de file, pas de rupture de canelés.</p>
+      </div>
+      <div class="order-grid">
+        <aside class="ardoise" aria-labelledby="ardoise-title">
+          <h3 id="ardoise-title">L'ardoise du jour</h3>
+          <ul>
+            <li><span>Formule midi</span><b>9,50 €</b><small>Sandwich jambon de Bayonne et beurre demi-sel, boisson, canelé</small></li>
+            <li><span id="special-name">Pain du jour</span><b id="special-price">5,20 €</b><small id="special-desc">Seigle et noix, sur levain</small></li>
+            <li><span>Gâteau du week-end</span><b>sur commande</b><small>Tarte aux pommes, 6 ou 8 parts, à réserver avant jeudi</small></li>
+          </ul>
+          <p class="chalk-note">Ici, on dit chocolatine.</p>
+        </aside>
+
+        <div class="bag" id="sac">
+          <div class="bag-top" aria-hidden="true"></div>
+          <div class="bag-body">
+            <div class="bag-head">
+              <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true">
+                <defs><path id="stamp-circle" d="M60 60 m-43 0 a43 43 0 1 1 86 0 a43 43 0 1 1 -86 0"/></defs>
+                <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="2.5"/>
+                <circle cx="60" cy="60" r="31" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <text fill="currentColor" font-size="10.5" letter-spacing="2.6" font-family="Figtree, system-ui, sans-serif" font-weight="700"><textPath href="#stamp-circle">MAISON ESCOUBÈS · CHARTRONS · 1994 ·</textPath></text>
+                <text x="60" y="70" text-anchor="middle" fill="currentColor" font-size="30" font-family="Gloock, Georgia, serif">E</text>
+              </svg>
+              <div>
+                <h3>Mon sac</h3>
+                <p class="bag-sub">Retrait en boutique, paiement sur place.</p>
+              </div>
+            </div>
+            <ul class="bag-lines" id="bag-lines"></ul>
+            <p class="bag-empty" id="bag-empty">Votre sac est vide pour l'instant. Ajoutez une tradition ou quelques canelés depuis la vitrine.</p>
+            <div class="bag-total"><span>Total</span><strong id="bag-total">0,00 €</strong></div>
+            <form class="order-form" id="order-form" novalidate>
+              <div class="field">
+                <label for="o-slot">Heure de retrait</label>
+                <select id="o-slot" name="slot"></select>
+              </div>
+              <div class="row-2">
+                <div class="field"><label for="o-name">Nom</label><input id="o-name" name="name" autocomplete="name"></div>
+                <div class="field"><label for="o-tel">Téléphone</label><input id="o-tel" name="tel" type="tel" autocomplete="tel"></div>
+              </div>
+              <button class="btn btn-shop" type="submit">Réserver ma commande</button>
+              <p class="form-status" id="order-status" role="status" hidden></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="histoire" aria-labelledby="story-title">
+    <div class="wrap story-grid">
+      <blockquote class="story-quote">
+        <p>Notre levain a 32 ans. On le nourrit tous les soirs, même le soir de Noël.</p>
+        <cite>Lucie Escoubès, boulangère</cite>
+      </blockquote>
+      <div class="story-text">
+        <p class="eyebrow">Notre histoire</p>
+        <h2 id="story-title">La même famille derrière le comptoir depuis 1994</h2>
+        <p>Lucie et Thomas Escoubès ont repris la boulangerie de la rue du Fournil en 1994. On pétrit toujours la nuit, on cuit les canelés dans des moules en cuivre graissés à la cire d'abeille, et on connaît la commande de la moitié du quartier par cœur.</p>
+        <dl class="specs">
+          <div><dt>Levain</dt><dd>32 ans</dd></div>
+          <div><dt>Farines</dt><dd>T65 et T80 Label Rouge</dd></div>
+          <div><dt>Fermentation</dt><dd>18 h minimum</dd></div>
+          <div><dt>Four</dt><dd>Sole en pierre</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="avis" aria-labelledby="reviews-title" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="reviews-head">
+        <div class="section-head">
+          <p class="eyebrow">Avis clients</p>
+          <h2 id="reviews-title">Ce qu'on en dit dans le quartier</h2>
+          <span><span class="badge">Avis d'exemple</span></span>
+        </div>
+        <div class="rating">
+          <strong class="num">4,9</strong>
+          <span class="stars" aria-label="5 étoiles sur 5">★★★★★</span>
+          <small>214 avis Google (exemple)</small>
+        </div>
+      </div>
+      <div class="reviews">
+        <figure class="review">
+          <blockquote>Les meilleurs canelés du quartier : croûte bien caramélisée, cœur encore tendre. On prend une boîte de six tous les dimanches.</blockquote>
+          <figcaption>Hélène R., Chartrons</figcaption>
+        </figure>
+        <figure class="review">
+          <blockquote>La tradition de 16 h 30 est encore tiède quand on la récupère. Commander la veille sur le site est devenu un réflexe.</blockquote>
+          <figcaption>Karim B., Bacalan</figcaption>
+        </figure>
+        <figure class="review">
+          <blockquote>Accueil adorable. Ils ont fait le gâteau d'anniversaire de ma fille avec deux jours de délai, et il était parfait.</blockquote>
+          <figcaption>Julie T., Bordeaux centre</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section order" id="infos" aria-labelledby="infos-title">
+    <div class="wrap infos-grid">
+      <div class="infos-left">
+        <div class="section-head">
+          <p class="eyebrow">Horaires et accès</p>
+          <h2 id="infos-title">Fermé le mercredi, le four se repose</h2>
+        </div>
+        <table class="hours" aria-label="Horaires d'ouverture">
+          <tbody id="hours-body">
+            <tr><th scope="row">Lundi</th><td>6 h 45 – 19 h 30</td></tr>
+            <tr><th scope="row">Mardi</th><td>6 h 45 – 19 h 30</td></tr>
+            <tr><th scope="row">Mercredi</th><td>Fermé</td></tr>
+            <tr><th scope="row">Jeudi</th><td>6 h 45 – 19 h 30</td></tr>
+            <tr><th scope="row">Vendredi</th><td>6 h 45 – 19 h 30</td></tr>
+            <tr><th scope="row">Samedi</th><td>6 h 45 – 19 h</td></tr>
+            <tr><th scope="row">Dimanche</th><td>7 h – 13 h</td></tr>
+          </tbody>
+        </table>
+        <div class="address">
+          <strong>14 rue du Fournil, 33300 Bordeaux</strong>
+          <span>Tram B, arrêt Chartrons, à 3 minutes à pied</span>
+          <span class="num">05 36 49 52 18 · bonjour@maison-escoubes.fr</span>
+        </div>
+      </div>
+      <figure class="map-card">
+        <svg viewBox="0 0 420 280" role="img" aria-label="Plan du quartier : la boulangerie est à deux rues des quais et de l'arrêt de tram Chartrons">
+          <rect width="420" height="280" fill="var(--paper)"/>
+          <g class="m-street" stroke-width="7" stroke-linecap="round">
+            <path d="M-10 64 L292 54"/><path d="M-10 146 L282 136"/><path d="M-10 226 L292 220"/>
+            <path d="M78 -10 L90 290"/><path d="M196 -10 L202 290"/>
+          </g>
+          <g class="m-street" stroke-width="3" stroke-linecap="round">
+            <path d="M-10 104 L196 96"/><path d="M-10 188 L200 180"/><path d="M136 -10 L146 290"/>
+          </g>
+          <path class="m-street" stroke-width="10" d="M282 -10 C268 70 306 124 280 188 C266 230 282 262 284 290"/>
+          <path class="m-river" stroke-width="58" d="M352 -10 C336 70 378 124 350 188 C334 232 350 262 354 290"/>
+          <text class="m-river-label" transform="translate(360 150) rotate(-82)" text-anchor="middle">GARONNE</text>
+          <text class="m-label" transform="translate(296 96) rotate(-80)" text-anchor="middle">Quai des Chartrons</text>
+          <rect class="m-tram" x="226" y="128" width="16" height="16" rx="3"/>
+          <text class="m-label" x="234" y="164" text-anchor="middle">Tram B · Chartrons</text>
+          <path class="m-pin" d="M140 118 C140 100 120 92 120 112 C120 126 140 142 140 142 C140 142 160 126 160 112 C160 92 140 100 140 118 Z" transform="translate(0 -6)"/>
+          <circle class="m-pin" cx="140" cy="104" r="15"/>
+          <circle class="m-pin-dot" cx="140" cy="104" r="5"/>
+          <text class="m-name" x="140" y="166" text-anchor="middle">Maison Escoubès</text>
+        </svg>
+        <figcaption>À deux rues des quais, entre le marché des Chartrons et le tram B.</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="foot-name gilt">Maison Escoubès</p>
+    <div class="foot-cols">
+      <p>14 rue du Fournil, 33300 Bordeaux<br>05 36 49 52 18</p>
+      <p>SARL Maison Escoubès · SIRET 000 000 000 00000 (exemple)<br>Mentions légales · Aucun cookie publicitaire</p>
+      <p>Site de démonstration réalisé par <a href="/" style="color:inherit;font-weight:700">Vetrina</a>. Le nom, l'adresse, le numéro et les avis sont inventés.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="bagbar" id="bagbar" hidden>
+  <span id="bagbar-text">1 article · 1,30 €</span>
+  <a class="btn btn-gold" href="#sac">Voir mon sac</a>
+</div>
+
+<script>
+(function () {
+  var DAYS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+  var HOURS = { 0: [420, 780], 1: [405, 1170], 2: [405, 1170], 3: null, 4: [405, 1170], 5: [405, 1170], 6: [405, 1140] };
+  var DAY_BAKES = [[405, 'Tradition, levain et viennoiseries'], [690, 'Tradition et sandwichs du midi'], [990, 'Tradition et levain pour le soir']];
+  var BAKES = { 0: [[420, 'Tradition, viennoiseries et brioches'], [600, 'Deuxième fournée du dimanche']], 1: DAY_BAKES, 2: DAY_BAKES, 3: [], 4: DAY_BAKES, 5: DAY_BAKES, 6: DAY_BAKES };
+  var SPECIAL = {
+    0: ['Brioche tressée au beurre', '7,50 €'],
+    1: ["Pain d'épeautre, sur levain", '5,40 €'],
+    2: ['Pain aux céréales et graines', '4,90 €'],
+    3: null,
+    4: ['Seigle et noix, sur levain', '5,20 €'],
+    5: ['Pain aux figues et noisettes', '5,60 €'],
+    6: ['Fougasse aux olives et romarin', '4,20 €']
+  };
+  var eur = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
+  var $ = function (id) { return document.getElementById(id); };
+
+  function parisNow() {
+    var map = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    var p = {};
+    try {
+      new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Paris', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' })
+        .formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+      return { day: map[p.weekday], min: (parseInt(p.hour, 10) % 24) * 60 + parseInt(p.minute, 10) };
+    } catch (e) {
+      var d = new Date();
+      return { day: d.getDay(), min: d.getHours() * 60 + d.getMinutes() };
+    }
+  }
+  function fmt(m) { var h = Math.floor(m / 60), mm = m % 60; return mm ? h + ' h ' + String(mm).padStart(2, '0') : h + ' h'; }
+  function span(d) { if (d < 60) return d + ' min'; var h = Math.floor(d / 60), m = d % 60; return m ? h + ' h ' + String(m).padStart(2, '0') : h + ' h'; }
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function dayWord(off, d) { return off === 0 ? "aujourd'hui" : off === 1 ? 'demain' : DAYS[d]; }
+
+  function nextOpen(n) {
+    for (var off = 0; off < 8; off++) {
+      var d = (n.day + off) % 7, h = HOURS[d];
+      if (!h) continue;
+      if (off === 0) { if (n.min < h[0]) return { off: 0, d: d, min: h[0] }; continue; }
+      return { off: off, d: d, min: h[0] };
+    }
+  }
+  function nextBake(n) {
+    for (var off = 0; off < 8; off++) {
+      var d = (n.day + off) % 7, list = BAKES[d];
+      for (var i = 0; i < list.length; i++) {
+        if (off > 0 || list[i][0] > n.min) return { off: off, d: d, t: list[i][0] };
+      }
+    }
+  }
+
+  function renderLive() {
+    var n = parisNow();
+    var h = HOURS[n.day];
+    var open = !!h && n.min >= h[0] && n.min < h[1];
+    var status = $('status');
+    status.classList.toggle('closed', !open);
+    if (open) {
+      $('status-text').textContent = (h[1] - n.min <= 45 ? 'Ferme bientôt, à ' : "Ouvert jusqu'à ") + fmt(h[1]);
+    } else {
+      var o = nextOpen(n);
+      $('status-text').textContent = 'Fermé · ouvre ' + (o.off === 0 ? 'à ' : o.off === 1 ? 'demain à ' : DAYS[o.d] + ' à ') + fmt(o.min);
+    }
+
+    var nb = nextBake(n);
+    $('hero-bake').textContent = nb.off === 0
+      ? 'Prochaine fournée à ' + fmt(nb.t) + ', dans ' + span(nb.t - n.min)
+      : 'Prochaine fournée ' + dayWord(nb.off, nb.d) + ' à ' + fmt(nb.t);
+
+    $('bake-day').textContent = nb.off === 0 ? "Aujourd'hui, " + DAYS[nb.d] : nb.off === 1 ? 'Demain, ' + DAYS[nb.d] : cap(DAYS[nb.d]);
+    $('bake-list').innerHTML = BAKES[nb.d].map(function (b) {
+      var cls = 'later', chip = 'À venir';
+      if (nb.off === 0 && b[0] <= n.min) { cls = 'done'; chip = 'Sortie'; }
+      else if (b[0] === nb.t) { cls = 'next'; chip = nb.off === 0 ? 'Dans ' + span(b[0] - n.min) : 'Première fournée'; }
+      return '<li class="bake ' + cls + '"><time>' + fmt(b[0]) + '</time><span class="what">' + b[1] + '</span><span class="chip">' + chip + '</span></li>';
+    }).join('');
+
+    var sp = SPECIAL[n.day];
+    if (sp) {
+      $('special-name').textContent = (n.day === 0 ? 'Douceur du ' : 'Pain du ') + DAYS[n.day];
+      $('special-desc').textContent = sp[0];
+      $('special-price').textContent = sp[1];
+    } else {
+      $('special-name').textContent = 'Mercredi';
+      $('special-desc').textContent = 'Le four se repose. À demain !';
+      $('special-price').textContent = '';
+    }
+
+    var order = [1, 2, 3, 4, 5, 6, 0];
+    $('hours-body').innerHTML = order.map(function (d) {
+      var hh = HOURS[d];
+      var today = d === n.day;
+      return '<tr class="' + (today ? 'today' : '') + '"><th scope="row">' + cap(DAYS[d]) + (today ? '<span class="tag">aujourd\'hui</span>' : '') +
+        '</th><td>' + (hh ? fmt(hh[0]) + ' – ' + fmt(hh[1]) : 'Fermé') + '</td></tr>';
+    }).join('');
+
+    renderSlots(n);
+  }
+
+  function renderSlots(n) {
+    var sel = $('o-slot');
+    var keep = sel.value;
+    var html = '', days = 0;
+    for (var off = 0; off < 7 && days < 2; off++) {
+      var d = (n.day + off) % 7, h = HOURS[d];
+      if (!h) continue;
+      var opts = '';
+      for (var s = Math.ceil(h[0] / 30) * 30; s <= h[1] - 30; s += 30) {
+        if (off === 0 && s < n.min + 60) continue;
+        var label = cap(dayWord(off, d)) + ' à ' + fmt(s);
+        opts += '<option value="' + off + '-' + s + '" data-label="' + label + '">' + fmt(s) + '</option>';
+      }
+      if (opts) { days++; html += '<optgroup label="' + cap(dayWord(off, d)) + (off > 1 ? '' : ', ' + DAYS[d]) + '">' + opts + '</optgroup>'; }
+    }
+    sel.innerHTML = html;
+    if (keep && sel.querySelector('option[value="' + keep + '"]')) sel.value = keep;
+  }
+
+  var cart = {};
+  var products = Array.prototype.map.call(document.querySelectorAll('.product'), function (el) {
+    return { id: el.dataset.id, name: el.dataset.name, price: parseFloat(el.dataset.price), el: el };
+  });
+  function find(id) { for (var i = 0; i < products.length; i++) if (products[i].id === id) return products[i]; }
+
+  function renderCtrl(p, act) {
+    var q = cart[p.id] || 0;
+    var c = p.el.querySelector('.ctrl');
+    if (!q) {
+      c.innerHTML = '<button class="add" type="button" data-act="add">Ajouter</button>';
+    } else {
+      c.innerHTML = '<div class="stepper"><button type="button" data-act="dec" aria-label="Retirer : ' + p.name + '">−</button>' +
+        '<span aria-live="polite">' + q + '</span><button type="button" data-act="inc" aria-label="Ajouter : ' + p.name + '">+</button></div>';
+    }
+    if (act) {
+      var target = c.querySelector(q ? (act === 'dec' ? '[data-act="dec"]' : '[data-act="inc"]') : '[data-act="add"]');
+      if (target) target.focus();
+    }
+  }
+
+  function totals() {
+    var count = 0, total = 0;
+    products.forEach(function (p) { var q = cart[p.id] || 0; count += q; total += q * p.price; });
+    return { count: count, total: total };
+  }
+
+  function renderBag() {
+    var t = totals();
+    $('bag-lines').innerHTML = products.filter(function (p) { return cart[p.id]; }).map(function (p) {
+      return '<li><span class="q">' + cart[p.id] + ' ×</span><span>' + p.name + '</span><span>' + eur.format(cart[p.id] * p.price) + '</span></li>';
+    }).join('');
+    $('bag-empty').hidden = t.count > 0;
+    $('bag-total').textContent = eur.format(t.total);
+    $('bagbar-text').textContent = t.count + ' article' + (t.count > 1 ? 's' : '') + ' · ' + eur.format(t.total);
+    $('bagbar').hidden = t.count === 0;
+    document.body.classList.toggle('has-bag', t.count > 0);
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-act]');
+    if (!btn) return;
+    var card = btn.closest('.product');
+    if (!card) return;
+    var p = find(card.dataset.id);
+    var act = btn.dataset.act;
+    var q = cart[p.id] || 0;
+    if (act === 'add' || act === 'inc') q = Math.min(q + 1, 50);
+    if (act === 'dec') q = Math.max(q - 1, 0);
+    cart[p.id] = q;
+    $('order-status').hidden = true;
+    renderCtrl(p, act);
+    renderBag();
+  });
+
+  $('order-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var t = totals();
+    var st = $('order-status');
+    var name = $('o-name').value.trim();
+    var tel = $('o-tel').value.trim();
+    var sel = $('o-slot');
+    var opt = sel.options[sel.selectedIndex];
+    if (!t.count) { st.textContent = 'Votre sac est vide : ajoutez au moins un article depuis la vitrine.'; }
+    else if (!name || !tel) { st.textContent = 'Indiquez votre nom et votre téléphone pour que la commande soit rangée à votre nom.'; }
+    else {
+      st.textContent = 'Démonstration : rien n\'a été envoyé. Sur le vrai site, la boulangerie reçoit votre commande (' + t.count + ' article' + (t.count > 1 ? 's' : '') + ', ' +
+        eur.format(t.total) + ', retrait ' + (opt ? opt.getAttribute('data-label').toLowerCase() : '') + ') et vous envoie une confirmation.';
+    }
+    st.hidden = false;
+  });
+
+  renderLive();
+  renderBag();
+  setInterval(renderLive, 60000);
+})();
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* La nuit d'une baguette : one scroll-scrubbed sequence */
+  var story = $('nuit');
+  var crust = $('crust'), loaf = $('loaf'), light = $('ov-light'), steam = $('steam'), flour = $('flour');
+  var grignes = Array.prototype.slice.call(document.querySelectorAll('#grignes path'));
+  var items = Array.prototype.slice.call(document.querySelectorAll('#chapters li'));
+  var dots = Array.prototype.slice.call(document.querySelectorAll('#dots i'));
+  var seg = function (p, a, b) { return Math.min(1, Math.max(0, (p - a) / (b - a))); };
+  var hex = function (h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; };
+  var mix = function (a, b, t) { var x = hex(a), y = hex(b); return 'rgb(' + x.map(function (v, i) { return Math.round(v + (y[i] - v) * t); }).join(',') + ')'; };
+  var tone = function (t) { return t < 0.5 ? mix('#efe3cc', '#e0ae62', t * 2) : mix('#e0ae62', '#b0632a', (t - 0.5) * 2); };
+  var fmt = function (m) { var h = Math.floor(m / 60), mm = Math.round(m % 60); return h + ' h ' + String(mm).padStart(2, '0'); };
+  var last = -1;
+
+  function draw(p) {
+    var idx = Math.min(4, Math.floor(p * 5 + 0.0001));
+    var sx = 0.8 + 0.2 * seg(p, 0.2, 0.4);
+    var sy = 0.6 + 0.16 * seg(p, 0.2, 0.4) + 0.08 * seg(p, 0.4, 0.6) + 0.16 * seg(p, 0.6, 0.8);
+    loaf.setAttribute('transform', 'translate(320 338) scale(' + sx.toFixed(3) + ' ' + sy.toFixed(3) + ') translate(-320 -338)');
+    var bake = seg(p, 0.6, 0.8) * 0.9 + seg(p, 0.8, 1) * 0.1;
+    crust.setAttribute('fill', tone(bake));
+    var cut = seg(p, 0.42, 0.58);
+    grignes.forEach(function (g, i) {
+      var local = Math.min(1, Math.max(0, cut * 5 - i));
+      g.setAttribute('stroke-dashoffset', (1 - local).toFixed(3));
+    });
+    var gs = document.getElementById('grignes');
+    gs.setAttribute('stroke', mix('#b89c74', '#f3d9a4', bake));
+    gs.setAttribute('stroke-width', (5 + 5 * bake).toFixed(2));
+    var heat = seg(p, 0.5, 0.68) * (1 - 0.4 * seg(p, 0.86, 1));
+    light.setAttribute('opacity', heat.toFixed(3));
+    story.style.setProperty('--heat', (heat * 0.55).toFixed(3));
+    flour.setAttribute('opacity', (1 - seg(p, 0.12, 0.3)).toFixed(3));
+    steam.setAttribute('opacity', seg(p, 0.82, 0.93).toFixed(3));
+    var temp = Math.round(20 + 230 * seg(p, 0.45, 0.65));
+    $('temp-val').textContent = temp + ' °C';
+    $('temp-bar').style.width = Math.max(3, (temp / 250) * 100) + '%';
+    var mins = p < 0.2 ? 660 : p < 0.4 ? 270 + 80 * seg(p, 0.2, 0.4) : p < 0.6 ? 350 + 25 * seg(p, 0.4, 0.6) : p < 0.8 ? 375 + 30 * seg(p, 0.6, 0.8) : 405;
+    $('clock').textContent = fmt(mins);
+    $('clock-day').textContent = p < 0.2 ? 'la veille' : 'ce matin';
+    if (idx !== last) {
+      items.forEach(function (li, i) { li.classList.toggle('on', i === idx); });
+      dots.forEach(function (d, i) { d.classList.toggle('on', i <= idx); });
+      last = idx;
+    }
+  }
+
+  var canScrub = !reduce && window.gsap && window.ScrollTrigger;
+  if (!canScrub) {
+    story.classList.add('static');
+    draw(1);
+    items.forEach(function (li) { li.classList.add('on'); });
+  } else {
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true });
+    var state = { p: 0 };
+    draw(0);
+    ScrollTrigger.create({
+      trigger: story,
+      start: 'top top',
+      end: '+=320%',
+      pin: true,
+      anticipatePin: 1,
+      onUpdate: function (self) {
+        gsap.to(state, { p: self.progress, duration: 0.35, ease: 'power2.out', overwrite: true, onUpdate: function () { draw(state.p); } });
+      }
+    });
+  }
+
+  /* Add to bag: the product flies into the bag */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-act="add"], [data-act="inc"]');
+    if (!btn || reduce || !Element.prototype.animate) return;
+    var card = btn.closest('.product');
+    var art = card && card.querySelector('.product-art svg');
+    if (!art) return;
+    var from = art.getBoundingClientRect();
+    requestAnimationFrame(function () {
+      var bar = $('bagbar');
+      if (!bar || bar.hidden) return;
+      var to = bar.getBoundingClientRect();
+      var ghost = art.cloneNode(true);
+      ghost.setAttribute('aria-hidden', 'true');
+      Object.assign(ghost.style, { position: 'fixed', left: from.left + 'px', top: from.top + 'px', width: from.width + 'px', height: from.height + 'px', zIndex: '60', pointerEvents: 'none', margin: '0' });
+      document.body.appendChild(ghost);
+      var dx = (to.left + 28) - (from.left + from.width / 2);
+      var dy = (to.top + to.height / 2) - (from.top + from.height / 2);
+      var fly = ghost.animate([
+        { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+        { transform: 'translate(' + dx * 0.45 + 'px, ' + (dy * 0.45 - 90) + 'px) scale(0.62) rotate(-8deg)', opacity: 1, offset: 0.5 },
+        { transform: 'translate(' + dx + 'px, ' + dy + 'px) scale(0.16) rotate(-14deg)', opacity: 0.5 }
+      ], { duration: 720, easing: 'cubic-bezier(.45,0,.55,1)' });
+      fly.onfinish = function () {
+        ghost.remove();
+        bar.animate([{ transform: 'translateX(-50%) scale(1)' }, { transform: 'translateX(-50%) scale(1.07)' }, { transform: 'translateX(-50%) scale(1)' }], { duration: 340, easing: 'ease-out' });
+      };
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

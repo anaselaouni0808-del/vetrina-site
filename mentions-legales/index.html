@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mentions légales · Vetrina</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2a44c9">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a44c9'/%3E%3Cpath d='M9 26V14a7 7 0 0 1 14 0v12z' fill='%23ffc23d'/%3E%3Cpath d='M9 26V14a7 7 0 0 1 14 0v12M9 19h14' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Cpath d='M6.5 26h19' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400..700&display=swap">
+<style>
+:root {
+  --paper: #f5f6fa; --surface: #ffffff; --ink: #121a33; --muted: #4f5874; --line: #dcdfeb; --accent: #2a44c9; --plaque: #2a44c9;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --paper: #0b1022; --surface: #131a33; --ink: #e9ecf8; --muted: #a3abc6; --line: #263052; --accent: #93a4ff; --plaque: #2c46cf; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --paper: #0b1022; --surface: #131a33; --ink: #e9ecf8; --muted: #a3abc6; --line: #263052; --accent: #93a4ff; --plaque: #2c46cf; color-scheme: dark; }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.65; }
+a { color: var(--accent); }
+.wrap { max-width: 760px; margin-inline: auto; padding-inline: 20px; }
+header { border-bottom: 1px solid var(--line); background: var(--surface); }
+header .wrap { padding-block: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px; max-width: 1160px; }
+.plaque { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; background: var(--plaque); color: #fff; border-radius: 9px; padding-block: 7px; padding-inline: 10px 14px; box-shadow: inset 0 0 0 3px var(--plaque), inset 0 0 0 4.5px rgba(255, 255, 255, 0.92); }
+.plaque svg { width: 26px; height: 26px; }
+.plaque span { font-family: var(--font-display); font-weight: 750; font-size: 1.32rem; line-height: 1; letter-spacing: -0.02em; padding-bottom: 2px; }
+main { padding-block: 56px 80px; }
+h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 32px; }
+h2 { font-family: var(--font-display); font-size: 1.3rem; margin: 36px 0 10px; letter-spacing: -0.01em; }
+p, dl { margin: 0 0 12px; }
+dl { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 6px 18px; }
+dt { color: var(--muted); }
+dd { margin: 0; }
+@media (max-width: 520px) { dl { grid-template-columns: 1fr; gap: 0; } dd { margin-bottom: 10px; } }
+.muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="plaque" href="../" aria-label="Vetrina, accueil">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 26V14a7 7 0 0 1 14 0v12z" fill="#ffc23d"/><path d="M9 26V14a7 7 0 0 1 14 0v12M9 19h14" fill="none" stroke="#fff" stroke-width="2"/><path d="M6.5 26h19" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <span>vetrina</span>
+    </a>
+    <a href="../">Retour au site</a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1>Mentions légales</h1>
+
+    <h2>Éditeur du site</h2>
+    <dl>
+      <dt>Nom commercial</dt><dd>Vetrina</dd>
+      <dt>Responsable</dt><dd>Anas Elaouni, entrepreneur individuel</dd>
+      <dt>Adresse</dt><dd>Bordeaux (Gironde), France</dd>
+      <dt>SIRET</dt><dd>En cours d'immatriculation</dd>
+      <dt>Contact</dt><dd>bonjour@vetrina.fr</dd>
+      <dt>Directeur de la publication</dt><dd>Anas Elaouni</dd>
+    </dl>
+
+    <h2>Hébergement</h2>
+    <dl>
+      <dt>Hébergeur</dt><dd>Netlify, Inc.</dd>
+      <dt>Adresse</dt><dd>512 2nd Street, FL2, San Francisco, CA 94107, États-Unis</dd>
+      <dt>Site</dt><dd><a href="https://www.netlify.com" rel="noopener">netlify.com</a></dd>
+    </dl>
+    <p class="muted">Le nom de domaine vetrina.fr est enregistré auprès d'OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.</p>
+
+    <h2>Données personnelles</h2>
+    <p>Les informations envoyées avec le formulaire de contact (nom, téléphone, commerce, ville, message) servent uniquement à vous recontacter au sujet de votre demande. Elles ne sont ni vendues ni transmises à des tiers. Le formulaire est traité par notre hébergeur, Netlify.</p>
+    <p>Elles sont conservées au plus 3 ans après notre dernier échange. Vous pouvez demander à les consulter, les corriger ou les supprimer en écrivant à bonjour@vetrina.fr. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
+
+    <h2>Cookies</h2>
+    <p>Ce site n'utilise aucun cookie publicitaire ni de mesure d'audience.</p>
+
+    <h2>Site de démonstration</h2>
+    <p>La page « Maison Escoubès » est un exemple réalisé par Vetrina. La boulangerie, son adresse, son numéro de téléphone et ses avis sont fictifs.</p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>Les textes, illustrations et le logo de ce site appartiennent à Vetrina. Toute reproduction sans autorisation est interdite.</p>
+  </div>
+</main>
+</body>
+</html>
