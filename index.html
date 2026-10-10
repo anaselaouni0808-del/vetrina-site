@@ -500,11 +500,11 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
   .lab { padding-block: 96px 80px; }
   .lab-stage { min-height: 560px; margin-block: -20px 10px; }
 }
-@media (max-aspect-ratio: 17/20) {
+@media (max-aspect-ratio: 23/20) {
   .is-3d .rue-scrim { background: linear-gradient(0deg, rgba(11, 20, 51, 0.96) 0%, rgba(11, 20, 51, 0.82) 36%, rgba(11, 20, 51, 0) 60%); }
   .is-3d .hero-copy { align-content: end; padding-bottom: 76px; gap: 16px; }
   .is-3d .hero-copy .promises { display: none; }
-  .is-3d .stops { left: 14px; right: 14px; width: auto; top: auto; bottom: 74px; }
+  .is-3d .stops { left: 14px; right: 14px; width: auto; max-width: 560px; margin-inline: auto; top: auto; bottom: 74px; }
   .is-3d .stop { top: auto; bottom: 0; transform: translate3d(0, 44px, 0); }
   .is-3d .stop.past { transform: translate3d(0, -36px, 0); }
   .is-3d .stop.on { transform: none; }
@@ -513,7 +513,7 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
   .is-3d .scroll-hint { bottom: 18px; }
   .is-3d .rail { bottom: 16px; }
 }
-@media (max-aspect-ratio: 17/20) and (max-height: 720px) {
+@media (max-aspect-ratio: 23/20) and (max-height: 720px) {
   .is-3d .stop ul { display: none; }
   .is-3d .hero-copy .lead { font-size: 1rem; }
 }
@@ -981,7 +981,7 @@ window.VetrinaStreet = function (canvas, opts) {
   var TRADES = opts.trades;
   var reduce = !!opts.reduce;
   var SPACING = 6.8;
-  var portrait = function () { return window.innerWidth / window.innerHeight < 0.85; };
+  var portrait = function () { return window.innerWidth / window.innerHeight < 1.15; };
 
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, portrait() ? 1.5 : 1.75));
