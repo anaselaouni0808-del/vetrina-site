@@ -1691,21 +1691,24 @@ p { margin: 0; }
   /* ---------- Croissant ---------- */
   function croissant() {
     var r = rand(29);
-    var geo = gridGeo(80, 40, function (u, v) {
-      var ph = (u * 2 - 1) * 1.25, th = v * TAU;
-      var Rc = 0.7;
-      var cx = Math.sin(ph) * Rc, cz = -Math.cos(ph) * Rc + Rc * 0.6;
-      var lobes = 0.86 + 0.16 * Math.pow(Math.abs(Math.cos(ph * 4.2)), 0.6);
-      var tr = 0.33 * Math.pow(Math.max(0, 1 - Math.pow(ph / 1.3, 2)), 0.6) * lobes + 0.02;
+    var geo = gridGeo(140, 48, function (u, v) {
+      var ph = (u * 2 - 1) * 1.55, th = v * TAU;
+      var Rc = 0.62;
+      var cx = Math.sin(ph) * Rc, cz = -Math.cos(ph) * Rc + Rc * 0.75;
+      var body = Math.pow(Math.max(0, 1 - Math.pow(ph / 1.6, 2)), 0.75);
+      var roll = ph / 0.36 + Math.sin(th) * 0.35;
+      var groove = Math.pow(Math.abs(Math.sin(roll * Math.PI)), 0.35);
+      var tr = (0.4 * body + 0.035) * (0.86 + 0.14 * groove);
       var nx = Math.sin(ph), nz = -Math.cos(ph);
-      var ox = Math.cos(th) * tr, oy = Math.sin(th) * tr * 0.78;
-      if (oy < 0) oy *= 0.4;
-      var c = lin('#d48a3a').lerp(lin('#9a5418'), smooth(clamp(Math.sin(th), 0, 1)) * 0.7);
-      c.lerp(lin('#f0c27a'), (1 - lobes) * 2.2 * 0.5);
-      var n = 0.92 + r() * 0.1;
-      return [cx + nx * ox, oy + 0.1, cz + nz * ox, c.r * n, c.g * n, c.b * n];
+      var ox = Math.cos(th) * tr, oy = Math.sin(th) * tr * 0.82;
+      if (oy < 0) oy *= 0.35;
+      var top = clamp(Math.sin(th), 0, 1);
+      var c = lin('#e4ae63').lerp(lin('#b8661f'), smooth(top) * 0.85).lerp(lin('#7a3a0e'), (1 - groove) * 0.55 * (0.4 + top));
+      if (Math.abs(ph) > 1.25) c.lerp(lin('#8a4512'), (Math.abs(ph) - 1.25) / 0.3 * 0.5);
+      var n = 0.93 + r() * 0.08;
+      return [cx + nx * ox, oy + 0.06, cz + nz * ox, c.r * n, c.g * n, c.b * n];
     }, true);
-    var m = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.5, clearcoat: 0.4, clearcoatRoughness: 0.5 }));
+    var m = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.55, clearcoat: 0.22, clearcoatRoughness: 0.6 }));
     m.castShadow = m.receiveShadow = true;
     return m;
   }
@@ -1838,7 +1841,7 @@ p { margin: 0; }
 
     // stand + canelés pyramid
     var stand = standMesh(); stand.position.set(0.62, 0, -0.1); scene.add(stand);
-    var S = 0.6, plateY = 0.86;
+    var S = 0.55, plateY = 0.86;
     var slots = [[-0.55, 0, 0.12], [0, 0, 0.12], [0.55, 0, 0.12], [-0.3, 0, -0.38], [0.3, 0, -0.38], [-0.27, 1, -0.12], [0.27, 1, -0.12], [0, 2, -0.12]];
     var caneles = [];
     slots.forEach(function (s, i) {
@@ -1861,7 +1864,7 @@ p { margin: 0; }
     });
 
     // croissant on the linen
-    var cr = croissant(); cr.scale.setScalar(0.62); cr.position.set(-0.35, 0, 0.85); cr.rotation.y = 0.5; scene.add(cr);
+    var cr = croissant(); cr.scale.setScalar(0.72); cr.position.set(-0.32, 0, 0.78); cr.rotation.y = 0.35; scene.add(cr);
 
     // steam
     var soft = softTexture(), wisps = [];
@@ -1965,7 +1968,7 @@ p { margin: 0; }
     var mouth = new THREE.Mesh(new THREE.ShapeGeometry(arch, 48), new THREE.MeshBasicMaterial({ color: 0x0d0503 }));
     mouth.position.set(0, 0.4, -1.18); scene.add(mouth);
     var glowMat = new THREE.MeshBasicMaterial({ color: 0xff8a3c, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
-    var glowTex = (function () { var c = document.createElement('canvas'); c.width = 256; c.height = 256; var x = c.getContext('2d'); var g = x.createRadialGradient(128, 190, 10, 128, 150, 170); g.addColorStop(0, 'rgba(255,230,160,1)'); g.addColorStop(0.45, 'rgba(255,140,60,.75)'); g.addColorStop(1, 'rgba(90,20,5,0)'); x.fillStyle = g; x.fillRect(0, 0, 256, 256); var t = new THREE.CanvasTexture(c); return t; })();
+    var glowTex = (function () { var c = document.createElement('canvas'); c.width = 256; c.height = 256; var x = c.getContext('2d'); var g = x.createRadialGradient(128, 250, 6, 128, 230, 200); g.addColorStop(0, 'rgba(255,214,140,1)'); g.addColorStop(0.3, 'rgba(255,120,40,.7)'); g.addColorStop(0.7, 'rgba(120,30,8,.25)'); g.addColorStop(1, 'rgba(40,8,2,0)'); x.fillStyle = g; x.fillRect(0, 0, 256, 256); var t = new THREE.CanvasTexture(c); return t; })();
     glowMat.map = glowTex;
     var glow = new THREE.Mesh(new THREE.ShapeGeometry(arch, 48), glowMat);
     var uv = glow.geometry.getAttribute('uv'), gp = glow.geometry.getAttribute('position');
@@ -1977,7 +1980,7 @@ p { margin: 0; }
     var hearth = new THREE.Mesh(new THREE.BoxGeometry(4.6, 0.25, 0.6), new THREE.MeshStandardMaterial({ color: lin('#3a2015'), roughness: 0.9 }));
     hearth.position.set(0, 0.3, -0.85); scene.add(hearth);
     // peel
-    var wood = new THREE.MeshStandardMaterial({ color: lin('#b98652'), roughness: 0.7 });
+    var wood = new THREE.MeshStandardMaterial({ color: lin('#a8743f'), roughness: 0.75 });
     var peel = new THREE.Mesh(new THREE.BoxGeometry(5.6, 0.08, 1.3), wood); peel.position.set(0, 0.0, 0.6); peel.receiveShadow = true; peel.castShadow = true;
     var handle = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 3, 12), new THREE.MeshStandardMaterial({ color: lin('#7a4f2a'), roughness: 0.7 }));
     handle.rotation.z = Math.PI / 2; handle.position.set(4.2, 0.02, 0.6);
@@ -1985,7 +1988,7 @@ p { margin: 0; }
     // the loaf with morph targets
     var bake = { value: 0 }, score = { value: 0 };
     var loafMat = crustMaterial(bake, score, true);
-    var loaf = new THREE.Mesh(baguetteGeo({ len: 4.4, r: 0.36, morph: true, seed: 21 }), loafMat);
+    var loaf = new THREE.Mesh(baguetteGeo({ len: 4.6, r: 0.27, morph: true, seed: 21 }), loafMat);
     loaf.castShadow = true; loaf.position.set(0, 0.2, 0.62); peelG.add(loaf);
     // lights
     scene.add(new THREE.HemisphereLight(0xffe9cc, 0x22120a, 0.55));
@@ -1995,8 +1998,15 @@ p { margin: 0; }
     var N = 90, ep = new Float32Array(N * 3), seeds = [];
     for (var k = 0; k < N; k++) { seeds.push([rr() * 3.6 - 1.8, rr(), rr() * 0.4]); }
     var eg = new THREE.BufferGeometry(); eg.setAttribute('position', new THREE.BufferAttribute(ep, 3));
-    var embers = new THREE.Points(eg, new THREE.PointsMaterial({ color: 0xffb060, size: 0.07, map: softTexture(), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+    var embers = new THREE.Points(eg, new THREE.PointsMaterial({ color: 0xffb060, size: 0.13, map: softTexture(), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
     scene.add(embers);
+    // fire bed at the back of the oven
+    var flames = [], ft = softTexture();
+    for (var fl = 0; fl < 14; fl++) {
+      var fsp = new THREE.Sprite(new THREE.SpriteMaterial({ map: ft, color: fl % 3 ? 0xff7a26 : 0xffc560, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+      fsp.userData = { x: -1.6 + (fl / 13) * 3.2 + (rr() - 0.5) * 0.3, ph: rr() * 6, s: 0.5 + rr() * 0.6 };
+      scene.add(fsp); flames.push(fsp);
+    }
     // flour + steam
     var soft = softTexture(), flourPts = [], steam = [];
     var fg = new THREE.BufferGeometry(), fp = new Float32Array(60 * 3);
@@ -2016,7 +2026,7 @@ p { margin: 0; }
       score.value = seg(p, 0.42, 0.58);
       bake.value = smooth(seg(p, 0.6, 0.82));
       var heat = seg(p, 0.5, 0.68) * (1 - 0.45 * seg(p, 0.86, 1));
-      glowMat.opacity = heat * (0.85 + 0.15 * Math.sin(t * 7) * Math.sin(t * 3.3));
+      glowMat.opacity = heat * (0.75 + 0.15 * Math.sin(t * 7) * Math.sin(t * 3.3));
       fire.intensity = heat * 3.2 * (0.9 + 0.1 * Math.sin(t * 9));
       // peel slides in during the bake, out at the end
       var inOven = seg(p, 0.6, 0.68) - seg(p, 0.84, 0.92);
@@ -2028,13 +2038,19 @@ p { margin: 0; }
       }
       pos.needsUpdate = true;
       embers.material.opacity = heat;
+      flames.forEach(function (f, i) {
+        var d = f.userData, fl = 0.75 + 0.25 * Math.sin(t * (6 + i % 4) + d.ph) * Math.sin(t * 2.3 + i);
+        f.position.set(d.x, 0.75 + fl * 0.22, -1.0);
+        f.scale.set(d.s * 1.1, d.s * (1.4 + fl * 0.8), 1);
+        f.material.opacity = heat * 0.75 * fl;
+      });
       flour.material.opacity = 0.8 * (1 - seg(p, 0.12, 0.3));
       var st = seg(p, 0.82, 0.93);
       steam.forEach(function (sp, i) {
         var cyc = (t * 0.3 + sp.userData.ph) % 1;
-        sp.position.set(sp.userData.x + Math.sin(t + i) * 0.15, 0.8 + cyc * 2.2, 0.6);
+        sp.position.set(sp.userData.x + Math.sin(t + i) * 0.15, 0.6 + cyc * 2.0, 0.9);
         var sc = 0.6 + cyc * 1.4; sp.scale.set(sc, sc * 1.5, 1);
-        sp.material.opacity = st * Math.sin(cyc * Math.PI) * 0.22;
+        sp.material.opacity = st * Math.sin(cyc * Math.PI) * 0.4;
       });
       camera.position.set(Math.sin(p * 1.2 - 0.6) * 1.2, 2.6 - p * 0.5, 8.6 - p * 1.6);
       camera.lookAt(0, 0.9, 0);
@@ -2060,11 +2076,11 @@ p { margin: 0; }
     var holder = new THREE.Group(); scene.add(holder);
     function model(id) {
       var g = new THREE.Group();
-      if (id === 'tradition') { var b = baguette(5); b.rotation.y = 0.35; b.scale.setScalar(0.95); b.position.y = 0.2; g.add(b); }
+      if (id === 'tradition') { var b = baguette(5); b.rotation.y = 0.3; b.scale.setScalar(1.25); b.position.y = 0.2; g.add(b); }
       else if (id === 'levain') { var m = boule(); m.scale.setScalar(1.05); g.add(m); }
       else if (id === 'canele') { var a = canele(); a.scale.setScalar(1.05); a.position.set(-0.45, 0, 0.1); var c2 = canele(); c2.scale.setScalar(0.85); c2.position.set(0.55, 0, -0.2); c2.rotation.y = 1; g.add(a, c2); }
       else if (id === 'chocolatine') { var ch = chocolatine(); ch.rotation.y = 0.5; g.add(ch); }
-      else if (id === 'croissant') { var cr = croissant(); cr.scale.setScalar(1.4); cr.rotation.y = 0.3; g.add(cr); }
+      else if (id === 'croissant') { var cr = croissant(); cr.scale.setScalar(1.55); cr.rotation.y = 0.2; cr.position.z = -0.3; g.add(cr); }
       else if (id === 'flan') { var fl = flan(); fl.rotation.y = 0.9; fl.scale.setScalar(1.25); g.add(fl); }
       return g;
     }
