@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Vetrina · Sites pour commerces de quartier</title>
-<meta name="description" content="Vetrina crée, héberge et entretient le site de votre commerce. Pas de frais de création, 69 € par mois tout compris, nom de domaine à votre nom.">
+<title>Vetrina · Un site pour votre commerce, prêt en 7 jours</title>
+<meta name="description" content="Vetrina crée le site de votre commerce en 7 jours. À partir de 69 € par mois, domaine et hébergement inclus, sans frais de création.">
 <meta property="og:title" content="Vetrina · La vitrine en ligne de votre commerce">
 <meta property="og:description" content="Un site conçu, hébergé et entretenu pour votre commerce, sans rien avancer.">
 <meta property="og:type" content="website">
@@ -16,10 +16,32 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://vetrina.fr/">
 <meta name="theme-color" content="#0b1433">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a44c9'/%3E%3Cpath d='M9 26V14a7 7 0 0 1 14 0v12z' fill='%23ffc23d'/%3E%3Cpath d='M9 26V14a7 7 0 0 1 14 0v12M9 19h14' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Cpath d='M6.5 26h19' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400..700&family=Gloock&family=Caveat:wght@700&display=swap">
+<link rel="preload" as="image" href="img/rue-mobile.webp" type="image/webp" media="(max-aspect-ratio: 23/20)" fetchpriority="high">
+<link rel="preload" as="image" href="img/rue-desktop.webp" type="image/webp" media="(min-aspect-ratio: 23/20)" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:wght@400..700&family=Gloock&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Vetrina",
+  "url": "https://vetrina.fr/",
+  "image": "https://vetrina.fr/og.jpg",
+  "logo": "https://vetrina.fr/apple-touch-icon.png",
+  "email": "bonjour@vetrina.fr",
+  "description": "Création, hébergement et entretien de sites internet pour les commerces de quartier, facturés au mois.",
+  "areaServed": { "@type": "Country", "name": "France" },
+  "founder": { "@type": "Person", "name": "Anas Elaouni" },
+  "priceRange": "69 € – 99 € par mois",
+  "makesOffer": [
+    { "@type": "Offer", "name": "Essentielle", "price": "69", "priceCurrency": "EUR", "description": "Site de 1 à 5 pages, domaine, hébergement, 2 modifications par mois", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "69", "priceCurrency": "EUR", "unitText": "mois" } },
+    { "@type": "Offer", "name": "Plus", "price": "99", "priceCurrency": "EUR", "description": "Jusqu'à 8 pages, commande ou réservation en ligne, 4 modifications par mois", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "99", "priceCurrency": "EUR", "unitText": "mois" } }
+  ]
+}
+</script>
 <style>
 /* Concept: the page is a walk down a shopping street at night. A real-time 3D street opens the page and the visitor scrolls along six lit shopfronts, each one releasing its own website on a floating phone. Then a phone you can turn in your hand, enamel plaques that swing, a route that lights up, and dawn rising behind the contact form. */
 :root {
@@ -103,7 +125,7 @@ p { margin: 0; }
 .btn-ghost:hover { background: var(--tint); }
 .btn-glass { background: rgba(232, 236, 251, 0.08); color: var(--night-ink); border-color: rgba(232, 236, 251, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .btn-glass:hover { background: rgba(232, 236, 251, 0.16); }
-.btn-small { padding-block: 9px; padding-inline: 15px; font-size: 0.95rem; border-radius: 10px; }
+.btn-small { min-height: 44px; padding-block: 9px; padding-inline: 15px; font-size: 0.95rem; border-radius: 10px; }
 
 /* ---------- Header ---------- */
 .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 60; padding-top: env(safe-area-inset-top, 0px); border-bottom: 1px solid transparent; transition: background-color 0.35s, border-color 0.35s; }
@@ -111,39 +133,32 @@ p { margin: 0; }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
 .nav { display: flex; align-items: center; gap: 26px; }
 .nav ul { list-style: none; margin: 0; padding: 0; display: none; gap: 24px; font-weight: 550; font-size: 0.97rem; }
-.nav ul a { color: var(--night-ink); text-decoration: none; opacity: 0.82; transition: opacity 0.2s; }
+.nav ul a { display: inline-block; padding-block: 12px; color: var(--night-ink); text-decoration: none; opacity: 0.86; transition: opacity 0.2s; }
 .nav ul a:hover { opacity: 1; }
 .progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--sun); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); }
 
 /* ---------- The street (base: works without 3D) ---------- */
 .rue { position: relative; color: var(--night-ink); background: radial-gradient(ellipse 50% 40% at 75% 18%, rgba(255, 194, 61, 0.14), transparent 70%), linear-gradient(180deg, var(--night), var(--night-2)); }
 .rue-stage { position: relative; }
-.rue-canvas, .rue-scrim, .rail, .scroll-hint { display: none; }
-.hero-copy { max-width: 1160px; margin-inline: auto; padding: 136px 20px 64px; display: grid; gap: 22px; align-content: center; }
+.rue-canvas, .rail, .scroll-hint { display: none; }
+.rue-poster { position: absolute; left: 0; right: 0; top: 0; height: 100vh; height: 100svh; overflow: hidden; pointer-events: none; transition: opacity 1.2s ease; }
+.rue-poster img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+.rue-scrim { position: absolute; left: 0; right: 0; top: 0; height: 100vh; height: 100svh; pointer-events: none; background: linear-gradient(90deg, rgba(11, 20, 51, 0.92) 0%, rgba(11, 20, 51, 0.66) 34%, rgba(11, 20, 51, 0.05) 62%), linear-gradient(0deg, var(--night-2) 0%, rgba(19, 31, 74, 0) 22%); }
+.hero-copy { position: relative; max-width: 1160px; margin-inline: auto; min-height: 100vh; min-height: 100svh; padding: 112px 20px 72px; display: grid; gap: 22px; align-content: center; }
 .hero-copy > * { max-width: 35rem; }
 .rue .kicker { color: var(--sun); }
-.rue h1 { font-size: min(clamp(2.6rem, 6.6vw, 4.9rem), 10.5vh); line-height: 0.98; font-weight: 790; letter-spacing: -0.035em; max-width: 12ch; }
-.reveal-line { display: block; }
+.rue h1 { font-size: min(clamp(2.4rem, 6vw, 4.4rem), 10vh); line-height: 1; font-weight: 790; letter-spacing: -0.035em; max-width: 15ch; }
+.reveal-line { display: block; overflow-x: clip; overflow-clip-margin: 0.2em; }
 .reveal-line > span { display: inline-block; }
 /* Shutter title, adapted from 21st.dev "Hero Shutter Text": each letter is sliced in three bands that sweep across it like a metal shutter */
-.sh-word { display: inline-block; white-space: nowrap; }
-.sh-ch { position: relative; display: inline-block; overflow: hidden; padding-bottom: 0.14em; margin-bottom: -0.14em; vertical-align: top; }
-.sh-ch .c { display: inline-block; }
-.sh-ch .s { position: absolute; left: 0; top: 0; right: 0; bottom: 0.14em; opacity: 0; pointer-events: none; }
-.sh-ch .s1 { color: var(--sun); clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); }
-.sh-ch .s2 { color: #fff; clip-path: polygon(0 35%, 100% 35%, 100% 65%, 0 65%); }
-.sh-ch .s3 { color: var(--sun); clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%); }
-.js .sh .c { opacity: 0; filter: blur(10px); }
-.sh.play .c { animation: shIn 0.8s ease both; animation-delay: calc(var(--i) * 38ms + 0.3s); }
-.sh.play .s1, .sh.play .s3 { animation: slideR 0.7s ease-in-out both; animation-delay: calc(var(--i) * 38ms); }
-.sh.play .s3 { animation-delay: calc(var(--i) * 38ms + 0.2s); }
-.sh.play .s2 { animation: slideL 0.7s ease-in-out both; animation-delay: calc(var(--i) * 38ms + 0.1s); }
-.sh-ch.hit .s1, .sh-ch.hit .s3 { animation: slideR 0.6s ease-in-out both; }
-.sh-ch.hit .s2 { animation: slideL 0.6s ease-in-out 0.06s both; }
-.sh-ch.hit .s3 { animation-delay: 0.12s; }
-@keyframes shIn { to { opacity: 1; filter: blur(0); } }
-@keyframes slideR { 0% { transform: translateX(-100%); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateX(100%); opacity: 0; } }
-@keyframes slideL { 0% { transform: translateX(100%); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateX(-100%); opacity: 0; } }
+.sh .reveal-line > span { position: relative; }
+.sh .reveal-line > span::before, .sh .reveal-line > span::after { content: attr(data-text); position: absolute; left: 0; top: 0; color: var(--sun); pointer-events: none; opacity: 0; white-space: nowrap; }
+.sh .reveal-line > span::before { clip-path: polygon(0 0, 100% 0, 100% 38%, 0 38%); }
+.sh .reveal-line > span::after { clip-path: polygon(0 64%, 100% 64%, 100% 100%, 0 100%); }
+.sh.play .reveal-line > span::before { animation: slideR 0.9s ease-in-out both; animation-delay: calc(var(--i) * 140ms + 0.2s); }
+.sh.play .reveal-line > span::after { animation: slideL 0.9s ease-in-out both; animation-delay: calc(var(--i) * 140ms + 0.32s); }
+@keyframes slideR { 0% { transform: translateX(-40%); opacity: 0; } 45% { opacity: 1; } 100% { transform: translateX(30%); opacity: 0; } }
+@keyframes slideL { 0% { transform: translateX(40%); opacity: 0; } 45% { opacity: 1; } 100% { transform: translateX(-30%); opacity: 0; } }
 .sh { cursor: default; }
 
 /* Spotlight, adapted from 21st.dev "Spotlight": a soft light follows the pointer across a surface and lights the nearest edge */
@@ -172,16 +187,18 @@ p { margin: 0; }
 .stop ul { margin: 2px 0 0; padding: 0; list-style: none; display: grid; gap: 7px; }
 .stop li { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 10px; color: var(--night-muted); font-size: 0.96rem; line-height: 1.45; }
 .stop li::before { content: ""; width: 7px; height: 7px; margin-top: 8px; border-radius: 2px; background: var(--sun); }
-.stop-link { color: var(--sun); font-weight: 650; justify-self: start; }
+.stop-link { color: var(--sun); font-weight: 650; justify-self: start; display: inline-flex; align-items: center; min-height: 44px; }
 
 /* ---------- The street, in 3D ---------- */
 .is-3d .rue { height: 620vh; background: var(--night); }
 .is-3d .rue-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .is-3d .rue-canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.4s ease; touch-action: pan-y; }
 .street-ready .rue-canvas { opacity: 1; }
+.street-ready .rue-poster { opacity: 0; }
 .is-3d .rue-stage.pointing { cursor: pointer; }
-.is-3d .rue-scrim { display: block; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(11, 20, 51, 0.9) 0%, rgba(11, 20, 51, 0.62) 30%, rgba(11, 20, 51, 0) 56%); }
-.is-3d .hero-copy { position: absolute; inset: 0; max-width: none; margin: 0; padding: 92px var(--gutter) 64px; pointer-events: none; opacity: calc(1 - var(--h, 0) * 2.2); transform: translate3d(0, calc(var(--h, 0) * -90px), 0); }
+.is-3d .rue-poster, .is-3d .rue-scrim { height: 100%; }
+.is-3d .rue-scrim { background: linear-gradient(90deg, rgba(11, 20, 51, 0.9) 0%, rgba(11, 20, 51, 0.62) 30%, rgba(11, 20, 51, 0) 56%); }
+.is-3d .hero-copy { position: absolute; inset: 0; max-width: none; min-height: 0; margin: 0; padding: 92px var(--gutter) 64px; pointer-events: none; opacity: calc(1 - var(--h, 0) * 2.2); transform: translate3d(0, calc(var(--h, 0) * -90px), 0); }
 .is-3d .hero-copy > * { pointer-events: auto; }
 .is-3d .past-hero .hero-copy { visibility: hidden; }
 .is-3d .stops { position: absolute; left: var(--gutter); top: 0; bottom: 0; width: min(410px, 38vw); margin: 0; padding: 0; display: block; pointer-events: none; }
@@ -205,7 +222,7 @@ p { margin: 0; }
   opacity: 0; pointer-events: none; transition: opacity 0.4s, transform 0.5s var(--ease);
 }
 .is-3d .in-journey .rail { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
-.rail button { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: 999px; font-family: var(--font-display); font-weight: 650; font-size: 0.88rem; color: var(--night-muted); white-space: nowrap; transition: background-color 0.3s, color 0.3s; }
+.rail button { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 13px; border-radius: 999px; font-family: var(--font-display); font-weight: 650; font-size: 0.88rem; color: var(--night-muted); white-space: nowrap; transition: background-color 0.3s, color 0.3s; }
 .rail button i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px rgba(242, 238, 226, 0.75); flex: none; }
 .rail button:hover { color: var(--night-ink); }
 .rail button[aria-current="true"] { background: rgba(232, 236, 251, 0.14); color: #fff; }
@@ -216,11 +233,6 @@ p { margin: 0; }
 @keyframes wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(10px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
 
 /* Hero entrance, once the street has lit up */
-.js .hero-copy .kicker, .js .hero-copy .lead, .js .hero-actions, .js .promises { opacity: 0; transform: translateY(18px); transition: opacity 0.9s ease, transform 0.9s var(--ease); }
-.js .hero-copy .lead { transition-delay: 0.45s; }
-.js .hero-actions { transition-delay: 0.6s; }
-.js .promises { transition-delay: 0.75s; }
-.go .hero-copy .kicker, .go .hero-copy .lead, .go .hero-actions, .go .promises { opacity: 1; transform: none; }
 
 /* ---------- Phone lab ---------- */
 .lab { position: relative; overflow-x: clip; color: var(--night-ink); padding-block: 120px 110px; background: radial-gradient(ellipse 42% 55% at 72% 52%, rgba(255, 194, 61, 0.17), transparent 70%), var(--night-2); }
@@ -263,7 +275,7 @@ p { margin: 0; }
 .p-edge.b { height: var(--d); left: 46px; right: 46px; bottom: calc(var(--d) / -2); transform: rotateX(-90deg); background: linear-gradient(180deg, #171b2c, #4a5372 50%, #171b2c); }
 .p-shadow { position: absolute; left: 50%; bottom: 0; width: 230px; height: 34px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.55), transparent); transform: translateX(-50%) scaleX(var(--sx, 1)); pointer-events: none; }
 .lab-controls { position: absolute; left: 0; right: 0; bottom: -6px; display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 0.9rem; color: var(--night-muted); }
-.flip { font: inherit; font-family: var(--font-display); font-weight: 700; font-size: 0.92rem; color: var(--night-ink); background: rgba(232, 236, 251, 0.08); border: 1px solid rgba(232, 236, 251, 0.25); border-radius: 999px; padding: 8px 16px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.flip { font: inherit; font-family: var(--font-display); font-weight: 700; font-size: 0.92rem; color: var(--night-ink); background: rgba(232, 236, 251, 0.08); border: 1px solid rgba(232, 236, 251, 0.25); border-radius: 999px; min-height: 44px; padding: 8px 16px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 .flip svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .flip:hover { background: rgba(232, 236, 251, 0.16); }
 
@@ -365,7 +377,7 @@ p { margin: 0; }
 
 /* ---------- Pricing ---------- */
 .bill { position: relative; display: inline-flex; padding: 4px; margin-bottom: 30px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
-.bill button { all: unset; box-sizing: border-box; position: relative; z-index: 1; cursor: pointer; padding: 9px 18px; border-radius: 999px; font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--muted); transition: color 0.3s; }
+.bill button { all: unset; box-sizing: border-box; position: relative; z-index: 1; cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; padding: 9px 18px; border-radius: 999px; font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--muted); transition: color 0.3s; }
 .bill button[aria-pressed="true"] { color: #fff; }
 .bill button:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
 .bill .knob { position: absolute; top: 4px; bottom: 4px; left: 0; width: 0; border-radius: 999px; background: var(--plaque); transition: transform 0.5s var(--ease), width 0.5s var(--ease); }
@@ -388,7 +400,7 @@ p { margin: 0; }
 .calc label { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
 .range-row { display: flex; align-items: center; gap: 16px; margin-top: 10px; }
 .range-row output { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; min-width: 3.6ch; text-align: right; font-variant-numeric: tabular-nums; }
-input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--plaque) 0 var(--fill, 15%), var(--line) var(--fill, 15%)); outline-offset: 6px; cursor: pointer; }
+input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 44px; margin: 0; background: linear-gradient(90deg, var(--plaque) 0 var(--fill, 15%), var(--line) var(--fill, 15%)) center / 100% 8px no-repeat; outline-offset: 2px; border-radius: 10px; cursor: pointer; }
 input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--sun); border: 3px solid #fff; box-shadow: 0 4px 12px rgba(18, 26, 51, 0.35); }
 input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--sun); border: 3px solid #fff; box-shadow: 0 4px 12px rgba(18, 26, 51, 0.35); }
 .calc-out { display: flex; align-items: center; gap: 16px; }
@@ -405,10 +417,6 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 .why .ic { width: 52px; height: 52px; border-radius: 14px; background: var(--plaque); display: grid; place-items: center; transition: transform 0.5s var(--ease); }
 .why > div:hover .ic { transform: rotate(-8deg) scale(1.06); }
 .why .ic svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.js .why .ic svg * { stroke-dasharray: 80; stroke-dashoffset: 80; transition: stroke-dashoffset 1.4s var(--ease); }
-.js .why.drawn .ic svg * { stroke-dashoffset: 0; }
-.js .why.drawn > div:nth-child(2) .ic svg * { transition-delay: 0.2s; }
-.js .why.drawn > div:nth-child(3) .ic svg * { transition-delay: 0.4s; }
 
 /* ---------- FAQ ---------- */
 .faq { display: grid; gap: 10px; max-width: 52rem; }
@@ -432,11 +440,26 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 .contact-info { display: grid; gap: 22px; min-width: 0; }
 .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
 .mail strong { font-family: var(--font-display); font-weight: 750; font-size: clamp(1.35rem, 4vw, 1.75rem); user-select: all; word-break: break-all; }
-.copy { font: inherit; font-size: 0.9rem; font-weight: 600; color: var(--accent); background: transparent; border: 1.5px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.copy { font: inherit; font-size: 0.9rem; font-weight: 600; color: var(--accent); background: transparent; border: 1.5px solid var(--line); border-radius: 8px; min-height: 44px; padding: 6px 14px; cursor: pointer; }
 .copy:hover { border-color: var(--accent); }
-.me { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 14px; align-items: center; padding-top: 22px; border-top: 1px solid var(--line); }
-.me .avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--plaque); color: #fff; display: grid; place-items: center; font-family: var(--font-display); font-weight: 750; font-size: 1.3rem; }
-.me p { color: var(--muted); font-size: 0.97rem; }
+.who { display: grid; gap: 32px; align-items: center; }
+.who-photo { position: relative; margin: 0; width: min(100%, 300px); aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: var(--plaque); box-shadow: inset 0 0 0 5px var(--plaque), inset 0 0 0 7px rgba(255, 255, 255, 0.9), var(--shadow); display: grid; place-items: center; }
+.who-photo .mono { font-family: var(--font-display); font-weight: 800; font-size: 7rem; line-height: 1; color: var(--sun); }
+.who-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.who-text { display: grid; gap: 16px; max-width: 58ch; }
+.who-text p { color: var(--muted); font-size: 1.08rem; }
+.who-text .sign { font-family: var(--font-display); font-weight: 750; color: var(--ink); }
+.intent { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.intent label { position: relative; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px; border: 1.5px solid var(--line); border-radius: 999px; font-weight: 650; font-size: 0.95rem; cursor: pointer; }
+.intent input { accent-color: var(--plaque); width: 18px; height: 18px; margin: 0; }
+.intent label:has(input:checked) { border-color: var(--plaque); background: color-mix(in srgb, var(--plaque) 10%, transparent); }
+.form-done { display: grid; gap: 12px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 30px 26px; box-shadow: var(--shadow); }
+.form-done h3 { font-size: 1.5rem; }
+.form-done p { color: var(--muted); }
+.form-done .ok-mark { width: 52px; height: 52px; border-radius: 50%; background: var(--ok); color: #fff; display: grid; place-items: center; }
+.form-done .ok-mark svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.foot-contact { display: grid; gap: 2px; font-size: 0.95rem; }
+.foot-contact a { color: var(--sun); font-weight: 650; display: inline-block; padding-block: 8px; }
 .form { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: grid; gap: 16px; min-width: 0; box-shadow: var(--shadow); }
 .form h3 { font-size: 1.4rem; }
 .field { display: grid; gap: 6px; }
@@ -452,6 +475,9 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 .form-status { font-size: 0.97rem; border-radius: 10px; padding: 12px 14px; background: var(--tint); }
 .form-status.ok { color: var(--ok); }
 .form-status.err { color: var(--err); }
+a.plaque { min-height: 44px; }
+.foot-contact a { display: inline-flex; align-items: center; min-height: 44px; }
+.field input[aria-invalid="true"] { border-color: var(--err); }
 .hp { position: absolute; left: -9999px; }
 
 /* ---------- Footer: neon sign ---------- */
@@ -472,7 +498,7 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 .foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 18px; }
 .foot-text { color: var(--night-muted); font-size: 0.92rem; display: grid; gap: 4px; }
 .foot-links { display: flex; gap: 20px; font-size: 0.92rem; flex-wrap: wrap; }
-.foot-links a { color: var(--night-ink); }
+.foot-links a { display: inline-block; padding-block: 11px; color: var(--night-ink); }
 
 /* ---------- Cursor ---------- */
 .c-ring, .c-label { position: fixed; left: 0; top: 0; z-index: 100; pointer-events: none; display: none; }
@@ -489,6 +515,7 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 .js .split.in .w > span { transform: none; }
 
 @media (min-width: 900px) {
+  .who { grid-template-columns: 300px minmax(0, 1fr); gap: 64px; }
   .nav ul { display: flex; }
   .section { padding-block: 112px; }
   .lab-grid { grid-template-columns: 1fr 1fr; grid-template-areas: "head stage" "tabs stage" "note stage"; column-gap: 64px; row-gap: 26px; align-items: start; }
@@ -508,6 +535,9 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
   .lab-stage { min-height: 560px; margin-block: -20px 10px; }
 }
 @media (max-aspect-ratio: 23/20) {
+  .rue-scrim { background: linear-gradient(0deg, var(--night-2) 0%, rgba(11, 20, 51, 0.92) 44%, rgba(11, 20, 51, 0) 66%); }
+  .hero-copy { align-content: end; padding-bottom: 64px; gap: 16px; }
+  .hero-copy .promises { display: none; }
   .is-3d .rue-scrim { background: linear-gradient(0deg, rgba(11, 20, 51, 0.97) 0%, rgba(11, 20, 51, 0.9) 44%, rgba(11, 20, 51, 0) 64%); }
   .is-3d .hero-copy { align-content: end; padding-bottom: 76px; gap: 16px; }
   .is-3d .hero-copy .promises { display: none; }
@@ -544,7 +574,7 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 </style>
 </head>
 <body>
-<script>document.documentElement.classList.add('js');</script>
+<script>(function(d){d.classList.add('js');try{var m=window.matchMedia,r=m&&m('(prefers-reduced-motion: reduce)').matches,n=navigator,c=n.connection||{};if(!r&&window.innerWidth>=820&&(n.hardwareConcurrency||4)>=4&&(n.deviceMemory||8)>=4&&!c.saveData)d.classList.add('is-3d')}catch(e){}})(document.documentElement);</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -579,20 +609,23 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 <main id="top">
   <section class="rue" id="rue" aria-labelledby="hero-title">
     <div class="rue-stage" id="rue-stage">
+      <picture class="rue-poster" aria-hidden="true">
+        <source media="(max-aspect-ratio: 23/20)" srcset="img/rue-mobile.webp" width="402" height="868">
+        <img src="img/rue-desktop.webp" width="1200" height="675" alt="" fetchpriority="high" decoding="async">
+      </picture>
       <canvas class="rue-canvas" id="street" aria-hidden="true"></canvas>
       <div class="rue-scrim" aria-hidden="true"></div>
 
       <div class="hero-copy">
         <p class="kicker">Sites pour commerces de quartier</p>
         <h1 id="hero-title" class="sh">
-          <span class="reveal-line"><span style="--i:0">Votre commerce,</span></span>
-          <span class="reveal-line"><span style="--i:1">ouvert en ligne</span></span>
-          <span class="reveal-line"><span style="--i:2">jour et nuit.</span></span>
+          <span class="reveal-line"><span style="--i:0" data-text="Un site pour votre commerce,">Un site pour votre commerce,</span></span>
+          <span class="reveal-line"><span style="--i:1" data-text="prêt en 7 jours.">prêt en 7 jours.</span></span>
         </h1>
-        <p class="lead">Vetrina crée le site de votre boutique, le met en ligne et s'en occupe ensuite, pour <strong>69 € par mois</strong>, sans frais de création. Vous envoyez un message, la modification est faite.</p>
+        <p class="lead">À partir de <strong>69 € par mois</strong>, nom de domaine et hébergement inclus.</p>
         <div class="hero-actions">
-          <a class="btn btn-sun mag" href="#rue-1" data-go="0">Descendre la rue</a>
-          <a class="btn btn-glass mag" href="#contact">Être rappelé</a>
+          <a class="btn btn-sun mag" href="#contact" data-intent="maquette">Voir la maquette gratuite</a>
+          <a class="btn btn-glass mag" href="#contact" data-intent="rappel">Être rappelé</a>
         </div>
         <ul class="promises">
           <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Aucun frais de création</li>
@@ -908,7 +941,24 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
     </div>
   </section>
 
-  <section class="section" id="questions" aria-labelledby="faq-title">
+  <section class="section" id="qui" aria-labelledby="who-title">
+    <div class="wrap who">
+      <figure class="who-photo">
+        <span class="mono" aria-hidden="true">A</span>
+        <!-- Photo : déposez img/anas.webp (portrait 4:5, environ 600 x 750 px) et elle remplace le monogramme. -->
+        <img src="img/anas.webp" width="600" height="750" alt="Anas, fondateur de Vetrina" loading="lazy" decoding="async" onerror="this.remove()">
+      </figure>
+      <div class="who-text">
+        <p class="kicker">Qui est derrière Vetrina</p>
+        <h2 id="who-title" class="split">Une personne, pas une plateforme</h2>
+        <p>Je m'appelle Anas, j'ai grandi à Bordeaux. Je fais moi-même chaque site, de la maquette aux modifications, et c'est moi qui vous réponds au téléphone comme par e-mail.</p>
+        <p>Vetrina démarre : vous serez parmi les premiers commerces accompagnés. C'est pour ça que la création est offerte.</p>
+        <p class="sign">Anas, fondateur de Vetrina</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="questions" aria-labelledby="faq-title">
     <div class="wrap">
       <div class="section-head">
         <p class="kicker">Questions</p>
@@ -932,35 +982,37 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
         <div class="section-head" style="margin-bottom:0">
           <p class="kicker">Contact</p>
           <h2 id="contact-title" class="split">Parlons de votre commerce</h2>
-          <p class="lead">Laissez votre numéro, je vous rappelle sous 24 h ouvrées pour un échange de 15 minutes. Sans engagement.</p>
+          <p class="lead">Demandez votre maquette gratuite ou laissez votre numéro : je vous réponds sous 24 h ouvrées. Sans engagement.</p>
         </div>
         <div class="mail">
           <strong id="mail-text">bonjour@vetrina.fr</strong>
           <button class="copy" type="button" id="copy-mail">Copier l'adresse</button>
         </div>
-        <div class="me">
-          <span class="avatar" aria-hidden="true">A</span>
-          <p>Vetrina, c'est Anas, Bordelais. Je suis votre seul interlocuteur, de la maquette aux modifications.</p>
-        </div>
       </div>
 
+      <div class="form-slot">
       <form class="form" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
         <input type="hidden" name="form-name" value="contact">
-        <p class="hp"><label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-        <h3>Être rappelé</h3>
-        <div class="row-2">
-          <div class="field"><label for="c-nom">Votre nom</label><input id="c-nom" name="nom" autocomplete="name" required></div>
-          <div class="field"><label for="c-tel">Téléphone</label><input id="c-tel" name="telephone" type="tel" autocomplete="tel" required></div>
-        </div>
-        <div class="row-2">
-          <div class="field"><label for="c-commerce">Votre commerce</label><input id="c-commerce" name="commerce" placeholder="Ex. : boulangerie, salon de coiffure"></div>
-          <div class="field"><label for="c-ville">Ville</label><input id="c-ville" name="ville" autocomplete="address-level2"></div>
-        </div>
-        <div class="field"><label for="c-msg">Un mot sur votre projet <small>(facultatif)</small></label><textarea id="c-msg" name="message" placeholder="Ex. : je n'ai pas de site, je voudrais que mes clients puissent commander."></textarea></div>
-        <button class="btn btn-primary" type="submit">Être rappelé</button>
+        <p class="hp" aria-hidden="true"><label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <h3 id="form-title">Demander ma maquette gratuite</h3>
+        <fieldset class="intent">
+          <legend class="sr">Votre demande</legend>
+          <label><input type="radio" name="demande" value="Maquette gratuite" checked> Une maquette gratuite</label>
+          <label><input type="radio" name="demande" value="Être rappelé"> Être rappelé</label>
+        </fieldset>
+        <div class="field"><label for="c-nom">Votre nom</label><input id="c-nom" name="nom" autocomplete="name" required></div>
+        <div class="field"><label for="c-commerce">Votre commerce</label><input id="c-commerce" name="commerce" placeholder="Ex. : boulangerie à Bordeaux" required></div>
+        <div class="field"><label for="c-tel">Téléphone</label><input id="c-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <button class="btn btn-primary" type="submit">Envoyer ma demande</button>
         <p class="form-note">Vos informations servent uniquement à vous recontacter. <a href="mentions-legales/">En savoir plus</a></p>
-        <p class="form-status" id="form-status" role="status" hidden></p>
+        <p class="form-status" id="form-status" role="alert" hidden></p>
       </form>
+      <div class="form-done" id="form-done" tabindex="-1" hidden>
+        <span class="ok-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <h3>C'est envoyé, merci.</h3>
+        <p id="form-done-text">Votre demande est bien arrivée. Je vous recontacte sous 24 h ouvrées.</p>
+      </div>
+      </div>
     </div>
   </section>
 </main>
@@ -980,6 +1032,10 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
         <span>La vitrine en ligne des commerces de quartier.</span>
         <span>© <span id="year">2026</span> Vetrina, Bordeaux</span>
       </div>
+      <div class="foot-contact">
+        <span>Une question ?</span>
+        <a href="mailto:bonjour@vetrina.fr">bonjour@vetrina.fr</a>
+      </div>
       <nav class="foot-links" aria-label="Liens du pied de page">
         <a href="boulangerie/">Exemple de site</a>
         <a href="mentions-legales/">Mentions légales</a>
@@ -988,7 +1044,6 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* Vetrina — la rue en 3D (Three.js r128) */
 window.VetrinaStreet = function (canvas, opts) {
@@ -999,7 +1054,7 @@ window.VetrinaStreet = function (canvas, opts) {
   var portrait = function () { return window.innerWidth / window.innerHeight < 1.15; };
 
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, portrait() ? 1.5 : 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -1505,41 +1560,12 @@ window.VetrinaStreet = function (canvas, opts) {
 
   var year = $('#year'); if (year) year.textContent = String(new Date().getFullYear());
 
-  /* ---------- Hero entrance ---------- */
-  var went = false;
+  /* ---------- Hero: text is visible from the first paint; the shutter sweep is decoration ---------- */
   var title = $('#hero-title');
-  function playTitle() { if (!title.classList.contains('sh-ready')) return; title.classList.remove('play'); void title.offsetWidth; title.classList.add('play'); }
-  function go() { if (went) return; went = true; doc.classList.add('go'); playTitle(); }
-
-  /* Shutter title (adapted from 21st.dev Hero Shutter Text) */
-  if (!reduce && title) {
-    var text = title.textContent.trim().replace(/\s+/g, ' ');
-    title.setAttribute('aria-label', text);
-    var n = 0;
-    $$('.reveal-line > span', title).forEach(function (line) {
-      var words = line.textContent.trim().split(' ');
-      line.textContent = '';
-      line.setAttribute('aria-hidden', 'true');
-      words.forEach(function (w, wi) {
-        var word = document.createElement('span'); word.className = 'sh-word';
-        w.split('').forEach(function (ch) {
-          var box = document.createElement('span'); box.className = 'sh-ch'; box.style.setProperty('--i', n++);
-          ['c', 's s1', 's s2', 's s3'].forEach(function (cls) { var sp = document.createElement('span'); sp.className = cls; sp.textContent = ch; box.appendChild(sp); });
-          word.appendChild(box);
-        });
-        line.appendChild(word);
-        if (wi < words.length - 1) line.appendChild(document.createTextNode(' '));
-      });
-    });
-    title.classList.add('sh-ready');
-    title.addEventListener('pointerover', function (e) {
-      var ch = e.target.closest && e.target.closest('.sh-ch');
-      if (!ch || e.pointerType !== 'mouse' || !title.classList.contains('play')) return;
-      ch.classList.remove('hit'); void ch.offsetWidth; ch.classList.add('hit');
-    });
-    title.addEventListener('animationend', function (e) { var ch = e.target.closest('.sh-ch'); if (ch && e.target.classList.contains('s3')) ch.classList.remove('hit'); });
-    title.addEventListener('click', playTitle);
-  }
+  function playTitle() { if (reduce || !title) return; title.classList.remove('play'); void title.offsetWidth; title.classList.add('play'); }
+  function go() { doc.classList.add('go'); }
+  if (title) title.addEventListener('click', playTitle);
+  requestAnimationFrame(function () { setTimeout(playTitle, 150); });
 
   /* Spotlight surfaces (adapted from 21st.dev Spotlight) */
   $$('.plan, .calc, .form, .stop, .tab, .enamel').forEach(function (el) {
@@ -1555,7 +1581,6 @@ window.VetrinaStreet = function (canvas, opts) {
       raf = requestAnimationFrame(function () { var b = el.getBoundingClientRect(); el.style.setProperty('--sx', (x - b.left) + 'px'); el.style.setProperty('--sy', (y - b.top) + 'px'); });
     });
   });
-  var goTimer = setTimeout(go, 2800);
 
   /* ---------- Custom cursor ---------- */
   var ring = $('#c-ring'), clabel = $('#c-label');
@@ -1617,38 +1642,37 @@ window.VetrinaStreet = function (canvas, opts) {
   function webglOK() {
     try { var c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl'))); } catch (e) { return false; }
   }
-  function startStreet() {
-    if (!window.THREE || !window.VetrinaStreet || !webglOK()) { go(); return; }
-    doc.classList.add('is-3d');
-    var loads = [];
-    if (document.fonts && document.fonts.load) {
-      loads = ['750 112px "Bricolage Grotesque"', '700 46px "Bricolage Grotesque"', '700 120px "Caveat"', '600 24px "Instrument Sans"'].map(function (f) { return document.fonts.load(f).catch(function () {}); });
-    }
-    var timeout = new Promise(function (r) { setTimeout(r, 2500); });
-    Promise.race([Promise.all(loads), timeout]).then(function () {
-      try {
-        street = window.VetrinaStreet(canvas, {
-          trades: TRADES, reduce: reduce,
-          onReady: function () {
-            doc.classList.add('street-ready');
-            clearTimeout(goTimer);
-            setTimeout(go, reduce ? 0 : 1100);
-          }
-        });
-        window.__street = street;
-        onScroll();
-      } catch (err) {
-        if (window.console) console.error(err);
-        doc.classList.remove('is-3d'); street = null; go();
-      }
-    });
+  var rueTop = 0, rueTotal = 0, routeTop = 0, routeH = 1, contactTop = 0;
+  function measure() {
+    var y = window.pageYOffset;
+    rueTop = rue.getBoundingClientRect().top + y; rueTotal = Math.max(0, rue.offsetHeight - stage.offsetHeight);
+    var rr = route.getBoundingClientRect(); routeTop = rr.top + y; routeH = rr.height;
+    contactTop = contact.getBoundingClientRect().top + y;
   }
+  function loadScript(src) { return new Promise(function (ok, ko) { var sc = document.createElement('script'); sc.src = src; sc.async = true; sc.onload = ok; sc.onerror = ko; document.head.appendChild(sc); }); }
+  function startStreet() {
+    if (!doc.classList.contains('is-3d')) return;
+    if (!webglOK()) { doc.classList.remove('is-3d'); measure(); onScroll(); return; }
+    var fl = document.createElement('link'); fl.rel = 'stylesheet'; fl.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap'; document.head.appendChild(fl);
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js').then(function () {
+      var loads = [];
+      if (document.fonts && document.fonts.load) {
+        loads = ['750 112px "Bricolage Grotesque"', '700 46px "Bricolage Grotesque"', '700 120px "Caveat"', '600 24px "Instrument Sans"'].map(function (f) { return document.fonts.load(f).catch(function () {}); });
+      }
+      return Promise.race([Promise.all(loads), new Promise(function (r) { setTimeout(r, 1500); })]);
+    }).then(function () {
+      street = window.VetrinaStreet(canvas, { trades: TRADES, reduce: reduce, onReady: function () { doc.classList.add('street-ready'); } });
+      window.__street = street;
+      document.addEventListener('visibilitychange', function () { if (street) street.setRunning(!document.hidden && rueVisible); });
+      onScroll();
+    }).catch(function (err) { if (window.console) console.warn('3D indisponible', err); });
+  }
+  var rueVisible = true;
 
-  function rueState() {
-    if (!street) return;
-    var r = rue.getBoundingClientRect();
-    var total = rue.offsetHeight - stage.offsetHeight;
-    var p = total > 0 ? clamp(-r.top / total, 0, 1) : 0;
+  function rueState(y) {
+    if (!doc.classList.contains('is-3d')) return;
+    var total = rueTotal;
+    var p = total > 0 ? clamp((y - rueTop) / total, 0, 1) : 0;
     var h = clamp(p / HERO, 0, 1);
     var f = clamp((p - HERO) / (1 - HERO), 0, 1) * FMAX;
     stage.style.setProperty('--h', h.toFixed(3));
@@ -1660,20 +1684,19 @@ window.VetrinaStreet = function (canvas, opts) {
       stops.forEach(function (s, i) { s.classList.toggle('on', i === idx); s.classList.toggle('past', idx > -1 && i < idx); });
       railBtns.forEach(function (b, i) { b.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
     }
-    var visible = r.bottom > 0 && r.top < window.innerHeight;
-    street.setHero(h); street.setJourney(f); street.setRunning(visible);
+    rueVisible = y < rueTop + total + window.innerHeight;
+    if (street) { street.setHero(h); street.setJourney(f); street.setRunning(rueVisible && !document.hidden); }
   }
 
   function goToStop(i) {
-    if (!street) { var a = document.getElementById('rue-' + (i + 1)); if (a) a.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); return; }
-    var total = rue.offsetHeight - stage.offsetHeight;
+    if (!doc.classList.contains('is-3d')) { var a = document.getElementById('rue-' + (i + 1)); if (a) a.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); return; }
     var p = HERO + ((i + 0.12) / FMAX) * (1 - HERO);
-    var y = rue.getBoundingClientRect().top + window.pageYOffset + p * total;
+    var y = rueTop + p * rueTotal;
     window.scrollTo({ top: Math.round(y), behavior: reduce ? 'auto' : 'smooth' });
   }
   $$('[data-go]').forEach(function (el) {
     el.addEventListener('click', function (e) {
-      if (!street) return;
+      if (!doc.classList.contains('is-3d')) return;
       e.preventDefault();
       goToStop(Number(el.getAttribute('data-go')));
     });
@@ -1909,11 +1932,11 @@ window.VetrinaStreet = function (canvas, opts) {
       else { el.style.left = (a.x - 2) + 'px'; el.style.top = a.y + 'px'; el.style.height = (z.y - a.y) + 'px'; el.style.width = '4px'; }
     });
   }
-  function routeState() {
+  function routeState(y) {
     if (!routeGeo) measureRoute();
-    var r = route.getBoundingClientRect(), vh = window.innerHeight;
-    var p = clamp((vh * 0.78 - r.top) / (r.height * 0.9 + 1), 0, 1);
-    if (reduce) p = r.top < vh ? 1 : 0;
+    var vh = window.innerHeight, top = routeTop - y;
+    var p = clamp((vh * 0.78 - top) / (routeH * 0.9 + 1), 0, 1);
+    if (reduce) p = top < vh ? 1 : 0;
     var g = routeGeo;
     rFill.style.transform = g.h ? 'scaleX(' + p.toFixed(3) + ')' : 'scaleY(' + p.toFixed(3) + ')';
     var x = g.a.x + (g.z.x - g.a.x) * p, y = g.a.y + (g.z.y - g.a.y) * p;
@@ -1953,7 +1976,7 @@ window.VetrinaStreet = function (canvas, opts) {
   });
   placeKnob();
   window.addEventListener('resize', function () { placeKnob(); routeGeo = null; });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placeKnob(); routeGeo = null; onScroll(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placeKnob(); routeGeo = null; measure(); onScroll(); });
 
   if (fine && !reduce) {
     $$('.plan').forEach(function (card) {
@@ -2018,18 +2041,17 @@ window.VetrinaStreet = function (canvas, opts) {
         if (t.id === 'site') { setAuto(en.isIntersecting); return; }
         if (!en.isIntersecting) return;
         if (t.classList.contains('split')) t.classList.add('in');
-        if (t.id === 'why') t.classList.add('drawn');
         if (t.id === 'neon') t.classList.add('lit');
         if (t.id === 'plaques') plaques.forEach(function (p, i) { setTimeout(function () { kick(p, (i % 2 ? -1 : 1) * 70); }, i * 90); });
         if (t.classList.contains('plans') && !counted) { counted = true; $$('.amt').forEach(function (el) { tweenNum(el, 0, Number(el.getAttribute('data-' + mode)), 1100); }); }
         if (t.id !== 'site') io.unobserve(t);
       });
     }, { threshold: 0.25 });
-    $$('.split, #why, #neon, #plaques, .plans').forEach(function (el) { io.observe(el); });
+    $$('.split, #neon, #plaques, .plans').forEach(function (el) { io.observe(el); });
     io.observe($('#site'));
   } else {
     $$('.split').forEach(function (el) { el.classList.add('in'); });
-    $('#why').classList.add('drawn'); $('#neon').classList.add('lit');
+    $('#neon').classList.add('lit');
   }
 
   /* ---------- Scroll loop ---------- */
@@ -2042,14 +2064,16 @@ window.VetrinaStreet = function (canvas, opts) {
       var y = window.pageYOffset, max = document.documentElement.scrollHeight - window.innerHeight;
       header.classList.toggle('solid', y > 40);
       progress.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
-      rueState();
-      routeState();
-      var r = contact.getBoundingClientRect(), vh = window.innerHeight;
-      contact.style.setProperty('--dawn', clamp((vh - r.top) / (vh * 0.85), 0, 1).toFixed(3));
+      rueState(y);
+      routeState(y);
+      var vh = window.innerHeight;
+      contact.style.setProperty('--dawn', clamp((vh - (contactTop - y)) / (vh * 0.85), 0, 1).toFixed(3));
     });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
+  var rz = 0;
+  window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { routeGeo = null; measure(); onScroll(); }, 120); });
+  window.addEventListener('load', function () { measure(); onScroll(); });
 
   /* ---------- Copy email ---------- */
   var copyBtn = $('#copy-mail');
@@ -2064,12 +2088,45 @@ window.VetrinaStreet = function (canvas, opts) {
   });
 
   /* ---------- Contact form, sent to Netlify Forms ---------- */
-  var form = $('#contact-form'), status = $('#form-status');
+  var form = $('#contact-form'), status = $('#form-status'), done = $('#form-done'), formTitle = $('#form-title');
+  var bornAt = Date.now();
+  var titles = { 'Maquette gratuite': 'Demander ma maquette gratuite', 'Être rappelé': 'Être rappelé par Anas' };
+  function setIntent(v) {
+    var r = form.querySelector('input[name="demande"][value="' + v + '"]');
+    if (r) r.checked = true;
+    formTitle.textContent = titles[v] || titles['Maquette gratuite'];
+  }
+  $$('input[name="demande"]').forEach(function (r) { r.addEventListener('change', function () { setIntent(r.value); }); });
+  $$('[data-intent]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      setIntent(a.getAttribute('data-intent') === 'rappel' ? 'Être rappelé' : 'Maquette gratuite');
+      setTimeout(function () { var f = $('#c-nom'); if (f) f.focus({ preventScroll: true }); }, 700);
+    });
+  });
   function say(msg, kind) { status.textContent = msg; status.className = 'form-status ' + (kind || ''); status.hidden = false; }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var nom = $('#c-nom').value.trim(), tel = $('#c-tel').value.trim();
-    if (!nom || !tel) { say('Indiquez votre nom et votre téléphone pour que je puisse vous rappeler.', 'err'); return; }
+    var fields = [['#c-nom', 'votre nom'], ['#c-commerce', 'votre commerce'], ['#c-tel', 'votre téléphone']];
+    var missing = [], first = null;
+    fields.forEach(function (f) {
+      var el = $(f[0]), ok = !!el.value.trim();
+      el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+      if (!ok) { missing.push(f[1]); if (!first) first = el; }
+    });
+    var tel = $('#c-tel').value.replace(/[^\d+]/g, '');
+    if (!missing.length && tel.replace(/\D/g, '').length < 9) { missing.push('un numéro de téléphone complet'); first = $('#c-tel'); $('#c-tel').setAttribute('aria-invalid', 'true'); }
+    if (missing.length) { say('Il manque ' + missing.join(', ') + '.', 'err'); first.focus(); return; }
+    /* anti-spam: honeypot + too-fast submit */
+    var hp = form.querySelector('[name="bot-field"]');
+    if ((hp && hp.value) || Date.now() - bornAt < 3000) { say('Un instant… réessayez dans quelques secondes.', 'err'); return; }
+    var nom = $('#c-nom').value.trim().split(/\s+/)[0];
+    var rappel = (form.querySelector('input[name="demande"]:checked') || {}).value === 'Être rappelé';
+    function finish() {
+      $('#form-done-text').textContent = 'Merci ' + nom + ' ! ' + (rappel
+        ? 'Je vous appelle sous 24 h ouvrées, au numéro indiqué.'
+        : 'Je prépare la maquette de votre commerce et je vous appelle sous 24 h ouvrées pour vous la montrer.');
+      form.hidden = true; done.hidden = false; done.focus();
+    }
     var live = /(^|\.)vetrina\.fr$|\.netlify\.app$/.test(location.hostname);
     if (!live) { say('Aperçu : le formulaire fonctionnera une fois le site en ligne sur vetrina.fr.', ''); return; }
     var btn = form.querySelector('button[type="submit"]');
@@ -2080,18 +2137,17 @@ window.VetrinaStreet = function (canvas, opts) {
       body: new URLSearchParams(new FormData(form)).toString()
     }).then(function (res) {
       if (!res.ok) throw new Error(res.status);
-      form.reset();
-      btn.classList.add('sent'); btn.textContent = 'Demande envoyée';
-      say('Merci ' + nom + ' ! Votre demande est bien arrivée, je vous rappelle sous 24 h ouvrées.', 'ok');
-      setTimeout(function () { btn.classList.remove('sent'); btn.textContent = 'Être rappelé'; btn.disabled = false; }, 5000);
+      form.reset(); status.hidden = true; finish();
     }).catch(function () {
       say("L'envoi n'a pas abouti. Écrivez-moi directement à bonjour@vetrina.fr.", 'err');
-      btn.disabled = false; btn.textContent = 'Être rappelé';
+      btn.disabled = false; btn.textContent = 'Envoyer ma demande';
     });
   });
 
-  startStreet();
+  measure();
   onScroll();
+  function later() { if ('requestIdleCallback' in window) requestIdleCallback(startStreet, { timeout: 2500 }); else setTimeout(startStreet, 600); }
+  if (document.readyState === 'complete') later(); else window.addEventListener('load', later);
 })();
 
 </script>
