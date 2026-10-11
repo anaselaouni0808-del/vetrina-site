@@ -354,7 +354,7 @@ p { margin: 0; }
   :root { --stripe: 52px; }
   .section { padding-block: 104px; }
   .front-panel { padding-block: calc(var(--stripe) / 2 + 36px) 96px; }
-  .front-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
+  .front-grid { grid-template-columns: 1.1fr 0.9fr; gap: 56px; }
   .bakes-grid { grid-template-columns: 0.85fr 1.15fr; gap: 64px; align-items: start; }
   .order-grid { grid-template-columns: 0.9fr 1.1fr; gap: 48px; }
   .story-grid { grid-template-columns: 1fr 1fr; gap: 72px; }
@@ -465,7 +465,8 @@ p { margin: 0; }
 .m-go .front-copy > :not(h1) { animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: calc(var(--d, 0) * 0.35s + 0.75s); }
 .m-go .window { animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.45s forwards; }
 @keyframes rise { to { opacity: 1; transform: none; } }
-.window-tilt { perspective: 900px; justify-self: center; width: min(100%, 500px); }
+.window-tilt { perspective: 900px; justify-self: center; width: min(100%, 500px, calc((100svh - 170px) * 0.83)); }
+.front h1 .h1-big { white-space: nowrap; }
 .window-tilt .window { width: 100%; transform-style: preserve-3d; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .m-go .window.ready { opacity: 1; animation: none; transform: rotateX(var(--wx, 0deg)) rotateY(var(--wy, 0deg)) translateY(var(--wp, 0px)); }
 .glass .glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 40%), rgba(255, 244, 214, 0.55), transparent 45%); mix-blend-mode: soft-light; opacity: 0; transition: opacity 0.4s; }
@@ -1871,7 +1872,7 @@ p { margin: 0; }
     var camera = new THREE.PerspectiveCamera(30, 1, 0.1, 60);
     var target = new THREE.Vector3(-0.05, 1.15, 0);
     var lights = warmLights(scene, COARSE ? 1024 : 2048);
-    scene.fog = new THREE.Fog(lin('#e8c890'), 9, 22);
+    scene.fog = new THREE.Fog(lin('#d9b37a'), 13, 30);
 
     // the room behind the display: tiled wall, shelves of bread, pendant lamps
     var wall = new THREE.Mesh(new THREE.PlaneGeometry(9, 7), new THREE.MeshStandardMaterial({ map: tileTexture(), roughness: 0.55 }));
@@ -2013,7 +2014,7 @@ p { margin: 0; }
       var yaw = (reduce ? 0 : state.mx * 0.2 + Math.sin(t * 0.22) * 0.06) + state.scroll * 0.28;
       var pitch = reduce ? 0 : state.my * 0.08;
       var intro = reduce ? 1 : smooth(clamp(t / 2.4, 0, 1));
-      var dist = 10.4 - intro * 0.8 - state.scroll * 1.4;
+      var dist = (COARSE ? 9.6 : 10.0) - intro * 0.8 - state.scroll * 1.4;
       want.set(target.x + Math.sin(yaw) * dist, target.y + 1.05 + pitch * 4 + (1 - intro) * 1.2, target.z + Math.cos(yaw) * dist);
       camPos.lerp(want, 1 - Math.exp(-3.2 * dt));
       camera.position.copy(camPos); camera.lookAt(target);
@@ -2021,7 +2022,7 @@ p { margin: 0; }
       lampMeta.forEach(function (L, i) {
         var on = reduce ? 1 : clamp((t - L.delay) / 0.4, 0, 1);
         var flick = on < 1 ? (Math.sin(t * 50 + i * 3) > 0 ? on : on * 0.4) : 1;
-        L.halo.material.opacity = 0.75 * flick; L.beam.material.opacity = 0.06 * flick; L.light.intensity = 1.6 * flick;
+        L.halo.material.opacity = 0.75 * flick; L.beam.material.opacity = 0.03 * flick; L.light.intensity = 1.6 * flick;
       });
       bokeh.forEach(function (b) { b.material.opacity = (b.userData.base + 0.06 * Math.sin(t * 0.8 + b.userData.ph)) * clamp(t / 1.5, 0, 1); });
       drops.forEach(function (c, i) {

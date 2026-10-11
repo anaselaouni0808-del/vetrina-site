@@ -1843,7 +1843,7 @@ window.VetrinaStreet = function (canvas, opts) {
     port: { pos: [-10.5, 5.2, 12.5], look: [2.6, -2.2, 0] },
     shopDesk: { pos: [-2.3, 2.6, 8.8], look: [-2.3, 2.45, 0] },
     shopPort: { pos: [0.3, 3.4, 12.5], look: [0.3, -0.6, 0] },
-    phoneDesk: [0.1, 2.15, 4.0],
+    phoneDesk: [-0.55, 2.2, 4.4],
     phonePort: [1.05, 2.0, 6.2]
   };
   if (opts.views) for (var vk in opts.views) views[vk] = opts.views[vk];
@@ -1960,7 +1960,7 @@ window.VetrinaStreet = function (canvas, opts) {
     building(SPACING * TRADES.length, 9.8, 33, '#3f4d8a', null, -3);
     building(SPACING * (TRADES.length + 1), 11.2, 77, '#475693', null, -4);
     [-1.5, 0.5, 2.5, 4.5].forEach(function (k, idx) { lamp(k * SPACING, 3.75, idx); });
-    tree(1.5 * SPACING, 3.7, 3); tree(3.5 * SPACING, 3.7, 8); if (!LOW) tree(-2.5 * SPACING, 3.7, 12);
+    tree(-2.5 * SPACING, 3.7, 12); tree((TRADES.length + 0.5) * SPACING, 3.7, 8);
     bike(3.2 * SPACING, 3.25);
     bench(-0.9 * SPACING, 3.2);
   });
