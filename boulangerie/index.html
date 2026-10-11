@@ -528,6 +528,24 @@ p { margin: 0; }
 .btn-gold::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.55) 48%, transparent 66%); transform: translateX(-120%); }
 .btn-gold:hover::after { transform: translateX(120%); transition: transform 0.75s ease; }
 
+
+/* ---------- 3D layer ---------- */
+.glass .vitrine-3d { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 1; }
+.glass svg { z-index: 2; pointer-events: none; }
+.glass.is-3d svg .art { display: none; }
+.glass::after { z-index: 3; }
+.oven-stage { position: relative; display: none; width: 100%; aspect-ratio: 640 / 440; max-height: 52svh; border-radius: 18px; overflow: hidden; background: #2c1912; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7); }
+.oven-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.oven.is-3d .oven-stage { display: block; }
+.oven.is-3d > svg { display: none; }
+.product-art { position: relative; }
+.prod-img { display: block; width: 92%; height: auto; transition: opacity 0.3s, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.prod-img.off { opacity: 0; }
+.product:hover .prod-img { transform: scale(1.05) translateY(-2px); }
+.prod-3d { position: absolute; left: 4%; top: 0; width: 92%; height: 100%; object-fit: contain; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.prod-3d.on { opacity: 1; }
+@media (max-width: 560px) { .prod-img { width: 100%; } .oven-stage { max-height: 40svh; } }
+@media (max-width: 859px) { .front-grid { gap: 26px; } .window-tilt { order: -1; width: min(80vw, 330px); } }
 @media (prefers-reduced-motion: reduce) {
   .js-m .shutter { animation: none; transform: translateY(-101%); }
   .js-m .h1-big .gl, .js-m .front-copy > :not(h1), .js-m .window, .js-m .rv { opacity: 1; transform: none; filter: none; animation: none; }
@@ -662,24 +680,24 @@ p { margin: 0; }
                 <path id="arch-path" d="M34 140 A116 116 0 0 1 266 140"/>
               </defs>
               <text class="arc-text" fill="url(#win-gold)"><textPath href="#arch-path" startOffset="40" textLength="284" lengthAdjust="spacingAndGlyphs">PAIN · VIENNOISERIE · PÂTISSERIE</textPath></text>
-              <rect x="0" y="300" width="300" height="60" fill="#6d4a2b"/>
-              <rect x="0" y="296" width="300" height="8" fill="#8a6038"/>
-              <g fill="#d49a52" stroke="#7d4a1d" stroke-width="1.5">
+              <rect class="art" x="0" y="300" width="300" height="60" fill="#6d4a2b"/>
+              <rect class="art" x="0" y="296" width="300" height="8" fill="#8a6038"/>
+              <g class="art" fill="#d49a52" stroke="#7d4a1d" stroke-width="1.5">
                 <rect x="36" y="150" width="16" height="112" rx="8" transform="rotate(-12 44 256)"/>
                 <rect x="52" y="140" width="16" height="122" rx="8" transform="rotate(-3 60 256)"/>
                 <rect x="66" y="156" width="16" height="106" rx="8" transform="rotate(9 74 256)"/>
               </g>
-              <path d="M26 246 L94 246 L87 300 L33 300 Z" fill="#a77a45" stroke="#6e4c27" stroke-width="1.5"/>
-              <g stroke="#835a30" stroke-width="1.5"><path d="M28 262 H92"/><path d="M30 278 H90"/><path d="M32 292 H88"/></g>
-              <ellipse cx="180" cy="296" rx="36" ry="6" fill="#efe6d6" stroke="#cdbb9d"/>
-              <rect x="171" y="264" width="18" height="30" fill="#f1e9db" stroke="#cdbb9d"/>
-              <ellipse cx="180" cy="262" rx="84" ry="9" fill="#faf6ee" stroke="#cdbb9d"/>
-              <use class="drop" style="animation-delay:1.34s" href="#canele" x="155" y="124" width="50" height="52"/>
-              <use class="drop" style="animation-delay:1.08s" href="#canele" x="127" y="164" width="50" height="52"/>
-              <use class="drop" style="animation-delay:1.2s" href="#canele" x="182" y="164" width="50" height="52"/>
-              <use class="drop" style="animation-delay:0.7s" href="#canele" x="100" y="206" width="50" height="52"/>
-              <use class="drop" style="animation-delay:0.82s" href="#canele" x="155" y="206" width="50" height="52"/>
-              <use class="drop" style="animation-delay:0.94s" href="#canele" x="210" y="206" width="50" height="52"/>
+              <path class="art" d="M26 246 L94 246 L87 300 L33 300 Z" fill="#a77a45" stroke="#6e4c27" stroke-width="1.5"/>
+              <g class="art" stroke="#835a30" stroke-width="1.5"><path d="M28 262 H92"/><path d="M30 278 H90"/><path d="M32 292 H88"/></g>
+              <ellipse class="art" cx="180" cy="296" rx="36" ry="6" fill="#efe6d6" stroke="#cdbb9d"/>
+              <rect class="art" x="171" y="264" width="18" height="30" fill="#f1e9db" stroke="#cdbb9d"/>
+              <ellipse class="art" cx="180" cy="262" rx="84" ry="9" fill="#faf6ee" stroke="#cdbb9d"/>
+              <use class="drop art" style="animation-delay:1.34s" href="#canele" x="155" y="124" width="50" height="52"/>
+              <use class="drop art" style="animation-delay:1.08s" href="#canele" x="127" y="164" width="50" height="52"/>
+              <use class="drop art" style="animation-delay:1.2s" href="#canele" x="182" y="164" width="50" height="52"/>
+              <use class="drop art" style="animation-delay:0.7s" href="#canele" x="100" y="206" width="50" height="52"/>
+              <use class="drop art" style="animation-delay:0.82s" href="#canele" x="155" y="206" width="50" height="52"/>
+              <use class="drop art" style="animation-delay:0.94s" href="#canele" x="210" y="206" width="50" height="52"/>
               <path d="M262 126 V140" stroke="#6e4c27" stroke-width="1.2"/>
               <g class="tag-swing"><g transform="rotate(7 262 160)">
                 <rect x="234" y="140" width="56" height="42" rx="4" fill="#fbf5e8" stroke="#b9a27e"/>
@@ -717,6 +735,7 @@ p { margin: 0; }
           </ol>
         </div>
         <figure class="oven">
+          <div class="oven-stage" id="oven-stage"></div>
           <svg viewBox="0 0 640 440" role="img" aria-label="Une baguette devant la bouche du four : elle lève, est grignée, puis dore pendant la cuisson">
             <defs>
               <radialGradient id="ov-glow" cx="50%" cy="72%" r="62%">
@@ -1264,6 +1283,7 @@ p { margin: 0; }
     var mins = p < 0.2 ? 660 : p < 0.4 ? 270 + 80 * seg(p, 0.2, 0.4) : p < 0.6 ? 350 + 25 * seg(p, 0.4, 0.6) : p < 0.8 ? 375 + 30 * seg(p, 0.6, 0.8) : 405;
     $('clock').textContent = fmt(mins);
     $('clock-day').textContent = p < 0.2 ? 'la veille' : 'ce matin';
+    window.__ovenP = p; if (window.__oven) window.__oven.set(p);
     if (idx !== last) {
       items.forEach(function (li, i) { li.classList.toggle('on', i === idx); });
       dots.forEach(function (d, i) { d.classList.toggle('on', i <= idx); });
@@ -1482,6 +1502,653 @@ p { margin: 0; }
       if (total && total.textContent !== lastTotal) { total.classList.remove('bump'); void total.offsetWidth; total.classList.add('bump'); lastTotal = total.textContent; }
     });
   });
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* Maison Escoubès — viennoiseries modélisées en 3D (Three.js r128) */
+(function () {
+  var THREE = window.THREE;
+  if (!THREE) return;
+  var TAU = Math.PI * 2;
+  function lin(hex) { return new THREE.Color(hex).convertSRGBToLinear(); }
+  function rand(seed) { var s = seed; return function () { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function seg(p, a, b) { return clamp((p - a) / (b - a), 0, 1); }
+  function smooth(t) { return t * t * (3 - 2 * t); }
+
+  /* Build a closed tube-like surface from a function f(i/nu, j/nv) -> [x,y,z, r,g,b, extra] */
+  function gridGeo(nu, nv, fn, wrapV, extraName, flip) {
+    var pos = [], col = [], ext = [], idx = [];
+    var cols = wrapV ? nv : nv + 1;
+    for (var i = 0; i <= nu; i++) {
+      for (var j = 0; j < cols; j++) {
+        var o = fn(i / nu, j / nv);
+        pos.push(o[0], o[1], o[2]); col.push(o[3], o[4], o[5]); ext.push(o[6] || 0);
+      }
+    }
+    for (var a = 0; a < nu; a++) {
+      for (var b = 0; b < nv; b++) {
+        var b1 = wrapV ? (b + 1) % nv : b + 1;
+        var p0 = a * cols + b, p1 = a * cols + b1, p2 = (a + 1) * cols + b, p3 = (a + 1) * cols + b1;
+        if (flip) idx.push(p0, p1, p2, p1, p3, p2); else idx.push(p0, p2, p1, p1, p2, p3);
+      }
+    }
+    var g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+    if (extraName) g.setAttribute(extraName, new THREE.Float32BufferAttribute(ext, 1));
+    g.setIndex(idx);
+    g.computeVertexNormals();
+    return g;
+  }
+
+  /* ---------- Canelé: fluted copper-mould shape, caramelised crust ---------- */
+  var caneleGeoCache = null;
+  function caneleGeo() {
+    if (caneleGeoCache) return caneleGeoCache;
+    var H = 1, flutes = 10, r = rand(5);
+    var cTop = lin('#2a0c03'), cMid = lin('#6a2509'), cLow = lin('#8a3c12'), cRidge = lin('#b0571d'), cGroove = lin('#3a1205');
+    var side = gridGeo(46, 160, function (u, v) {
+      var y = u * H, th = v * TAU;
+      var r0 = 0.46 - 0.05 * u;
+      if (u > 0.86) { var t = (u - 0.86) / 0.14; r0 *= 1 - 0.16 * t * t; }
+      if (u < 0.05) { var tb = 1 - u / 0.05; r0 *= 1 - 0.05 * tb * tb; }
+      var c = Math.cos(th * flutes / 2); var ridge = Math.pow(Math.abs(c), 0.55);
+      var rr = r0 * (0.91 + 0.11 * ridge);
+      var base = new THREE.Color().copy(cLow).lerp(cMid, smooth(clamp(u * 1.3, 0, 1))).lerp(cTop, smooth(seg(u, 0.55, 1)));
+      base.lerp(cGroove, (1 - ridge) * 0.55); base.lerp(cRidge, Math.pow(ridge, 6) * 0.35 * (1 - u));
+      var n = 0.92 + r() * 0.12;
+      return [Math.cos(th) * rr, y, Math.sin(th) * rr, base.r * n, base.g * n, base.b * n];
+    }, true);
+    var top = gridGeo(14, 160, function (u, v) {
+      var th = v * TAU, rho = 1 - u;
+      var c = Math.cos(th * flutes / 2), ridge = Math.pow(Math.abs(c), 0.55);
+      var rTop = (0.46 - 0.05) * 0.84 * (0.91 + 0.11 * ridge);
+      var rr = rTop * rho;
+      var y = H - 0.11 * (1 - rho * rho) + 0.015 * Math.sin(rho * 9);
+      var cc = new THREE.Color().copy(lin('#3d1406')).lerp(lin('#1d0702'), smooth(1 - rho));
+      if (rho > 0.82) cc.lerp(lin('#5e220a'), (rho - 0.82) / 0.18 * 0.6);
+      return [Math.cos(th) * rr, y, Math.sin(th) * rr, cc.r, cc.g, cc.b];
+    }, true);
+    caneleGeoCache = { side: side, top: top };
+    return caneleGeoCache;
+  }
+  var caneleMat = null;
+  function canele() {
+    var g = caneleGeo();
+    if (!caneleMat) caneleMat = new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.42, metalness: 0, clearcoat: 0.75, clearcoatRoughness: 0.32, side: THREE.DoubleSide });
+    var grp = new THREE.Group();
+    var a = new THREE.Mesh(g.side, caneleMat), b = new THREE.Mesh(g.top, caneleMat);
+    a.castShadow = b.castShadow = true; a.receiveShadow = true;
+    grp.add(a, b);
+    return grp;
+  }
+
+  /* ---------- Baguette: crust shader with grignes (scores) ---------- */
+  function baguetteGeo(opt) {
+    opt = opt || {};
+    var L = opt.len || 2.6, R = opt.r || 0.2, slashes = opt.slashes || 5, rnd = rand(opt.seed || 3);
+    var noise = [];
+    function shape(u, v, rise, score) {
+      var x = (u * 2 - 1);
+      var th = v * TAU;
+      var prof = Math.pow(Math.max(0, 1 - Math.pow(Math.abs(x), 5)), 0.42);
+      var rr = R * prof * (1 + 0.18 * rise);
+      var t = th - Math.PI / 2; if (t > Math.PI) t -= TAU;
+      var g = 0, ear = 0;
+      for (var k = 0; k < slashes; k++) {
+        var uk = -0.66 + k * (1.32 / (slashes - 1));
+        var s = (x - uk) * (L / 2);
+        if (Math.abs(s) > 0.2) continue;
+        var d = (t - s * 3.0) * R;
+        var along = 1 - Math.pow(Math.abs(s) / 0.2, 2);
+        if (Math.abs(d) < 0.045) g = Math.max(g, (1 - Math.abs(d) / 0.045) * along);
+        if (d > 0.03 && d < 0.09) ear = Math.max(ear, Math.sin((d - 0.03) / 0.06 * Math.PI) * along);
+      }
+      rr *= 1 - 0.13 * g * score; rr *= 1 + 0.07 * ear * score;
+      var y = Math.sin(th) * rr, z = Math.cos(th) * rr;
+      if (y < 0) y *= 0.5;
+      return { p: [x * (L / 2) * (1 + 0.03 * rise), y, z * 0.92], g: g * score };
+    }
+    var nu = 110, nv = 56;
+    var geo = gridGeo(nu, nv, function (u, v) {
+      var s = shape(u, v, 0, 0); var n = 0.9 + rnd() * 0.12; noise.push(n);
+      return [s.p[0], s.p[1], s.p[2], n, n, n, 0];
+    }, true, 'aGroove');
+    if (opt.morph) {
+      var risen = [], scored = [], groove = geo.getAttribute('aGroove'), base = geo.getAttribute('position');
+      var k = 0;
+      for (var i = 0; i <= nu; i++) for (var j = 0; j < nv; j++) {
+        var a = shape(i / nu, j / nv, 1, 0), b = shape(i / nu, j / nv, 1, 1);
+        risen.push(a.p[0] - base.getX(k), a.p[1] - base.getY(k), a.p[2] - base.getZ(k));
+        scored.push(b.p[0] - a.p[0], b.p[1] - a.p[1], b.p[2] - a.p[2]);
+        groove.setX(k, b.g); k++;
+      }
+      geo.morphAttributes.position = [new THREE.Float32BufferAttribute(risen, 3), new THREE.Float32BufferAttribute(scored, 3)];
+      geo.morphTargetsRelative = true;
+    } else {
+      var p = geo.getAttribute('position'), gr = geo.getAttribute('aGroove'), m = 0;
+      for (var i2 = 0; i2 <= nu; i2++) for (var j2 = 0; j2 < nv; j2++) {
+        var c = shape(i2 / nu, j2 / nv, 1, 1); p.setXYZ(m, c.p[0], c.p[1], c.p[2]); gr.setX(m, c.g); m++;
+      }
+      geo.computeVertexNormals();
+    }
+    return geo;
+  }
+  function crustMaterial(uBake, uScore, morph) {
+    var mat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.78, metalness: 0 });
+    if (morph) { mat.morphTargets = true; }
+    mat.onBeforeCompile = function (sh) {
+      sh.uniforms.uBake = uBake; sh.uniforms.uScore = uScore;
+      sh.vertexShader = 'attribute float aGroove;\nvarying float vGroove;\nvarying float vTop;\n' +
+        sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\nvGroove = aGroove;\nvTop = normal.y;');
+      sh.fragmentShader = 'uniform float uBake;\nuniform float uScore;\nvarying float vGroove;\nvarying float vTop;\n' +
+        sh.fragmentShader.replace('#include <color_fragment>', [
+          '#include <color_fragment>',
+          'vec3 dough = pow(vec3(0.94, 0.89, 0.79), vec3(2.2));',
+          'vec3 crustTop = pow(vec3(0.66, 0.36, 0.13), vec3(2.2));',
+          'vec3 crustSide = pow(vec3(0.85, 0.58, 0.29), vec3(2.2));',
+          'vec3 crust = mix(crustSide, crustTop, smoothstep(-0.1, 0.9, vTop));',
+          'vec3 groove = pow(vec3(0.93, 0.79, 0.55), vec3(2.2));',
+          'float g = clamp(vGroove * uScore, 0.0, 1.0);',
+          'vec3 baked = mix(crust, groove, g * 0.85);',
+          'diffuseColor.rgb *= mix(dough * (1.0 - 0.28 * g), baked, uBake);'
+        ].join('\n'));
+    };
+    return mat;
+  }
+  var bakedU = { value: 1 }, scoredU = { value: 1 };
+  function baguette(seed) {
+    var m = new THREE.Mesh(baguetteGeo({ seed: seed }), crustMaterial(bakedU, scoredU, false));
+    m.castShadow = true; m.receiveShadow = true;
+    return m;
+  }
+
+  /* ---------- Pain au levain (boule) ---------- */
+  function boule() {
+    var r = rand(17);
+    var geo = gridGeo(40, 90, function (u, v) {
+      var ph = u * Math.PI, th = v * TAU;
+      var x = Math.sin(ph) * Math.cos(th), z = Math.sin(ph) * Math.sin(th), y = Math.cos(ph);
+      var rad = 1;
+      var a1 = Math.abs(x * 0.8 - z * 0.6), a2 = Math.abs(x * 0.6 + z * 0.8);
+      var cut = 0;
+      if (y > 0.25) { if (a1 < 0.06) cut = 1 - a1 / 0.06; if (a2 < 0.06) cut = Math.max(cut, 1 - a2 / 0.06); }
+      rad -= 0.05 * cut;
+      var yy = y > 0 ? y * 0.62 : y * 0.18;
+      var c = lin('#b06c32').lerp(lin('#7c4318'), smooth(clamp(y, 0, 1)));
+      if (cut > 0) c.lerp(lin('#efd9ae'), cut * 0.9);
+      if (y > 0.45 && r() < 0.08) c.lerp(lin('#efe6d6'), 0.35 + r() * 0.3);
+      var n = 0.92 + r() * 0.1;
+      return [x * rad * 0.9, yy * rad * 0.9 + 0.16, z * rad * 0.9, c.r * n, c.g * n, c.b * n];
+    }, true, null, true);
+    var m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.85 }));
+    m.castShadow = m.receiveShadow = true;
+    return m;
+  }
+
+  /* ---------- Croissant ---------- */
+  function croissant() {
+    var r = rand(29);
+    var geo = gridGeo(140, 48, function (u, v) {
+      var ph = (u * 2 - 1) * 1.6, th = v * TAU;
+      var Rc = 0.62;
+      var cx = Math.sin(ph) * Rc, cz = -Math.cos(ph) * Rc + Rc * 0.75;
+      var body = Math.pow(Math.max(0, 1 - Math.pow(ph / 1.6, 2)), 0.75);
+      var roll = ph / 0.36 + Math.sin(th) * 0.35;
+      var groove = Math.pow(Math.abs(Math.sin(roll * Math.PI)), 0.35);
+      var tr = (0.42 * body + 0.004) * (0.86 + 0.14 * groove);
+      var nx = Math.sin(ph), nz = -Math.cos(ph);
+      var ox = Math.cos(th) * tr, oy = Math.sin(th) * tr * 0.82;
+      if (oy < 0) oy *= 0.35;
+      var top = clamp(Math.sin(th), 0, 1);
+      var c = lin('#d39443').lerp(lin('#9c5014'), smooth(top) * 0.85).lerp(lin('#7a3a0e'), (1 - groove) * 0.55 * (0.4 + top));
+      if (Math.abs(ph) > 1.25) c.lerp(lin('#8a4512'), (Math.abs(ph) - 1.25) / 0.3 * 0.5);
+      var n = 0.93 + r() * 0.08;
+      return [cx + nx * ox, oy + 0.06, cz + nz * ox, c.r * n, c.g * n, c.b * n];
+    }, true, null, true);
+    var m = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.55, clearcoat: 0.22, clearcoatRoughness: 0.6 }));
+    m.castShadow = m.receiveShadow = true;
+    return m;
+  }
+
+  /* ---------- Chocolatine ---------- */
+  function roundedRect(w, h, rr) {
+    var s = new THREE.Shape(), x = -w / 2, y = -h / 2;
+    s.moveTo(x + rr, y); s.lineTo(x + w - rr, y); s.quadraticCurveTo(x + w, y, x + w, y + rr); s.lineTo(x + w, y + h - rr);
+    s.quadraticCurveTo(x + w, y + h, x + w - rr, y + h); s.lineTo(x + rr, y + h); s.quadraticCurveTo(x, y + h, x, y + h - rr);
+    s.lineTo(x, y + rr); s.quadraticCurveTo(x, y, x + rr, y); return s;
+  }
+  function chocolatine() {
+    var grp = new THREE.Group();
+    var geo = new THREE.ExtrudeGeometry(roundedRect(1.25, 0.42, 0.19), { depth: 0.7, bevelEnabled: true, bevelThickness: 0.06, bevelSize: 0.05, bevelSegments: 5, curveSegments: 12 });
+    geo.translate(0, 0.27, -0.35);
+    var pos = geo.getAttribute('position'), cols = [], r = rand(41);
+    for (var i = 0; i < pos.count; i++) {
+      var y = pos.getY(i);
+      var c = lin('#d99a4c').lerp(lin('#8a4614'), smooth(clamp((y - 0.1) / 0.45, 0, 1)) * 0.9);
+      var layer = 0.5 + 0.5 * Math.sin(y * 60); c.lerp(lin('#f1cf96'), layer * 0.22);
+      var xs = pos.getX(i); if (y > 0.4) { var band = Math.pow(Math.abs(Math.sin(xs * 7.5)), 6); c.lerp(lin('#7a3c10'), band * 0.45); }
+      var n = 0.93 + r() * 0.08; cols.push(c.r * n, c.g * n, c.b * n);
+    }
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
+    var m = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.5, clearcoat: 0.35 }));
+    m.castShadow = m.receiveShadow = true; grp.add(m);
+    var choc = new THREE.MeshStandardMaterial({ color: lin('#2e160c'), roughness: 0.35 });
+    [-0.12, 0.12].forEach(function (dz) { [-0.66, 0.66].forEach(function (dx) {
+      var b = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.06, 0.12), choc); b.position.set(dx, 0.26 + dz * 0.4, dz); grp.add(b);
+    }); });
+    return grp;
+  }
+
+  /* ---------- Flan pâtissier (slice) ---------- */
+  function flan() {
+    var grp = new THREE.Group();
+    var shape = new THREE.Shape(); shape.moveTo(0, 0); shape.lineTo(1.2, 0.35); shape.lineTo(1.2, -0.35); shape.lineTo(0, 0);
+    var custard = new THREE.ExtrudeGeometry(shape, { depth: 0.5, bevelEnabled: false });
+    custard.rotateX(-Math.PI / 2); custard.translate(-0.6, 0.1, 0);
+    var mC = new THREE.Mesh(custard, new THREE.MeshStandardMaterial({ color: lin('#f3d27a'), roughness: 0.55 }));
+    var top = new THREE.ExtrudeGeometry(shape, { depth: 0.05, bevelEnabled: false }); top.rotateX(-Math.PI / 2); top.translate(-0.6, 0.6, 0);
+    var tc = [], tp = top.getAttribute('position'), r = rand(7);
+    for (var i = 0; i < tp.count; i++) { var c = lin('#8a4416').lerp(lin('#c97b35'), r()); tc.push(c.r, c.g, c.b); }
+    top.setAttribute('color', new THREE.Float32BufferAttribute(tc, 3));
+    var mT = new THREE.Mesh(top, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.6 }));
+    var base = new THREE.ExtrudeGeometry(shape, { depth: 0.08, bevelEnabled: false }); base.rotateX(-Math.PI / 2); base.translate(-0.6, 0.02, 0);
+    var mB = new THREE.Mesh(base, new THREE.MeshStandardMaterial({ color: lin('#c98a44'), roughness: 0.7 }));
+    var crust = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.62, 0.72), new THREE.MeshStandardMaterial({ color: lin('#c27f3c'), roughness: 0.7 }));
+    crust.position.set(0.62, 0.33, 0);
+    [mC, mT, mB, crust].forEach(function (m) { m.castShadow = m.receiveShadow = true; grp.add(m); });
+    return grp;
+  }
+
+  /* ---------- Shared bits ---------- */
+  function standMesh() {
+    var pts = [[0, 0], [0.55, 0], [0.56, 0.04], [0.18, 0.1], [0.12, 0.2], [0.11, 0.66], [0.16, 0.74], [1.12, 0.78], [1.18, 0.83], [1.16, 0.86], [0, 0.86]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
+    var m = new THREE.Mesh(new THREE.LatheGeometry(pts, 64), new THREE.MeshPhysicalMaterial({ color: lin('#f8f4ea'), roughness: 0.25, clearcoat: 0.6 }));
+    m.castShadow = m.receiveShadow = true; return m;
+  }
+  function basketMesh() {
+    var pts = [[0, 0], [0.42, 0], [0.47, 0.06], [0.56, 0.62], [0.6, 0.68], [0.55, 0.69], [0.5, 0.64], [0.42, 0.08], [0, 0.08]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
+    var geo = new THREE.LatheGeometry(pts, 72);
+    var pos = geo.getAttribute('position'), cols = [];
+    for (var i = 0; i < pos.count; i++) {
+      var a = Math.atan2(pos.getZ(i), pos.getX(i)), y = pos.getY(i);
+      var w = Math.sin(a * 18 + Math.floor(y * 12) * Math.PI) > 0 ? 1 : 0.72;
+      var c = lin('#b5813f'); cols.push(c.r * w, c.g * w, c.b * w);
+    }
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
+    var m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.9, side: THREE.DoubleSide }));
+    m.castShadow = m.receiveShadow = true; return m;
+  }
+  function softTexture() {
+    var c = document.createElement('canvas'); c.width = c.height = 128; var x = c.getContext('2d');
+    var g = x.createRadialGradient(64, 64, 0, 64, 64, 64); g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(0.4, 'rgba(255,255,255,0.45)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+    x.fillStyle = g; x.fillRect(0, 0, 128, 128); var t = new THREE.CanvasTexture(c); return t;
+  }
+  function makeRenderer(canvas, opts) {
+    var r = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, preserveDrawingBuffer: !!(opts && opts.keep) });
+    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    r.outputEncoding = THREE.sRGBEncoding; r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.08;
+    r.shadowMap.enabled = true; r.shadowMap.type = THREE.PCFSoftShadowMap;
+    return r;
+  }
+  function warmLights(scene, shadowSize) {
+    scene.add(new THREE.HemisphereLight(0xfff3dc, 0x3a2412, 0.62));
+    var key = new THREE.DirectionalLight(0xfff0d6, 1.35); key.position.set(-3, 6, 4.5); key.castShadow = true;
+    key.shadow.mapSize.set(shadowSize || 1024, shadowSize || 1024); key.shadow.camera.left = -4; key.shadow.camera.right = 4; key.shadow.camera.top = 4; key.shadow.camera.bottom = -2; key.shadow.radius = 4; key.shadow.bias = -0.0008;
+    scene.add(key);
+    var rim = new THREE.PointLight(0xffb35c, 1.1, 14, 1.5); rim.position.set(1.6, 3, -2.4); scene.add(rim);
+    var fill = new THREE.DirectionalLight(0xffffff, 0.28); fill.position.set(2, 2, 6); scene.add(fill);
+    return { key: key, rim: rim };
+  }
+  function easeOutBounce(x) {
+    var n1 = 7.5625, d1 = 2.75;
+    if (x < 1 / d1) return n1 * x * x;
+    if (x < 2 / d1) return n1 * (x -= 1.5 / d1) * x + 0.75;
+    if (x < 2.5 / d1) return n1 * (x -= 2.25 / d1) * x + 0.9375;
+    return n1 * (x -= 2.625 / d1) * x + 0.984375;
+  }
+  function visibleLoop(el, fn) {
+    var running = false, raf = 0, last = 0;
+    function tick(now) { if (!running) return; var dt = Math.min(0.05, (now - last) / 1000 || 0.016); last = now; fn(dt, now / 1000); raf = requestAnimationFrame(tick); }
+    function start() { if (running) return; running = true; last = performance.now(); raf = requestAnimationFrame(tick); }
+    function stop() { running = false; cancelAnimationFrame(raf); }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { e[0].isIntersecting ? start() : stop(); }, { rootMargin: '120px' }).observe(el);
+    else start();
+    return { start: start, stop: stop };
+  }
+
+  /* =========================================================
+     1. La vitrine (hero)
+     ========================================================= */
+  function Vitrine(host, opts) {
+    var reduce = !!opts.reduce;
+    var canvas = document.createElement('canvas'); canvas.className = 'vitrine-3d'; canvas.setAttribute('aria-hidden', 'true');
+    host.appendChild(canvas);
+    var renderer = makeRenderer(canvas);
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(30, 1, 0.1, 60);
+    var target = new THREE.Vector3(-0.05, 1.05, 0);
+    warmLights(scene, 1024);
+
+    // counter
+    var counter = new THREE.Mesh(new THREE.BoxGeometry(6, 0.5, 2.6), new THREE.MeshStandardMaterial({ color: lin('#6d4a2b'), roughness: 0.6 }));
+    counter.position.set(0, -0.25, 0.2); counter.receiveShadow = true; scene.add(counter);
+    var edge = new THREE.Mesh(new THREE.BoxGeometry(6, 0.08, 0.12), new THREE.MeshStandardMaterial({ color: lin('#8a6038'), roughness: 0.5 }));
+    edge.position.set(0, 0.0, 1.5); scene.add(edge);
+    var linen = new THREE.Mesh(new THREE.PlaneGeometry(1.6, 1.1), new THREE.MeshStandardMaterial({ color: lin('#f3ede0'), roughness: 0.95 }));
+    linen.rotation.x = -Math.PI / 2; linen.rotation.z = 0.12; linen.position.set(-0.3, 0.005, 0.85); linen.receiveShadow = true; scene.add(linen);
+
+    // stand + canelés pyramid
+    var stand = standMesh(); stand.position.set(0.62, 0, -0.1); scene.add(stand);
+    var S = 0.55, plateY = 0.86;
+    var slots = [[-0.55, 0, 0.12], [0, 0, 0.12], [0.55, 0, 0.12], [-0.3, 0, -0.38], [0.3, 0, -0.38], [-0.27, 1, -0.12], [0.27, 1, -0.12], [0, 2, -0.12]];
+    var caneles = [];
+    slots.forEach(function (s, i) {
+      var c = canele(); c.scale.setScalar(S);
+      var tx = 0.62 + s[0], ty = plateY + s[1] * S * 0.98, tz = -0.1 + s[2];
+      c.position.set(tx, ty + 4, tz); c.rotation.y = i * 0.7;
+      c.traverse(function (m) { m.userData.canele = i; });
+      scene.add(c);
+      caneles.push({ g: c, tx: tx, ty: ty, tz: tz, delay: i * 0.13, hop: 0, spin: 0, hover: 0, baseRot: i * 0.7 });
+    });
+
+    // basket of baguettes
+    var basket = basketMesh(); basket.scale.setScalar(0.9); basket.position.set(-1.25, 0, -0.25); scene.add(basket);
+    var bags = [];
+    [[-0.1, 0.18, 0.05], [0.12, -0.12, -0.08], [0.0, 0.02, 0.14]].forEach(function (b, i) {
+      var m = baguette(11 + i * 7); m.scale.setScalar(0.62);
+      var pivot = new THREE.Group(); pivot.position.set(-1.25 + b[0], 0.1, -0.25 + b[2]);
+      m.rotation.z = Math.PI / 2; m.position.y = 0.78; pivot.rotation.z = b[1]; pivot.rotation.y = i * 1.3;
+      pivot.add(m); scene.add(pivot); bags.push({ p: pivot, delay: -0.15 + i * 0.12, b: b });
+    });
+
+    // croissant on the linen
+    var cr = croissant(); cr.scale.setScalar(0.72); cr.position.set(-0.32, 0, 0.78); cr.rotation.y = 0.35; scene.add(cr);
+
+    // steam
+    var soft = softTexture(), wisps = [];
+    for (var w = 0; w < 7; w++) {
+      var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: soft, color: 0xffffff, transparent: true, opacity: 0, depthWrite: false }));
+      var bx = w < 3 ? -1.25 + (w - 1) * 0.18 : 0.62 + (w - 5) * 0.2;
+      var by = w < 3 ? 1.75 : 2.7;
+      sp.userData = { x: bx, y: by, ph: w * 0.37 }; scene.add(sp); wisps.push(sp);
+    }
+
+    var pageStart = opts.pageStart || performance.now();
+    var state = { t0: null, mx: 0, my: 0, sway: 0, hover: -1, scroll: 0 };
+    var ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+    var pickables = []; caneles.forEach(function (c) { c.g.traverse(function (m) { if (m.isMesh) pickables.push(m); }); });
+    function pick(e) {
+      var r = canvas.getBoundingClientRect(); ndc.x = ((e.clientX - r.left) / r.width) * 2 - 1; ndc.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+      ray.setFromCamera(ndc, camera); var hit = ray.intersectObjects(pickables, false)[0]; return hit ? hit.object.userData.canele : -1;
+    }
+    var front = opts.pointerArea || host;
+    front.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      var r = host.getBoundingClientRect();
+      state.mx = clamp(((e.clientX - r.left) / r.width) * 2 - 1, -1.5, 1.5); state.my = clamp(((e.clientY - r.top) / r.height) * 2 - 1, -1.5, 1.5);
+      var h = pick(e); state.hover = h; canvas.style.cursor = h >= 0 ? 'pointer' : '';
+    });
+    front.addEventListener('pointerleave', function () { state.mx = state.my = 0; state.hover = -1; });
+    canvas.addEventListener('click', function (e) {
+      var h = pick(e);
+      if (h >= 0) { caneles[h].hop = 1; caneles[h].spin = 1; if (opts.onCanele) opts.onCanele(); }
+      else caneles.forEach(function (c, i) { setTimeout(function () { c.hop = 0.6; }, i * 60); });
+    });
+    window.addEventListener('scroll', function () { state.scroll = Math.min(1, window.pageYOffset / 700); }, { passive: true });
+
+    function resize() {
+      var w = host.clientWidth, h = host.clientHeight; if (!w || !h) return;
+      renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+    }
+    resize(); window.addEventListener('resize', resize);
+
+    var camPos = new THREE.Vector3(0, 2.2, 9.2);
+    function frame(dt, now) {
+      if (state.t0 === null) { var since = (performance.now() - pageStart) / 1000; state.t0 = performance.now() + Math.max(0.25, 1.65 - since) * 1000; }
+      var t = (performance.now() - state.t0) / 1000;
+      var yaw = (reduce ? 0 : state.mx * 0.22 + Math.sin(t * 0.25) * 0.05) + state.scroll * 0.25;
+      var pitch = reduce ? 0 : state.my * 0.08;
+      var dist = 9.6 - state.scroll * 1.2;
+      var want = new THREE.Vector3(target.x + Math.sin(yaw) * dist, target.y + 1.1 + pitch * 4, target.z + Math.cos(yaw) * dist);
+      camPos.lerp(want, 1 - Math.exp(-4 * dt));
+      camera.position.copy(camPos); camera.lookAt(target);
+
+      caneles.forEach(function (c, i) {
+        var p = reduce ? 1 : clamp((t - c.delay) / 0.9, 0, 1);
+        var y = c.ty + (1 - easeOutBounce(p)) * 4;
+        c.hover += ((state.hover === i ? 1 : 0) - c.hover) * Math.min(1, dt * 10);
+        if (c.hop > 0) c.hop = Math.max(0, c.hop - dt * 1.6);
+        var hopY = Math.sin((1 - c.hop) * Math.PI) * (c.hop > 0 ? 0.55 : 0);
+        if (c.spin > 0) c.spin = Math.max(0, c.spin - dt * 1.4);
+        c.g.position.set(c.tx, y + hopY + c.hover * 0.08, c.tz);
+        c.g.rotation.y = c.baseRot + (1 - c.spin) * (c.spin > 0 ? TAU : 0) + c.hover * 0.4;
+        c.g.rotation.z = p < 1 ? (1 - p) * 0.4 * (i % 2 ? 1 : -1) : 0;
+      });
+      bags.forEach(function (b) {
+        var p = reduce ? 1 : smooth(clamp((t - b.delay) / 0.9, 0, 1));
+        b.p.position.y = 0.1 + (1 - p) * 4.2;
+        b.p.rotation.z = b.b[1] + (reduce ? 0 : Math.sin(t * 0.8 + b.delay * 9) * 0.015);
+      });
+      wisps.forEach(function (sp, i) {
+        var d = sp.userData, cyc = ((t * 0.28 + d.ph) % 1);
+        sp.position.set(d.x + Math.sin(t * 0.9 + i) * 0.12 * cyc, d.y + cyc * 1.4, -0.1);
+        var s = 0.35 + cyc * 0.9; sp.scale.set(s, s * 1.4, 1);
+        sp.material.opacity = reduce ? 0 : Math.sin(cyc * Math.PI) * 0.16 * clamp((t - 1.6) / 1.5, 0, 1);
+      });
+      renderer.render(scene, camera);
+    }
+    var loop = visibleLoop(host, frame);
+    return { canvas: canvas, loop: loop };
+  }
+
+  /* =========================================================
+     2. Le four (scroll story)
+     ========================================================= */
+  function Oven(host, opts) {
+    var reduce = !!opts.reduce;
+    var canvas = document.createElement('canvas'); canvas.className = 'oven-3d'; canvas.setAttribute('aria-hidden', 'true'); host.appendChild(canvas);
+    var renderer = makeRenderer(canvas);
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(34, 1.45, 0.1, 60);
+
+    // brick wall
+    var bc = document.createElement('canvas'); bc.width = 512; bc.height = 256; var bx = bc.getContext('2d');
+    bx.fillStyle = '#2c1912'; bx.fillRect(0, 0, 512, 256); var rr = rand(3);
+    for (var row = 0; row < 8; row++) for (var col = -1; col < 9; col++) {
+      var x0 = col * 64 + (row % 2 ? 32 : 0); var shade = 30 + Math.floor(rr() * 26);
+      bx.fillStyle = 'rgb(' + (shade + 30) + ',' + (shade + 4) + ',' + (shade - 6) + ')'; bx.fillRect(x0 + 2, row * 32 + 2, 60, 28);
+    }
+    var bt = new THREE.CanvasTexture(bc); bt.encoding = THREE.sRGBEncoding; bt.wrapS = bt.wrapT = THREE.RepeatWrapping; bt.repeat.set(3, 3);
+    var wall = new THREE.Mesh(new THREE.PlaneGeometry(14, 9), new THREE.MeshStandardMaterial({ map: bt, roughness: 0.95 }));
+    wall.position.set(0, 2.5, -1.2); wall.receiveShadow = true; scene.add(wall);
+    // oven mouth: arch shape
+    var arch = new THREE.Shape(); arch.moveTo(-2.1, 0); arch.lineTo(-2.1, 1.6); arch.absarc(0, 1.6, 2.1, Math.PI, 0, true); arch.lineTo(2.1, 0); arch.lineTo(-2.1, 0);
+    var mouth = new THREE.Mesh(new THREE.ShapeGeometry(arch, 48), new THREE.MeshBasicMaterial({ color: 0x0d0503 }));
+    mouth.position.set(0, 0.4, -1.18); scene.add(mouth);
+    var glowMat = new THREE.MeshBasicMaterial({ color: 0xff8a3c, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+    var glowTex = (function () { var c = document.createElement('canvas'); c.width = 256; c.height = 256; var x = c.getContext('2d'); var g = x.createRadialGradient(128, 250, 6, 128, 230, 200); g.addColorStop(0, 'rgba(255,214,140,1)'); g.addColorStop(0.3, 'rgba(255,120,40,.7)'); g.addColorStop(0.7, 'rgba(120,30,8,.25)'); g.addColorStop(1, 'rgba(40,8,2,0)'); x.fillStyle = g; x.fillRect(0, 0, 256, 256); var t = new THREE.CanvasTexture(c); return t; })();
+    glowMat.map = glowTex;
+    var glow = new THREE.Mesh(new THREE.ShapeGeometry(arch, 48), glowMat);
+    var uv = glow.geometry.getAttribute('uv'), gp = glow.geometry.getAttribute('position');
+    for (var i = 0; i < uv.count; i++) uv.setXY(i, (gp.getX(i) + 2.1) / 4.2, gp.getY(i) / 3.7);
+    glow.position.set(0, 0.4, -1.17); scene.add(glow);
+    var ring = new THREE.Mesh(new THREE.TorusGeometry(2.25, 0.16, 12, 60, Math.PI), new THREE.MeshStandardMaterial({ color: lin('#6b3a22'), roughness: 0.8 }));
+    ring.position.set(0, 2.0, -1.1); scene.add(ring);
+    [-2.25, 2.25].forEach(function (x) { var p = new THREE.Mesh(new THREE.BoxGeometry(0.32, 1.6, 0.3), ring.material); p.position.set(x, 1.2, -1.1); scene.add(p); });
+    var hearth = new THREE.Mesh(new THREE.BoxGeometry(4.6, 0.25, 0.6), new THREE.MeshStandardMaterial({ color: lin('#3a2015'), roughness: 0.9 }));
+    hearth.position.set(0, 0.3, -0.85); scene.add(hearth);
+    // peel
+    var wood = new THREE.MeshStandardMaterial({ color: lin('#a8743f'), roughness: 0.75 });
+    var peel = new THREE.Mesh(new THREE.BoxGeometry(5.6, 0.08, 1.3), wood); peel.position.set(0, 0.0, 0.6); peel.receiveShadow = true; peel.castShadow = true;
+    var handle = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 3, 12), new THREE.MeshStandardMaterial({ color: lin('#7a4f2a'), roughness: 0.7 }));
+    handle.rotation.z = Math.PI / 2; handle.position.set(4.2, 0.02, 0.6);
+    var peelG = new THREE.Group(); peelG.add(peel, handle); scene.add(peelG);
+    // the loaf with morph targets
+    var bake = { value: 0 }, score = { value: 0 };
+    var loafMat = crustMaterial(bake, score, true);
+    var loaf = new THREE.Mesh(baguetteGeo({ len: 4.6, r: 0.27, morph: true, seed: 21 }), loafMat);
+    loaf.castShadow = true; loaf.position.set(0, 0.2, 0.62); peelG.add(loaf);
+    // lights
+    scene.add(new THREE.HemisphereLight(0xffe9cc, 0x22120a, 0.55));
+    var key = new THREE.DirectionalLight(0xfff0d6, 1.0); key.position.set(-3, 6, 6); key.castShadow = true; key.shadow.mapSize.set(1024, 1024); key.shadow.camera.left = -5; key.shadow.camera.right = 5; key.shadow.camera.top = 3; key.shadow.camera.bottom = -3; scene.add(key);
+    var fire = new THREE.PointLight(0xff7a2e, 0, 9, 1.6); fire.position.set(0, 1.2, -0.4); scene.add(fire);
+    // embers
+    var N = 90, ep = new Float32Array(N * 3), seeds = [];
+    for (var k = 0; k < N; k++) { seeds.push([rr() * 3.6 - 1.8, rr(), rr() * 0.4]); }
+    var eg = new THREE.BufferGeometry(); eg.setAttribute('position', new THREE.BufferAttribute(ep, 3));
+    var embers = new THREE.Points(eg, new THREE.PointsMaterial({ color: 0xffb060, size: 0.13, map: softTexture(), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+    scene.add(embers);
+    // fire bed at the back of the oven
+    var flames = [], ft = softTexture();
+    for (var fl = 0; fl < 14; fl++) {
+      var fsp = new THREE.Sprite(new THREE.SpriteMaterial({ map: ft, color: fl % 3 ? 0xff7a26 : 0xffc560, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+      fsp.userData = { x: -1.6 + (fl / 13) * 3.2 + (rr() - 0.5) * 0.3, ph: rr() * 6, s: 0.5 + rr() * 0.6 };
+      scene.add(fsp); flames.push(fsp);
+    }
+    // flour + steam
+    var soft = softTexture(), flourPts = [], steam = [];
+    var fg = new THREE.BufferGeometry(), fp = new Float32Array(60 * 3);
+    for (var f = 0; f < 60; f++) { fp[f * 3] = rr() * 5 - 2.5; fp[f * 3 + 1] = 0.1 + rr() * 0.25; fp[f * 3 + 2] = 0.2 + rr() * 0.9; }
+    fg.setAttribute('position', new THREE.BufferAttribute(fp, 3));
+    var flour = new THREE.Points(fg, new THREE.PointsMaterial({ color: 0xffffff, size: 0.05, map: soft, transparent: true, opacity: 0.8, depthWrite: false })); scene.add(flour);
+    for (var s = 0; s < 6; s++) { var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: soft, color: 0xffffff, transparent: true, opacity: 0, depthWrite: false })); sp.userData.ph = s / 6; sp.userData.x = -1.5 + s * 0.6; scene.add(sp); steam.push(sp); }
+
+    var P = 0, shown = 0;
+    function resize() { var w = host.clientWidth, h = host.clientHeight || w / 1.45; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
+    resize(); window.addEventListener('resize', resize);
+    function frame(dt, t) {
+      var p = P;
+      var rise = seg(p, 0.2, 0.4) * 0.55 + seg(p, 0.6, 0.8) * 0.45;
+      loaf.morphTargetInfluences[0] = rise;
+      loaf.morphTargetInfluences[1] = seg(p, 0.42, 0.58);
+      score.value = seg(p, 0.42, 0.58);
+      bake.value = smooth(seg(p, 0.6, 0.82));
+      var heat = seg(p, 0.5, 0.68) * (1 - 0.45 * seg(p, 0.86, 1));
+      glowMat.opacity = heat * (0.75 + 0.15 * Math.sin(t * 7) * Math.sin(t * 3.3));
+      fire.intensity = heat * 3.2 * (0.9 + 0.1 * Math.sin(t * 9));
+      // peel slides in during the bake, out at the end
+      var inOven = seg(p, 0.6, 0.68) - seg(p, 0.84, 0.92);
+      peelG.position.z = -inOven * 1.0; peelG.position.y = inOven * 0.32;
+      var pos = eg.getAttribute('position');
+      for (var k = 0; k < N; k++) {
+        var sd = seeds[k], cyc = (t * (0.18 + sd[1] * 0.25) + sd[1]) % 1;
+        pos.setXYZ(k, sd[0] + Math.sin(t + k) * 0.1, 0.5 + cyc * 3, -0.9 + sd[2]);
+      }
+      pos.needsUpdate = true;
+      embers.material.opacity = heat;
+      flames.forEach(function (f, i) {
+        var d = f.userData, fl = 0.75 + 0.25 * Math.sin(t * (6 + i % 4) + d.ph) * Math.sin(t * 2.3 + i);
+        f.position.set(d.x, 0.75 + fl * 0.22, -1.0);
+        f.scale.set(d.s * 1.1, d.s * (1.4 + fl * 0.8), 1);
+        f.material.opacity = heat * 0.75 * fl;
+      });
+      flour.material.opacity = 0.8 * (1 - seg(p, 0.12, 0.3));
+      var st = seg(p, 0.82, 0.93);
+      steam.forEach(function (sp, i) {
+        var cyc = (t * 0.3 + sp.userData.ph) % 1;
+        sp.position.set(sp.userData.x + Math.sin(t + i) * 0.15, 0.6 + cyc * 2.0, 0.9);
+        var sc = 0.6 + cyc * 1.4; sp.scale.set(sc, sc * 1.5, 1);
+        sp.material.opacity = st * Math.sin(cyc * Math.PI) * 0.4;
+      });
+      camera.position.set(Math.sin(p * 1.2 - 0.6) * 1.2, 2.6 - p * 0.5, 8.6 - p * 1.6);
+      camera.lookAt(0, 0.9, 0);
+      renderer.render(scene, camera);
+    }
+    var loop = visibleLoop(host, frame);
+    return { set: function (p) { P = p; }, canvas: canvas };
+  }
+
+  /* =========================================================
+     3. Produits : rendus 3D, et rotation en direct au survol
+     ========================================================= */
+  function Products(cards, opts) {
+    var reduce = !!opts.reduce, fine = !!opts.fine;
+    var canvas = document.createElement('canvas'); canvas.className = 'prod-3d';
+    var renderer = makeRenderer(canvas, { keep: true });
+    var W = 600, H = 400; renderer.setPixelRatio(1); renderer.setSize(W, H, false);
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(30, W / H, 0.1, 50);
+    warmLights(scene, 1024);
+    var catcher = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), new THREE.ShadowMaterial({ opacity: 0.22 }));
+    catcher.rotation.x = -Math.PI / 2; catcher.receiveShadow = true; scene.add(catcher);
+    var holder = new THREE.Group(); scene.add(holder);
+    function model(id) {
+      var g = new THREE.Group();
+      if (id === 'tradition') { var b = baguette(5); b.rotation.y = 0.3; b.scale.setScalar(1.25); b.position.y = 0.2; g.add(b); }
+      else if (id === 'levain') { var m = boule(); m.scale.setScalar(1.15); g.add(m); }
+      else if (id === 'canele') { var a = canele(); a.scale.setScalar(1.05); a.position.set(-0.45, 0, 0.1); var c2 = canele(); c2.scale.setScalar(0.85); c2.position.set(0.55, 0, -0.2); c2.rotation.y = 1; g.add(a, c2); }
+      else if (id === 'chocolatine') { var ch = chocolatine(); ch.rotation.y = 0.55; ch.scale.setScalar(1.3); g.add(ch); }
+      else if (id === 'croissant') { var cr = croissant(); cr.scale.setScalar(1.55); cr.rotation.y = 0.2; cr.position.z = -0.3; g.add(cr); }
+      else if (id === 'flan') { var fl = flan(); fl.rotation.y = 0.9; fl.scale.setScalar(1.4); g.add(fl); }
+      return g;
+    }
+    function frameCam() { camera.position.set(0, 2.3, 4.8); camera.lookAt(0, 0.38, 0); }
+    frameCam();
+    var items = cards.map(function (card) {
+      var id = card.getAttribute('data-id');
+      var art = card.querySelector('.product-art');
+      var m = model(id);
+      holder.add(m); m.visible = false;
+      return { card: card, art: art, m: m, img: null };
+    });
+    // snapshots
+    items.forEach(function (it) {
+      items.forEach(function (o) { o.m.visible = o === it; });
+      holder.rotation.y = 0; renderer.render(scene, camera);
+      var img = new Image(); img.alt = ''; img.className = 'prod-img'; img.src = canvas.toDataURL('image/png');
+      var svg = it.art.querySelector('svg'); if (svg) svg.style.display = 'none';
+      it.art.appendChild(img); it.img = img;
+    });
+    items.forEach(function (o) { o.m.visible = false; });
+    // live rotation on hover (one canvas, moved into the hovered card)
+    if (fine && !reduce) {
+      var active = null, raf = 0, last = 0, ang = 0, tilt = 0;
+      function tick(now) {
+        if (!active) return;
+        var dt = Math.min(0.05, (now - last) / 1000); last = now;
+        ang += dt * 1.1; holder.rotation.y = ang; holder.position.y = Math.sin(now / 400) * 0.04;
+        renderer.render(scene, camera); raf = requestAnimationFrame(tick);
+      }
+      items.forEach(function (it) {
+        it.card.addEventListener('pointerenter', function (e) {
+          if (e.pointerType !== 'mouse') return;
+          items.forEach(function (o) { o.m.visible = o === it; });
+          active = it; ang = 0; it.art.appendChild(canvas); canvas.classList.add('on'); it.img.classList.add('off');
+          last = performance.now(); cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
+        });
+        it.card.addEventListener('pointerleave', function () {
+          if (active !== it) return;
+          active = null; cancelAnimationFrame(raf); canvas.classList.remove('on'); it.img.classList.remove('off');
+          holder.rotation.y = 0; holder.position.y = 0;
+        });
+      });
+    }
+    return { items: items };
+  }
+
+  window.Bakery3D = { Vitrine: Vitrine, Oven: Oven, Products: Products };
+})();
+
+</script>
+<script>
+(function () {
+  if (!window.THREE || !window.Bakery3D) return;
+  var ok = false;
+  try { var tc = document.createElement('canvas'); ok = !!(tc.getContext('webgl2') || tc.getContext('webgl')); } catch (e) {}
+  if (!ok) return;
+  var reduce = false, fine = false;
+  try { reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; fine = matchMedia('(hover: hover) and (pointer: fine)').matches; } catch (e) {}
+  var glass = document.querySelector('.glass');
+  try { Bakery3D.Vitrine(glass, { reduce: reduce, pointerArea: document.querySelector('.front'), pageStart: 0 }); glass.classList.add('is-3d'); } catch (e) { if (window.console) console.error(e); }
+  var fig = document.querySelector('.oven');
+  try { fig.classList.add('is-3d'); var ov = Bakery3D.Oven(document.getElementById('oven-stage'), { reduce: reduce }); window.__oven = ov; ov.set(window.__ovenP || 0); }
+  catch (e) { fig.classList.remove('is-3d'); if (window.console) console.error(e); }
+  function prods() { try { Bakery3D.Products(Array.prototype.slice.call(document.querySelectorAll('.product')), { reduce: reduce, fine: fine }); } catch (e) { if (window.console) console.error(e); } }
+  if ('requestIdleCallback' in window) requestIdleCallback(prods, { timeout: 1500 }); else setTimeout(prods, 300);
 })();
 </script>
 </body>
