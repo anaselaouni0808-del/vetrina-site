@@ -1679,7 +1679,7 @@ p { margin: 0; }
       var yy = y > 0 ? y * 0.62 : y * 0.18;
       var c = lin('#b06c32').lerp(lin('#7c4318'), smooth(clamp(y, 0, 1)));
       if (cut > 0) c.lerp(lin('#efd9ae'), cut * 0.9);
-      if (y > 0.3 && r() < 0.18) c.lerp(lin('#f4efe4'), 0.5 + r() * 0.4);
+      if (y > 0.45 && r() < 0.08) c.lerp(lin('#efe6d6'), 0.35 + r() * 0.3);
       var n = 0.92 + r() * 0.1;
       return [x * rad * 0.9, yy * rad * 0.9 + 0.16, z * rad * 0.9, c.r * n, c.g * n, c.b * n];
     }, true, null, true);
@@ -1692,13 +1692,13 @@ p { margin: 0; }
   function croissant() {
     var r = rand(29);
     var geo = gridGeo(140, 48, function (u, v) {
-      var ph = (u * 2 - 1) * 1.55, th = v * TAU;
+      var ph = (u * 2 - 1) * 1.6, th = v * TAU;
       var Rc = 0.62;
       var cx = Math.sin(ph) * Rc, cz = -Math.cos(ph) * Rc + Rc * 0.75;
       var body = Math.pow(Math.max(0, 1 - Math.pow(ph / 1.6, 2)), 0.75);
       var roll = ph / 0.36 + Math.sin(th) * 0.35;
       var groove = Math.pow(Math.abs(Math.sin(roll * Math.PI)), 0.35);
-      var tr = (0.4 * body + 0.035) * (0.86 + 0.14 * groove);
+      var tr = (0.42 * body + 0.004) * (0.86 + 0.14 * groove);
       var nx = Math.sin(ph), nz = -Math.cos(ph);
       var ox = Math.cos(th) * tr, oy = Math.sin(th) * tr * 0.82;
       if (oy < 0) oy *= 0.35;
@@ -1727,7 +1727,7 @@ p { margin: 0; }
     var pos = geo.getAttribute('position'), cols = [], r = rand(41);
     for (var i = 0; i < pos.count; i++) {
       var y = pos.getY(i);
-      var c = lin('#d99a4c').lerp(lin('#97521b'), smooth(clamp((y - 0.1) / 0.45, 0, 1)) * 0.8);
+      var c = lin('#d99a4c').lerp(lin('#8a4614'), smooth(clamp((y - 0.1) / 0.45, 0, 1)) * 0.9);
       var layer = 0.5 + 0.5 * Math.sin(y * 60); c.lerp(lin('#f1cf96'), layer * 0.22);
       var xs = pos.getX(i); if (y > 0.4) { var band = Math.pow(Math.abs(Math.sin(xs * 7.5)), 6); c.lerp(lin('#7a3c10'), band * 0.45); }
       var n = 0.93 + r() * 0.08; cols.push(c.r * n, c.g * n, c.b * n);
