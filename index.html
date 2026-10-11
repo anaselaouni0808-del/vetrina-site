@@ -397,8 +397,10 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 .terms span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--sun); flex: none; transform: translateY(-2px); }
 
 /* ---------- Why ---------- */
-.why { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 34px; }
-.why > div { display: grid; gap: 12px; align-content: start; }
+.why { display: grid; max-width: 62rem; }
+.why > div { display: grid; gap: 12px 28px; align-items: start; padding-block: 28px; border-top: 1px solid var(--line); }
+.why > div:last-child { border-bottom: 1px solid var(--line); }
+@media (min-width: 760px) { .why > div { grid-template-columns: 52px minmax(0, 0.85fr) minmax(0, 1.4fr); } .why h3 { font-size: 1.45rem; padding-top: 10px; } .why p { padding-top: 12px; } }
 .why p { color: var(--muted); }
 .why .ic { width: 52px; height: 52px; border-radius: 14px; background: var(--plaque); display: grid; place-items: center; transition: transform 0.5s var(--ease); }
 .why > div:hover .ic { transform: rotate(-8deg) scale(1.06); }
