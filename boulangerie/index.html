@@ -545,6 +545,7 @@ p { margin: 0; }
 .prod-3d { position: absolute; left: 4%; top: 0; width: 92%; height: 100%; object-fit: contain; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
 .prod-3d.on { opacity: 1; }
 @media (max-width: 560px) { .prod-img { width: 100%; } .oven-stage { max-height: 40svh; } }
+@media (max-width: 859px) { .front-grid { gap: 26px; } .window-tilt { order: -1; width: min(80vw, 330px); } }
 @media (prefers-reduced-motion: reduce) {
   .js-m .shutter { animation: none; transform: translateY(-101%); }
   .js-m .h1-big .gl, .js-m .front-copy > :not(h1), .js-m .window, .js-m .rv { opacity: 1; transform: none; filter: none; animation: none; }
