@@ -150,15 +150,10 @@ p { margin: 0; }
 .rue h1 { font-size: min(clamp(2.4rem, 6vw, 4.4rem), 10vh); line-height: 1; font-weight: 790; letter-spacing: -0.035em; max-width: 15ch; }
 .reveal-line { display: block; overflow-x: clip; overflow-clip-margin: 0.2em; }
 .reveal-line > span { display: inline-block; }
-/* Shutter title, adapted from 21st.dev "Hero Shutter Text": each letter is sliced in three bands that sweep across it like a metal shutter */
-.sh .reveal-line > span { position: relative; }
-.sh .reveal-line > span::before, .sh .reveal-line > span::after { content: attr(data-text); position: absolute; left: 0; top: 0; color: var(--sun); pointer-events: none; opacity: 0; white-space: nowrap; }
-.sh .reveal-line > span::before { clip-path: polygon(0 0, 100% 0, 100% 38%, 0 38%); }
-.sh .reveal-line > span::after { clip-path: polygon(0 64%, 100% 64%, 100% 100%, 0 100%); }
-.sh.play .reveal-line > span::before { animation: slideR 0.9s ease-in-out both; animation-delay: calc(var(--i) * 140ms + 0.2s); }
-.sh.play .reveal-line > span::after { animation: slideL 0.9s ease-in-out both; animation-delay: calc(var(--i) * 140ms + 0.32s); }
-@keyframes slideR { 0% { transform: translateX(-40%); opacity: 0; } 45% { opacity: 1; } 100% { transform: translateX(30%); opacity: 0; } }
-@keyframes slideL { 0% { transform: translateX(40%); opacity: 0; } 45% { opacity: 1; } 100% { transform: translateX(-30%); opacity: 0; } }
+/* Title: each line rises into place out of a soft blur */
+.sh .reveal-line > span { animation: titleRise 1s var(--ease) both; animation-delay: calc(var(--i) * 150ms + 0.12s); }
+@keyframes titleRise { 0% { opacity: 0; transform: translate3d(0, 0.55em, 0); filter: blur(10px); letter-spacing: 0.02em; } 100% { opacity: 1; transform: none; filter: blur(0); letter-spacing: inherit; } }
+@media (prefers-reduced-motion: reduce) { .sh .reveal-line > span { animation: none; } }
 .sh { cursor: default; }
 
 /* Spotlight, adapted from 21st.dev "Spotlight": a soft light follows the pointer across a surface and lights the nearest edge */
@@ -577,7 +572,7 @@ html.lenis, html.lenis body { height: auto; }
 </style>
 </head>
 <body>
-<script>(function(d){d.classList.add('js');try{var m=window.matchMedia,r=m&&m('(prefers-reduced-motion: reduce)').matches,n=navigator,c=n.connection||{};if(!r&&window.innerWidth>=820&&(n.hardwareConcurrency||4)>=4&&(n.deviceMemory||8)>=4&&!c.saveData)d.classList.add('is-3d')}catch(e){}})(document.documentElement);</script>
+<script>(function(d){d.classList.add('js');try{var m=window.matchMedia,r=m&&m('(prefers-reduced-motion: reduce)').matches,n=navigator,c=n.connection||{};if(!r&&(n.hardwareConcurrency||4)>=3&&(n.deviceMemory||8)>=3&&!c.saveData){d.classList.add('is-3d');if(window.innerWidth<820)d.classList.add('lite')}}catch(e){}})(document.documentElement);</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -1056,8 +1051,9 @@ window.VetrinaStreet = function (canvas, opts) {
   var SPACING = 6.8;
   var portrait = function () { return window.innerWidth / window.innerHeight < 1.15; };
 
-  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+  var lite = document.documentElement.classList.contains('lite');
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !lite, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lite ? 1.25 : 1.5));
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -1066,7 +1062,7 @@ window.VetrinaStreet = function (canvas, opts) {
   var scene = new THREE.Scene();
   var NIGHT = 0x0b1433;
   scene.background = new THREE.Color(NIGHT);
-  scene.fog = new THREE.Fog(NIGHT, 14, 46);
+  scene.fog = new THREE.Fog(NIGHT, lite ? 12 : 14, lite ? 36 : 46);
   var camera = new THREE.PerspectiveCamera(40, 1, 0.1, 140);
 
   /* ---------- Canvas texture helpers ---------- */
@@ -1565,10 +1561,10 @@ window.VetrinaStreet = function (canvas, opts) {
 
   /* ---------- Hero: text is visible from the first paint; the shutter sweep is decoration ---------- */
   var title = $('#hero-title');
-  function playTitle() { if (reduce || !title) return; title.classList.remove('play'); void title.offsetWidth; title.classList.add('play'); }
+  function playTitle() { if (reduce || !title) return; var ls = title.querySelectorAll('.reveal-line > span'); for (var k = 0; k < ls.length; k++) ls[k].style.animation = 'none'; void title.offsetWidth; for (k = 0; k < ls.length; k++) ls[k].style.animation = ''; }
   function go() { doc.classList.add('go'); }
   if (title) title.addEventListener('click', playTitle);
-  requestAnimationFrame(function () { setTimeout(playTitle, 150); });
+  
 
   /* Spotlight surfaces (adapted from 21st.dev Spotlight) */
   $$('.plan, .calc, .form, .stop, .tab, .enamel').forEach(function (el) {
