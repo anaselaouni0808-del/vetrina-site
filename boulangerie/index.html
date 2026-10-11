@@ -1582,7 +1582,7 @@ p { margin: 0; }
   var caneleMat = null;
   function canele() {
     var g = caneleGeo();
-    if (!caneleMat) caneleMat = new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.42, metalness: 0, clearcoat: 0.75, clearcoatRoughness: 0.32, side: THREE.DoubleSide });
+    if (!caneleMat) caneleMat = COARSE ? new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.38, metalness: 0, side: THREE.DoubleSide }) : new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.42, metalness: 0, clearcoat: 0.75, clearcoatRoughness: 0.32, side: THREE.DoubleSide });
     var grp = new THREE.Group();
     var a = new THREE.Mesh(g.side, caneleMat), b = new THREE.Mesh(g.top, caneleMat);
     a.castShadow = b.castShadow = true; a.receiveShadow = true;
@@ -1663,17 +1663,19 @@ p { margin: 0; }
     };
     return mat;
   }
-  var bakedU = { value: 1 }, scoredU = { value: 1 };
+  var bakedU = { value: 1 }, scoredU = { value: 1 }, bagGeoCache = {}, bagMat = null;
   function baguette(seed) {
-    var m = new THREE.Mesh(baguetteGeo({ seed: seed }), crustMaterial(bakedU, scoredU, false));
+    var k = seed % 2;
+    var m = new THREE.Mesh(bagGeoCache[k] || (bagGeoCache[k] = baguetteGeo({ seed: seed })), bagMat || (bagMat = crustMaterial(bakedU, scoredU, false)));
     m.castShadow = true; m.receiveShadow = true;
     return m;
   }
 
   /* ---------- Pain au levain (boule) ---------- */
+  var bouleGeoCache = null;
   function boule() {
     var r = rand(17);
-    var geo = gridGeo(n(40), n(90), function (u, v) {
+    var geo = bouleGeoCache || (bouleGeoCache = gridGeo(n(40), n(90), function (u, v) {
       var ph = u * Math.PI, th = v * TAU;
       var x = Math.sin(ph) * Math.cos(th), z = Math.sin(ph) * Math.sin(th), y = Math.cos(ph);
       var rad = 1;
@@ -1687,11 +1689,12 @@ p { margin: 0; }
       if (y > 0.45 && r() < 0.08) c.lerp(lin('#efe6d6'), 0.35 + r() * 0.3);
       var n = 0.92 + r() * 0.1;
       return [x * rad * 0.9, yy * rad * 0.9 + 0.16, z * rad * 0.9, c.r * n, c.g * n, c.b * n];
-    }, true, null, true);
-    var m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.85 }));
+    }, true, null, true));
+    var m = new THREE.Mesh(geo, bouleMat || (bouleMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.85 })));
     m.castShadow = m.receiveShadow = true;
     return m;
   }
+  var bouleMat = null;
 
   /* ---------- Croissant ---------- */
   function croissant() {
