@@ -1789,11 +1789,18 @@ window.VetrinaStreet = function (canvas, opts) {
 
   /* live bakery data */
   var DAYS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
-  var HOURS = [[420, 780], [405, 1170], [405, 1170], null, [405, 1170], [405, 1170], [405, 1170]];
+  var HOURS = [[420, 780], [405, 1170], [405, 1170], null, [405, 1170], [405, 1170], [405, 1140]];
+  function parisNow() {
+    var map = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }, p = {};
+    try {
+      new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Paris', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+      return { d: map[p.weekday], m: (parseInt(p.hour, 10) % 24) * 60 + parseInt(p.minute, 10) };
+    } catch (e) { var n = new Date(); return { d: n.getDay(), m: n.getHours() * 60 + n.getMinutes() }; }
+  }
   function hm(m) { var h = Math.floor(m / 60), mm = m % 60; return h + ' h' + (mm ? ' ' + (mm < 10 ? '0' : '') + mm : ''); }
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
   function renderHours() {
-    var now = new Date(), d = now.getDay(), m = now.getHours() * 60 + now.getMinutes();
+    var pn = parisNow(), d = pn.d, m = pn.m;
     var today = HOURS[d], pill = $('#m-status'), txt;
     var open = today && m >= today[0] && m < today[1];
     if (open) txt = "Ouvert jusqu'à " + hm(today[1]);
@@ -1812,7 +1819,7 @@ window.VetrinaStreet = function (canvas, opts) {
   }
   var BATCHES = [[405, 'Tradition et viennoiseries'], [690, 'Tradition du midi'], [990, 'Levain pour le soir']];
   function renderBatches() {
-    var now = new Date(), d = now.getDay(), m = now.getHours() * 60 + now.getMinutes();
+    var pn = parisNow(), d = pn.d, m = pn.m;
     var closed = !HOURS[d];
     var nextIdx = -1;
     if (!closed) for (var i = 0; i < BATCHES.length; i++) { if (BATCHES[i][0] > m) { nextIdx = i; break; } }
