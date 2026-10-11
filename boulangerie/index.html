@@ -2070,7 +2070,14 @@ p { margin: 0; }
       wasMoving = moving;
       renderer.render(scene, camera);
     }
-    try { camera.position.copy(camPos); camera.lookAt(target); renderer.compile(scene, camera); } catch (e) {}
+    // warm-up: compile shaders, upload textures and draw the shadow pass once, before the opening plays
+    try {
+      camera.position.copy(camPos); camera.lookAt(target);
+      drops.forEach(function (c) { c.g.position.set(c.tx, c.ty + 2.6, c.tz); });
+      bags.forEach(function (b) { b.p.position.y = 3.1; });
+      tags.forEach(function (tg) { tg.g.scale.setScalar(0.001); });
+      renderer.compile(scene, camera); renderer.shadowMap.needsUpdate = true; renderer.render(scene, camera); renderer.shadowMap.needsUpdate = true;
+    } catch (e) {}
     var loop = visibleLoop(host, frame);
     return { canvas: canvas, loop: loop };
   }
