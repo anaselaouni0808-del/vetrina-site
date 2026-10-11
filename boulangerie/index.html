@@ -1506,9 +1506,7 @@ p { margin: 0; }
 })();
 </script>
 
-<script>performance.mark("b-three-0")</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>performance.mark("b-three-1")</script>
 <script>
 /* Maison Escoubès — viennoiseries modélisées en 3D (Three.js r128) */
 (function () {
@@ -1584,7 +1582,7 @@ p { margin: 0; }
   var caneleMat = null;
   function canele() {
     var g = caneleGeo();
-    if (!caneleMat) caneleMat = COARSE ? new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.38, metalness: 0, side: THREE.DoubleSide }) : new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.42, metalness: 0, clearcoat: 0.75, clearcoatRoughness: 0.32, side: THREE.DoubleSide });
+    if (!caneleMat) caneleMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.34, metalness: 0, side: THREE.DoubleSide });
     var grp = new THREE.Group();
     var a = new THREE.Mesh(g.side, caneleMat), b = new THREE.Mesh(g.top, caneleMat);
     a.castShadow = b.castShadow = true; a.receiveShadow = true;
@@ -1718,7 +1716,7 @@ p { margin: 0; }
       var n = 0.93 + r() * 0.08;
       return [cx + nx * ox, oy + 0.06, cz + nz * ox, c.r * n, c.g * n, c.b * n];
     }, true, null, true);
-    var m = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.55, clearcoat: 0.22, clearcoatRoughness: 0.6 }));
+    var m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.5 }));
     m.castShadow = m.receiveShadow = true;
     return m;
   }
@@ -1743,7 +1741,7 @@ p { margin: 0; }
       var n = 0.93 + r() * 0.08; cols.push(c.r * n, c.g * n, c.b * n);
     }
     geo.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
-    var m = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.5, clearcoat: 0.35 }));
+    var m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.45 }));
     m.castShadow = m.receiveShadow = true; grp.add(m);
     var choc = new THREE.MeshStandardMaterial({ color: lin('#2e160c'), roughness: 0.35 });
     [-0.12, 0.12].forEach(function (dz) { [-0.66, 0.66].forEach(function (dx) {
@@ -1775,7 +1773,7 @@ p { margin: 0; }
   /* ---------- Shared bits ---------- */
   function standMesh() {
     var pts = [[0, 0], [0.55, 0], [0.56, 0.04], [0.18, 0.1], [0.12, 0.2], [0.11, 0.66], [0.16, 0.74], [1.12, 0.78], [1.18, 0.83], [1.16, 0.86], [0, 0.86]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
-    var m = new THREE.Mesh(new THREE.LatheGeometry(pts, 64), new THREE.MeshPhysicalMaterial({ color: lin('#f8f4ea'), roughness: 0.25, clearcoat: 0.6 }));
+    var m = new THREE.Mesh(new THREE.LatheGeometry(pts, 64), new THREE.MeshStandardMaterial({ color: lin('#f8f4ea'), roughness: 0.22 }));
     m.castShadow = m.receiveShadow = true; return m;
   }
   function basketMesh() {
@@ -1858,7 +1856,7 @@ p { margin: 0; }
     shell.position.y = 0.08; grp.add(shell);
     var fill = new THREE.Mesh(new THREE.CylinderGeometry(0.56, 0.56, 0.04, 40), new THREE.MeshStandardMaterial({ color: lin('#f2cf7c'), roughness: 0.5 }));
     fill.position.y = 0.155; grp.add(fill);
-    var apple = new THREE.MeshPhysicalMaterial({ color: lin('#e9b25a'), roughness: 0.35, clearcoat: 0.6 });
+    var apple = new THREE.MeshStandardMaterial({ color: lin('#e9b25a'), roughness: 0.3 });
     for (var ring = 0; ring < 2; ring++) {
       var nS = ring ? 10 : 16, R = ring ? 0.24 : 0.44;
       for (var k = 0; k < nS; k++) {
@@ -1873,8 +1871,8 @@ p { margin: 0; }
   function Vitrine(host, opts) {
     var reduce = !!opts.reduce;
     var canvas = document.createElement('canvas'); canvas.className = 'vitrine-3d'; canvas.setAttribute('aria-hidden', 'true');
+    canvas.style.opacity = '0'; canvas.style.transition = 'opacity 0.6s ease';
     host.appendChild(canvas);
-    performance.mark('v-0');
     var renderer = makeRenderer(canvas);
     renderer.shadowMap.autoUpdate = false; renderer.shadowMap.needsUpdate = true;
     var shadowTick = 0, wasMoving = true;
@@ -1915,7 +1913,6 @@ p { margin: 0; }
       scene.add(bs); bokeh.push(bs);
     }
 
-    performance.mark('v-room');
     // counter
     var counter = new THREE.Mesh(new THREE.BoxGeometry(7, 0.5, 3.2), new THREE.MeshStandardMaterial({ color: lin('#6d4a2b'), roughness: 0.55 }));
     counter.position.set(0, -0.25, 0); counter.receiveShadow = true; scene.add(counter);
@@ -1939,7 +1936,6 @@ p { margin: 0; }
       var k = drop(c, 0.62 + s[0], plateY + s[1] * S * 0.98, -0.1 + s[2], 0.35 + i * 0.13, 0.4);
       c.traverse(function (m) { m.userData.drop = k; });
     });
-    performance.mark('v-caneles');
     // basket of baguettes
     var basket = basketMesh(); basket.scale.setScalar(0.9); basket.position.set(-1.35, 0, -0.35); scene.add(basket);
     var bags = [];
@@ -1957,14 +1953,13 @@ p { margin: 0; }
       var ch = chocolatine(); ch.scale.setScalar(0.42); ch.rotation.y = p[3];
       var k = drop(ch, p[0], p[1], p[2], 1.4 + i * 0.12, 0.2); ch.traverse(function (m) { m.userData.drop = k; });
     });
-    var plate = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.36, 0.04, 40), new THREE.MeshPhysicalMaterial({ color: lin('#f8f4ea'), roughness: 0.25, clearcoat: 0.6 }));
+    var plate = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.36, 0.04, 40), new THREE.MeshStandardMaterial({ color: lin('#f8f4ea'), roughness: 0.22 }));
     plate.position.set(1.85, 0.02, 0.85); plate.castShadow = plate.receiveShadow = true; scene.add(plate);
     var fl = flan(); fl.scale.setScalar(0.42); fl.rotation.y = 2.2;
     var kf = drop(fl, 1.85, 0.04, 0.85, 1.6, 0.2); fl.traverse(function (m) { m.userData.drop = kf; });
     var tart = tartMesh(); tart.scale.setScalar(0.85); tart.rotation.y = 0.4;
     var kt = drop(tart, 2.15, 0, -0.6, 1.0, 0.15); tart.traverse(function (m) { m.userData.drop = kt; });
 
-    performance.mark('v-products');
     // price tags on little brass stands
     var tags = [];
     [['Canelé', '1,90 €', 1.55, 1.15, 0.35, -0.25], ['Tradition', '1,30 €', -2.2, 0.62, 0.2, 0.3], ['Chocolatine', '1,20 €', -1.0, 0.5, 1.35, 0.1]].forEach(function (t, i) {
@@ -2079,16 +2074,23 @@ p { margin: 0; }
       wasMoving = moving;
       renderer.render(scene, camera);
     }
-    // warm-up: compile shaders, upload textures and draw the shadow pass once, before the opening plays
-    try {
-      camera.position.copy(camPos); camera.lookAt(target);
-      drops.forEach(function (c) { c.g.position.set(c.tx, c.ty + 2.6, c.tz); });
-      bags.forEach(function (b) { b.p.position.y = 3.1; });
-      tags.forEach(function (tg) { tg.g.scale.setScalar(0.001); });
-      performance.mark('v-built'); renderer.compile(scene, camera); performance.mark('v-compiled'); renderer.shadowMap.needsUpdate = true; renderer.render(scene, camera); renderer.shadowMap.needsUpdate = true; renderer.getContext().finish(); performance.mark('v-rendered');
-    } catch (e) {}
-    var loop = visibleLoop(host, frame);
-    return { canvas: canvas, loop: loop };
+    // warm-up in small steps (one task each), so the page never freezes: shaders, textures, shadow pass
+    var api = { canvas: canvas, loop: null };
+    camera.position.copy(camPos); camera.lookAt(target);
+    drops.forEach(function (c) { c.g.position.set(c.tx, c.ty + 2.6, c.tz); });
+    bags.forEach(function (b) { b.p.position.y = 3.1; });
+    tags.forEach(function (tg) { tg.g.scale.setScalar(0.001); });
+    var parts = scene.children.filter(function (o) { return !o.isLight; });
+    parts.forEach(function (o) { scene.remove(o); });
+    var chunks = []; for (var ci = 0; ci < parts.length; ci += 5) chunks.push(parts.slice(ci, ci + 5));
+    function warm() {
+      var c = chunks.shift();
+      if (c) { c.forEach(function (o) { scene.add(o); }); try { renderer.compile(scene, camera); } catch (e) {} setTimeout(warm, 0); return; }
+      try { renderer.shadowMap.needsUpdate = true; renderer.render(scene, camera); renderer.shadowMap.needsUpdate = true; } catch (e) {}
+      setTimeout(function () { api.loop = visibleLoop(host, frame); requestAnimationFrame(function () { canvas.style.opacity = '1'; }); }, 0);
+    }
+    setTimeout(warm, 0);
+    return api;
   }
 
   /* =========================================================
