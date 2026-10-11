@@ -8,6 +8,13 @@
 <meta property="og:title" content="Vetrina · La vitrine en ligne de votre commerce">
 <meta property="og:description" content="Un site conçu, hébergé et entretenu pour votre commerce, sans rien avancer.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://vetrina.fr/">
+<meta property="og:image" content="https://vetrina.fr/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://vetrina.fr/">
 <meta name="theme-color" content="#0b1433">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a44c9'/%3E%3Cpath d='M9 26V14a7 7 0 0 1 14 0v12z' fill='%23ffc23d'/%3E%3Cpath d='M9 26V14a7 7 0 0 1 14 0v12M9 19h14' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Cpath d='M6.5 26h19' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,7 +122,7 @@ p { margin: 0; }
 .hero-copy { max-width: 1160px; margin-inline: auto; padding: 136px 20px 64px; display: grid; gap: 22px; align-content: center; }
 .hero-copy > * { max-width: 35rem; }
 .rue .kicker { color: var(--sun); }
-.rue h1 { font-size: clamp(2.6rem, 6.6vw, 4.9rem); line-height: 0.98; font-weight: 790; letter-spacing: -0.035em; max-width: 12ch; }
+.rue h1 { font-size: min(clamp(2.6rem, 6.6vw, 4.9rem), 10.5vh); line-height: 0.98; font-weight: 790; letter-spacing: -0.035em; max-width: 12ch; }
 .reveal-line { display: block; }
 .reveal-line > span { display: inline-block; }
 /* Shutter title, adapted from 21st.dev "Hero Shutter Text": each letter is sliced in three bands that sweep across it like a metal shutter */
@@ -516,6 +523,10 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 @media (max-aspect-ratio: 23/20) and (max-height: 720px) {
   .is-3d .stop ul { display: none; }
   .is-3d .hero-copy .lead { font-size: 1rem; }
+}
+@media (min-aspect-ratio: 23/20) and (max-height: 700px) {
+  .is-3d .hero-copy { gap: 14px; padding-top: 84px; padding-bottom: 56px; }
+  .is-3d .hero-copy .promises { display: none; }
 }
 @media (max-width: 420px) {
   .nav .btn { padding-inline: 12px; font-size: 0.9rem; }
