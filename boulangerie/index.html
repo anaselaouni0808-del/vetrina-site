@@ -1518,7 +1518,7 @@ p { margin: 0; }
   function smooth(t) { return t * t * (3 - 2 * t); }
 
   /* Build a closed tube-like surface from a function f(i/nu, j/nv) -> [x,y,z, r,g,b, extra] */
-  function gridGeo(nu, nv, fn, wrapV, extraName) {
+  function gridGeo(nu, nv, fn, wrapV, extraName, flip) {
     var pos = [], col = [], ext = [], idx = [];
     var cols = wrapV ? nv : nv + 1;
     for (var i = 0; i <= nu; i++) {
@@ -1531,7 +1531,7 @@ p { margin: 0; }
       for (var b = 0; b < nv; b++) {
         var b1 = wrapV ? (b + 1) % nv : b + 1;
         var p0 = a * cols + b, p1 = a * cols + b1, p2 = (a + 1) * cols + b, p3 = (a + 1) * cols + b1;
-        idx.push(p0, p2, p1, p1, p2, p3);
+        if (flip) idx.push(p0, p1, p2, p1, p3, p2); else idx.push(p0, p2, p1, p1, p2, p3);
       }
     }
     var g = new THREE.BufferGeometry();
@@ -1653,7 +1653,7 @@ p { margin: 0; }
           'vec3 groove = pow(vec3(0.93, 0.79, 0.55), vec3(2.2));',
           'float g = clamp(vGroove * uScore, 0.0, 1.0);',
           'vec3 baked = mix(crust, groove, g * 0.85);',
-          'diffuseColor.rgb *= mix(dough, baked, uBake);'
+          'diffuseColor.rgb *= mix(dough * (1.0 - 0.28 * g), baked, uBake);'
         ].join('\n'));
     };
     return mat;
@@ -1682,7 +1682,7 @@ p { margin: 0; }
       if (y > 0.3 && r() < 0.18) c.lerp(lin('#f4efe4'), 0.5 + r() * 0.4);
       var n = 0.92 + r() * 0.1;
       return [x * rad * 0.9, yy * rad * 0.9 + 0.16, z * rad * 0.9, c.r * n, c.g * n, c.b * n];
-    }, true);
+    }, true, null, true);
     var m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.85 }));
     m.castShadow = m.receiveShadow = true;
     return m;
@@ -1703,11 +1703,11 @@ p { margin: 0; }
       var ox = Math.cos(th) * tr, oy = Math.sin(th) * tr * 0.82;
       if (oy < 0) oy *= 0.35;
       var top = clamp(Math.sin(th), 0, 1);
-      var c = lin('#e4ae63').lerp(lin('#b8661f'), smooth(top) * 0.85).lerp(lin('#7a3a0e'), (1 - groove) * 0.55 * (0.4 + top));
+      var c = lin('#d39443').lerp(lin('#9c5014'), smooth(top) * 0.85).lerp(lin('#7a3a0e'), (1 - groove) * 0.55 * (0.4 + top));
       if (Math.abs(ph) > 1.25) c.lerp(lin('#8a4512'), (Math.abs(ph) - 1.25) / 0.3 * 0.5);
       var n = 0.93 + r() * 0.08;
       return [cx + nx * ox, oy + 0.06, cz + nz * ox, c.r * n, c.g * n, c.b * n];
-    }, true);
+    }, true, null, true);
     var m = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.55, clearcoat: 0.22, clearcoatRoughness: 0.6 }));
     m.castShadow = m.receiveShadow = true;
     return m;
@@ -1728,7 +1728,8 @@ p { margin: 0; }
     for (var i = 0; i < pos.count; i++) {
       var y = pos.getY(i);
       var c = lin('#d99a4c').lerp(lin('#97521b'), smooth(clamp((y - 0.1) / 0.45, 0, 1)) * 0.8);
-      var layer = 0.5 + 0.5 * Math.sin(y * 70); c.lerp(lin('#f1cf96'), layer * 0.12);
+      var layer = 0.5 + 0.5 * Math.sin(y * 60); c.lerp(lin('#f1cf96'), layer * 0.22);
+      var xs = pos.getX(i); if (y > 0.4) { var band = Math.pow(Math.abs(Math.sin(xs * 7.5)), 6); c.lerp(lin('#7a3c10'), band * 0.45); }
       var n = 0.93 + r() * 0.08; cols.push(c.r * n, c.g * n, c.b * n);
     }
     geo.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
@@ -2077,11 +2078,11 @@ p { margin: 0; }
     function model(id) {
       var g = new THREE.Group();
       if (id === 'tradition') { var b = baguette(5); b.rotation.y = 0.3; b.scale.setScalar(1.25); b.position.y = 0.2; g.add(b); }
-      else if (id === 'levain') { var m = boule(); m.scale.setScalar(1.05); g.add(m); }
+      else if (id === 'levain') { var m = boule(); m.scale.setScalar(1.15); g.add(m); }
       else if (id === 'canele') { var a = canele(); a.scale.setScalar(1.05); a.position.set(-0.45, 0, 0.1); var c2 = canele(); c2.scale.setScalar(0.85); c2.position.set(0.55, 0, -0.2); c2.rotation.y = 1; g.add(a, c2); }
-      else if (id === 'chocolatine') { var ch = chocolatine(); ch.rotation.y = 0.5; g.add(ch); }
+      else if (id === 'chocolatine') { var ch = chocolatine(); ch.rotation.y = 0.55; ch.scale.setScalar(1.3); g.add(ch); }
       else if (id === 'croissant') { var cr = croissant(); cr.scale.setScalar(1.55); cr.rotation.y = 0.2; cr.position.z = -0.3; g.add(cr); }
-      else if (id === 'flan') { var fl = flan(); fl.rotation.y = 0.9; fl.scale.setScalar(1.25); g.add(fl); }
+      else if (id === 'flan') { var fl = flan(); fl.rotation.y = 0.9; fl.scale.setScalar(1.4); g.add(fl); }
       return g;
     }
     function frameCam() { camera.position.set(0, 2.3, 4.8); camera.lookAt(0, 0.38, 0); }
