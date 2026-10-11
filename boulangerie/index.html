@@ -26,7 +26,7 @@ img { max-width: 100%; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700&family=Gloock&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Schibsted+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap">
 <style>
 /* Layout: a painted shopfront (striped awning over a green, gilt-lettered panel) opens the page; below, flour-white sections with asymmetric two-column splits; everything stacks to one column under 860px. */
 :root {
@@ -55,9 +55,9 @@ img { max-width: 100%; }
   --ok: #86d9a0;
   --shut: #f2a582;
   --gilt: linear-gradient(100deg, #8a6420 0%, #e9cf86 18%, #b98d35 34%, #f7e6ab 50%, #b0832d 66%, #e7c97c 82%, #8a6420 100%);
-  --font-display: "Gloock", "Didot", "Bodoni 72", Georgia, serif;
-  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-chalk: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --font-display: "Young Serif", "Didot", Georgia, serif;
+  --font-body: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-chalk: "Kalam", "Segoe Print", "Bradley Hand", cursive;
   --stripe: 46px;
 }
 @media (prefers-color-scheme: dark) {
@@ -115,7 +115,7 @@ p { margin: 0; }
 
 /* Shopfront */
 .front { position: relative; }
-.awning { position: relative; z-index: 2; filter: drop-shadow(0 10px 9px rgba(0, 0, 0, 0.42)); margin-bottom: calc(var(--stripe) / -2); transform-origin: top; animation: unroll 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.awning { position: relative; z-index: 2; will-change: transform; filter: drop-shadow(0 10px 9px rgba(0, 0, 0, 0.42)); margin-bottom: calc(var(--stripe) / -2); transform-origin: top; animation: unroll 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 .awning-band {
   height: 62px; border-top: 7px solid var(--shop-deep);
   background:
@@ -143,7 +143,7 @@ p { margin: 0; }
   box-shadow: inset 0 0 0 5px var(--shop), inset 0 0 0 6px color-mix(in srgb, var(--gold) 25%, transparent);
 }
 .front-panel::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.12; mix-blend-mode: overlay;
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .front-inner { position: relative; z-index: 1; display: grid; gap: 40px; padding-inline: 32px; }
@@ -159,8 +159,7 @@ p { margin: 0; }
 .gilt {
   background: var(--gilt); background-size: 230% 100%; background-position: 100% 0;
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.45));
-  animation: gild 2.6s ease-out 0.4s both;
+  background-position: 40% 0;
 }
 .front h1 { display: grid; line-height: 0.9; }
 .front h1 .h1-small { font-size: clamp(1.1rem, 2.4vw, 1.6rem); letter-spacing: 0.42em; text-transform: uppercase; padding-left: 0.2em; margin-bottom: 0.35em; }
@@ -454,13 +453,13 @@ p { margin: 0; }
   transform: translateY(-101%);
 }
 .shutter::after { content: ""; position: absolute; left: 50%; bottom: 8px; width: 56px; height: 8px; margin-left: -28px; border-radius: 4px; background: #3d4458; }
-.js-m .shutter { transform: none; animation: rollup 0.95s cubic-bezier(0.65, 0, 0.25, 1) 0.1s forwards; }
+.js-m .shutter { will-change: transform; transform: none; animation: rollup 0.95s cubic-bezier(0.65, 0, 0.25, 1) 0.1s forwards; }
 @keyframes rollup { to { transform: translateY(-101%); } }
 .js-m .awning { animation-delay: 0.7s; }
 .gl { display: inline-block; }
-.js-m .h1-big .gl { opacity: 0; transform: translateY(0.45em) rotate(4deg); filter: blur(6px); }
-.m-go .h1-big .gl { animation: glIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: calc(var(--i) * 55ms + 0.45s); }
-@keyframes glIn { to { opacity: 1; transform: none; filter: blur(0); } }
+.js-m .h1-big .gl { opacity: 0; transform: translateY(0.38em); will-change: transform, opacity; }
+.m-go .h1-big .gl { animation: glIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: calc(var(--i) * 45ms + 0.4s); animation-duration: 0.7s; }
+@keyframes glIn { to { opacity: 1; transform: none; } }
 .js-m .front-copy > :not(h1), .js-m .window { opacity: 0; transform: translateY(18px); }
 .m-go .front-copy > :not(h1) { animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: calc(var(--d, 0) * 0.35s + 0.75s); }
 .m-go .window { animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.45s forwards; }
@@ -536,6 +535,7 @@ p { margin: 0; }
 .glass.is-3d svg .art { display: none; }
 .glass::after { z-index: 3; }
 .oven-stage { position: relative; display: none; width: 100%; aspect-ratio: 640 / 440; max-height: 52svh; border-radius: 18px; overflow: hidden; background: #2c1912; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7); }
+#fournees, #vitrine, #commande, #histoire, #avis, #infos, .site-footer { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 .oven-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .oven.is-3d .oven-stage { display: block; }
 .oven.is-3d > svg { display: none; }
@@ -891,8 +891,8 @@ p { margin: 0; }
                 <defs><path id="stamp-circle" d="M60 60 m-43 0 a43 43 0 1 1 86 0 a43 43 0 1 1 -86 0"/></defs>
                 <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="2.5"/>
                 <circle cx="60" cy="60" r="31" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                <text fill="currentColor" font-size="10.5" letter-spacing="2.6" font-family="Figtree, system-ui, sans-serif" font-weight="700"><textPath href="#stamp-circle">MAISON ESCOUBÈS · CHARTRONS · 1994 ·</textPath></text>
-                <text x="60" y="70" text-anchor="middle" fill="currentColor" font-size="30" font-family="Gloock, Georgia, serif">E</text>
+                <text fill="currentColor" font-size="10.5" letter-spacing="2.6" font-family="Schibsted Grotesk, system-ui, sans-serif" font-weight="700"><textPath href="#stamp-circle">MAISON ESCOUBÈS · CHARTRONS · 1994 ·</textPath></text>
+                <text x="60" y="70" text-anchor="middle" fill="currentColor" font-size="30" font-family="Young Serif, Georgia, serif">E</text>
               </svg>
               <div>
                 <h3>Mon sac</h3>
@@ -1391,10 +1391,10 @@ p { margin: 0; }
   /* Flour in the light: drifting dust that moves away from the pointer */
   var cv = $('#flour-fx');
   if (cv && !reduce && cv.getContext) {
-    var ctx = cv.getContext('2d'), parts = [], W = 0, H = 0, mx = -999, my = -999, running = false, dpr = Math.min(2, window.devicePixelRatio || 1);
+    var ctx = cv.getContext('2d'), parts = [], W = 0, H = 0, mx = -999, my = -999, running = false, dpr = Math.min(1.5, window.devicePixelRatio || 1);
     function size() { var r = cv.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
     size(); window.addEventListener('resize', size);
-    var n = W < 600 ? 45 : 90;
+    var n = W < 600 ? 28 : 70;
     for (var k = 0; k < n; k++) parts.push({ x: Math.random() * W, y: Math.random() * H, r: 0.6 + Math.random() * 2.2, vx: (Math.random() - 0.5) * 0.15, vy: -0.05 - Math.random() * 0.18, a: 0.15 + Math.random() * 0.45, ph: Math.random() * 6.28 });
     var panel = $('.front-panel');
     panel.addEventListener('pointermove', function (e) { var r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; });
@@ -1417,7 +1417,7 @@ p { margin: 0; }
       requestAnimationFrame(tick);
     }
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) { var v = en[0].isIntersecting; if (v && !running) { running = true; requestAnimationFrame(tick); } else if (!v) running = false; }).observe(cv);
+      setTimeout(function () { new IntersectionObserver(function (en) { var v = en[0].isIntersecting; if (v && !running) { running = true; requestAnimationFrame(tick); } else if (!v) running = false; }).observe(cv); }, 2200);
     } else { running = true; requestAnimationFrame(tick); }
   }
 
@@ -1793,7 +1793,7 @@ p { margin: 0; }
   }
   function makeRenderer(canvas, opts) {
     var r = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, preserveDrawingBuffer: !!(opts && opts.keep) });
-    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, COARSE ? 1.5 : 2));
+    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, COARSE ? 1.5 : 1.75));
     r.outputEncoding = THREE.sRGBEncoding; r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.08;
     r.shadowMap.enabled = true; r.shadowMap.type = THREE.PCFSoftShadowMap;
     return r;
@@ -1837,13 +1837,15 @@ p { margin: 0; }
     }
     var t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(2.2, 1.6); return t;
   }
-  function tagTexture(name, price) {
+  function tagTexture(name, price, final) {
     var c = document.createElement('canvas'); c.width = 256; c.height = 160; var x = c.getContext('2d');
     x.fillStyle = '#fbf5e8'; x.beginPath(); x.moveTo(8, 8); x.lineTo(248, 8); x.lineTo(248, 152); x.lineTo(8, 152); x.closePath(); x.fill();
     x.strokeStyle = '#b9a27e'; x.lineWidth = 4; x.strokeRect(14, 14, 228, 132);
-    x.fillStyle = '#2b2620'; x.textAlign = 'center'; x.font = '700 46px "Caveat", "Segoe Print", cursive'; x.fillText(name, 128, 70);
-    x.fillStyle = '#8d3b13'; x.font = '700 52px "Caveat", "Segoe Print", cursive'; x.fillText(price, 128, 126);
-    var t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; return t;
+    x.fillStyle = '#2b2620'; x.textAlign = 'center'; x.font = '700 40px "Kalam", "Segoe Print", cursive'; x.fillText(name, 128, 68);
+    x.fillStyle = '#8d3b13'; x.font = '700 46px "Kalam", "Segoe Print", cursive'; x.fillText(price, 128, 124);
+    var t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding;
+    if (!final && document.fonts && document.fonts.load) { document.fonts.load('700 40px "Kalam"').then(function () { var t2 = tagTexture(name, price, true); t.image = t2.image; t.needsUpdate = true; }).catch(function () {}); }
+    return t;
   }
   function tartMesh() {
     var grp = new THREE.Group();
@@ -1868,6 +1870,8 @@ p { margin: 0; }
     var canvas = document.createElement('canvas'); canvas.className = 'vitrine-3d'; canvas.setAttribute('aria-hidden', 'true');
     host.appendChild(canvas);
     var renderer = makeRenderer(canvas);
+    renderer.shadowMap.autoUpdate = false; renderer.shadowMap.needsUpdate = true;
+    var shadowTick = 0, wasMoving = true;
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(30, 1, 0.1, 60);
     var target = new THREE.Vector3(-0.05, 1.15, 0);
@@ -2010,7 +2014,7 @@ p { margin: 0; }
     var want = new THREE.Vector3();
     function frame(dt) {
       if (state.t0 === null) { var since = (performance.now() - pageStart) / 1000; state.t0 = performance.now() + Math.max(0.25, 1.4 - since) * 1000; }
-      var t = (performance.now() - state.t0) / 1000;
+      var t = (performance.now() - state.t0) / 1000, moving = false;
       var yaw = (reduce ? 0 : state.mx * 0.2 + Math.sin(t * 0.22) * 0.06) + state.scroll * 0.28;
       var pitch = reduce ? 0 : state.my * 0.08;
       var intro = reduce ? 1 : smooth(clamp(t / 2.4, 0, 1));
@@ -2026,19 +2030,22 @@ p { margin: 0; }
       });
       bokeh.forEach(function (b) { b.material.opacity = (b.userData.base + 0.06 * Math.sin(t * 0.8 + b.userData.ph)) * clamp(t / 1.5, 0, 1); });
       drops.forEach(function (c, i) {
-        var p = reduce ? 1 : clamp((t - c.delay) / 0.9, 0, 1);
-        var y = c.ty + (1 - easeOutBounce(p)) * 4;
+        var p = reduce ? 1 : clamp((t - c.delay) / 1.1, 0, 1);
+        var e = 1 - Math.pow(1 - p, 3);
+        var y = c.ty + (1 - e) * 2.6;
+        if (p < 1 || c.hop > 0 || c.spin > 0) moving = true;
         c.hover += ((state.hover === i ? 1 : 0) - c.hover) * Math.min(1, dt * 10);
         if (c.hop > 0) c.hop = Math.max(0, c.hop - dt * 1.6);
         var hopY = Math.sin((1 - c.hop) * Math.PI) * (c.hop > 0 ? 0.5 : 0);
         if (c.spin > 0) c.spin = Math.max(0, c.spin - dt * 1.4);
         c.g.position.set(c.tx, y + hopY + c.hover * 0.07, c.tz);
         c.g.rotation.y = c.baseRot + (1 - c.spin) * (c.spin > 0 ? TAU : 0) + c.hover * 0.35;
-        c.g.rotation.z = p < 1 ? (1 - p) * c.wob * (i % 2 ? 1 : -1) : 0;
+        c.g.rotation.z = p < 1 ? (1 - e) * c.wob * (i % 2 ? 1 : -1) : 0;
       });
       bags.forEach(function (b) {
-        var p = reduce ? 1 : smooth(clamp((t - b.delay) / 0.9, 0, 1));
-        b.p.position.y = 0.1 + (1 - p) * 4.2;
+        var p = reduce ? 1 : smooth(clamp((t - b.delay) / 1.0, 0, 1));
+        if (p < 1) moving = true;
+        b.p.position.y = 0.1 + (1 - p) * 3;
         b.p.rotation.z = b.b[1] + (reduce ? 0 : Math.sin(t * 0.8 + b.delay * 9) * 0.015);
       });
       tags.forEach(function (tg, i) {
@@ -2058,8 +2065,12 @@ p { margin: 0; }
         var s2 = 0.35 + cyc * 0.9; sp.scale.set(s2, s2 * 1.4, 1);
         sp.material.opacity = reduce ? 0 : Math.sin(cyc * Math.PI) * 0.16 * clamp((t - 1.6) / 1.5, 0, 1);
       });
+      if (moving) { if (++shadowTick % 3 === 0) renderer.shadowMap.needsUpdate = true; }
+      else if (wasMoving) renderer.shadowMap.needsUpdate = true;
+      wasMoving = moving;
       renderer.render(scene, camera);
     }
+    try { camera.position.copy(camPos); camera.lookAt(target); renderer.compile(scene, camera); } catch (e) {}
     var loop = visibleLoop(host, frame);
     return { canvas: canvas, loop: loop };
   }
@@ -2263,11 +2274,18 @@ p { margin: 0; }
   try { reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; fine = matchMedia('(hover: hover) and (pointer: fine)').matches; } catch (e) {}
   var glass = document.querySelector('.glass');
   try { Bakery3D.Vitrine(glass, { reduce: reduce, pointerArea: document.querySelector('.front'), pageStart: 0 }); glass.classList.add('is-3d'); } catch (e) { if (window.console) console.error(e); }
+  function near(el, fn) {
+    if (!el) return;
+    if (!('IntersectionObserver' in window)) { setTimeout(fn, 2500); return; }
+    var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); setTimeout(fn, 30); } }, { rootMargin: '700px 0px' });
+    io.observe(el);
+  }
   var fig = document.querySelector('.oven');
-  try { fig.classList.add('is-3d'); var ov = Bakery3D.Oven(document.getElementById('oven-stage'), { reduce: reduce }); window.__oven = ov; ov.set(window.__ovenP || 0); }
-  catch (e) { fig.classList.remove('is-3d'); if (window.console) console.error(e); }
-  function prods() { try { Bakery3D.Products(Array.prototype.slice.call(document.querySelectorAll('.product')), { reduce: reduce, fine: fine }); } catch (e) { if (window.console) console.error(e); } }
-  if ('requestIdleCallback' in window) requestIdleCallback(prods, { timeout: 1500 }); else setTimeout(prods, 300);
+  near(fig, function () {
+    try { fig.classList.add('is-3d'); var ov = Bakery3D.Oven(document.getElementById('oven-stage'), { reduce: reduce }); window.__oven = ov; ov.set(window.__ovenP || 0); }
+    catch (e) { fig.classList.remove('is-3d'); if (window.console) console.error(e); }
+  });
+  near(document.querySelector('.product'), function () { try { Bakery3D.Products(Array.prototype.slice.call(document.querySelectorAll('.product')), { reduce: reduce, fine: fine }); } catch (e) { if (window.console) console.error(e); } });
 })();
 </script>
 </body>
