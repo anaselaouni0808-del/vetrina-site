@@ -1506,7 +1506,9 @@ p { margin: 0; }
 })();
 </script>
 
+<script>performance.mark("b-three-0")</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>performance.mark("b-three-1")</script>
 <script>
 /* Maison Escoubès — viennoiseries modélisées en 3D (Three.js r128) */
 (function () {
@@ -1872,6 +1874,7 @@ p { margin: 0; }
     var reduce = !!opts.reduce;
     var canvas = document.createElement('canvas'); canvas.className = 'vitrine-3d'; canvas.setAttribute('aria-hidden', 'true');
     host.appendChild(canvas);
+    performance.mark('v-0');
     var renderer = makeRenderer(canvas);
     renderer.shadowMap.autoUpdate = false; renderer.shadowMap.needsUpdate = true;
     var shadowTick = 0, wasMoving = true;
@@ -1912,6 +1915,7 @@ p { margin: 0; }
       scene.add(bs); bokeh.push(bs);
     }
 
+    performance.mark('v-room');
     // counter
     var counter = new THREE.Mesh(new THREE.BoxGeometry(7, 0.5, 3.2), new THREE.MeshStandardMaterial({ color: lin('#6d4a2b'), roughness: 0.55 }));
     counter.position.set(0, -0.25, 0); counter.receiveShadow = true; scene.add(counter);
@@ -1935,6 +1939,7 @@ p { margin: 0; }
       var k = drop(c, 0.62 + s[0], plateY + s[1] * S * 0.98, -0.1 + s[2], 0.35 + i * 0.13, 0.4);
       c.traverse(function (m) { m.userData.drop = k; });
     });
+    performance.mark('v-caneles');
     // basket of baguettes
     var basket = basketMesh(); basket.scale.setScalar(0.9); basket.position.set(-1.35, 0, -0.35); scene.add(basket);
     var bags = [];
@@ -1959,6 +1964,7 @@ p { margin: 0; }
     var tart = tartMesh(); tart.scale.setScalar(0.85); tart.rotation.y = 0.4;
     var kt = drop(tart, 2.15, 0, -0.6, 1.0, 0.15); tart.traverse(function (m) { m.userData.drop = kt; });
 
+    performance.mark('v-products');
     // price tags on little brass stands
     var tags = [];
     [['Canelé', '1,90 €', 1.55, 1.15, 0.35, -0.25], ['Tradition', '1,30 €', -2.2, 0.62, 0.2, 0.3], ['Chocolatine', '1,20 €', -1.0, 0.5, 1.35, 0.1]].forEach(function (t, i) {
@@ -2079,7 +2085,7 @@ p { margin: 0; }
       drops.forEach(function (c) { c.g.position.set(c.tx, c.ty + 2.6, c.tz); });
       bags.forEach(function (b) { b.p.position.y = 3.1; });
       tags.forEach(function (tg) { tg.g.scale.setScalar(0.001); });
-      renderer.compile(scene, camera); renderer.shadowMap.needsUpdate = true; renderer.render(scene, camera); renderer.shadowMap.needsUpdate = true;
+      performance.mark('v-built'); renderer.compile(scene, camera); performance.mark('v-compiled'); renderer.shadowMap.needsUpdate = true; renderer.render(scene, camera); renderer.shadowMap.needsUpdate = true; renderer.getContext().finish(); performance.mark('v-rendered');
     } catch (e) {}
     var loop = visibleLoop(host, frame);
     return { canvas: canvas, loop: loop };
