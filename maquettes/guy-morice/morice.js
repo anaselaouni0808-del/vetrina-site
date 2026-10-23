@@ -315,7 +315,7 @@ function showH1() { $$('.hero h1 .ln > span').forEach(function (s) { s.style.tra
   function intro() {
     if (REDUCE || !hasGSAP) { applyBuild(1); state.el = .5; state.az = .62; state.labels = 1; state.introDone = true; $$('.hero h1 .ln > span').forEach(function (s) { s.style.transform = 'none'; }); return; }
     var o = { b: 0 }, lines = $$('.hero h1 .ln > span');
-    gsap.set(lines, { yPercent: 105 });
+    gsap.set(lines, { y: 0, yPercent: 105 });
     var tl = gsap.timeline({ delay: .2, onComplete: function () { state.introDone = true; } });
     tl.to(o, { b: 1, duration: 3.2, ease: 'power1.inOut', onUpdate: function () { applyBuild(o.b); dirty = true; } }, 0)
       .to(state, { el: .5, az: .62, duration: 3.4, ease: 'power3.inOut', onUpdate: function () { dirty = true; } }, .5)
@@ -443,7 +443,7 @@ function makeStills() {
     var i = k++;
     jobs[i]().then(function (url) {
       var im = imgs[i]; im.onload = function () { im.classList.add('ok'); }; im.src = url;
-      (window.requestIdleCallback || setTimeout)(next, 60);
+      if (window.requestIdleCallback) requestIdleCallback(next, { timeout: 600 }); else setTimeout(next, 60);
     });
   }
   next();

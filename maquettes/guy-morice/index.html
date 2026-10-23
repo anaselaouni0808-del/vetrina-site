@@ -109,14 +109,14 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 @media (max-width:700px){.lbl{display:none}}
 
 .hero-copy{position:absolute;left:0;right:0;bottom:0;pointer-events:none}
-.hero-copy .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px;padding-block:0 clamp(24px,4vh,48px)}
+.hero-copy .wrap{padding-block:0 clamp(24px,4vh,48px);padding-right:calc(340px + var(--gut))}
 .hero h1{font-size:var(--s3);font-stretch:var(--wide);font-weight:200;letter-spacing:-.035em;line-height:.86;margin-left:-.04em}
 .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
 .hero h1 .ln > span{display:block}
 .js .hero h1 .ln > span{transform:translateY(105%)}
 .hero .tagline{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 22px;font-size:var(--s1);color:var(--ink)}
 .hero .tagline span+span{color:var(--graphite)}
-.cart{pointer-events:auto;width:300px;background:var(--white);border:1px solid var(--ink);font-size:13px;line-height:1.3;display:grid;grid-template-columns:1fr 1fr}
+.cart{position:absolute;right:max(var(--gut),env(safe-area-inset-right,0px));bottom:clamp(24px,4vh,48px);z-index:3;margin:0;width:300px;background:var(--white);border:1px solid var(--ink);font-size:13px;line-height:1.3;display:grid;grid-template-columns:1fr 1fr}
 .cart div{padding:8px 11px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .cart div:nth-child(2n+1):not(.full){border-right:1px solid var(--rule)}
 .cart div:nth-child(2n){border-right:0}
@@ -135,8 +135,8 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
   .hero-pin{height:auto;display:flex;flex-direction:column}
   .scene{position:relative;height:58svh;min-height:340px;order:1}
   .hero-copy{position:relative;order:0}
-  .hero-copy .wrap{grid-template-columns:1fr;padding-block:28px 22px}
-  .cart{width:100%;order:2}
+  .hero-copy .wrap{padding-block:28px 22px;padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+  .cart{position:relative;right:auto;bottom:auto;order:2;width:auto;margin:16px max(var(--gut),env(safe-area-inset-right,0px)) 0 max(var(--gut),env(safe-area-inset-left,0px))}
   .scroll-cue{display:none}
   .drag-hint{top:14px}
 }
@@ -360,13 +360,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
       <p class="drag-hint" aria-hidden="true"><svg viewBox="0 0 30 12"><path d="M1 6h28M5 2 1 6l4 4M25 2l4 4-4 4" fill="none" stroke="currentColor"/></svg>Glissez pour tourner</p>
       <div class="scroll-cue" aria-hidden="true"><i></i>Défiler</div>
     </div>
-    <div class="hero-copy">
-      <div class="wrap">
-        <div>
-          <h1 id="nom"><span class="ln"><span>Guy</span></span><span class="ln"><span>Morice</span></span></h1>
-          <p class="tagline reveal-h"><span>Architecte à Estillac depuis 1982</span><span>Pays d'Agen, Lot-et-Garonne</span></p>
-        </div>
-        <dl class="cart" aria-label="Cartouche">
+    <dl class="cart" id="cart" aria-label="Cartouche">
           <div class="full"><dt>Atelier</dt><dd>Guy Morice, architecte</dd></div>
           <div><dt>Lieu</dt><dd>Estillac (47)</dd></div>
           <div><dt>Depuis</dt><dd>1982</dd></div>
@@ -374,6 +368,13 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
           <div><dt>Échelle</dt><dd>1/200</dd></div>
           <div class="full last"><dt>Soleil sur la maquette</dt><dd id="sunRead">21 juin, 9 h 00</dd></div>
         </dl>
+    <div class="hero-copy">
+      <div class="wrap">
+        <div>
+          <h1 id="nom"><span class="ln"><span>Guy</span></span><span class="ln"><span>Morice</span></span></h1>
+          <p class="tagline reveal-h"><span>Architecte à Estillac depuis 1982</span><span>Pays d'Agen, Lot-et-Garonne</span></p>
+        </div>
+
       </div>
     </div>
   </div>
