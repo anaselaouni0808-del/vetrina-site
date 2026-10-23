@@ -240,10 +240,10 @@ ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground)
 /* ---------- Maison ---------- */
 var H1 = 3.2, H2 = 3.1, Y2 = H1 + .25;
 // rez-de-chaussée, x -8..5, baies du séjour plein sud
-volume(-8, 5, 0, H1, -4.5, 4.5, M.render, [{ x0: -7.4, x1: -1.2, y0: 0, y1: 2.75 }, { x0: .3, x1: 3.8, y0: 0, y1: 2.75 }], 2.4);
+volume(-8, 5, 0, H1, -4.5, 4.5, M.render, [{ x0: -7.4, x1: -1.2, y0: 0, y1: 2.75 }, { x0: .3, x1: 3.8, y0: 0, y1: 2.75 }], .55);
 box(13.4, .25, 9.4, -1.5, H1, 0, M.coping);
 // étage : partie enduite (x -3..3.8) avec fenêtre en bandeau, partie bardée bois (x 3.8..8) en porte-à-faux
-volume(-3, 3.8, Y2, Y2 + H2, -4.5, 3.5, M.render, [{ x0: -2.5, x1: 3.3, y0: Y2 + .8, y1: Y2 + 2.55 }], 2);
+volume(-3, 3.8, Y2, Y2 + H2, -4.5, 3.5, M.render, [{ x0: -2.5, x1: 3.3, y0: Y2 + .8, y1: Y2 + 2.55 }], .5);
 box(4.2, H2, 8, 5.9, Y2, -.5, woodMat(3, 2.4));
 box(1.8, 1.6, .05, 6.1, Y2 + .8, 3.53, M.glassSolid, { noCast: true });
 box(.05, 1.6, 2.6, 8.03, Y2 + .8, -1.2, M.glassSolid, { noCast: true });
