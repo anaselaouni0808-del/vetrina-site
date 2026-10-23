@@ -42,6 +42,12 @@ p{margin:0}
 .cap{font-stretch:75%;font-size:13px;letter-spacing:.06em;color:var(--graphite)}
 .serif{font-family:var(--serif)}
 
+/* Bodoni plus lisible : optique « texte » (déliés plus épais) et graisse un peu plus forte */
+.mark b,.menu li a,.hero h1,.head h2,.head .num,.intro .lede,.vitrine figcaption b,.slot.empty b,.missions h3,.points h3,.tl .y,.tel{font-optical-sizing:none;font-variation-settings:"opsz" 16}
+.hero h1,.head h2,.tel{font-weight:500}
+.intro .lede,.missions h3,.points h3,.vitrine figcaption b,.slot.empty b,.tl .y{font-weight:500}
+.hero h1{letter-spacing:-.015em}
+
 /* Apparition douce, sans effet de défilement */
 .js .rv{opacity:0;transform:translateY(14px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
