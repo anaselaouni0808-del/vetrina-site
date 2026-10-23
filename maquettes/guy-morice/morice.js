@@ -170,7 +170,7 @@ var M = {
   render: new T.MeshStandardMaterial({ color: 0xF4F2EE, map: TX.render([2, 2]), roughness: .92, envMapIntensity: .6 }),
   coping: new T.MeshStandardMaterial({ color: 0xDAD8D3, roughness: .7, envMapIntensity: .6 }),
   alu: new T.MeshStandardMaterial({ color: 0x2C2E31, roughness: .42, metalness: .6, envMapIntensity: .9 }),
-  glass: new T.MeshStandardMaterial({ color: 0x8FA3B0, roughness: .04, metalness: .35, transparent: true, opacity: .3, envMapIntensity: 1.2, depthWrite: false }),
+  glass: new T.MeshStandardMaterial({ color: 0x8FA3B0, roughness: .04, metalness: .2, transparent: true, opacity: .2, envMapIntensity: .45, depthWrite: false }),
   glassSolid: new T.MeshStandardMaterial({ color: 0x232A30, roughness: .05, metalness: .8, envMapIntensity: 1.3 }),
   balcony: new T.MeshStandardMaterial({ color: 0xCFDCE3, roughness: .02, metalness: .3, transparent: true, opacity: .22, depthWrite: false, envMapIntensity: 1.4 }),
   interior: new T.MeshStandardMaterial({ color: 0x6B5E52, emissive: 0xFFB870, emissiveIntensity: .7, roughness: 1 }),
@@ -298,15 +298,15 @@ function trunk(x, z, h, r) { var t = new T.Mesh(new T.CylinderGeometry(r * .6, r
 function tree(x, z, h, r, hue, lum) {
   trunk(x, z, h * .55, r * .09);
   var H = r * 1.9;
-  foliage(x, h * .45, z, H, function (u) { return r * Math.sin(Math.PI * Math.min(1, u * 1.05 + .08)) * 1.05; }, 520, r * .26, hue, .42, lum);
+  foliage(x, h * .45, z, H, function (u) { return r * Math.sin(Math.PI * Math.min(1, u * 1.05 + .08)) * 1.05; }, 1500, r * .14, hue, .45, lum);
 }
 function olive(x, z) {
   trunk(x, z, 1.5, .2);
-  foliage(x, 1.3, z, 1.8, function (u) { return 1.5 * Math.sin(Math.PI * (u * .9 + .1)); }, 260, .32, .2, .2, .38);
+  foliage(x, 1.3, z, 1.8, function (u) { return 1.5 * Math.sin(Math.PI * (u * .9 + .1)); }, 700, .17, .2, .18, .34);
 }
 function cypress(x, z, h) {
   trunk(x, z, 1, .14);
-  foliage(x, .4, z, h, function (u) { return .85 * Math.sin(Math.PI * Math.min(1, .15 + u * .9)) * (1 - u * .55); }, 340, .3, .28, .4, .2);
+  foliage(x, .4, z, h, function (u) { return .85 * Math.sin(Math.PI * Math.min(1, .15 + u * .9)) * (1 - u * .55); }, 900, .17, .28, .42, .19);
 }
 tree(-17, -13, 4.5, 3.6, .24, .3); tree(-6, -17, 5.5, 4.2, .25, .27); tree(9, -16, 5, 3.8, .23, .31);
 tree(20, -6, 4, 3.2, .22, .33); tree(-26, 2, 4.2, 3.4, .25, .28); tree(25, 11, 3.6, 3, .23, .32);
@@ -314,7 +314,7 @@ olive(3.6, 11); olive(-11.6, 12); olive(2.4, 18);
 for (i = 0; i < 6; i++) cypress(-13.8, -3 + i * 3.4, rr(8, 10.5));
 box(28, 1.3, .9, 1, 0, 22.5, M.hedge);
 for (var lv = 0; lv < 14; lv++) { // lavandes le long de l'allée
-  foliage(8.6, .05, 6 + lv * 1.12, .7, function (u) { return .5 * Math.sin(Math.PI * (u * .8 + .2)); }, 60, .13, .74, .28, .5);
+  foliage(8.6, .05, 6 + lv * 1.12, .7, function (u) { return .5 * Math.sin(Math.PI * (u * .8 + .2)); }, 70, .1, .72, .22, .42);
 }
 (function () { // ombre de contact sous la maison
   var m = new T.Mesh(new T.PlaneGeometry(21, 15), new T.MeshBasicMaterial({ map: TX.ao(), transparent: true, depthWrite: false }));

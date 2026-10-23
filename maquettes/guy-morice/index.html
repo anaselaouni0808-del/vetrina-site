@@ -97,6 +97,7 @@ p{margin:0}
 .frame{position:relative;aspect-ratio:16/8.2;max-width:100%;overflow:hidden;background:linear-gradient(#C9D6E0,#E8E6DF 55%,#B9BCA8)}
 .frame canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block;opacity:0;transition:opacity 1.6s var(--ease)}
 .frame.ready canvas{opacity:1}
+.frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,transparent 60%,rgba(20,18,14,.28)),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .frame .wait{position:absolute;inset:0;display:grid;place-items:center;color:var(--graphite);font-size:14px}
 .frame.ready .wait{display:none}
 .corner{position:absolute;width:22px;height:22px;border-color:var(--bronze);border-style:solid;border-width:0;z-index:2;pointer-events:none}
