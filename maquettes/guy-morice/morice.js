@@ -94,9 +94,9 @@ var TX = {
   },
   grass: function (r) {
     return canvasTex(512, function (g, s) {
-      g.fillStyle = '#6B7F45'; g.fillRect(0, 0, s, s);
+      g.fillStyle = '#56683A'; g.fillRect(0, 0, s, s);
       for (var i = 0; i < 9000; i++) {
-        g.strokeStyle = 'rgba(' + [rr(70, 125), rr(95, 145), rr(45, 75)].map(Math.round).join(',') + ',' + rr(.35, .8) + ')'; g.lineWidth = rr(.6, 1.6);
+        g.strokeStyle = 'rgba(' + [rr(60, 105), rr(80, 125), rr(40, 65)].map(Math.round).join(',') + ',' + rr(.35, .8) + ')'; g.lineWidth = rr(.6, 1.6);
         var x = rr(0, s), y = rr(0, s); g.beginPath(); g.moveTo(x, y); g.lineTo(x + rr(-2, 2), y - rr(3, 8)); g.stroke();
       }
       for (i = 0; i < 40; i++) { g.fillStyle = 'rgba(160,150,80,' + rr(.04, .1) + ')'; g.beginPath(); g.arc(rr(0, s), rr(0, s), rr(20, 60), 0, 7); g.fill(); }
@@ -132,7 +132,7 @@ var DPR = Math.min(window.devicePixelRatio || 1, SMALL ? 1.5 : 1.75);
 renderer.setPixelRatio(DPR);
 renderer.outputEncoding = T.sRGBEncoding;
 renderer.toneMapping = T.ACESFilmicToneMapping;
-renderer.toneMappingExposure = .62;
+renderer.toneMappingExposure = .5;
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFSoftShadowMap;
 renderer.shadowMap.autoUpdate = false;
 frame.appendChild(renderer.domElement); renderer.domElement.setAttribute('aria-hidden', 'true');
@@ -154,26 +154,26 @@ if (T.Sky) {
   sky2.scale.setScalar(4500); sky2.material.uniforms = u; envScene.add(sky2);
   scene.environment = pm.fromScene(envScene).texture;
 } else scene.background = new T.Color(0xC9D6E0);
-scene.fog = new T.Fog(0xD8D2C4, 140, 620);
+scene.fog = new T.Fog(0xCFCBBE, 180, 900);
 
-var sun = new T.DirectionalLight(0xFFD2A0, 3.1);
+var sun = new T.DirectionalLight(0xFFCF98, 3.0);
 sun.position.copy(sunDir).multiplyScalar(100);
 sun.castShadow = true;
 var SM = SMALL ? 2048 : 4096; sun.shadow.mapSize.set(SM, SM);
 var sc = sun.shadow.camera; sc.left = -36; sc.right = 36; sc.top = 32; sc.bottom = -32; sc.near = 30; sc.far = 220;
 sun.shadow.bias = -.00025; sun.shadow.normalBias = .025;
 scene.add(sun); scene.add(sun.target);
-scene.add(new T.HemisphereLight(0xBFD3EA, 0x6E6A4C, .55));
+scene.add(new T.HemisphereLight(0xBFD3EA, 0x5E5A40, .45));
 
 /* ---------- Matériaux ---------- */
 var M = {
   render: new T.MeshStandardMaterial({ color: 0xF4F2EE, map: TX.render([2, 2]), roughness: .92, envMapIntensity: .6 }),
   coping: new T.MeshStandardMaterial({ color: 0xDAD8D3, roughness: .7, envMapIntensity: .6 }),
   alu: new T.MeshStandardMaterial({ color: 0x2C2E31, roughness: .42, metalness: .6, envMapIntensity: .9 }),
-  glass: new T.MeshStandardMaterial({ color: 0xA8BAC6, roughness: .03, metalness: .95, transparent: true, opacity: .38, envMapIntensity: 1.7, depthWrite: false }),
-  glassSolid: new T.MeshStandardMaterial({ color: 0x55636D, roughness: .03, metalness: .95, envMapIntensity: 1.6 }),
+  glass: new T.MeshStandardMaterial({ color: 0x8FA3B0, roughness: .04, metalness: .35, transparent: true, opacity: .3, envMapIntensity: 1.2, depthWrite: false }),
+  glassSolid: new T.MeshStandardMaterial({ color: 0x232A30, roughness: .05, metalness: .8, envMapIntensity: 1.3 }),
   balcony: new T.MeshStandardMaterial({ color: 0xCFDCE3, roughness: .02, metalness: .3, transparent: true, opacity: .22, depthWrite: false, envMapIntensity: 1.4 }),
-  interior: new T.MeshStandardMaterial({ color: 0x6B5E52, emissive: 0xFFC68A, emissiveIntensity: .42, roughness: 1 }),
+  interior: new T.MeshStandardMaterial({ color: 0x6B5E52, emissive: 0xFFB870, emissiveIntensity: .7, roughness: 1 }),
   interiorDim: new T.MeshStandardMaterial({ color: 0x4A4744, emissive: 0xE8B57E, emissiveIntensity: .2, roughness: 1 }),
   floorIn: new T.MeshStandardMaterial({ color: 0x9B8670, emissive: 0x7A5634, emissiveIntensity: .28, roughness: .8 }),
   tiles: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.tiles([6, 3]), roughness: .75 }),
@@ -226,13 +226,13 @@ ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground)
     p.setY(i, (Math.sin(x * .009) * 10 + Math.sin(z * .007 + 1.3) * 14 + Math.sin((x + z) * .018) * 5 + 16) * k - .3);
   }
   g.computeVertexNormals();
-  scene.add(new T.Mesh(g, new T.MeshStandardMaterial({ color: 0x7D8A58, roughness: 1 })));
+  scene.add(new T.Mesh(g, new T.MeshStandardMaterial({ color: 0x6E7A4E, roughness: 1 })));
 })();
 (function () { // bosquets au loin
   for (var i = 0; i < 80; i++) {
     var a = rr(-1.4, 2.1), d = rr(180, 380), x = Math.sin(a) * d, z = -Math.cos(a) * d;
     var k = Math.min(1, Math.max(0, (d - 170) / 260));
-    var s = new T.Mesh(new T.IcosahedronGeometry(rr(4, 8), 1), new T.MeshStandardMaterial({ color: new T.Color().setHSL(rr(.2, .26), .3, rr(.2, .3)), roughness: 1, flatShading: true }));
+    var s = new T.Mesh(new T.SphereGeometry(rr(4, 8), 12, 8), new T.MeshStandardMaterial({ color: new T.Color().setHSL(rr(.2, .26), .32, rr(.13, .2)), roughness: 1 }));
     s.position.set(x, rr(2, 5) + k * 16, z); s.scale.y = rr(.7, 1); scene.add(s);
   }
 })();
@@ -275,66 +275,60 @@ box(10, .03, 4.2, -3.2, .12, 13.6, M.water, { noCast: true });
 [-6.4, -4.8].forEach(function (x) { box(.7, .28, 1.9, x, .14, 17.5, M.coping); var b = box(.7, .06, .7, x, .62, 16.6, M.coping); b.rotation.x = -.7; });
 box(3.2, .03, 24, 6.4, 0, 16, M.gravel, { noCast: true });
 
-/* ---------- Végétation ---------- */
-var leafMat = new T.MeshStandardMaterial({ vertexColors: true, roughness: .95 });
-function crown(r, hue, lum, sat) {
-  var g = new T.IcosahedronGeometry(r, 3), p = g.attributes.position, col = [], c = new T.Color(), v = new T.Vector3();
-  for (var i = 0; i < p.count; i++) {
-    v.set(p.getX(i), p.getY(i), p.getZ(i)); var n = v.clone().normalize();
-    v.multiplyScalar(1 + .16 * Math.sin(n.x * 9 + n.y * 7) * Math.cos(n.z * 8) + rr(-.07, .07)); p.setXYZ(i, v.x, v.y, v.z);
-    c.setHSL(hue + rr(-.015, .015), sat || .38, lum + n.y * .06 + rr(-.03, .03)); col.push(c.r, c.g, c.b);
+/* ---------- Végétation : feuillage en milliers de touffes ---------- */
+var clumpGeo = new T.IcosahedronGeometry(1, 1);
+var leafMat = new T.MeshStandardMaterial({ color: 0xFFFFFF, roughness: .92, flatShading: false });
+var tmpO = new T.Object3D(), tmpC = new T.Color();
+// shape(u) renvoie le rayon horizontal à la hauteur relative u (0 bas, 1 haut)
+function foliage(cx, cy, cz, h, shape, count, size, hue, sat, lum) {
+  var im = new T.InstancedMesh(clumpGeo, leafMat, count);
+  for (var i = 0; i < count; i++) {
+    var u = Math.pow(rnd(), .85), a = rr(0, Math.PI * 2), rad = shape(u) * Math.sqrt(rr(.35, 1));
+    tmpO.position.set(cx + Math.cos(a) * rad, cy + u * h, cz + Math.sin(a) * rad);
+    var sc = size * rr(.6, 1.15); tmpO.scale.set(sc, sc * rr(.7, 1), sc);
+    tmpO.rotation.set(rr(0, 3), rr(0, 3), rr(0, 3)); tmpO.updateMatrix(); im.setMatrixAt(i, tmpO.matrix);
+    var outer = rad / Math.max(.01, shape(u));
+    tmpC.setHSL(hue + rr(-.02, .02), sat * rr(.85, 1.1), lum * (.55 + .45 * u) * (.75 + .35 * outer) * rr(.85, 1.15));
+    im.setColorAt(i, tmpC);
   }
-  g.setAttribute('color', new T.Float32BufferAttribute(col, 3)); g.computeVertexNormals();
-  return g;
+  im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true;
+  im.castShadow = true; im.receiveShadow = true; scene.add(im); return im;
 }
+function trunk(x, z, h, r) { var t = new T.Mesh(new T.CylinderGeometry(r * .6, r, h, 7), M.bark); t.position.set(x, h / 2, z); t.castShadow = true; scene.add(t); }
 function tree(x, z, h, r, hue, lum) {
-  var trunk = new T.Mesh(new T.CylinderGeometry(r * .07, r * .11, h, 7), M.bark);
-  trunk.position.set(x, h / 2, z); trunk.castShadow = true; scene.add(trunk);
-  var n = 4 + Math.floor(rnd() * 3);
-  for (var i = 0; i < n; i++) {
-    var m = new T.Mesh(crown(r * rr(.55, .8), hue, lum), leafMat);
-    m.position.set(x + rr(-r * .5, r * .5), h + rr(-.2, r * .7), z + rr(-r * .5, r * .5));
-    m.castShadow = m.receiveShadow = true; scene.add(m);
-  }
+  trunk(x, z, h * .55, r * .09);
+  var H = r * 1.9;
+  foliage(x, h * .45, z, H, function (u) { return r * Math.sin(Math.PI * Math.min(1, u * 1.05 + .08)) * 1.05; }, 520, r * .26, hue, .42, lum);
 }
 function olive(x, z) {
-  var trunk = new T.Mesh(new T.CylinderGeometry(.12, .22, 1.7, 6), M.bark); trunk.position.set(x, .85, z); trunk.rotation.z = rr(-.2, .2); trunk.castShadow = true; scene.add(trunk);
-  for (var i = 0; i < 5; i++) { var m = new T.Mesh(crown(rr(.7, 1), .2, .42, .18), leafMat); m.position.set(x + rr(-.8, .8), 2.1 + rr(-.1, .6), z + rr(-.8, .8)); m.scale.y = .7; m.castShadow = m.receiveShadow = true; scene.add(m); }
+  trunk(x, z, 1.5, .2);
+  foliage(x, 1.3, z, 1.8, function (u) { return 1.5 * Math.sin(Math.PI * (u * .9 + .1)); }, 260, .32, .2, .2, .38);
 }
 function cypress(x, z, h) {
-  var g = new T.LatheGeometry([new T.Vector2(0, 0), new T.Vector2(.55, .6), new T.Vector2(.72, h * .35), new T.Vector2(.5, h * .75), new T.Vector2(.06, h)], 16, 0, Math.PI * 2);
-  g = g.toNonIndexed ? g : g;
-  var p = g.attributes.position, col = [], c = new T.Color();
-  for (var i = 0; i < p.count; i++) { var j = 1 + .08 * Math.sin(p.getY(i) * 3 + i); p.setX(i, p.getX(i) * j); p.setZ(i, p.getZ(i) * j); c.setHSL(.27 + rr(-.02, .02), .35, .16 + rr(-.03, .03)); col.push(c.r, c.g, c.b); }
-  g.setAttribute('color', new T.Float32BufferAttribute(col, 3)); g.computeVertexNormals();
-  var m = new T.Mesh(g, leafMat); m.position.set(x, .2, z); m.castShadow = m.receiveShadow = true; scene.add(m);
+  trunk(x, z, 1, .14);
+  foliage(x, .4, z, h, function (u) { return .85 * Math.sin(Math.PI * Math.min(1, .15 + u * .9)) * (1 - u * .55); }, 340, .3, .28, .4, .2);
 }
 tree(-17, -13, 4.5, 3.6, .24, .3); tree(-6, -17, 5.5, 4.2, .25, .27); tree(9, -16, 5, 3.8, .23, .31);
 tree(20, -6, 4, 3.2, .22, .33); tree(-26, 2, 4.2, 3.4, .25, .28); tree(25, 11, 3.6, 3, .23, .32);
 olive(3.6, 11); olive(-11.6, 12); olive(2.4, 18);
 for (i = 0; i < 6; i++) cypress(-13.8, -3 + i * 3.4, rr(8, 10.5));
 box(28, 1.3, .9, 1, 0, 22.5, M.hedge);
-(function () { // lavandes le long de l'allée
-  var lav = new T.MeshStandardMaterial({ color: 0x8C7DB0, roughness: 1 }), stem = new T.MeshStandardMaterial({ color: 0x75845F, roughness: 1 });
-  var gB = new T.SphereGeometry(.42, 10, 8), gF = new T.SphereGeometry(.36, 10, 8);
-  for (var i = 0; i < 14; i++) {
-    var z = 6 + i * 1.12, b = new T.Mesh(gB, stem); b.position.set(8.6, .3, z); b.scale.y = .7; b.castShadow = true; scene.add(b);
-    var f = new T.Mesh(gF, lav); f.position.set(8.6, .56, z); f.scale.y = .5; f.castShadow = true; scene.add(f);
-  }
-})();
+for (var lv = 0; lv < 14; lv++) { // lavandes le long de l'allée
+  foliage(8.6, .05, 6 + lv * 1.12, .7, function (u) { return .5 * Math.sin(Math.PI * (u * .8 + .2)); }, 60, .13, .74, .28, .5);
+}
 (function () { // ombre de contact sous la maison
   var m = new T.Mesh(new T.PlaneGeometry(21, 15), new T.MeshBasicMaterial({ map: TX.ao(), transparent: true, depthWrite: false }));
   m.rotation.x = -Math.PI / 2; m.position.set(-.8, .015, .2); scene.add(m);
 })();
 
 /* ---------- Caméra : lent travelling, sans interaction ---------- */
-var CAM = { az: .66, el: .15, R: 44, tx: -1, ty: 3, tz: 3 };
+var CAM = { az: .6, el: .11, R: 36, tx: -.5, ty: 2.8, tz: 2.5 };
 function fit() {
   var w = frame.clientWidth, h = frame.clientHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h;
   var narrow = camera.aspect < 1.2;
   camera.fov = narrow ? 42 : 30; camera.updateProjectionMatrix();
-  CAM.R = narrow ? 46 : 44; CAM.tx = narrow ? 0 : -1;
+  CAM.R = narrow ? 44 : 36; CAM.tx = narrow ? 0 : -.5;
 }
 function place(t) {
   var a = CAM.az + (REDUCE ? 0 : Math.sin(t * .045) * .075), r = CAM.R - (REDUCE ? 0 : (1 - Math.cos(t * .03)) * 1.2);
