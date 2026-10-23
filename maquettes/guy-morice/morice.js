@@ -117,6 +117,16 @@ var TX = {
       for (var i = 0; i < 5000; i++) { g.fillStyle = 'rgba(' + [rr(40, 95), rr(70, 120), rr(30, 60)].map(Math.round).join(',') + ',.7)'; g.beginPath(); g.arc(rr(0, s), rr(0, s), rr(1, 3), 0, 7); g.fill(); }
     }, r);
   },
+  win: function () { // vitrage : intérieur éclairé et reflet du ciel
+    return canvasTex(512, function (g, s) {
+      var gr = g.createLinearGradient(0, 0, 0, s); gr.addColorStop(0, '#2B2420'); gr.addColorStop(.55, '#6A4A30'); gr.addColorStop(1, '#3A2C22'); g.fillStyle = gr; g.fillRect(0, 0, s, s);
+      for (var i = 0; i < 3; i++) { var x = rr(.15, .85) * s, y = rr(.15, .4) * s, rg = g.createRadialGradient(x, y, 4, x, y, s * .35); rg.addColorStop(0, 'rgba(255,205,140,.95)'); rg.addColorStop(1, 'rgba(255,190,120,0)'); g.fillStyle = rg; g.fillRect(0, 0, s, s); }
+      g.fillStyle = 'rgba(25,20,16,.85)'; g.fillRect(s * .1, s * .7, s * .34, s * .14); g.fillRect(s * .58, s * .62, s * .08, s * .3); g.fillRect(s * .7, s * .74, s * .22, s * .1);
+      g.fillStyle = 'rgba(240,225,200,.5)'; g.fillRect(s * .12, s * .66, s * .3, s * .05);
+      var rf = g.createLinearGradient(0, 0, s, s); rf.addColorStop(0, 'rgba(200,220,235,.38)'); rf.addColorStop(.45, 'rgba(200,220,235,.12)'); rf.addColorStop(.5, 'rgba(255,255,255,.22)'); rf.addColorStop(.56, 'rgba(200,220,235,.06)'); rf.addColorStop(1, 'rgba(200,220,235,.0)');
+      g.fillStyle = rf; g.fillRect(0, 0, s, s);
+    });
+  },
   ao: function () {
     var c = document.createElement('canvas'); c.width = c.height = 256; var g = c.getContext('2d');
     var gr = g.createRadialGradient(128, 128, 40, 128, 128, 128); gr.addColorStop(0, 'rgba(0,0,0,.5)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
@@ -177,6 +187,7 @@ var M = {
   interiorDim: new T.MeshStandardMaterial({ color: 0x4A4744, emissive: 0xE8A868, emissiveIntensity: .9, roughness: 1 }),
   floorIn: new T.MeshStandardMaterial({ color: 0x9B8670, emissive: 0x9A6838, emissiveIntensity: .8, roughness: .8 }),
   tiles: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.tiles([6, 3]), roughness: .75 }),
+  win: (function () { var t = TX.win(); return new T.MeshStandardMaterial({ color: 0xFFFFFF, map: t, emissive: 0xFFFFFF, emissiveMap: t, emissiveIntensity: .55, roughness: .08, metalness: .25, envMapIntensity: .6 }); })(),
   water: new T.MeshStandardMaterial({ color: 0x2A8A96, emissive: 0x0B4650, emissiveIntensity: .35, roughness: .02, metalness: .25, envMapIntensity: 1.5 }),
   grass: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.grass([90, 90]), roughness: 1 }),
   gravel: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.gravel([2, 10]), roughness: 1 }),
@@ -203,11 +214,8 @@ function volume(x0, x1, y0, y1, z0, z1, mat, openings, depth) {
     if (!o) { box(b - a, y1 - y0, depth, cx, y0, zc, mat); continue; }
     if (o.y0 > y0) box(b - a, o.y0 - y0, depth, cx, y0, zc, mat);
     if (o.y1 < y1) box(b - a, y1 - o.y1, depth, cx, o.y1, zc, mat);
-    // intérieur : sol, fond éclairé, vitrage et menuiseries
     var w = b - a, h = o.y1 - o.y0;
-    box(w, .04, depth, cx, o.y0, zc, M.floorIn, { noCast: true });
-    box(w, h, .05, cx, o.y0, zb + .03, o.dim ? M.interiorDim : M.interior, { noCast: true });
-    box(w, h, .03, cx, o.y0, z1 - .14, M.glass, { noCast: true });
+    box(w, h, .03, cx, o.y0, z1 - .16, M.win, { noCast: true });
     var n = Math.max(2, Math.round(w / 1.7));
     for (var k = 0; k <= n; k++) box(.07, h, .1, a + k * (w / n), o.y0, z1 - .12, M.alu);
     box(w, .08, .12, cx, o.y1 - .08, z1 - .12, M.alu); box(w, .06, .12, cx, o.y0, z1 - .12, M.alu);
@@ -245,8 +253,8 @@ box(13.4, .25, 9.4, -1.5, H1, 0, M.coping);
 // étage : partie enduite (x -3..3.8) avec fenêtre en bandeau, partie bardée bois (x 3.8..8) en porte-à-faux
 volume(-3, 3.8, Y2, Y2 + H2, -4.5, 3.5, M.render, [{ x0: -2.5, x1: 3.3, y0: Y2 + .8, y1: Y2 + 2.55 }], .5);
 box(4.2, H2, 8, 5.9, Y2, -.5, woodMat(3, 2.4));
-box(1.8, 1.6, .05, 6.1, Y2 + .8, 3.53, M.glassSolid, { noCast: true });
-box(.05, 1.6, 2.6, 8.03, Y2 + .8, -1.2, M.glassSolid, { noCast: true });
+box(1.8, 1.6, .05, 6.1, Y2 + .8, 3.53, M.win, { noCast: true });
+box(.05, 1.6, 2.6, 8.03, Y2 + .8, -1.2, M.win, { noCast: true });
 box(11.5, .32, 8.5, 2.5, Y2 + H2, -.5, M.coping);
 box(11, .05, 8, 2.5, Y2 + H2 + .32, -.5, M.roof, { noCast: true });
 // brise-soleil verticaux en bois devant le bandeau
