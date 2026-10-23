@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guy Morice, architecte à Estillac</title>
+<meta name="description" content="Guy Morice, architecte à Estillac (Lot-et-Garonne) depuis 1982. Maisons neuves, extensions et rénovations dans le pays d'Agen, pensées avec le soleil.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F4F4F2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Cpath d='M8 23V12l8-4 8 4v11' fill='none' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+/* Planche d'architecte : maquette 3D au centre, nom en titre de plan, annotations techniques en Archivo étroit. */
+:root{
+  --paper:#F4F4F2;     /* papier, fond général */
+  --white:#FFFFFF;     /* carton plume */
+  --card:#E6E6E3;      /* carton gris, aplats */
+  --rule:#C9C9C5;      /* traits fins */
+  --graphite:#5A5C5F;  /* texte secondaire */
+  --ink:#000000;       /* encre */
+  --ink-2:#1B1C1E;     /* sections sombres */
+  --font:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --wide:125%; --mid:110%; --narrow:68%;
+  --s-1:14px; --s0:18px; --s1:clamp(20px,1.6vw,23px); --s2:clamp(30px,3.6vw,52px); --s3:clamp(54px,11.6vw,184px);
+  --gut:clamp(20px,4vw,64px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+  --hdr:72px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:var(--s0);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+h1,h2,h3{margin:0;font-weight:300;line-height:1.04;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1400px;margin-inline:auto;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.note{font-stretch:var(--narrow);font-size:13px;letter-spacing:.02em;color:var(--graphite);line-height:1.3}
+
+/* Grain du papier, sur toute la page */
+body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- Bandeau maquette ---------- */
+.proto{position:relative;z-index:60;background:var(--ink);color:#D8D8D5;font-size:13px}
+.proto .wrap{display:flex;justify-content:space-between;gap:4px 16px;flex-wrap:wrap;padding-block:7px}
+
+/* ---------- En-tête ---------- */
+.hdr{position:sticky;top:0;z-index:50;height:var(--hdr);transition:background .4s var(--ease),box-shadow .4s var(--ease)}
+.hdr.solid{background:rgba(244,244,242,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--rule)}
+.hdr .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none;white-space:nowrap}
+.mono{width:34px;height:34px;display:grid;place-items:center;background:var(--ink);color:var(--white);font-stretch:var(--wide);font-weight:500;font-size:13px;letter-spacing:.04em}
+.mark b{font-weight:500;font-stretch:var(--wide);font-size:17px}
+.mark span{font-stretch:var(--narrow);color:var(--graphite);font-size:15px}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{text-decoration:none;font-size:15px;color:var(--graphite);position:relative;padding:6px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.nav a:hover{color:var(--ink)}
+.nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav .call{color:var(--white);background:var(--ink);padding:10px 16px;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nav .call::after{display:none}
+.nav .call:hover{color:var(--white);background:var(--graphite)}
+.burger{display:none;width:48px;height:48px;border:1px solid var(--ink);background:transparent;cursor:pointer;position:relative}
+.burger i{position:absolute;left:13px;right:13px;height:1.5px;background:var(--ink);transition:transform .4s var(--ease),opacity .2s}
+.burger i:nth-child(1){top:18px}.burger i:nth-child(2){top:23px}.burger i:nth-child(3){top:28px}
+.menu-open .burger i:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.menu-open .burger i:nth-child(2){opacity:0}
+.menu-open .burger i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+@media (max-width:980px){.nav a:not(.call){display:none}.burger{display:block}.nav{gap:10px}.nav .call{display:none}}
+
+/* Menu plein écran (téléphone) */
+.menu{position:fixed;inset:0;z-index:45;background:var(--paper);padding:calc(var(--hdr) + 60px) max(var(--gut),env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(var(--gut),env(safe-area-inset-left,0px));display:flex;flex-direction:column;justify-content:space-between;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease);visibility:hidden}
+.menu-open .menu{clip-path:inset(0 0 0 0);visibility:visible}
+.menu ol{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.menu li{overflow:hidden;border-bottom:1px solid var(--rule)}
+.menu li a{display:flex;align-items:baseline;justify-content:space-between;text-decoration:none;font-stretch:var(--wide);font-weight:200;font-size:clamp(34px,9vw,60px);line-height:1.25;transform:translateY(105%);transition:transform .7s var(--ease)}
+.menu li a small{font-size:13px;font-stretch:var(--narrow);color:var(--graphite);font-weight:400}
+.menu-open .menu li a{transform:none}
+.menu-open .menu li:nth-child(2) a{transition-delay:.05s}.menu-open .menu li:nth-child(3) a{transition-delay:.1s}.menu-open .menu li:nth-child(4) a{transition-delay:.15s}.menu-open .menu li:nth-child(5) a{transition-delay:.2s}
+.menu .menu-foot{display:grid;gap:14px}
+.menu .menu-foot a.big{display:flex;justify-content:center;align-items:center;min-height:58px;background:var(--ink);color:var(--white);text-decoration:none;font-size:19px;font-weight:500}
+
+/* ---------- Héros ---------- */
+.hero{position:relative;height:calc(100svh - var(--hdr) - 30px);min-height:620px;margin-top:calc(var(--hdr) * -1);padding-top:var(--hdr)}
+.hero-pin{position:relative;height:100%}
+.scene{position:absolute;inset:0;overflow:hidden;
+  background:
+   linear-gradient(var(--paper),rgba(244,244,242,0) 22%),
+   repeating-linear-gradient(0deg,transparent 0 39px,rgba(0,0,0,.045) 39px 40px),
+   repeating-linear-gradient(90deg,transparent 0 39px,rgba(0,0,0,.045) 39px 40px),
+   var(--paper)}
+.scene canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block;touch-action:pan-y}
+.scene.drag canvas{cursor:grabbing}
+.scene canvas{cursor:grab}
+.labels{position:absolute;inset:0;pointer-events:none}
+.lbl{position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;font-stretch:var(--narrow);font-size:13px;letter-spacing:.02em;white-space:nowrap;opacity:0;transition:opacity .5s}
+.lbl::before{content:"";width:7px;height:7px;border:1px solid var(--ink);background:var(--white);border-radius:50%;flex:none}
+.lbl span{background:var(--white);border:1px solid var(--ink);padding:3px 8px}
+.lbl i{display:block;width:34px;height:1px;background:var(--ink)}
+.lbl.on{opacity:1}
+@media (max-width:700px){.lbl{display:none}}
+
+.hero-copy{position:absolute;left:0;right:0;bottom:0;pointer-events:none}
+.hero-copy .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px;padding-block:0 clamp(24px,4vh,48px)}
+.hero h1{font-size:var(--s3);font-stretch:var(--wide);font-weight:200;letter-spacing:-.035em;line-height:.86;margin-left:-.04em}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.hero h1 .ln > span{display:block}
+.js .hero h1 .ln > span{transform:translateY(105%)}
+.hero .tagline{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 22px;font-size:var(--s1);color:var(--ink)}
+.hero .tagline span+span{color:var(--graphite)}
+.cart{pointer-events:auto;width:300px;background:var(--white);border:1px solid var(--ink);font-size:13px;line-height:1.3;display:grid;grid-template-columns:1fr 1fr}
+.cart div{padding:8px 11px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.cart div:nth-child(2n+1):not(.full){border-right:1px solid var(--rule)}
+.cart div:nth-child(2n){border-right:0}
+.cart .full{grid-column:1/-1;border-right:0}
+.cart dt{font-stretch:var(--narrow);color:var(--graphite)}
+.cart dd{margin:0;font-weight:500;font-variant-numeric:tabular-nums}
+.cart .full dd{font-stretch:var(--wide);font-weight:400;font-size:15px}
+.cart .last{border-bottom:0}
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-stretch:var(--narrow);font-size:12px;color:var(--graphite);pointer-events:none}
+.scroll-cue i{width:1px;height:38px;background:linear-gradient(var(--ink) 50%,transparent 50%);background-size:1px 76px;animation:cue 2.2s linear infinite}
+@keyframes cue{from{background-position:0 -38px}to{background-position:0 38px}}
+.drag-hint{position:absolute;top:calc(var(--hdr) + 18px);right:max(var(--gut),env(safe-area-inset-right,0px));font-stretch:var(--narrow);font-size:13px;color:var(--graphite);display:flex;gap:8px;align-items:center}
+.drag-hint svg{width:30px;height:12px}
+@media (max-width:860px){
+  .hero{height:auto;min-height:0}
+  .hero-pin{height:auto;display:flex;flex-direction:column}
+  .scene{position:relative;height:58svh;min-height:340px;order:1}
+  .hero-copy{position:relative;order:0}
+  .hero-copy .wrap{grid-template-columns:1fr;padding-block:28px 22px}
+  .cart{width:100%;order:2}
+  .scroll-cue{display:none}
+  .drag-hint{top:14px}
+}
+@media (max-width:860px){.hero-under{display:block}}
+.hero-under{display:none}
+.hero-under .wrap{padding-block:0 8px}
+
+/* ---------- Bandeau des communes ---------- */
+.ticker{border-block:1px solid var(--ink);overflow:hidden;background:var(--white);position:relative;z-index:2}
+.ticker-track{display:flex;width:max-content;animation:tick 60s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker ul{display:flex;list-style:none;margin:0;padding:0}
+.ticker li{font-stretch:var(--wide);font-weight:200;font-size:clamp(24px,3vw,40px);padding:14px 0;white-space:nowrap;display:flex;align-items:center}
+.ticker li::after{content:"";width:9px;height:9px;border:1px solid var(--ink);transform:rotate(45deg);margin:0 34px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- Sections ---------- */
+.sec{position:relative;padding-block:clamp(80px,11vw,170px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:22px 64px;align-items:end;margin-bottom:clamp(40px,6vw,84px)}
+.sec-head h2{font-size:var(--s2);font-stretch:var(--mid);letter-spacing:-.015em}
+.sec-head p{color:var(--graphite);max-width:52ch}
+.idx{display:block;font-stretch:var(--narrow);font-size:14px;color:var(--graphite);margin-bottom:18px}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr}}
+.reveal{opacity:0;transform:translateY(28px)}
+.no-js .reveal,.reduce .reveal{opacity:1;transform:none}
+
+/* ---------- Réalisations ---------- */
+.works-wrap{position:relative}
+.works{display:flex;gap:clamp(16px,2vw,28px);padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px));will-change:transform}
+.work{flex:0 0 clamp(300px,36vw,560px);margin:0}
+.work .ph{position:relative;aspect-ratio:4/3;max-width:100%;background:var(--card);overflow:hidden;border:1px solid var(--ink)}
+.work .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.4s var(--ease),opacity .8s;opacity:0}
+.work .ph img.ok{opacity:1}
+.work:hover .ph img{transform:scale(1)}
+.work .ph svg{position:absolute;inset:0;margin:auto;width:70%;height:70%}
+.work .ph .ld{position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%) var(--card);background-size:220% 100%;animation:sh 1.6s linear infinite}
+@keyframes sh{from{background-position:120% 0}to{background-position:-120% 0}}
+.work .ph .ok ~ .ld{display:none}
+.work .badge{position:absolute;left:12px;top:12px;background:var(--white);border:1px solid var(--ink);font-stretch:var(--narrow);font-size:12px;padding:3px 8px;z-index:2}
+.work figcaption{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;padding-top:16px;border-bottom:1px solid var(--rule);padding-bottom:16px}
+.work .no{font-stretch:var(--wide);font-weight:200;font-size:30px;line-height:1;font-variant-numeric:tabular-nums;grid-row:span 2}
+.work h3{font-size:21px;font-weight:500}
+.work figcaption span{color:var(--graphite);font-size:15px}
+.works-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:26px}
+.progress{flex:1;height:1px;background:var(--rule);position:relative;max-width:420px}
+.progress i{position:absolute;inset:0;background:var(--ink);transform-origin:left;transform:scaleX(.25)}
+.count{font-stretch:var(--narrow);font-variant-numeric:tabular-nums;font-size:14px}
+@media (max-width:860px){
+  .works{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+  .works::-webkit-scrollbar{display:none}
+  .work{flex-basis:84%;scroll-snap-align:center}
+}
+
+/* ---------- Démarche ---------- */
+.steps-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px 80px}
+.steps-side{position:sticky;top:calc(var(--hdr) + 40px);align-self:start}
+.steps-side h2{font-size:var(--s2);font-stretch:var(--mid);letter-spacing:-.015em}
+.steps-side p{margin-top:22px;color:var(--graphite);max-width:40ch}
+.rail{margin-top:36px;height:220px;width:1px;background:var(--rule);position:relative}
+.rail i{position:absolute;inset:0;background:var(--ink);transform-origin:top;transform:scaleY(0)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:clamp(18px,2vw,28px)}
+.step{display:grid;grid-template-columns:120px minmax(0,1fr);gap:28px;background:var(--white);border:1px solid var(--ink);padding:clamp(22px,2.6vw,36px)}
+.step svg{width:120px;height:120px}
+.step svg .dr{stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600)}
+.step.in svg .dr{stroke-dashoffset:0;transition:stroke-dashoffset 1.6s var(--ease)}
+.step .k{font-stretch:var(--narrow);font-size:13px;color:var(--graphite)}
+.step h3{font-size:26px;font-weight:400;font-stretch:var(--mid);margin:6px 0 12px}
+.step p{color:var(--graphite);font-size:17px;max-width:46ch}
+@media (max-width:960px){.steps-grid{grid-template-columns:1fr}.steps-side{position:relative;top:0}.rail{display:none}}
+@media (max-width:520px){.step{grid-template-columns:1fr;gap:14px}.step svg{width:84px;height:84px}}
+
+/* ---------- Soleil ---------- */
+.sun-sec{background:var(--ink-2);color:var(--white)}
+.sun-sec .idx,.sun-sec .sec-head p{color:#A9AAA6}
+.sun-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:40px 64px;align-items:start}
+@media (max-width:980px){.sun-grid{grid-template-columns:1fr}}
+.coupe{border:1px solid #4A4B4E;background:
+   repeating-linear-gradient(0deg,transparent 0 23px,rgba(255,255,255,.05) 23px 24px),
+   repeating-linear-gradient(90deg,transparent 0 23px,rgba(255,255,255,.05) 23px 24px);padding:clamp(10px,2vw,22px);overflow-x:auto}
+.coupe svg{display:block;width:100%;min-width:560px;height:auto}
+.months{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:20px}
+.months label{font-stretch:var(--narrow);font-size:14px;color:#A9AAA6}
+.months input{flex:1 1 240px;min-width:0;accent-color:var(--white);height:32px}
+.months output{font-stretch:var(--wide);font-size:20px;min-width:9ch}
+.readouts{display:grid;gap:0;border-top:1px solid #6E6F72}
+.readouts div{padding:18px 0;border-bottom:1px solid #3B3C3F;display:grid;gap:2px}
+.readouts dt{font-stretch:var(--narrow);font-size:14px;color:#A9AAA6}
+.readouts dd{margin:0;font-stretch:var(--wide);font-weight:200;font-size:clamp(34px,4vw,54px);line-height:1.05;font-variant-numeric:tabular-nums}
+.sun-copy{margin-top:30px;color:#CFCFCB;max-width:44ch}
+.princ{list-style:none;margin:clamp(56px,7vw,96px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #6E6F72}
+.princ li{padding:22px 24px 0 0;display:grid;gap:8px;align-content:start}
+.princ li+li{padding-left:24px;border-left:1px solid #3B3C3F}
+.princ h3{font-size:20px;font-weight:500}
+.princ p{color:#A9AAA6;font-size:16px}
+@media (max-width:900px){.princ{grid-template-columns:1fr 1fr}.princ li:nth-child(3){padding-left:0;border-left:0}.princ li{padding-bottom:22px}}
+@media (max-width:520px){.princ{grid-template-columns:1fr}.princ li,.princ li+li{padding-left:0;border-left:0}.princ li+li{border-top:1px solid #3B3C3F}}
+
+/* ---------- Territoire ---------- */
+.land-hero{position:relative;height:clamp(380px,62vw,780px);overflow:hidden;border-block:1px solid var(--ink)}
+.land-hero img{position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;filter:grayscale(1) contrast(1.06)}
+.land-hero figcaption{position:absolute;left:max(var(--gut),env(safe-area-inset-left,0px));bottom:22px;right:max(var(--gut),env(safe-area-inset-right,0px));display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:end}
+.land-hero figcaption b{background:var(--white);border:1px solid var(--ink);padding:10px 14px;font-weight:400;font-stretch:var(--mid);font-size:var(--s1)}
+.land-hero figcaption small{background:rgba(255,255,255,.85);padding:2px 7px;font-stretch:var(--narrow);font-size:12px}
+.land-row{display:grid;grid-template-columns:5fr 4fr 4fr;gap:clamp(14px,2vw,28px);margin-top:clamp(14px,2vw,28px);align-items:start}
+.land-row figure{margin:0}
+.land-row .im{overflow:hidden;border:1px solid var(--ink);aspect-ratio:4/5;max-width:100%;background:var(--card)}
+.land-row figure:nth-child(1) .im{aspect-ratio:5/4}
+.land-row figure:nth-child(2){margin-top:clamp(40px,8vw,140px)}
+.land-row img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);clip-path:inset(100% 0 0 0);transition:filter 1s}
+.no-js .land-row img,.reduce .land-row img{clip-path:none}
+.land-row figure:hover img{filter:grayscale(.2)}
+.land-row figcaption{display:flex;justify-content:space-between;gap:10px;padding-top:10px;font-size:15px}
+.land-row figcaption small{font-stretch:var(--narrow);color:var(--graphite);font-size:12px;text-align:right}
+@media (max-width:860px){.land-row{grid-template-columns:1fr 1fr}.land-row figure:nth-child(1){grid-column:1/-1}.land-row figure:nth-child(2){margin-top:0}}
+
+/* ---------- Parcours ---------- */
+.tl{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.tl::before{content:"";position:absolute;left:0;right:0;top:35px;height:1px;background:var(--rule)}
+.tl .line{position:absolute;left:0;right:0;top:35px;height:1px;background:var(--ink);transform-origin:left;transform:scaleX(0)}
+.tl li{list-style:none;position:relative;padding-right:28px;display:grid;gap:10px;align-content:start}
+.tl .y{font-stretch:var(--wide);font-weight:200;font-size:clamp(40px,4.6vw,70px);line-height:1;font-variant-numeric:tabular-nums;background:var(--paper);justify-self:start;padding-right:14px;position:relative}
+.tl .dot{width:11px;height:11px;border:1px solid var(--ink);background:var(--paper);transform:rotate(45deg);margin:8px 0 6px}
+.tl h3{font-size:21px;font-weight:500}
+.tl p{color:var(--graphite);font-size:16px;max-width:30ch}
+.tl ol{display:contents}
+@media (max-width:860px){.tl{grid-template-columns:1fr;gap:34px;padding-left:28px}.tl::before,.tl .line{left:5px;right:auto;top:8px;bottom:0;width:1px;height:auto}.tl .line{transform-origin:top;transform:scaleY(0)}.tl .dot{position:absolute;left:-28px;top:14px;margin:0}}
+.quote{margin-top:clamp(64px,8vw,120px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:30px 64px;align-items:center}
+.portrait{aspect-ratio:4/5;max-width:100%;border:1px solid var(--ink);background:
+   repeating-linear-gradient(45deg,transparent 0 9px,rgba(0,0,0,.07) 9px 10px),var(--card);display:grid;place-items:center;text-align:center;padding:24px}
+.portrait span{background:var(--white);border:1px solid var(--ink);padding:6px 12px;font-stretch:var(--narrow);font-size:13px}
+.quote blockquote{margin:0;font-stretch:var(--mid);font-weight:300;font-size:clamp(26px,3vw,42px);line-height:1.2;text-wrap:balance}
+.quote blockquote footer{margin-top:20px;font-size:15px;font-stretch:var(--narrow);color:var(--graphite)}
+@media (max-width:860px){.quote{grid-template-columns:1fr}.portrait{max-width:360px}}
+
+/* ---------- Contact ---------- */
+.contact{background:var(--ink);color:var(--white);position:relative;overflow:hidden}
+.contact .wrap{padding-block:clamp(80px,10vw,150px) clamp(40px,5vw,70px)}
+.contact .idx{color:#9C9D9A}
+.contact h2{font-size:var(--s2);font-stretch:var(--mid)}
+.c-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px 72px;margin-top:clamp(36px,5vw,64px)}
+@media (max-width:900px){.c-grid{grid-template-columns:1fr}}
+.tel-big{display:inline-block;text-decoration:none;font-stretch:var(--wide);font-weight:200;font-size:clamp(40px,7.4vw,118px);line-height:.95;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .6s var(--ease)}
+.tel-big:hover{background-size:100% 1px}
+.status{display:inline-flex;align-items:center;gap:10px;margin-top:26px;border:1px solid #57585B;padding:8px 14px;font-size:15px}
+.status i{width:9px;height:9px;border-radius:50%;background:#8D8E90}
+.status.open i{background:var(--white);box-shadow:0 0 0 4px rgba(255,255,255,.18)}
+.c-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.c-actions a,.c-actions button{display:inline-flex;align-items:center;min-height:54px;padding:0 24px;border:1px solid var(--white);text-decoration:none;background:transparent;color:var(--white);cursor:pointer;font-size:17px}
+.c-actions .solid{background:var(--white);color:var(--ink)}
+.c-actions a:hover,.c-actions button:hover{background:var(--white);color:var(--ink)}
+.c-actions .solid:hover{background:#D5D5D2}
+.c-actions :focus-visible,.contact a:focus-visible{outline-color:var(--white)}
+.facts{display:grid;border-top:1px solid #6E6F72;margin:0}
+.facts > div{padding:18px 0;border-bottom:1px solid #333436;display:grid;grid-template-columns:110px 1fr;gap:16px}
+.facts dt{font-stretch:var(--narrow);color:#9C9D9A;font-size:14px;padding-top:2px}
+.facts dd{margin:0}
+.hours{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:16px}
+.hours td{padding:3px 0}
+.hours td+td{text-align:right;color:#BDBDB9}
+.hours tr.today td{color:var(--white);font-weight:600}
+.big-name{font-stretch:var(--wide);font-weight:200;font-size:clamp(60px,17vw,300px);line-height:.8;letter-spacing:-.045em;color:#1E1F21;white-space:nowrap;margin-top:clamp(60px,8vw,110px);user-select:none}
+.foot{border-top:1px solid #333436;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 30px;padding-top:24px;margin-top:-6px;font-size:13px;color:#8D8E8B;position:relative}
+.foot a{color:#BDBDB9}
+.credits{font-size:12px;color:#77787A;margin-top:16px;line-height:1.5}
+.credits a{color:#9C9D9A}
+
+/* ---------- Barre d'actions téléphone ---------- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;gap:8px;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:rgba(244,244,242,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--ink);transform:translateY(110%);transition:transform .5s var(--ease)}
+.dock.show{transform:none}
+.dock a{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;text-decoration:none;font-weight:500;font-size:17px;border:1px solid var(--ink)}
+.dock a.solid{background:var(--ink);color:var(--white);flex:1.4}
+.dock svg{width:18px;height:18px}
+@media (max-width:860px){.dock{display:flex}body{padding-bottom:0}.contact .wrap{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}}
+
+@media (prefers-reduced-motion:reduce){
+  .ticker-track{animation:none}
+  .scroll-cue i{animation:none}
+  *{transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.replace('no-js','js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.body.classList.add('reduce');</script>
+
+<div class="proto" role="note"><div class="wrap"><span>Maquette de présentation. Les vues 3D illustrent les types de projets, les photos des réalisations seront ajoutées avec M. Morice.</span><span>Version du 23 octobre 2026</span></div></div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Guy Morice, architecte, retour en haut"><span class="mono" aria-hidden="true">GM</span><b>Guy Morice</b><span>architecte</span></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#realisations">Réalisations</a>
+      <a href="#demarche">Démarche</a>
+      <a href="#soleil">Le soleil</a>
+      <a href="#territoire">Territoire</a>
+      <a href="#parcours">Parcours</a>
+      <a class="call" href="tel:+33609612641">06 09 61 26 41</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><i></i><i></i><i></i></button>
+    </nav>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <ol>
+    <li><a href="#realisations">Réalisations <small>4 types de projets</small></a></li>
+    <li><a href="#demarche">Démarche <small>4 étapes</small></a></li>
+    <li><a href="#soleil">Le soleil <small>Bio-énergies</small></a></li>
+    <li><a href="#territoire">Territoire <small>Pays d'Agen</small></a></li>
+    <li><a href="#contact">Contact <small>Estillac</small></a></li>
+  </ol>
+  <div class="menu-foot">
+    <a class="big" href="tel:+33609612641">Appeler le 06 09 61 26 41</a>
+    <p class="note">Du lundi au vendredi, 9 h à 13 h et 14 h à 19 h. 4 allée du Puits de Carrère, 47310 Estillac.</p>
+  </div>
+</div>
+
+<main id="top">
+<section class="hero" id="hero" aria-labelledby="nom">
+  <div class="hero-pin" id="heroPin">
+    <div class="scene" id="scene" role="img" aria-label="Maquette 3D d'une maison contemporaine sur un terrain en courbes de niveau, éclairée par le soleil d'Estillac.">
+      <div class="labels" id="labels" aria-hidden="true"></div>
+      <p class="drag-hint" aria-hidden="true"><svg viewBox="0 0 30 12"><path d="M1 6h28M5 2 1 6l4 4M25 2l4 4-4 4" fill="none" stroke="currentColor"/></svg>Glissez pour tourner</p>
+      <div class="scroll-cue" aria-hidden="true"><i></i>Défiler</div>
+    </div>
+    <div class="hero-copy">
+      <div class="wrap">
+        <div>
+          <h1 id="nom"><span class="ln"><span>Guy</span></span><span class="ln"><span>Morice</span></span></h1>
+          <p class="tagline reveal-h"><span>Architecte à Estillac depuis 1982</span><span>Pays d'Agen, Lot-et-Garonne</span></p>
+        </div>
+        <dl class="cart" aria-label="Cartouche">
+          <div class="full"><dt>Atelier</dt><dd>Guy Morice, architecte</dd></div>
+          <div><dt>Lieu</dt><dd>Estillac (47)</dd></div>
+          <div><dt>Depuis</dt><dd>1982</dd></div>
+          <div><dt>Latitude</dt><dd>44,17° N</dd></div>
+          <div><dt>Échelle</dt><dd>1/200</dd></div>
+          <div class="full last"><dt>Soleil sur la maquette</dt><dd id="sunRead">21 juin, 9 h 00</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-label="Communes du pays d'Agen">
+  <div class="ticker-track">
+    <ul><li>Estillac</li><li>Agen</li><li>Roquefort</li><li>Brax</li><li>Moirax</li><li>Layrac</li><li>Sainte-Colombe-en-Bruilhois</li><li>Le Passage</li><li>Boé</li><li>Laplume</li><li>Aubiac</li><li>Bon-Encontre</li></ul>
+    <ul aria-hidden="true"><li>Estillac</li><li>Agen</li><li>Roquefort</li><li>Brax</li><li>Moirax</li><li>Layrac</li><li>Sainte-Colombe-en-Bruilhois</li><li>Le Passage</li><li>Boé</li><li>Laplume</li><li>Aubiac</li><li>Bon-Encontre</li></ul>
+  </div>
+</div>
+
+<section class="sec" id="realisations" aria-labelledby="t-real">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="idx">Planche 01</span><h2 id="t-real">Réalisations</h2></div>
+      <p>Maisons neuves, extensions, rénovations : quarante ans de projets pour des familles du pays d'Agen. Les vues ci-dessous sont des rendus 3D d'illustration, calculés dans votre navigateur.</p>
+    </div>
+  </div>
+  <div class="works-wrap" id="worksWrap">
+    <div class="works" id="works">
+      <figure class="work"><div class="ph"><span class="badge">Vue 3D d'illustration</span><img alt="Rendu 3D d'une maison contemporaine à étage" data-still="0"><div class="ld"></div></div><figcaption><span class="no">01</span><h3>Maison neuve à étage</h3><span>Volumes cubiques, toit-terrasse, pergola</span></figcaption></figure>
+      <figure class="work"><div class="ph"><span class="badge">Vue 3D d'illustration</span><img alt="Rendu 3D d'une extension contemporaine accolée à une maison traditionnelle" data-still="1"><div class="ld"></div></div><figcaption><span class="no">02</span><h3>Extension contemporaine</h3><span>Agrandir une maison existante</span></figcaption></figure>
+      <figure class="work"><div class="ph"><span class="badge">Vue 3D d'illustration</span><img alt="Rendu 3D d'une maison de plain-pied en L" data-still="2"><div class="ld"></div></div><figcaption><span class="no">03</span><h3>Maison de plain-pied</h3><span>Plan en L autour d'un patio</span></figcaption></figure>
+      <figure class="work"><div class="ph"><span class="badge">Vue 3D d'illustration</span><img alt="Rendu 3D d'une grange rénovée en habitation" data-still="3"><div class="ld"></div></div><figcaption><span class="no">04</span><h3>Rénovation d'une grange</h3><span>Transformer un bâti agricole en habitation</span></figcaption></figure>
+    </div>
+    <div class="wrap works-foot"><div class="progress" aria-hidden="true"><i id="worksBar"></i></div><span class="count" id="worksCount">01 / 04</span></div>
+  </div>
+</section>
+
+<section class="sec" id="demarche" aria-labelledby="t-dem" style="padding-top:0">
+  <div class="wrap steps-grid">
+    <div class="steps-side">
+      <span class="idx">Planche 02</span>
+      <h2 id="t-dem">Un projet, quatre étapes</h2>
+      <p>Le même interlocuteur du premier rendez-vous à la réception des travaux. Chaque étape se valide avec vous avant de passer à la suivante.</p>
+      <div class="rail" aria-hidden="true"><i id="rail"></i></div>
+    </div>
+    <ol class="steps">
+      <li class="step reveal">
+        <svg viewBox="0 0 120 120" aria-hidden="true" fill="none" stroke="#000" stroke-width="1.2"><path class="dr" d="M14 96 L30 22 L96 30 L104 92 Z"/><path class="dr" d="M42 62h30v22H42z"/><path class="dr" d="M88 14l6 14-6-4-6 4z"/><path class="dr" d="M14 104h92" stroke-dasharray="3 4"/></svg>
+        <div><span class="k">Étape 1</span><h3>Premier rendez-vous</h3><p>Visite du terrain ou de la maison. On parle de vos besoins, de votre budget, de vos délais et des règles d'urbanisme de la commune.</p></div>
+      </li>
+      <li class="step reveal">
+        <svg viewBox="0 0 120 120" aria-hidden="true" fill="none" stroke="#000" stroke-width="1.2"><path class="dr" d="M12 20h96v80H12z"/><path class="dr" d="M12 60h44V20M56 60v40M56 76h52M82 20v40"/><path class="dr" d="M30 60a14 14 0 0 1 14-14"/></svg>
+        <div><span class="k">Étape 2</span><h3>Esquisse, plans et 3D</h3><p>Premières esquisses à la main, puis plans et vues en 3D pour vous projeter dans la maison avant de décider.</p></div>
+      </li>
+      <li class="step reveal">
+        <svg viewBox="0 0 120 120" aria-hidden="true" fill="none" stroke="#000" stroke-width="1.2"><path class="dr" d="M26 10h50l18 18v82H26z"/><path class="dr" d="M76 10v18h18M38 44h44M38 56h44M38 68h28"/><circle class="dr" cx="72" cy="90" r="12"/><path class="dr" d="M66 90l4 4 8-8"/></svg>
+        <div><span class="k">Étape 3</span><h3>Permis de construire</h3><p>Constitution du dossier, dépôt en mairie et réponses aux demandes de l'administration jusqu'à l'accord.</p></div>
+      </li>
+      <li class="step reveal">
+        <svg viewBox="0 0 120 120" aria-hidden="true" fill="none" stroke="#000" stroke-width="1.2"><path class="dr" d="M30 108V18M30 18h76M30 30l12-12M30 18L18 30h12M96 18v34"/><path class="dr" d="M88 52h16v12H88z"/><path class="dr" d="M14 108h92M60 108V82h28v26"/></svg>
+        <div><span class="k">Étape 4</span><h3>Suivi du chantier</h3><p>Consultation des entreprises, réunions de chantier chaque semaine et réception des travaux avec vous.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec sun-sec" id="soleil" aria-labelledby="t-sol">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="idx">Planche 03</span><h2 id="t-sol">Concevoir avec le soleil</h2></div>
+      <p>Bien orientée, une maison se chauffe en partie seule l'hiver et reste fraîche l'été. C'est l'approche bio-énergies que Guy Morice applique à ses projets. Faites varier le mois pour voir le soleil de midi entrer dans la pièce.</p>
+    </div>
+    <div class="sun-grid">
+      <div>
+        <figure class="coupe" style="margin:0">
+          <svg viewBox="0 0 680 360" role="img" aria-labelledby="cp-t" id="coupe">
+            <title id="cp-t">Coupe d'une pièce dont la baie est orientée plein sud, avec un débord de toit d'un mètre. Le rayon du soleil de midi change d'angle selon le mois.</title>
+            <defs>
+              <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#9A9B9E" stroke-width="1"/></pattern>
+              <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset="1" stop-color="#fff" stop-opacity=".22"/></linearGradient>
+            </defs>
+            <g font-family="Archivo, sans-serif" font-size="13" fill="#fff">
+              <polygon id="beamPoly" points="0,0 0,0 0,0 0,0" fill="url(#beam)"/>
+              <rect x="30" y="300" width="620" height="22" fill="url(#hatch)"/>
+              <line x1="30" y1="300" x2="650" y2="300" stroke="#fff" stroke-width="1.5"/>
+              <rect id="patch" x="164" y="295" width="0" height="5" fill="#fff"/>
+              <rect x="100" y="118" width="460" height="20" fill="url(#hatch)" stroke="#fff"/>
+              <rect x="152" y="138" width="16" height="30" fill="url(#hatch)" stroke="#fff"/>
+              <rect x="540" y="138" width="20" height="162" fill="url(#hatch)" stroke="#fff"/>
+              <line x1="160" y1="168" x2="160" y2="300" stroke="#fff"/><line x1="165" y1="168" x2="165" y2="300" stroke="#fff"/>
+              <line id="ray" x1="0" y1="0" x2="0" y2="0" stroke="#fff" stroke-width="1.3"/>
+              <line id="ray2" x1="0" y1="0" x2="0" y2="0" stroke="#fff" stroke-width="1" stroke-dasharray="4 4" opacity=".7"/>
+              <circle id="sunDot" cx="0" cy="0" r="11" fill="#fff"/>
+              <path id="arc" d="" fill="none" stroke="#fff" stroke-width="1"/>
+              <text id="angTxt" x="0" y="0" font-size="14">0°</text>
+              <g fill="#A9AAA6" font-size="12">
+                <line x1="100" y1="100" x2="160" y2="100" stroke="#A9AAA6"/><line x1="100" y1="95" x2="100" y2="105" stroke="#A9AAA6"/><line x1="160" y1="95" x2="160" y2="105" stroke="#A9AAA6"/>
+                <text x="130" y="91" text-anchor="middle">débord 1,00 m</text>
+                <text x="40" y="292">Sud</text><text x="640" y="292" text-anchor="end">Nord</text>
+                <text x="176" y="236">baie 2,20 m</text>
+              </g>
+            </g>
+          </svg>
+        </figure>
+        <div class="months">
+          <label for="month">Mois</label>
+          <input type="range" id="month" min="0" max="11" step="1" value="11">
+          <output id="monthOut" for="month">Décembre</output>
+        </div>
+      </div>
+      <div>
+        <dl class="readouts">
+          <div><dt>Hauteur du soleil à midi</dt><dd id="rAlt">22°</dd></div>
+          <div><dt>Profondeur ensoleillée dans la pièce</dt><dd id="rDepth">5,30 m</dd></div>
+        </dl>
+        <p class="sun-copy" id="sunCopy">En hiver, le soleil bas entre jusqu'au fond de la pièce et la chauffe gratuitement.</p>
+      </div>
+    </div>
+    <ul class="princ">
+      <li class="reveal"><h3>Orientation</h3><p>Les pièces de vie au sud, les pièces de service au nord.</p></li>
+      <li class="reveal"><h3>Protections solaires</h3><p>Débords, brise-soleil et pergolas dimensionnés façade par façade.</p></li>
+      <li class="reveal"><h3>Inertie</h3><p>Des matériaux qui stockent la chaleur du jour et la rendent la nuit.</p></li>
+      <li class="reveal"><h3>Ventilation naturelle</h3><p>Des ouvertures placées pour rafraîchir la maison les nuits d'été.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="territoire" aria-labelledby="t-ter" style="padding-bottom:clamp(60px,8vw,120px)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="idx">Planche 04</span><h2 id="t-ter">Le pays d'Agen</h2></div>
+      <p>Coteaux du Bruilhois, vallée de la Garonne, pierre blanche et briques foraines : chaque projet s'inscrit dans un paysage et des règles locales que Guy Morice connaît depuis quarante ans.</p>
+    </div>
+  </div>
+  <figure class="land-hero" style="margin:0">
+    <img id="landImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Agen_-_Pont-canal_-_03.jpg/1920px-Agen_-_Pont-canal_-_03.jpg" alt="Le pont-canal d'Agen au-dessus de la Garonne, avec les coteaux en arrière-plan" loading="lazy" decoding="async">
+    <figcaption><b>Le pont-canal d'Agen sur la Garonne</b><small>Photo Benjamin Smith, CC BY-SA 4.0</small></figcaption>
+  </figure>
+  <div class="wrap">
+    <div class="land-row">
+      <figure><div class="im"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Saumont_paysage.jpg/1280px-Saumont_paysage.jpg" alt="Champs et coteaux du Lot-et-Garonne" loading="lazy" decoding="async"></div><figcaption><span>Coteaux et champs de l'Agenais</span><small>Père Igor, CC BY-SA 4.0</small></figcaption></figure>
+      <figure><div class="im"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Estillac_-_Ch%C3%A2teau_-1.JPG/1280px-Estillac_-_Ch%C3%A2teau_-1.JPG" alt="La tour du château de Montluc à Estillac" loading="lazy" decoding="async"></div><figcaption><span>Château de Montluc, Estillac</span><small>MOSSOT, CC BY-SA 3.0</small></figcaption></figure>
+      <figure><div class="im"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Moirax_-_%C3%89glise_Notre-Dame_-_Ensemble.JPG/1280px-Moirax_-_%C3%89glise_Notre-Dame_-_Ensemble.JPG" alt="L'église romane Notre-Dame de Moirax" loading="lazy" decoding="async"></div><figcaption><span>Église Notre-Dame, Moirax</span><small>MOSSOT, CC BY-SA 3.0</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="parcours" aria-labelledby="t-par" style="padding-top:clamp(40px,6vw,90px)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="idx">Planche 05</span><h2 id="t-par">Parcours</h2></div>
+      <p>Formé à Agen puis à Toulouse, Guy Morice exerce en architecte indépendant depuis 1982, au plus près de ses clients du Lot-et-Garonne.</p>
+    </div>
+    <div class="tl" id="tl">
+      <span class="line" id="tlLine" aria-hidden="true"></span>
+      <ol>
+        <li><span class="y">1970</span><span class="dot" aria-hidden="true"></span><h3>Lycée De Baudre</h3><p>Formation technique à Agen.</p></li>
+        <li><span class="y">1981</span><span class="dot" aria-hidden="true"></span><h3>Études d'architecture</h3><p>Unité pédagogique d'architecture de Toulouse.</p></li>
+        <li><span class="y">1982</span><span class="dot" aria-hidden="true"></span><h3>Installation</h3><p>Ouverture de son atelier d'architecte indépendant.</p></li>
+        <li><span class="y" id="yearNow">2026</span><span class="dot" aria-hidden="true"></span><h3>Estillac</h3><p>Plus de quarante ans de projets dans l'Agenais et le Bruilhois.</p></li>
+      </ol>
+    </div>
+    <div class="quote reveal">
+      <div class="portrait"><span>Portrait de Guy Morice à venir</span></div>
+      <blockquote>Emplacement pour quelques mots de Guy Morice sur sa façon de travailler, à recueillir lors du prochain rendez-vous.<footer>Texte à rédiger avec lui</footer></blockquote>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="contact" id="contact" aria-labelledby="t-con">
+  <div class="wrap">
+    <span class="idx">Planche 06</span>
+    <h2 id="t-con">Parlons de votre projet</h2>
+    <div class="c-grid">
+      <div>
+        <a class="tel-big" href="tel:+33609612641" id="telnum">06 09 61 26 41</a>
+        <div><span class="status" id="status"><i></i><span id="statusTxt">Horaires du cabinet</span></span></div>
+        <div class="c-actions">
+          <a class="solid" href="tel:+33609612641">Appeler</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=4+all%C3%A9e+du+Puits+de+Carr%C3%A8re+47310+Estillac" target="_blank" rel="noopener">Itinéraire</a>
+          <button type="button" id="copy">Copier le numéro</button>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>Adresse</dt><dd>4 allée du Puits de Carrère<br>47310 Estillac</dd></div>
+        <div><dt>Horaires</dt><dd><table class="hours" id="hours"><tbody>
+          <tr data-d="1"><td>Lundi</td><td>9 h – 13 h, 14 h – 19 h</td></tr>
+          <tr data-d="2"><td>Mardi</td><td>9 h – 13 h, 14 h – 19 h</td></tr>
+          <tr data-d="3"><td>Mercredi</td><td>9 h – 13 h, 14 h – 19 h</td></tr>
+          <tr data-d="4"><td>Jeudi</td><td>9 h – 13 h, 14 h – 19 h</td></tr>
+          <tr data-d="5"><td>Vendredi</td><td>9 h – 13 h, 14 h – 19 h</td></tr>
+          <tr data-d="6"><td>Samedi</td><td>Fermé</td></tr>
+          <tr data-d="0"><td>Dimanche</td><td>Fermé</td></tr>
+        </tbody></table></dd></div>
+        <div><dt>Secteur</dt><dd>Estillac, Agen et le Lot-et-Garonne</dd></div>
+      </dl>
+    </div>
+    <div class="big-name" aria-hidden="true">Guy Morice</div>
+    <div class="foot">
+      <span>Guy Morice, architecte, entreprise individuelle. SIREN 428 803 795. Inscription à l'Ordre des architectes : numéro à compléter.</span>
+      <span>Site réalisé par <a href="/">Vetrina</a></span>
+    </div>
+    <p class="credits">Photos : Wikimedia Commons. <a href="https://commons.wikimedia.org/wiki/File:Agen_-_Pont-canal_-_03.jpg" target="_blank" rel="noopener">Pont-canal d'Agen</a>, Benjamin Smith, CC BY-SA 4.0 ; <a href="https://commons.wikimedia.org/wiki/File:Saumont_paysage.jpg" target="_blank" rel="noopener">Paysage de Saumont</a>, Père Igor, CC BY-SA 4.0 ; <a href="https://commons.wikimedia.org/wiki/File:Estillac_-_Ch%C3%A2teau_-1.JPG" target="_blank" rel="noopener">Château de Montluc</a> et <a href="https://commons.wikimedia.org/wiki/File:Moirax_-_%C3%89glise_Notre-Dame_-_Ensemble.JPG" target="_blank" rel="noopener">Moirax</a>, MOSSOT, CC BY-SA 3.0. Photos passées en noir et blanc.</p>
+  </div>
+</section>
+
+<nav class="dock" id="dock" aria-label="Actions rapides">
+  <a class="solid" href="tel:+33609612641"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Appeler</a>
+  <a href="https://www.google.com/maps/dir/?api=1&destination=4+all%C3%A9e+du+Puits+de+Carr%C3%A8re+47310+Estillac" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Itinéraire</a>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="morice.js"></script>
+</body>
+</html>
