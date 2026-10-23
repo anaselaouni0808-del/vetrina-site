@@ -357,7 +357,7 @@ requestAnimationFrame(function () { frame.classList.add('ready'); });
   var w = SMALL ? 1000 : 1500, h = Math.round(w * .72);
   renderer.setPixelRatio(1); renderer.setSize(w, h, false);
   var cam2 = new T.PerspectiveCamera(36, w / h, .5, 3000);
-  cam2.position.set(-22, 2.6, 25); cam2.lookAt(-.5, 2.8, 2);
+  cam2.position.set(-9, 2.2, 31); cam2.lookAt(-1.5, 2.6, 5);
   renderer.render(scene, cam2);
   try { img.src = renderer.domElement.toDataURL('image/jpeg', .9); img.hidden = false; } catch (e) { }
   renderer.setPixelRatio(DPR); fit(); place(0); renderer.render(scene, camera);
