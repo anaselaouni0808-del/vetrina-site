@@ -356,8 +356,8 @@ requestAnimationFrame(function () { frame.classList.add('ready'); });
   var img = $('#still'); if (!img) return;
   var w = SMALL ? 1000 : 1500, h = Math.round(w * .72);
   renderer.setPixelRatio(1); renderer.setSize(w, h, false);
-  var cam2 = new T.PerspectiveCamera(36, w / h, .5, 3000);
-  cam2.position.set(-9, 2.2, 31); cam2.lookAt(-1.5, 2.6, 5);
+  var cam2 = new T.PerspectiveCamera(44, w / h, .5, 3000);
+  cam2.position.set(-7, 1.9, 21); cam2.lookAt(-1.2, 2.9, 3);
   renderer.render(scene, cam2);
   try { img.src = renderer.domElement.toDataURL('image/jpeg', .9); img.hidden = false; } catch (e) { }
   renderer.setPixelRatio(DPR); fit(); place(0); renderer.render(scene, camera);
