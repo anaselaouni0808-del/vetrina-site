@@ -254,11 +254,11 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 
 /* ---------- Parcours ---------- */
 .tl{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
-.tl::before{content:"";position:absolute;left:0;right:0;top:35px;height:1px;background:var(--rule)}
-.tl .line{position:absolute;left:0;right:0;top:35px;height:1px;background:var(--ink);transform-origin:left;transform:scaleX(0)}
+.tl::before{content:"";position:absolute;left:0;right:0;top:13px;height:1px;background:var(--rule)}
+.tl .line{position:absolute;left:0;right:0;top:13px;height:1px;background:var(--ink);transform-origin:left;transform:scaleX(0)}
 .tl li{list-style:none;position:relative;padding-right:28px;display:grid;gap:10px;align-content:start}
 .tl .y{font-stretch:var(--wide);font-weight:200;font-size:clamp(40px,4.6vw,70px);line-height:1;font-variant-numeric:tabular-nums;background:var(--paper);justify-self:start;padding-right:14px;position:relative}
-.tl .dot{width:11px;height:11px;border:1px solid var(--ink);background:var(--paper);transform:rotate(45deg);margin:8px 0 6px}
+.tl .dot{width:11px;height:11px;border:1px solid var(--ink);background:var(--paper);transform:rotate(45deg);margin:8px 0 18px;position:relative}
 .tl h3{font-size:21px;font-weight:500}
 .tl p{color:var(--graphite);font-size:16px;max-width:30ch}
 .tl ol{display:contents}
@@ -278,7 +278,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .contact h2{font-size:var(--s2);font-stretch:var(--mid)}
 .c-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px 72px;margin-top:clamp(36px,5vw,64px)}
 @media (max-width:900px){.c-grid{grid-template-columns:1fr}}
-.tel-big{display:inline-block;text-decoration:none;font-stretch:var(--wide);font-weight:200;font-size:clamp(40px,7.4vw,118px);line-height:.95;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .6s var(--ease)}
+.tel-big{display:inline-block;text-decoration:none;font-stretch:var(--wide);font-weight:200;font-size:clamp(40px,5.8vw,96px);line-height:.95;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .6s var(--ease)}
 .tel-big:hover{background-size:100% 1px}
 .status{display:inline-flex;align-items:center;gap:10px;margin-top:26px;border:1px solid #57585B;padding:8px 14px;font-size:15px}
 .status i{width:9px;height:9px;border-radius:50%;background:#8D8E90}
@@ -358,7 +358,6 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
     <div class="scene" id="scene" role="img" aria-label="Maquette 3D d'une maison contemporaine sur un terrain en courbes de niveau, éclairée par le soleil d'Estillac.">
       <div class="labels" id="labels" aria-hidden="true"></div>
       <p class="drag-hint" aria-hidden="true"><svg viewBox="0 0 30 12"><path d="M1 6h28M5 2 1 6l4 4M25 2l4 4-4 4" fill="none" stroke="currentColor"/></svg>Glissez pour tourner</p>
-      <div class="scroll-cue" aria-hidden="true"><i></i>Défiler</div>
     </div>
     <dl class="cart" id="cart" aria-label="Cartouche">
           <div class="full"><dt>Atelier</dt><dd>Guy Morice, architecte</dd></div>
@@ -524,15 +523,11 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
     <div class="tl" id="tl">
       <span class="line" id="tlLine" aria-hidden="true"></span>
       <ol>
-        <li><span class="y">1970</span><span class="dot" aria-hidden="true"></span><h3>Lycée De Baudre</h3><p>Formation technique à Agen.</p></li>
-        <li><span class="y">1981</span><span class="dot" aria-hidden="true"></span><h3>Études d'architecture</h3><p>Unité pédagogique d'architecture de Toulouse.</p></li>
-        <li><span class="y">1982</span><span class="dot" aria-hidden="true"></span><h3>Installation</h3><p>Ouverture de son atelier d'architecte indépendant.</p></li>
-        <li><span class="y" id="yearNow">2026</span><span class="dot" aria-hidden="true"></span><h3>Estillac</h3><p>Plus de quarante ans de projets dans l'Agenais et le Bruilhois.</p></li>
+        <li><span class="dot" aria-hidden="true"></span><span class="y">1970</span><h3>Lycée De Baudre</h3><p>Formation technique à Agen.</p></li>
+        <li><span class="dot" aria-hidden="true"></span><span class="y">1981</span><h3>Études d'architecture</h3><p>Unité pédagogique d'architecture de Toulouse.</p></li>
+        <li><span class="dot" aria-hidden="true"></span><span class="y">1982</span><h3>Installation</h3><p>Ouverture de son atelier d'architecte indépendant.</p></li>
+        <li><span class="dot" aria-hidden="true"></span><span class="y" id="yearNow">2026</span><h3>Estillac</h3><p>Plus de quarante ans de projets dans l'Agenais et le Bruilhois.</p></li>
       </ol>
-    </div>
-    <div class="quote reveal">
-      <div class="portrait"><span>Portrait de Guy Morice à venir</span></div>
-      <blockquote>Emplacement pour quelques mots de Guy Morice sur sa façon de travailler, à recueillir lors du prochain rendez-vous.<footer>Texte à rédiger avec lui</footer></blockquote>
     </div>
   </div>
 </section>

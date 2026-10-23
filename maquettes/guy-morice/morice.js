@@ -220,7 +220,7 @@ function showH1() { $$('.hero h1 .ln > span').forEach(function (s) { s.style.tra
   var world = new T.Group(); scene.add(world);
   // Socle et courbes de niveau, comme une maquette de site en carton
   var site = new T.Group(); world.add(site);
-  var base = B(T, M, site, 52, .8, 40, 0, -.8, 0, M.card, { cast: false });
+  var base = B(T, M, site, 120, .8, 100, 0, -.8, 0, M.card, { cast: false, edges: false });
   var c1 = contour(T, M, site, blob(-6, -13, 30, 12, 1.3), .45, 0, M.card);
   var c2 = contour(T, M, site, blob(-14, -16, 18, 8, 2.1), .45, .45, M.card2);
   var c3 = contour(T, M, site, blob(-18, -17, 9, 4.5, .7), .45, .9, M.card);
@@ -246,7 +246,7 @@ function showH1() { $$('.hero h1 .ln > span').forEach(function (s) { s.style.tra
     { t: 'Toit-terrasse accessible', p: new T.Vector3(-5.2, 4.4, 1) },
     { t: 'Brise-soleil verticaux', p: new T.Vector3(5.8, 5.4, 3.6) },
     { t: 'Pergola à lames orientables', p: new T.Vector3(-6.8, 3.2, 8.3) },
-    { t: 'Baies plein sud', p: new T.Vector3(-2.6, 1.4, 4.1) }
+    { t: 'Baies plein sud', p: new T.Vector3(3.2, 1.2, 4.1) }
   ].map(function (l) { var d = document.createElement('div'); d.className = 'lbl'; d.innerHTML = '<i></i><span>' + l.t + '</span>'; labelsEl.appendChild(d); l.el = d; return l; });
 
   var state = { az: 0, el: 1.52, R: 1, hour: 9, build: 0, dAz: 0, labels: 0, introDone: false, auto: 0 };
@@ -346,7 +346,7 @@ function showH1() { $$('.hero h1 .ln > span').forEach(function (s) { s.style.tra
       if (state.introDone) {
         var h;
         if (MOBILE() || REDUCE) { state.auto += dt * (REDUCE ? 0 : .22); h = REDUCE ? 15 : 9 + 10 * (.5 - .5 * Math.cos(state.auto * .3)); }
-        else h = 9 + scrollP * 10;
+        else h = 9 + scrollP * 8.5;
         if (Math.abs(h - state.hour) > .002) { state.hour = h; setSun(h); dirty = true; }
         var targetEl = .5 - scrollP * .26, targetAz = .62 - scrollP * 1.15;
         state.el += (targetEl - state.el) * .12; state.az += (targetAz - state.az) * .12;
@@ -373,8 +373,8 @@ function makeStills() {
   var M = kit(T, r);
   function stage(bg) {
     var s = new T.Scene(); s.background = new T.Color(bg || 0xE9E9E6);
-    s.add(new T.HemisphereLight(0xFFFFFF, 0xB8B8B4, .5));
-    var sun = new T.DirectionalLight(0xFFF6EC, .95); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+    s.add(new T.HemisphereLight(0xFFFFFF, 0xA8A8A4, .38));
+    var sun = new T.DirectionalLight(0xFFF6EC, 1.25); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
     var c = sun.shadow.camera; c.left = -22; c.right = 22; c.top = 22; c.bottom = -22; c.far = 140;
     sun.shadow.bias = -.0004; sun.shadow.normalBias = .03; s.add(sun); s.add(sun.target);
     B(T, M, s, 70, .6, 60, 0, -.6, 0, M.card, { cast: false, edges: false });
@@ -393,7 +393,7 @@ function makeStills() {
     function () { // maison à étage, fin d'après-midi
       var st = stage(); var g = new T.Group(); st.s.add(g); buildHouse(T, M, g);
       tree(T, M, g, 13, 9, 1.8); tree(T, M, g, -14, -6, 2.2); tree(T, M, g, -13, 13, .42, 'cypres'); tree(T, M, g, -12, 14.5, .36, 'cypres');
-      return shoot(st, -.55, .2, 48, [0, 2.5, 3], 17.5, JUNE);
+      return shoot(st, -.55, .2, 58, [0, 2.5, 3], 17.5, JUNE);
     },
     function () { // extension contemporaine sur maison traditionnelle
       var st = stage(); var g = new T.Group(); st.s.add(g);
@@ -408,7 +408,7 @@ function makeStills() {
       for (i = 0; i < 3; i++) B(T, M, g, .08, 2.7, .12, 3.9 + i * 1.85, .1, 3.95, M.white, { edges: false });
       B(T, M, g, 9, .12, 4, 4.5, 0, 6, M.grey, { edges: false, cast: false });
       tree(T, M, g, 12.5, 7, 1.7); tree(T, M, g, -11, 8, 1.4); tree(T, M, g, 14, -6, 2);
-      return shoot(st, .55, .22, 46, [1.5, 2.6, 1.5], 10.5, JUNE);
+      return shoot(st, .55, .22, 50, [1.5, 2.6, 1.5], 10.5, JUNE);
     },
     function () { // plain-pied en L autour d'un patio
       var st = stage(); var g = new T.Group(); st.s.add(g);
@@ -420,7 +420,7 @@ function makeStills() {
       for (i = 0; i < 18; i++) B(T, M, g, .4, .08, 8.5, -1.1 + i * .48, 0, 5, M.dark, { edges: false, cast: false });
       tree(T, M, g, 5, 5.5, 1.5); tree(T, M, g, 12, 6, 2); tree(T, M, g, -13, -4, 1.6); tree(T, M, g, 9, 10.5, .4, 'cypres');
       B(T, M, g, .25, .9, 12, 9.5, 0, 6);
-      return shoot(st, .3, .42, 44, [0, 0, 1.5], 12.5, 80);
+      return shoot(st, .3, .42, 54, [-1, 0, 1.5], 12.5, 80);
     },
     function () { // grange rénovée
       var st = stage(); var g = new T.Group(); st.s.add(g);
@@ -468,7 +468,7 @@ function makeStills() {
       function dist() { return Math.max(0, works.scrollWidth - document.documentElement.clientWidth); }
       var tw = gsap.to(works, {
         x: function () { return -dist(); }, ease: 'none',
-        scrollTrigger: { trigger: '#realisations', start: 'top top', end: function () { return '+=' + dist(); }, pin: true, scrub: .6, invalidateOnRefresh: true, anticipatePin: 1, onUpdate: function (s) { setP(s.progress); } }
+        scrollTrigger: { trigger: '#realisations', start: 'center center', end: function () { return '+=' + dist(); }, pin: true, scrub: .6, invalidateOnRefresh: true, anticipatePin: 1, onUpdate: function (s) { setP(s.progress); } }
       });
       return function () { tw.scrollTrigger && tw.scrollTrigger.kill(); tw.kill(); gsap.set(works, { clearProps: 'transform' }); };
     }
@@ -496,7 +496,7 @@ if (hasGSAP && !REDUCE) {
   function draw(aDeg) {
     var a = aDeg * Math.PI / 180, t = Math.tan(a), c = Math.cos(a), s = Math.sin(a);
     var yHit = TIP[1] + (WALL - TIP[0]) * t;
-    var lit = Math.max(HEAD, yHit), inside = lit < FLOOR;
+    var lit = Math.max(HEAD, yHit), inside = lit < FLOOR - 8;
     var xEnd = inside ? Math.min(NORTH, WALL + (FLOOR - lit) / t) : WALL;
     var yEnd = inside ? (xEnd === NORTH ? lit + (NORTH - WALL) * t : FLOOR) : FLOOR;
     var P0 = inside ? [WALL, lit] : [TIP[0], TIP[1]];
