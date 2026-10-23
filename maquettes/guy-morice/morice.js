@@ -336,7 +336,7 @@ function fit() {
   renderer.setSize(w, h, false); camera.aspect = w / h;
   var narrow = camera.aspect < 1.2;
   camera.fov = narrow ? 42 : 30; camera.updateProjectionMatrix();
-  CAM.R = narrow ? 44 : 36; CAM.tx = narrow ? 0 : -.5;
+  CAM.R = narrow ? 33 : 36; CAM.tx = narrow ? .5 : -.5; CAM.ty = narrow ? 1.6 : 2.8;
 }
 function place(t) {
   var a = CAM.az + (REDUCE ? 0 : Math.sin(t * .045) * .075), r = CAM.R - (REDUCE ? 0 : (1 - Math.cos(t * .03)) * 1.2);
