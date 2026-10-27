@@ -29,7 +29,18 @@ if ('IntersectionObserver' in window) {
 } else $$('.rv').forEach(function (el) { el.classList.add('in'); });
 
 /* ---------- Contact ---------- */
-$('#yearNow').textContent = new Date().getFullYear();
+(function () { // années d'expérience, calculées et comptées une fois à l'arrivée
+  var el = $('#years'); if (!el) return;
+  var n = new Date().getFullYear() - 1982; el.textContent = n;
+  if (REDUCE || !('IntersectionObserver' in window)) return;
+  el.textContent = '0';
+  var io = new IntersectionObserver(function (e) {
+    if (!e[0].isIntersecting) return; io.disconnect();
+    var t0 = performance.now();
+    (function step(t) { var k = Math.min(1, (t - t0) / 1600); el.textContent = Math.round(n * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); })(t0);
+  }, { threshold: .5 });
+  io.observe(el);
+})();
 (function () {
   var now; try { now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Paris' })); } catch (e) { now = new Date(); }
   var d = now.getDay(), h = now.getHours() + now.getMinutes() / 60;

@@ -194,15 +194,21 @@ p{margin:0}
 @media (max-width:860px){.land{grid-template-columns:1fr 1fr}.land figure:first-child{grid-column:1/-1}}
 
 /* ---------- Parcours ---------- */
-.tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink)}
-.tl li{padding:24px 28px 0 0;display:grid;gap:8px;align-content:start}
-.tl li+li{padding-left:28px;border-left:1px solid var(--rule)}
-.tl .y{font-family:var(--serif);font-size:clamp(44px,4.6vw,68px);line-height:1;font-variant-numeric:lining-nums}
-.tl li:last-child .y{color:var(--bronze)}
-.tl h3{font-size:18px;font-weight:600}
-.tl p{color:var(--graphite);font-size:16px;max-width:28ch}
-@media (max-width:860px){.tl{grid-template-columns:1fr 1fr;row-gap:30px}.tl li:nth-child(3){padding-left:0;border-left:0}}
-@media (max-width:480px){.tl{grid-template-columns:1fr}.tl li,.tl li+li{padding-left:0;border-left:0}}
+.exp{position:relative;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:48px 80px;align-items:center;background:var(--white);border:1px solid var(--rule);padding:clamp(32px,5vw,80px)}
+.exp .num{display:block;font-family:var(--serif);font-style:italic;color:var(--bronze);font-size:20px;margin-bottom:6px}
+.exp-big{display:flex;align-items:flex-end;gap:18px;font-family:var(--serif);font-optical-sizing:none;font-variation-settings:"opsz" 16;line-height:.8}
+.exp-big #years{font-size:clamp(130px,17vw,260px);font-weight:500;color:var(--bronze);letter-spacing:-.04em;font-variant-numeric:lining-nums tabular-nums}
+.exp-unit{font-size:clamp(24px,2.4vw,34px);font-weight:500;line-height:1.1;padding-bottom:.5em}
+.exp h2{font-family:var(--serif);font-optical-sizing:none;font-variation-settings:"opsz" 16;font-weight:500;font-size:clamp(28px,2.8vw,40px);line-height:1.15;margin-top:28px}
+.exp-txt{margin-top:16px;color:var(--graphite);max-width:48ch}
+.exp-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.exp-list li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;padding:24px 0;border-bottom:1px solid var(--rule)}
+.exp-list .y{font-family:var(--serif);font-optical-sizing:none;font-variation-settings:"opsz" 16;font-weight:500;font-size:40px;line-height:1;font-variant-numeric:lining-nums}
+.exp-list .y.now{font-size:26px;font-style:italic;color:var(--bronze);padding-top:8px}
+.exp-list h3{font-size:18px;font-weight:600;line-height:1.3}
+.exp-list p{color:var(--graphite);font-size:16px;margin-top:4px}
+@media (max-width:980px){.exp{grid-template-columns:1fr}}
+@media (max-width:560px){.exp-list li{grid-template-columns:1fr;gap:8px}.exp .corner{display:none}}
 
 /* ---------- Contact ---------- */
 .contact .wrap{padding-block:clamp(90px,11vw,160px) 40px}
@@ -399,16 +405,20 @@ p{margin:0}
 
 <section class="sec" id="parcours" aria-labelledby="t-par" style="padding-top:0">
   <div class="wrap">
-    <div class="head rv">
-      <div><span class="num">Parcours</span><h2 id="t-par">Quarante ans d'atelier</h2></div>
-      <p>Formé à Agen puis à Toulouse, Guy Morice exerce en indépendant depuis 1982, au plus près de ses clients.</p>
+    <div class="exp rv">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="exp-main">
+        <span class="num">Parcours</span>
+        <p class="exp-big"><span id="years">44</span><span class="exp-unit">ans<br>d'expérience</span></p>
+        <h2 id="t-par">Architecte indépendant depuis 1982</h2>
+        <p class="exp-txt">Formé à l'architecture à Toulouse, Guy Morice a ouvert son atelier en 1982. Depuis, il conçoit et suit lui-même chaque projet, de l'esquisse à la réception des travaux, partout dans le pays d'Agen.</p>
+      </div>
+      <ol class="exp-list">
+        <li><span class="y">1981</span><div><h3>Études d'architecture à Toulouse</h3><p>Unité pédagogique d'architecture de Toulouse, aujourd'hui École nationale supérieure d'architecture de Toulouse.</p></div></li>
+        <li><span class="y">1982</span><div><h3>Ouverture de son atelier</h3><p>Installation à son compte comme architecte indépendant.</p></div></li>
+        <li><span class="y now">Aujourd'hui</span><div><h3>Estillac, pays d'Agen</h3><p>Maisons neuves, extensions et rénovations dans l'Agenais et le Bruilhois.</p></div></li>
+      </ol>
     </div>
-    <ol class="tl rv">
-      <li><span class="y">1970</span><h3>Lycée De Baudre</h3><p>Formation technique à Agen.</p></li>
-      <li><span class="y">1981</span><h3>Études d'architecture</h3><p>Unité pédagogique d'architecture de Toulouse.</p></li>
-      <li><span class="y">1982</span><h3>Installation</h3><p>Ouverture de son atelier d'architecte indépendant.</p></li>
-      <li><span class="y" id="yearNow">2026</span><h3>Estillac</h3><p>Projets dans l'Agenais et le Bruilhois.</p></li>
-    </ol>
   </div>
 </section>
 </main>
