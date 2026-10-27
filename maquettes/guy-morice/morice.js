@@ -341,14 +341,14 @@ for (var lv = 0; lv < 14; lv++) { // lavandes le long de l'allée
 })();
 
 /* ---------- Caméra : lent travelling, sans interaction ---------- */
-var CAM = { az: .6, el: .12, R: 38, cx: -.5, cy: 2.6, cz: 2.5, sx: 0, sy: 0 };
+var CAM = { az: .6, el: .1, R: 38, cx: -.5, cy: 2.6, cz: 2.5, sx: 0, sy: 0 };
 // sx / sy décalent le cadrage : la maison se place en haut à droite, le titre en bas à gauche
 function fit() {
   var w = stage.clientWidth, h = stage.clientHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h;
   var narrow = camera.aspect < 1.1;
   camera.fov = narrow ? 44 : 32; camera.updateProjectionMatrix();
-  CAM.R = narrow ? 36 : 38; CAM.sx = narrow ? .5 : 7.5; CAM.sy = narrow ? -3.2 : -3.4;
+  CAM.R = narrow ? 36 : 40; CAM.sx = narrow ? .5 : 6.5; CAM.sy = narrow ? -3 : -1.6;
 }
 function place(t) {
   var a = CAM.az + (REDUCE ? 0 : Math.sin(t * .045) * .07), r = CAM.R - (REDUCE ? 0 : (1 - Math.cos(t * .03)) * 1.2);
