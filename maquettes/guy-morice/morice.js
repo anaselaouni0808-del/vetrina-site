@@ -331,7 +331,7 @@ tree(-17, -13, 4.5, 3.6, .24, .3); tree(-6, -17, 5.5, 4.2, .25, .27); tree(9, -1
 tree(20, -6, 4, 3.2, .22, .33); tree(-26, 2, 4.2, 3.4, .25, .28); tree(25, 11, 3.6, 3, .23, .32);
 olive(3.6, 11); olive(-11.6, 12); olive(2.4, 18);
 for (i = 0; i < 6; i++) cypress(-13.8, -3 + i * 3.4, rr(8, 10.5));
-box(28, 1.3, .9, 1, 0, 22.5, M.hedge);
+box(20, 1.3, .9, -3, 0, 22.5, M.hedge);
 for (var lv = 0; lv < 14; lv++) { // lavandes le long de l'allée
   foliage(8.6, .05, 6 + lv * 1.12, .7, function (u) { return .5 * Math.sin(Math.PI * (u * .8 + .2)); }, 70, .1, .72, .22, .42);
 }
@@ -348,7 +348,7 @@ function fit() {
   renderer.setSize(w, h, false); camera.aspect = w / h;
   var narrow = camera.aspect < 1.1;
   camera.fov = narrow ? 44 : 32; camera.updateProjectionMatrix();
-  CAM.R = narrow ? 36 : 40; CAM.sx = narrow ? .5 : 6.5; CAM.sy = narrow ? -3 : -1.6;
+  CAM.R = narrow ? 37 : 40; CAM.sx = narrow ? -1.2 : 6.5; CAM.sy = narrow ? -1.4 : -1.6;
 }
 function place(t) {
   var a = CAM.az + (REDUCE ? 0 : Math.sin(t * .045) * .07), r = CAM.R - (REDUCE ? 0 : (1 - Math.cos(t * .03)) * 1.2);
