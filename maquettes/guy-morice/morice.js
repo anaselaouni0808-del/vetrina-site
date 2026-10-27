@@ -62,8 +62,8 @@ if ('IntersectionObserver' in window) {
 /* =====================================================================
    Rendu 3D réaliste
    ===================================================================== */
-var frame = $('#frame');
-if (!window.THREE || !frame) return;
+var frame = $('#frame'), stage = $('#frame .stage');
+if (!window.THREE || !frame || !stage) return;
 var T = THREE;
 
 var seed = 7;
@@ -156,7 +156,7 @@ renderer.toneMapping = T.ACESFilmicToneMapping;
 renderer.toneMappingExposure = .5;
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFSoftShadowMap;
 renderer.shadowMap.autoUpdate = false;
-frame.appendChild(renderer.domElement); renderer.domElement.setAttribute('aria-hidden', 'true');
+stage.appendChild(renderer.domElement); renderer.domElement.setAttribute('aria-hidden', 'true');
 
 var scene = new T.Scene();
 var camera = new T.PerspectiveCamera(30, 1, .5, 3000);
@@ -341,18 +341,20 @@ for (var lv = 0; lv < 14; lv++) { // lavandes le long de l'allée
 })();
 
 /* ---------- Caméra : lent travelling, sans interaction ---------- */
-var CAM = { az: .6, el: .11, R: 36, tx: -.5, ty: 2.8, tz: 2.5 };
+var CAM = { az: .6, el: .12, R: 38, cx: -.5, cy: 2.6, cz: 2.5, sx: 0, sy: 0 };
+// sx / sy décalent le cadrage : la maison se place en haut à droite, le titre en bas à gauche
 function fit() {
-  var w = frame.clientWidth, h = frame.clientHeight;
+  var w = stage.clientWidth, h = stage.clientHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h;
-  var narrow = camera.aspect < 1.2;
-  camera.fov = narrow ? 42 : 30; camera.updateProjectionMatrix();
-  CAM.R = narrow ? 33 : 36; CAM.tx = narrow ? .5 : -.5; CAM.ty = narrow ? 1.6 : 2.8;
+  var narrow = camera.aspect < 1.1;
+  camera.fov = narrow ? 44 : 32; camera.updateProjectionMatrix();
+  CAM.R = narrow ? 36 : 38; CAM.sx = narrow ? .5 : 7.5; CAM.sy = narrow ? -3.2 : -3.4;
 }
 function place(t) {
-  var a = CAM.az + (REDUCE ? 0 : Math.sin(t * .045) * .075), r = CAM.R - (REDUCE ? 0 : (1 - Math.cos(t * .03)) * 1.2);
-  camera.position.set(CAM.tx + Math.sin(a) * Math.cos(CAM.el) * r, CAM.ty + Math.sin(CAM.el) * r, CAM.tz + Math.cos(a) * Math.cos(CAM.el) * r);
-  camera.lookAt(CAM.tx, CAM.ty - .4, CAM.tz);
+  var a = CAM.az + (REDUCE ? 0 : Math.sin(t * .045) * .07), r = CAM.R - (REDUCE ? 0 : (1 - Math.cos(t * .03)) * 1.2);
+  camera.position.set(CAM.cx + Math.sin(a) * Math.cos(CAM.el) * r, CAM.cy + Math.sin(CAM.el) * r, CAM.cz + Math.cos(a) * Math.cos(CAM.el) * r);
+  var rx = Math.cos(a), rz = -Math.sin(a);
+  camera.lookAt(CAM.cx - rx * CAM.sx, CAM.cy + CAM.sy, CAM.cz - rz * CAM.sx);
 }
 window.addEventListener('resize', function () { fit(); place((performance.now() - t0) / 1000); renderer.render(scene, camera); });
 var t0 = performance.now();
@@ -375,7 +377,7 @@ requestAnimationFrame(function () { frame.classList.add('ready'); });
 })();
 
 var visible = true, last = 0;
-if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(frame);
+if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(stage);
 function loop(now) {
   requestAnimationFrame(loop);
   if (!visible || REDUCE || document.hidden) return;
