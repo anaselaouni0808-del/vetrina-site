@@ -63,6 +63,12 @@ if ('IntersectionObserver' in window) {
    Rendu 3D réaliste
    ===================================================================== */
 var frame = $('#frame'), stage = $('#frame .stage');
+var BAKE = /[?&]bake/.test(location.search);
+// Sur téléphone et tablette, l'image du rendu (déjà calculée) suffit : aucune attente, aucun calcul.
+var LIVE = BAKE || (!SMALL && !matchMedia('(pointer: coarse)').matches && !REDUCE);
+function pause() { return new Promise(function (r) { requestAnimationFrame(function () { setTimeout(r, 0); }); }); }
+// construction découpée en petites étapes : la page reste fluide pendant que la 3D se prépare
+async function start3D() {
 if (!window.THREE || !frame || !stage) return;
 var T = THREE;
 
@@ -147,9 +153,9 @@ var TX = {
 
 /* ---------- Moteur ---------- */
 var renderer;
-try { renderer = new T.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' }); }
-catch (e) { frame.querySelector('.wait').textContent = 'Le rendu 3D n’est pas disponible sur cet appareil.'; return; }
-var DPR = Math.min(window.devicePixelRatio || 1, SMALL ? 1.5 : 1.75);
+try { renderer = new T.WebGLRenderer({ antialias: true, powerPreference: 'high-performance', preserveDrawingBuffer: BAKE }); }
+catch (e) { return; }
+var DPR = BAKE ? (window.devicePixelRatio || 1) : Math.min(window.devicePixelRatio || 1, 1.75);
 renderer.setPixelRatio(DPR);
 renderer.outputEncoding = T.sRGBEncoding;
 renderer.toneMapping = T.ACESFilmicToneMapping;
@@ -186,6 +192,7 @@ sun.shadow.bias = -.00025; sun.shadow.normalBias = .025;
 scene.add(sun); scene.add(sun.target);
 scene.add(new T.HemisphereLight(0xBFD3EA, 0x5E5A40, .45));
 
+await pause();
 /* ---------- Matériaux ---------- */
 var M = {
   render: new T.MeshStandardMaterial({ color: 0xF4F2EE, map: TX.render([2, 2]), roughness: .92, envMapIntensity: .6 }),
@@ -233,6 +240,7 @@ function volume(x0, x1, y0, y1, z0, z1, mat, openings, depth) {
   }
 }
 
+await pause();
 /* ---------- Terrain et horizon ---------- */
 var ground = new T.Mesh(new T.PlaneGeometry(1200, 1200), M.grass);
 ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
@@ -256,6 +264,7 @@ ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground)
   }
 })();
 
+await pause();
 /* ---------- Maison ---------- */
 var H1 = 3.2, H2 = 3.1, Y2 = H1 + .25;
 // rez-de-chaussée, x -8..5, baies du séjour plein sud
@@ -294,6 +303,7 @@ box(10, .03, 4.2, -3.2, .12, 13.6, M.water, { noCast: true });
 [-6.4, -4.8].forEach(function (x) { box(.7, .28, 1.9, x, .14, 17.5, M.coping); var b = box(.7, .06, .7, x, .62, 16.6, M.coping); b.rotation.x = -.7; });
 box(3.2, .03, 24, 6.4, 0, 16, M.gravel, { noCast: true });
 
+await pause();
 /* ---------- Végétation : feuillage en milliers de touffes ---------- */
 var clumpGeo = new T.IcosahedronGeometry(1, 1);
 var leafMat = new T.MeshStandardMaterial({ color: 0xFFFFFF, roughness: .92, flatShading: false });
@@ -327,6 +337,7 @@ function cypress(x, z, h) {
   trunk(x, z, 1, .14);
   foliage(x, .4, z, h, function (u) { return .85 * Math.sin(Math.PI * Math.min(1, .15 + u * .9)) * (1 - u * .55); }, 900, .17, .28, .42, .19);
 }
+await pause();
 tree(-17, -13, 4.5, 3.6, .24, .3); tree(-6, -17, 5.5, 4.2, .25, .27); tree(9, -16, 5, 3.8, .23, .31);
 tree(20, -6, 4, 3.2, .22, .33); tree(-26, 2, 4.2, 3.4, .25, .28); tree(25, 11, 3.6, 3, .23, .32);
 olive(3.6, 11); olive(-11.6, 12); olive(2.4, 18);
@@ -340,6 +351,7 @@ for (var lv = 0; lv < 14; lv++) { // lavandes le long de l'allée
   m.rotation.x = -Math.PI / 2; m.position.set(-.8, .015, .2); scene.add(m);
 })();
 
+await pause();
 /* ---------- Caméra : lent travelling, sans interaction ---------- */
 var CAM = { az: .6, el: .1, R: 38, cx: -.5, cy: 2.6, cz: 2.5, sx: 0, sy: 0 };
 // sx / sy décalent le cadrage : la maison se place en haut à droite, le titre en bas à gauche
@@ -360,13 +372,15 @@ window.addEventListener('resize', function () { fit(); place((performance.now() 
 var t0 = performance.now();
 fit(); place(0);
 renderer.shadowMap.needsUpdate = true;
+await pause();
 renderer.compile(scene, camera);
+await pause();
 renderer.render(scene, camera);
 requestAnimationFrame(function () { frame.classList.add('ready'); });
 
 /* Vue de la terrasse pour la vitrine, calculée une seule fois */
 (function () {
-  var img = $('#still'); if (!img) return;
+  var img = $('#still'); if (!img || !BAKE) return;
   var w = SMALL ? 1000 : 1500, h = Math.round(w * .72);
   renderer.setPixelRatio(1); renderer.setSize(w, h, false);
   var cam2 = new T.PerspectiveCamera(44, w / h, .5, 3000);
@@ -386,4 +400,20 @@ function loop(now) {
   place((now - t0) / 1000); renderer.render(scene, camera);
 }
 requestAnimationFrame(loop);
+window.__ready = true;
+}
+function loadJS(src) { return new Promise(function (ok, ko) { var e = document.createElement('script'); e.src = src; e.onload = ok; e.onerror = ko; document.head.appendChild(e); }); }
+function boot() {
+  if (window.THREE) return start3D();
+  loadJS('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js')
+    .then(function () { return loadJS('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/objects/Sky.js'); })
+    .then(function () { if (window.requestIdleCallback) requestIdleCallback(start3D, { timeout: 1000 }); else setTimeout(start3D, 200); })
+    .catch(function () { /* l'image du rendu reste affichée */ });
+}
+if (BAKE) boot();
+else if (LIVE) {
+  // le rendu en direct démarre une fois la page chargée ; l'image du rendu reste affichée en attendant
+  var go = function () { setTimeout(boot, 600); };
+  if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
+}
 })();

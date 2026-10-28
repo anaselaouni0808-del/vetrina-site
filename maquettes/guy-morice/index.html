@@ -8,6 +8,8 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F6F6F4">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Cpath d='M8 23V12l8-4 8 4v11' fill='none' stroke='%23C2A274' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="img/hero-desktop.jpg" media="(min-width: 861px)">
+<link rel="preload" as="image" href="img/hero-mobile.jpg" media="(max-width: 860px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Archivo:wdth,wght@62..125,300..700&display=swap">
@@ -80,14 +82,12 @@ section[id]{scroll-margin-top:76px}
 
 /* ---------- Héros : le rendu 3D en plein écran ---------- */
 .hero{position:relative;height:calc(100svh - 72px - 34px);min-height:560px;max-height:980px;overflow:hidden;background:linear-gradient(#C9D6E0,#E2E0D8 55%,#7E8A58);color:var(--white)}
-.hero canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block;opacity:0;transition:opacity 1.8s var(--ease)}
+.hero canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block;opacity:0;transition:opacity 2.4s ease}
 .hero.ready canvas{opacity:1}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:
   linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.55) 100%),
   linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,0) 55%),
   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.hero .wait{position:absolute;inset:0;display:grid;place-items:center;font-size:14px;color:rgba(0,0,0,.55)}
-.hero.ready .wait{display:none}
 .hero-copy{position:absolute;left:0;right:0;bottom:0;z-index:2}
 .hero-copy .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px 48px;padding-block:0 clamp(28px,5vh,60px)}
 .hero h1{font-size:clamp(60px,10.5vw,170px);line-height:.9;letter-spacing:-.015em;text-shadow:0 2px 30px rgba(0,0,0,.25)}
@@ -107,7 +107,8 @@ section[id]{scroll-margin-top:76px}
   .hero-copy .wrap{grid-template-columns:1fr;padding-block:26px 34px}
   .hero h1{font-size:clamp(54px,16vw,96px);text-shadow:none}
 }
-.stage{position:absolute;inset:0}
+.stage{position:absolute;inset:0;background:#C9D6E0 url(img/hero-desktop.jpg) center/cover no-repeat}
+@media (max-width:860px){.stage{background-image:url(img/hero-mobile.jpg)}}
 
 /* ---------- Introduction et savoir-faire ---------- */
 .sec{padding-block:clamp(90px,12vw,170px)}
@@ -254,7 +255,7 @@ section[id]{scroll-margin-top:76px}
 
 <main id="top">
 <section class="hero" id="frame" aria-labelledby="nom">
-  <div class="stage" role="img" aria-label="Rendu 3D d'une maison contemporaine à deux niveaux, façade blanche et bardage bois, piscine et oliviers, en fin de journée dans les coteaux de l'Agenais."><div class="wait">Préparation du rendu 3D…</div></div>
+  <div class="stage" role="img" aria-label="Rendu 3D d'une maison contemporaine à deux niveaux, façade blanche et bardage bois, piscine et oliviers, en fin de journée dans les coteaux de l'Agenais."></div>
   <span class="hero-tag">Esquisse 3D</span>
   <div class="hero-copy">
     <div class="wrap">
@@ -286,7 +287,7 @@ section[id]{scroll-margin-top:76px}
       <p>Chaque cadre accueillera un projet de Guy Morice, avec sa photographie, le lieu et l'année.</p>
     </div>
     <div class="vitrine">
-      <figure class="big rv"><div class="slot"><span class="tag">Esquisse 3D</span><img id="still" alt="Rendu 3D de la façade et de la piscine de la maison contemporaine" hidden></div><figcaption><b class="sf">Maison contemporaine</b><span>Agenais</span></figcaption></figure>
+      <figure class="big rv"><div class="slot"><span class="tag">Esquisse 3D</span><img id="still" src="img/vue-terrasse.jpg" width="1500" height="1080" alt="Rendu 3D de la façade et de la piscine de la maison contemporaine" loading="lazy" decoding="async"></div><figcaption><b class="sf">Maison contemporaine</b><span>Agenais</span></figcaption></figure>
       <figure class="rv"><div class="slot empty"><div><b class="sf">Projet à venir</b><span>Photo, lieu, année</span></div></div><figcaption><b class="sf">Maison individuelle</b><span>À compléter</span></figcaption></figure>
       <figure class="rv"><div class="slot empty"><div><b class="sf">Projet à venir</b><span>Photo, lieu, année</span></div></div><figcaption><b class="sf">Extension</b><span>À compléter</span></figcaption></figure>
     </div>
@@ -400,8 +401,6 @@ section[id]{scroll-margin-top:76px}
   <a href="https://www.google.com/maps/dir/?api=1&destination=4+all%C3%A9e+du+Puits+de+Carr%C3%A8re+47310+Estillac" target="_blank" rel="noopener">Itinéraire</a>
 </nav>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/objects/Sky.js"></script>
 <script src="morice.js"></script>
 </body>
 </html>
