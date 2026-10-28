@@ -3,160 +3,97 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Guy Morice, propositions de logo</title>
+<title>Guy Morice, logos</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Archivo:wdth,wght@62..125,300..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Archivo:wdth,wght@62..125,300..700&display=block">
 <style>
-/* Planche de présentation : chaque logo en grand, puis en négatif, en petit et sur une carte de visite. */
-:root{
-  --paper:#F6F6F4; --white:#FFFFFF; --stone:#ECEBE7; --rule:#D6D5D0; --graphite:#5B5D60; --ink:#000000; --bronze:#9C7B4E; --bronze-l:#C9AC7E;
-  --serif:"Bodoni Moda","Didot",Georgia,serif; --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --gut:clamp(20px,5vw,80px);
-  color-scheme:light;
-}
+/* Une page par logo, sans texte : blanc, puis noir, puis en usage. */
+:root{--paper:#F6F6F4;--white:#FFFFFF;--stone:#E9E8E4;--ink:#000000;--bronze:#9C7B4E;--grey:#9A9B98;color-scheme:light}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1240px;margin-inline:auto;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
-.sf{font-family:var(--serif);font-optical-sizing:none;font-variation-settings:"opsz" 16;font-weight:500}
-h1,h2,h3,p{margin:0}
-.top{background:var(--ink);color:#CFCFCB;font-size:13px}
-.top .wrap{padding-block:9px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.top b{color:var(--bronze-l);font-weight:500}
-header.intro .wrap{padding-block:clamp(56px,8vw,110px) clamp(30px,4vw,56px)}
-.kicker{display:block;font-family:var(--serif);font-style:italic;font-size:20px;color:var(--bronze);margin-bottom:12px}
-header.intro h1{font-size:clamp(44px,6vw,88px);line-height:1}
-header.intro p{margin-top:20px;color:var(--graphite);max-width:60ch}
-.prop{padding-block:clamp(40px,6vw,80px);border-top:1px solid var(--rule)}
-.prop-head{display:flex;justify-content:space-between;align-items:end;gap:16px 40px;flex-wrap:wrap;margin-bottom:28px}
-.prop-head h2{font-size:clamp(34px,3.6vw,52px);line-height:1}
-.prop-head p{color:var(--graphite);max-width:52ch}
-.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
-.tile{background:var(--white);border:1px solid var(--rule);display:grid;place-items:center;padding:28px;min-width:0;position:relative}
-.tile small{position:absolute;left:12px;bottom:10px;font-size:12px;color:var(--graphite)}
-.tile.dark{background:var(--ink);border-color:var(--ink);color:var(--white)}
-.tile.dark small{color:#8D8E8B}
-.main{grid-column:span 4;grid-row:span 2;min-height:400px}
-.neg{grid-column:span 2}
-.icons{grid-column:span 2;display:flex;gap:22px;align-items:end;justify-content:center}
-.card-tile{grid-column:span 3;background:var(--stone);padding:40px 24px 44px}
-.card{width:100%;max-width:380px;aspect-ratio:85/55;background:var(--white);box-shadow:0 18px 40px -18px rgba(0,0,0,.35);display:grid;place-items:center;padding:16px}
-.card.back{background:var(--ink);color:var(--white);place-items:stretch;padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between;font-size:12px;line-height:1.5}
-.card.back b{font-family:var(--serif);font-weight:500;font-size:17px;font-variation-settings:"opsz" 16}
-.card.back span{color:#BDBDB9}
-.lockup{width:100%;max-width:520px;height:auto}
-.icon{display:block}
-.choice{display:flex;align-items:center;gap:14px;margin-top:22px;flex-wrap:wrap}
-.choice span{font-size:15px;color:var(--graphite)}
-@media (max-width:900px){.board{grid-template-columns:1fr 1fr}.main{grid-column:1/-1;grid-row:auto;min-height:260px}.neg,.icons{grid-column:span 1}.card-tile{grid-column:1/-1}}
-@media (max-width:520px){.board{grid-template-columns:1fr}.neg,.icons{grid-column:1/-1}}
-footer .wrap{padding-block:50px 70px;color:var(--graphite);font-size:14px;border-top:1px solid var(--rule)}
+html{scroll-snap-type:y mandatory}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Archivo",Arial,sans-serif}
+.slide{position:relative;height:100svh;min-height:420px;display:grid;place-items:center;scroll-snap-align:start;padding:6vw}
+.slide.w{background:var(--white)}
+.slide.k{background:var(--ink);color:var(--white)}
+.slide.s{background:var(--stone)}
+.slide svg.logo{width:min(760px,84vw);height:auto}
+.slide svg.logo.tall{width:min(560px,74vw)}
+.n{position:absolute;left:28px;bottom:22px;font-size:13px;color:var(--grey);font-variant-numeric:tabular-nums}
+.use{display:flex;gap:min(6vw,70px);align-items:center;justify-content:center;flex-wrap:wrap}
+.card{width:min(380px,80vw);aspect-ratio:85/55;background:var(--white);box-shadow:0 30px 60px -30px rgba(0,0,0,.45);display:grid;place-items:center;padding:8%}
+.card.k{background:var(--ink);color:var(--white)}
+.card svg{width:100%;height:auto}
+.app{width:96px;height:96px;border-radius:22px;background:var(--ink);color:var(--white);display:grid;place-items:center;box-shadow:0 20px 40px -20px rgba(0,0,0,.5)}
+.app svg{width:58%;height:auto}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <!-- A : monogramme -->
-    <symbol id="a-mark" viewBox="0 0 80 80">
-      <rect x="1" y="1" width="78" height="78" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <text x="40" y="51" text-anchor="middle" fill="currentColor" font-family="Bodoni Moda, Georgia, serif" font-size="36" font-weight="500" style="font-variation-settings:'opsz' 16">GM</text>
-      <line x1="26" y1="61" x2="54" y2="61" stroke="#9C7B4E" stroke-width="1.6"/>
+    <!-- 1. La signature : le nom en Bodoni, un filet bronze, « architecte » -->
+    <symbol id="l1" viewBox="0 0 600 190">
+      <text x="300" y="104" text-anchor="middle" fill="currentColor" font-family="Bodoni Moda, Georgia, serif" font-size="96" font-weight="500" style="font-variation-settings:'opsz' 18" letter-spacing="-1">Guy Morice</text>
+      <line x1="196" y1="140" x2="404" y2="140" stroke="#9C7B4E" stroke-width="1.6"/>
+      <text x="300" y="176" text-anchor="middle" fill="currentColor" font-family="Archivo, Arial, sans-serif" font-size="17" letter-spacing="9" opacity=".8">ARCHITECTE</text>
     </symbol>
-    <symbol id="a-lock" viewBox="0 0 420 100">
-      <use href="#a-mark" x="0" y="10" width="80" height="80"/>
-      <text x="104" y="60" fill="currentColor" font-family="Bodoni Moda, Georgia, serif" font-size="44" font-weight="500" style="font-variation-settings:'opsz' 16">Guy Morice</text>
-      <text x="106" y="84" fill="currentColor" font-family="Archivo, Arial, sans-serif" font-size="11.5" letter-spacing="5.2" opacity=".72">ARCHITECTE</text>
+    <symbol id="i1" viewBox="0 0 100 100">
+      <text x="50" y="66" text-anchor="middle" fill="currentColor" font-family="Bodoni Moda, Georgia, serif" font-size="52" font-weight="500" style="font-variation-settings:'opsz' 18">GM</text>
+      <line x1="30" y1="80" x2="70" y2="80" stroke="#9C7B4E" stroke-width="2"/>
     </symbol>
-    <!-- B : la maison et le soleil -->
-    <symbol id="b-mark" viewBox="0 0 64 64">
-      <circle cx="9" cy="9" r="6" fill="#9C7B4E"/>
-      <line x1="15" y1="16" x2="23" y2="31" stroke="#9C7B4E" stroke-width="1.8" stroke-dasharray="3 2.2"/>
-      <rect x="6" y="20" width="52" height="4.5" fill="currentColor"/>
-      <path d="M15 24.5V55M49 24.5V55" stroke="currentColor" stroke-width="3"/>
-      <rect x="21" y="31" width="13" height="24" fill="#9C7B4E" fill-opacity=".28" stroke="currentColor" stroke-width="1.8"/>
-      <rect x="2" y="54" width="60" height="3" fill="currentColor"/>
+
+    <!-- 2. Le toit : un seul trait au-dessus du nom, qui déborde comme une toiture-terrasse -->
+    <symbol id="l2" viewBox="0 0 640 170">
+      <rect x="20" y="30" width="600" height="5" fill="currentColor"/>
+      <text x="64" y="108" fill="currentColor" font-family="Archivo, Arial, sans-serif" font-size="58" font-weight="500" letter-spacing="12" style="font-stretch:112%">GUY MORICE</text>
+      <text x="66" y="148" fill="#9C7B4E" font-family="Archivo, Arial, sans-serif" font-size="16" font-weight="500" letter-spacing="8">ARCHITECTE À ESTILLAC</text>
     </symbol>
-    <symbol id="b-lock" viewBox="0 0 440 100">
-      <use href="#b-mark" x="0" y="14" width="72" height="72"/>
-      <text x="92" y="58" fill="currentColor" font-family="Archivo, Arial, sans-serif" font-size="33" font-weight="600" letter-spacing="3" style="font-stretch:125%">GUY MORICE</text>
-      <text x="94" y="82" fill="currentColor" font-family="Archivo, Arial, sans-serif" font-size="12" letter-spacing="7.4" opacity=".72">ARCHITECTE  ESTILLAC</text>
+    <symbol id="i2" viewBox="0 0 100 100">
+      <rect x="8" y="24" width="84" height="5" fill="currentColor"/>
+      <text x="50" y="72" text-anchor="middle" fill="currentColor" font-family="Archivo, Arial, sans-serif" font-size="38" font-weight="500" letter-spacing="4" style="font-stretch:112%">GM</text>
     </symbol>
-    <!-- C : le trait de plan, une pièce et sa porte -->
-    <symbol id="c-mark" viewBox="0 0 64 64">
-      <path d="M4 4h56v34h-6V10H10v44h18v6H4z" fill="currentColor"/>
-      <rect x="54" y="54" width="6" height="6" fill="currentColor"/>
-      <line x1="30" y1="57" x2="30" y2="33" stroke="currentColor" stroke-width="1.6"/>
-      <path d="M30 33a24 24 0 0 1 24 24" fill="none" stroke="#9C7B4E" stroke-width="1.6"/>
+
+    <!-- 3. Le monogramme dessiné : G et M tracés au trait, comme sur une planche -->
+    <symbol id="m3" viewBox="0 0 120 120">
+      <path d="M52 22H18v76h34V62H36" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
+      <path d="M68 98V22l17 38 17-38v76" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
+      <rect x="18" y="108" width="84" height="2.5" fill="#9C7B4E"/>
     </symbol>
-    <symbol id="c-lock" viewBox="0 0 400 100">
-      <use href="#c-mark" x="0" y="16" width="68" height="68"/>
-      <text x="90" y="58" fill="currentColor" font-family="Bodoni Moda, Georgia, serif" font-size="42" font-style="italic" font-weight="500" style="font-variation-settings:'opsz' 16">Guy Morice</text>
-      <text x="92" y="83" fill="currentColor" font-family="Archivo, Arial, sans-serif" font-size="12" letter-spacing="5.6" opacity=".72">ARCHITECTE</text>
+    <symbol id="l3" viewBox="0 0 640 170">
+      <use href="#m3" x="0" y="15" width="140" height="140"/>
+      <line x1="170" y1="40" x2="170" y2="140" stroke="currentColor" stroke-width="1.2" opacity=".35"/>
+      <text x="200" y="98" fill="currentColor" font-family="Bodoni Moda, Georgia, serif" font-size="70" font-weight="500" style="font-variation-settings:'opsz' 18">Guy Morice</text>
+      <text x="203" y="134" fill="currentColor" font-family="Archivo, Arial, sans-serif" font-size="15" letter-spacing="8" opacity=".8">ARCHITECTE</text>
     </symbol>
   </defs>
 </svg>
 
-<div class="top"><div class="wrap"><span><b>Propositions de logo</b> pour Guy Morice, architecte</span><span>28 octobre 2026</span></div></div>
+<!-- Logo 1 -->
+<section class="slide w" aria-label="Logo 1"><svg class="logo tall" viewBox="0 0 600 190" role="img" aria-label="Guy Morice, architecte"><use href="#l1"/></svg><span class="n">1</span></section>
+<section class="slide k" aria-label="Logo 1 en négatif"><svg class="logo tall" viewBox="0 0 600 190" aria-hidden="true"><use href="#l1"/></svg><span class="n">1</span></section>
+<section class="slide s" aria-label="Logo 1 en usage"><div class="use">
+  <div class="card"><svg viewBox="0 0 600 190" aria-hidden="true"><use href="#l1"/></svg></div>
+  <div class="card k"><svg viewBox="0 0 100 100" style="width:38%" aria-hidden="true"><use href="#i1"/></svg></div>
+  <div class="app"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#i1"/></svg></div>
+</div><span class="n">1</span></section>
 
-<header class="intro">
-  <div class="wrap">
-    <span class="kicker">Identité visuelle</span>
-    <h1 class="sf">Trois logos, trois caractères</h1>
-    <p>Chaque proposition est présentée en grand, en négatif, en petit format (onglet du navigateur, réseaux) et sur une carte de visite. Le logo retenu sera ensuite affiné et livré dans tous les formats utiles.</p>
-  </div>
-</header>
+<!-- Logo 2 -->
+<section class="slide w" aria-label="Logo 2"><svg class="logo" viewBox="0 0 640 170" role="img" aria-label="Guy Morice, architecte à Estillac"><use href="#l2"/></svg><span class="n">2</span></section>
+<section class="slide k" aria-label="Logo 2 en négatif"><svg class="logo" viewBox="0 0 640 170" aria-hidden="true"><use href="#l2"/></svg><span class="n">2</span></section>
+<section class="slide s" aria-label="Logo 2 en usage"><div class="use">
+  <div class="card"><svg viewBox="0 0 640 170" aria-hidden="true"><use href="#l2"/></svg></div>
+  <div class="card k"><svg viewBox="0 0 100 100" style="width:40%" aria-hidden="true"><use href="#i2"/></svg></div>
+  <div class="app"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#i2"/></svg></div>
+</div><span class="n">2</span></section>
 
-<main>
-<section class="prop" aria-labelledby="pa">
-  <div class="wrap">
-    <div class="prop-head">
-      <div><span class="kicker">Proposition A</span><h2 id="pa" class="sf">Le monogramme</h2></div>
-      <p>Les initiales G M en Bodoni, encadrées comme un tampon d'architecte. Classique, sérieux, intemporel : l'image d'un cabinet installé depuis 1982.</p>
-    </div>
-    <div class="board">
-      <div class="tile main"><svg class="lockup" viewBox="0 0 420 100" role="img" aria-label="Logo A : monogramme GM et Guy Morice, architecte"><use href="#a-lock"/></svg><small>Version principale</small></div>
-      <div class="tile dark neg"><svg class="lockup" viewBox="0 0 420 100" aria-hidden="true"><use href="#a-lock"/></svg><small>En négatif</small></div>
-      <div class="tile icons"><svg class="icon" width="72" height="72" aria-hidden="true"><use href="#a-mark"/></svg><svg class="icon" width="32" height="32" aria-hidden="true"><use href="#a-mark"/></svg><svg class="icon" width="18" height="18" aria-hidden="true"><use href="#a-mark"/></svg><small>Petits formats</small></div>
-      <div class="tile card-tile"><div class="card"><svg viewBox="0 0 420 100" style="width:78%" aria-hidden="true"><use href="#a-lock"/></svg></div></div>
-      <div class="tile card-tile"><div class="card back"><svg width="34" height="34" style="color:#fff" aria-hidden="true"><use href="#a-mark"/></svg><div><b>Guy Morice</b><br><span>Architecte</span><br>06 09 61 26 41<br><span>4 allée du Puits de Carrère, 47310 Estillac</span></div></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="prop" aria-labelledby="pb">
-  <div class="wrap">
-    <div class="prop-head">
-      <div><span class="kicker">Proposition B</span><h2 id="pb" class="sf">La maison et le soleil</h2></div>
-      <p>Une maison au toit débordant et un rayon de soleil qui passe dessous : son approche bio-énergies résumée en un dessin. Moderne et facile à reconnaître.</p>
-    </div>
-    <div class="board">
-      <div class="tile main"><svg class="lockup" viewBox="0 0 440 100" role="img" aria-label="Logo B : une maison et un rayon de soleil, Guy Morice, architecte à Estillac"><use href="#b-lock"/></svg><small>Version principale</small></div>
-      <div class="tile dark neg"><svg class="lockup" viewBox="0 0 440 100" aria-hidden="true"><use href="#b-lock"/></svg><small>En négatif</small></div>
-      <div class="tile icons"><svg class="icon" width="72" height="72" aria-hidden="true"><use href="#b-mark"/></svg><svg class="icon" width="32" height="32" aria-hidden="true"><use href="#b-mark"/></svg><svg class="icon" width="18" height="18" aria-hidden="true"><use href="#b-mark"/></svg><small>Petits formats</small></div>
-      <div class="tile card-tile"><div class="card"><svg viewBox="0 0 440 100" style="width:80%" aria-hidden="true"><use href="#b-lock"/></svg></div></div>
-      <div class="tile card-tile"><div class="card back"><svg width="36" height="36" style="color:#fff" aria-hidden="true"><use href="#b-mark"/></svg><div><b>Guy Morice</b><br><span>Architecte</span><br>06 09 61 26 41<br><span>4 allée du Puits de Carrère, 47310 Estillac</span></div></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="prop" aria-labelledby="pc">
-  <div class="wrap">
-    <div class="prop-head">
-      <div><span class="kicker">Proposition C</span><h2 id="pc" class="sf">Le trait de plan</h2></div>
-      <p>Une pièce dessinée comme sur un plan, avec l'arc de sa porte en bronze. Un signe que tout architecte reconnaît, associé à un nom en italique élégant.</p>
-    </div>
-    <div class="board">
-      <div class="tile main"><svg class="lockup" viewBox="0 0 400 100" role="img" aria-label="Logo C : plan d'une pièce avec sa porte, Guy Morice, architecte"><use href="#c-lock"/></svg><small>Version principale</small></div>
-      <div class="tile dark neg"><svg class="lockup" viewBox="0 0 400 100" aria-hidden="true"><use href="#c-lock"/></svg><small>En négatif</small></div>
-      <div class="tile icons"><svg class="icon" width="72" height="72" aria-hidden="true"><use href="#c-mark"/></svg><svg class="icon" width="32" height="32" aria-hidden="true"><use href="#c-mark"/></svg><svg class="icon" width="18" height="18" aria-hidden="true"><use href="#c-mark"/></svg><small>Petits formats</small></div>
-      <div class="tile card-tile"><div class="card"><svg viewBox="0 0 400 100" style="width:78%" aria-hidden="true"><use href="#c-lock"/></svg></div></div>
-      <div class="tile card-tile"><div class="card back"><svg width="34" height="34" style="color:#fff" aria-hidden="true"><use href="#c-mark"/></svg><div><b>Guy Morice</b><br><span>Architecte</span><br>06 09 61 26 41<br><span>4 allée du Puits de Carrère, 47310 Estillac</span></div></div></div>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer><div class="wrap">Propositions réalisées par Vetrina. Le logo choisi sera livré en vectoriel (SVG, PDF), en PNG pour le web et en version favicon.</div></footer>
+<!-- Logo 3 -->
+<section class="slide w" aria-label="Logo 3"><svg class="logo" viewBox="0 0 640 170" role="img" aria-label="Monogramme GM, Guy Morice, architecte"><use href="#l3"/></svg><span class="n">3</span></section>
+<section class="slide k" aria-label="Logo 3 en négatif"><svg class="logo" viewBox="0 0 640 170" aria-hidden="true"><use href="#l3"/></svg><span class="n">3</span></section>
+<section class="slide s" aria-label="Logo 3 en usage"><div class="use">
+  <div class="card"><svg viewBox="0 0 640 170" aria-hidden="true"><use href="#l3"/></svg></div>
+  <div class="card k"><svg viewBox="0 0 120 120" style="width:34%" aria-hidden="true"><use href="#m3"/></svg></div>
+  <div class="app"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#m3"/></svg></div>
+</div><span class="n">3</span></section>
 </body>
 </html>
