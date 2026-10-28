@@ -49,7 +49,7 @@ body{margin:0;background:#1a1a1a;font-family:"Archivo",Arial,sans-serif}
 .card.light{background:radial-gradient(120% 100% at 20% 10%,rgba(255,255,255,.6),rgba(255,255,255,0) 70%),var(--noise),#F1EFEA;background-blend-mode:normal,soft-light,normal;transform:rotate(-3deg)}
 .card.dark{background:radial-gradient(120% 100% at 20% 10%,rgba(255,255,255,.08),rgba(255,255,255,0) 70%),var(--noise),#141414;background-blend-mode:normal,overlay,normal;transform:rotate(2.5deg) translateY(24px)}
 .card .logo{width:100%}
-.card .logo.round,.card .logo.arch{width:46%}
+.card .logo.round{width:58%}
 </style>
 </head>
 <body>
@@ -58,36 +58,25 @@ body{margin:0;background:#1a1a1a;font-family:"Archivo",Arial,sans-serif}
     <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#8C6B3E"/><stop offset=".28" stop-color="#E4CC98"/><stop offset=".5" stop-color="#A47E4B"/><stop offset=".72" stop-color="#EBD7AA"/><stop offset="1" stop-color="#8A683C"/>
     </linearGradient>
-    <path id="ring" d="M160,160 m-129,0 a129,129 0 1,1 258,0 a129,129 0 1,1 -258,0"/>
+    <path id="ring" d="M160,160 m-118,0 a118,118 0 1,1 236,0 a118,118 0 1,1 -236,0"/>
 
-    <!-- 1. Le portail : une arche d'architecte, le monogramme à l'intérieur, le nom en capitales Bodoni -->
-    <symbol id="L1" viewBox="0 0 300 430">
-      <path class="s" stroke-width="2.4" d="M66 296V150a84 84 0 0 1 168 0v146"/>
-      <path class="s" stroke-width=".9" d="M76 296V150a74 74 0 0 1 148 0v146"/>
-      <path class="f" d="M150 58l5 6-5 6-5-6z"/>
-      <text class="f" x="150" y="252" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="78" font-weight="500" style="font-variation-settings:'opsz' 18">GM</text>
-      <rect class="f" x="40" y="296" width="220" height="2.4"/>
-      <text class="f" x="150" y="354" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="33" font-weight="500" letter-spacing="7" style="font-variation-settings:'opsz' 18">GUY MORICE</text>
-      <text class="f" x="153" y="388" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="11.5" letter-spacing="8.5" opacity=".85">ARCHITECTE</text>
+    <!-- 1. Les volumes : la maison en porte-à-faux réduite à deux blocs pleins, le nom en capitales -->
+    <symbol id="V1" viewBox="0 0 100 100">
+      <rect class="f" x="8" y="54" width="58" height="38"/>
+      <rect class="f" x="32" y="12" width="60" height="36"/>
+          </symbol>
+    <symbol id="L1" viewBox="0 0 560 120">
+      <use href="#V1" x="0" y="10" width="100" height="100"/>
+      <text class="f" x="128" y="68" font-family="Archivo, Arial, sans-serif" font-size="50" font-weight="650" letter-spacing="4" style="font-stretch:108%">GUY MORICE</text>
+      <text x="131" y="102" fill="#9C7B4E" font-family="Archivo, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="9.5">ARCHITECTE</text>
     </symbol>
 
-    <!-- 2. Le sceau : la maison cubique en élévation, son nom et 1982 autour, comme un cachet sur un plan -->
+    <!-- 2. Le sceau : un anneau épais, le nom et 1982 autour, GM au centre -->
     <symbol id="L2" viewBox="0 0 320 320">
-      <circle class="s" cx="160" cy="160" r="152" stroke-width="2.4"/>
-      <circle class="s" cx="160" cy="160" r="108" stroke-width=".9"/>
-      <text class="f" font-family="Archivo, Arial, sans-serif" font-size="14.5" font-weight="500" letter-spacing="5.4"><textPath href="#ring" startOffset="0" textLength="800" lengthAdjust="spacing">GUY MORICE • ARCHITECTE • ESTILLAC • DEPUIS 1982 •</textPath></text>
-      <g class="s" stroke-width="2.2" stroke-linejoin="miter">
-        <path d="M98 198h124"/>
-        <path d="M110 198v-36h66"/>
-        <path d="M100 162h86"/>
-        <path d="M126 162v-34h84v34h-34"/>
-        <path d="M118 128h102"/>
-        <path d="M201 162v36"/>
-      </g>
-      <g class="s" stroke-width="1.3">
-        <path d="M118 198v-26h26v26M131 172v26"/>
-        <path d="M136 137h48v14h-48z"/>
-      </g>
+      <circle class="s" cx="160" cy="160" r="150" stroke-width="9"/>
+      <text class="f" font-family="Archivo, Arial, sans-serif" font-size="17" font-weight="650" letter-spacing="4"><textPath href="#ring" startOffset="0" textLength="770" lengthAdjust="spacing">GUY MORICE • ARCHITECTE • ESTILLAC • DEPUIS 1982 •</textPath></text>
+      <circle class="s" cx="160" cy="160" r="98" stroke-width="3"/>
+      <text class="f" x="160" y="186" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="74" font-weight="700" letter-spacing="2" style="font-stretch:110%">GM</text>
     </symbol>
 
     <!-- 3. Le monogramme dessiné (proposition retenue) -->
@@ -106,11 +95,11 @@ body{margin:0;background:#1a1a1a;font-family:"Archivo",Arial,sans-serif}
 </svg>
 
 <!-- 1 -->
-<section class="slide paper" aria-label="Logo 1"><svg class="logo arch deboss" viewBox="0 0 300 430" role="img" aria-label="Guy Morice, architecte : monogramme dans une arche"><use href="#L1"/></svg><span class="n">1</span></section>
-<section class="slide board" aria-label="Logo 1, dorure"><svg class="logo arch foil" viewBox="0 0 300 430" aria-hidden="true"><use href="#L1"/></svg><span class="n">1</span></section>
+<section class="slide paper" aria-label="Logo 1"><svg class="logo deboss" viewBox="0 0 560 120" role="img" aria-label="Guy Morice, architecte : deux volumes de maison"><use href="#L1"/></svg><span class="n">1</span></section>
+<section class="slide board" aria-label="Logo 1, dorure"><svg class="logo foil" viewBox="0 0 560 120" aria-hidden="true"><use href="#L1"/></svg><span class="n">1</span></section>
 <section class="slide stone" aria-label="Logo 1, carte de visite"><div class="scene">
-  <div class="card light"><svg class="logo arch deboss" viewBox="0 0 300 430" aria-hidden="true"><use href="#L1"/></svg></div>
-  <div class="card dark"><svg class="logo arch foil" viewBox="0 0 300 430" aria-hidden="true"><use href="#L1"/></svg></div>
+  <div class="card light"><svg class="logo deboss" viewBox="0 0 560 120" aria-hidden="true"><use href="#L1"/></svg></div>
+  <div class="card dark"><svg class="logo foil" viewBox="0 0 100 100" style="width:30%" aria-hidden="true"><use href="#V1"/></svg></div>
 </div><span class="n">1</span></section>
 
 <!-- 2 -->
