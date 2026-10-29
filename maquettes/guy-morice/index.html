@@ -129,25 +129,75 @@ section[id]{scroll-margin-top:76px}
 .head{display:flex;justify-content:space-between;align-items:end;gap:20px 60px;flex-wrap:wrap;margin-bottom:clamp(36px,5vw,64px)}
 .head h2{font-size:clamp(40px,4.8vw,72px);line-height:1}
 .head p{color:var(--graphite);max-width:44ch}
-.vitrine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto auto;gap:clamp(16px,2vw,28px)}
-.vitrine figure{margin:0;display:grid;gap:14px;align-content:start;min-width:0}
-.vitrine .big{grid-column:span 2;grid-row:span 2;grid-template-rows:1fr auto}
-.slot{position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden;background:var(--stone)}
-.big .slot{aspect-ratio:auto;min-height:440px}
-.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease)}
-.vitrine figure:hover .slot img{transform:scale(1.03)}
-.slot.empty{display:grid;place-items:center;text-align:center;border:1px solid var(--rule);background:
-  repeating-linear-gradient(135deg,transparent 0 13px,rgba(0,0,0,.035) 13px 14px),var(--stone)}
-.slot.empty div{display:grid;gap:6px;justify-items:center;padding:20px;background:var(--paper);border:1px solid var(--rule)}
-.slot.empty b{font-size:20px}
-.slot.empty span{font-size:13px;color:var(--graphite)}
-.tag{position:absolute;left:14px;top:14px;background:rgba(255,255,255,.92);font-size:12px;padding:5px 10px;z-index:1}
-.vitrine figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:12px}
-.vitrine figcaption b{font-size:22px}
-.big figcaption b{font-size:28px}
-.vitrine figcaption span{font-size:14px;color:var(--graphite);white-space:nowrap}
-@media (max-width:900px){.vitrine{grid-template-columns:1fr 1fr}.vitrine .big{grid-column:1/-1;grid-row:auto}.big .slot{aspect-ratio:16/10;min-height:0}}
-@media (max-width:560px){.vitrine{grid-template-columns:1fr}}
+.vitrine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.2vw,32px)}
+.proj{all:unset;box-sizing:border-box;display:grid;gap:14px;align-content:start;min-width:0;cursor:pointer}
+.proj:focus-visible{outline:2px solid var(--bronze);outline-offset:6px}
+.proj.big{grid-column:span 2;grid-row:span 2;grid-template-rows:1fr auto}
+.pic{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--stone)}
+.proj.big .pic{aspect-ratio:auto;min-height:460px}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease)}
+.proj:hover .pic img{transform:scale(1.04)}
+.pic .count{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);color:var(--ink);font-size:12.5px;padding:6px 11px}
+.pic .open{position:absolute;right:14px;bottom:14px;background:var(--ink);color:var(--white);font-size:13px;padding:7px 13px;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s var(--ease)}
+.proj:hover .open,.proj:focus-visible .open{opacity:1;transform:none}
+@media (hover:none){.pic .open{opacity:1;transform:none}}
+.cap{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:12px}
+.cap b{font-size:22px;line-height:1.2}
+.proj.big .cap b{font-size:30px}
+.cap span{font-size:14px;color:var(--graphite);text-align:right}
+.cta{display:grid;align-content:space-between;gap:24px;background:var(--ink);color:var(--white);padding:clamp(26px,3vw,40px);text-decoration:none;min-height:260px}
+.cta b{font-size:clamp(26px,2.4vw,34px);line-height:1.15}
+.cta span{color:#BDBDB9;font-size:15px}
+.cta i{font-style:normal;display:inline-flex;align-self:end;justify-self:start;border:1px solid #6F7072;padding:12px 18px;font-size:15px;transition:border-color .3s,color .3s}
+.cta:hover i{border-color:var(--bronze-l);color:var(--bronze-l)}
+@media (max-width:900px){.vitrine{grid-template-columns:1fr 1fr}.proj.big{grid-column:1/-1;grid-row:auto}.proj.big .pic{aspect-ratio:16/10;min-height:0}}
+@media (max-width:560px){.vitrine{grid-template-columns:1fr}.cta{min-height:0}.cap{flex-direction:column;gap:2px}.cap span{text-align:left}}
+
+/* ---------- Visionneuse de projet ---------- */
+.viewer{position:fixed;inset:0;z-index:80;background:#0B0B0B;color:var(--white);display:grid;grid-template-columns:minmax(0,1fr) 360px;grid-template-rows:auto minmax(0,1fr) auto}
+.viewer[hidden],.v-nav[hidden],.v-tabs button[hidden]{display:none!important}
+.v-top{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:calc(14px + env(safe-area-inset-top,0px)) max(22px,env(safe-area-inset-right,0px)) 14px max(22px,env(safe-area-inset-left,0px));border-bottom:1px solid #222}
+.v-top h2{font-size:clamp(22px,2.2vw,30px);line-height:1.1}
+.v-top h2 small{display:block;font-family:var(--sans);font-size:13px;color:#9C9D9A;font-weight:400;margin-top:5px;font-variation-settings:normal}
+.v-close{all:unset;cursor:pointer;width:48px;height:48px;display:grid;place-items:center;border:1px solid #444;flex:none}
+.v-close:hover,.v-close:focus-visible{border-color:var(--bronze-l)}
+.v-stage{position:relative;min-height:0;display:grid;place-items:center;padding:18px 84px;overflow:hidden;touch-action:pan-y}
+.v-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;opacity:0;transition:opacity .4s}
+.v-stage img.on{opacity:1}
+.v-stage.plan{background:#F4F3EF}
+.v-stage.plan .v-nav{color:var(--ink);border-color:#BDBDB9;background:rgba(255,255,255,.88)}
+.v-nav{all:unset;cursor:pointer;position:absolute;top:50%;transform:translateY(-50%);width:54px;height:54px;display:grid;place-items:center;border:1px solid #444;background:rgba(0,0,0,.4);color:var(--white)}
+.v-nav:hover,.v-nav:focus-visible{border-color:var(--bronze-l)}
+.v-prev{left:16px}.v-next{right:16px}
+.v-num{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);font-size:13px;background:rgba(0,0,0,.6);padding:5px 11px;font-variant-numeric:tabular-nums}
+.v-stage.plan .v-num{background:rgba(255,255,255,.92);color:var(--ink);border:1px solid var(--rule)}
+.v-side{grid-row:2/4;grid-column:2;border-left:1px solid #222;padding:26px 24px;overflow:auto}
+.v-side p{color:#CFCFCB;font-size:16px}
+.v-facts{margin:24px 0 0;border-top:1px solid #333}
+.v-facts div{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #222;font-size:15px}
+.v-facts dt{color:#9C9D9A}
+.v-facts dd{margin:0;text-align:right}
+.v-side .full{display:inline-block;margin-top:22px;color:var(--bronze-l);font-size:14px}
+.v-bottom{grid-column:1;border-top:1px solid #222;padding:12px max(18px,env(safe-area-inset-left,0px)) calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:16px;align-items:center;min-width:0}
+.v-tabs{display:flex;border:1px solid #444;flex:none}
+.v-tabs button{all:unset;cursor:pointer;padding:9px 14px;font-size:14px;color:#BDBDB9}
+.v-tabs button[aria-pressed=true]{background:var(--white);color:var(--ink)}
+.v-tabs button:focus-visible{outline:2px solid var(--bronze-l)}
+.v-thumbs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;min-width:0;padding:2px}
+.v-thumbs button{all:unset;cursor:pointer;flex:none;width:96px;height:62px;opacity:.55;outline:1px solid transparent;outline-offset:1px;transition:opacity .3s}
+.v-thumbs button img{width:100%;height:100%;object-fit:cover;display:block;background:#F4F3EF}
+.v-thumbs button[aria-current=true]{opacity:1;outline-color:var(--bronze-l)}
+.v-thumbs button:hover{opacity:.9}
+@media (max-width:900px){
+  .viewer{grid-template-columns:1fr;grid-template-rows:auto auto auto auto;overflow-y:auto;align-content:start}
+  .v-stage{height:auto;aspect-ratio:4/3;max-height:62svh;padding:10px}
+  .v-bottom{grid-row:3;flex-wrap:wrap}
+  .v-side{grid-row:4;grid-column:1;border-left:0;border-top:1px solid #222;padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+  .v-nav{width:44px;height:44px}.v-prev{left:8px}.v-next{right:8px}
+  .v-thumbs{width:100%}
+  .v-thumbs button{width:76px;height:50px}
+}
+body.viewing{overflow:hidden}
 
 /* ---------- Expérience ---------- */
 .exp{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:48px 90px;align-items:center}
@@ -229,7 +279,7 @@ section[id]{scroll-margin-top:76px}
 <body>
 <script>document.body.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.body.classList.add('reduce');</script>
 
-<div class="proto" role="note"><div class="wrap"><span><b>Maquette de présentation</b><span class="pl">. La vitrine des réalisations attend les photos de M. Morice.</span></span><span class="pl">Version du 28 octobre 2026</span></div></div>
+<div class="proto" role="note"><div class="wrap"><span><b>Maquette de présentation</b><span class="pl">. Projets de l'atelier présentés à partir de ses plans et vues 3D.</span></span><span class="pl">Version du 29 octobre 2026</span></div></div>
 
 <header class="hdr" id="hdr">
   <div class="wrap">
@@ -288,12 +338,15 @@ section[id]{scroll-margin-top:76px}
   <div class="wrap">
     <div class="head rv">
       <div><span class="kicker">Réalisations</span><h2 id="t-real" class="sf">La vitrine de l'atelier</h2></div>
-      <p>Chaque cadre accueillera un projet de Guy Morice, avec sa photographie, le lieu et l'année.</p>
+      <p>Quelques projets récents de l'atelier, avec leurs vues 3D et leurs plans. Touchez un projet pour l'ouvrir.</p>
     </div>
-    <div class="vitrine">
-      <figure class="big rv"><div class="slot"><span class="tag">Esquisse 3D</span><img id="still" src="img/vue-terrasse.jpg" width="1500" height="1080" alt="Rendu 3D de la façade et de la piscine de la maison contemporaine" loading="lazy" decoding="async"></div><figcaption><b class="sf">Maison contemporaine</b><span>Agenais</span></figcaption></figure>
-      <figure class="rv"><div class="slot empty"><div><b class="sf">Projet à venir</b><span>Photo, lieu, année</span></div></div><figcaption><b class="sf">Maison individuelle</b><span>À compléter</span></figcaption></figure>
-      <figure class="rv"><div class="slot empty"><div><b class="sf">Projet à venir</b><span>Photo, lieu, année</span></div></div><figcaption><b class="sf">Extension</b><span>À compléter</span></figcaption></figure>
+    <div class="vitrine" id="vitrine">
+      <button class="proj big rv" type="button" data-p="pc"><span class="pic"><img src="projets/pc-v1.jpg" width="1280" height="720" alt="Villa contemporaine sur sous-sol, avec sa piscine en terrasse" loading="lazy" decoding="async"><span class="count">4 vues, 5 plans</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Villa sur sous-sol et piscine</b><span>4 chambres, piscine de 10 m</span></span></button>
+      <button class="proj rv" type="button" data-p="pa"><span class="pic"><img src="projets/pa-v1-s.jpg" width="720" height="405" alt="Villa avec étage, toitures en tuiles et enduit clair" loading="lazy" decoding="async"><span class="count">7 vues, 3 plans</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Villa avec étage et piscine</b><span>5 chambres</span></span></button>
+      <button class="proj rv" type="button" data-p="pb"><span class="pic"><img src="projets/pb-v1-s.jpg" width="720" height="405" alt="Maison de plain-pied aux toitures à quatre pentes" loading="lazy" decoding="async"><span class="count">5 vues, 3 plans</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Maison de plain-pied</b><span>Séjour de 79 m²</span></span></button>
+      <button class="proj rv" type="button" data-p="pd"><span class="pic"><img src="projets/pd-v1-s.jpg" width="720" height="576" alt="Maison individuelle insérée dans la photo de son terrain, à Beaupuy" loading="lazy" decoding="async"><span class="count">1 vue, 3 plans</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Maison individuelle</b><span>Beaupuy</span></span></button>
+      <button class="proj rv" type="button" data-p="pe"><span class="pic"><img src="projets/pe-v1-s.jpg" width="720" height="576" alt="Deux logements insérés dans la photo du terrain, à Castelnau-sur-Gupie" loading="lazy" decoding="async"><span class="count">2 vues, 2 plans</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Deux logements</b><span>Castelnau-sur-Gupie</span></span></button>
+      <a class="cta rv" href="#contact"><b class="sf">Et votre projet ?</b><span>Maison neuve, extension ou rénovation : un premier échange suffit pour savoir comment le mener.</span><i>Prendre rendez-vous</i></a>
     </div>
   </div>
 </section>
@@ -399,6 +452,13 @@ section[id]{scroll-margin-top:76px}
     <p class="credits">Photo : <a href="https://commons.wikimedia.org/wiki/File:Agen_-_Pont-canal_-_03.jpg" target="_blank" rel="noopener">pont-canal d'Agen</a>, Benjamin Smith, CC BY-SA 4.0, Wikimedia Commons. Rendus 3D réalisés pour la maquette.</p>
   </div>
 </section>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="v-title" hidden>
+  <div class="v-top"><h2 id="v-title" class="sf"></h2><button class="v-close" id="v-close" type="button" aria-label="Fermer le projet"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="1.6"/></svg></button></div>
+  <div class="v-stage" id="v-stage"><img id="v-img" alt=""><button class="v-nav v-prev" id="v-prev" type="button" aria-label="Image précédente"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 2L5 8l6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><button class="v-nav v-next" id="v-next" type="button" aria-label="Image suivante"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><span class="v-num" id="v-num"></span></div>
+  <div class="v-bottom"><div class="v-tabs" role="group" aria-label="Afficher"><button type="button" id="v-t-views" aria-pressed="true">Vues</button><button type="button" id="v-t-plans" aria-pressed="false">Plans</button></div><div class="v-thumbs" id="v-thumbs"></div></div>
+  <aside class="v-side"><p id="v-desc"></p><dl class="v-facts" id="v-facts"></dl><a class="full" id="v-full" href="#" target="_blank" rel="noopener">Ouvrir l'image en grand</a></aside>
+</div>
 
 <nav class="dock" id="dock" aria-label="Actions rapides">
   <a class="solid" href="tel:+33609612641">Appeler</a>

@@ -59,6 +59,112 @@ if ('IntersectionObserver' in window) {
   });
 })();
 
+/* ---------- Réalisations : visionneuse de projet ---------- */
+(function () {
+  function seq(p, kind, n) { var a = []; for (var i = 1; i <= n; i++) a.push('projets/' + p + '-' + kind + i); return a; }
+  var P = {
+    pc: { t: 'Villa sur sous-sol et piscine', m: 'Villa contemporaine, Lot-et-Garonne',
+      d: 'Une villa posée sur la pente. Les pièces de vie s’ouvrent sur une grande terrasse et une piscine de 10 mètres, construites au-dessus d’un sous-sol qui accueille le garage et une réserve de près de 200 m².',
+      f: [['Chambres', '4'], ['Salon', '60 m²'], ['Cuisine', '28 m²'], ['Piscine', '10 × 4 m'], ['Réserve en sous-sol', '196 m²']],
+      v: seq('pc', 'v', 4), p: seq('pc', 'p', 5),
+      vn: ['Façade sur la piscine', 'Terrasse couverte et escalier extérieur', 'Entrée côté jardin', 'Façade latérale'],
+      pn: ['Plan du rez-de-chaussée', 'Plan du sous-sol', 'Façades latérale et principale', 'Façades latérale et arrière', 'Plan de masse'] },
+    pa: { t: 'Villa avec étage et piscine', m: 'Villa, Lot-et-Garonne',
+      d: 'Une maison en L sous toitures de tuiles, avec une chambre à l’étage ouverte sur un toit-terrasse. Le séjour de 78 m² donne sur la piscine et la terrasse.',
+      f: [['Chambres', '4 + 1 à l’étage'], ['Séjour', '78 m²'], ['Garage', 'Oui'], ['Piscine', 'Oui']],
+      v: seq('pa', 'v', 7), p: seq('pa', 'p', 3),
+      vn: ['Façade d’entrée', 'Entrée et garage', 'Terrasse et piscine', 'Façade sur jardin', 'Vue d’ensemble sur la piscine', 'Façade latérale', 'Vue aérienne'],
+      pn: ['Plan du rez-de-chaussée', 'Plan de l’étage', 'Plan des toitures'] },
+    pb: { t: 'Maison de plain-pied', m: 'Maison individuelle, Lot-et-Garonne',
+      d: 'Trois volumes sous toitures à quatre pentes, autour d’un séjour de 79 m² ouvert sur une grande terrasse. Les chambres sont regroupées d’un côté, le garage de l’autre.',
+      f: [['Chambres', '4'], ['Séjour', '79 m²'], ['Garage', 'Oui']],
+      v: seq('pb', 'v', 5), p: seq('pb', 'p', 3),
+      vn: ['Façade d’entrée', 'Terrasse côté jardin', 'Terrasse et séjour', 'Façade sur jardin', 'Façade latérale'],
+      pn: ['Plan du rez-de-chaussée', 'Façades principale et arrière', 'Façades latérales'] },
+    pd: { t: 'Maison individuelle', m: 'Beaupuy, Lot-et-Garonne',
+      d: 'Une maison de plain-pied de 138 m² sur un terrain de 601 m². La vue montre le projet inséré dans la photo du terrain, comme dans le dossier de permis de construire.',
+      f: [['Surface habitable', '138 m²'], ['Chambres', '4'], ['Séjour et cuisine', '56 m²'], ['Garage', '17 m²'], ['Terrain', '601 m²'], ['Permis de construire', '2021']],
+      v: seq('pd', 'v', 1), p: seq('pd', 'p', 3),
+      vn: ['Insertion dans le site'],
+      pn: ['Plan du rez-de-chaussée', 'Façade sud', 'Coupe longitudinale'] },
+    pe: { t: 'Deux logements', m: 'Castelnau-sur-Gupie, Lot-et-Garonne',
+      d: 'Deux maisons mitoyennes de 85 m² chacune, avec trois chambres et un garage. Le projet est présenté dans son terrain, tel qu’il figurait au dossier de permis de construire.',
+      f: [['Logements', '2'], ['Surface par logement', '85 m²'], ['Chambres par logement', '3'], ['Séjour et cuisine', '36 m²'], ['Permis de construire', '2021']],
+      v: seq('pe', 'v', 2), p: seq('pe', 'p', 2),
+      vn: ['Insertion dans le site', 'Vue 3D'],
+      pn: ['Plan du rez-de-chaussée', 'Façade sud-ouest'] }
+  };
+  var V = $('#viewer'); if (!V) return;
+  var img = $('#v-img'), stage = $('#v-stage'), thumbs = $('#v-thumbs'), num = $('#v-num'), full = $('#v-full');
+  var tViews = $('#v-t-views'), tPlans = $('#v-t-plans');
+  var cur = null, set = 'v', idx = 0, lastFocus = null;
+  function list() { return cur[set]; }
+  function names() { return set === 'v' ? cur.vn : cur.pn; }
+  function show(i) {
+    var L = list(); idx = (i + L.length) % L.length;
+    var src = L[idx] + '.jpg';
+    img.classList.remove('on');
+    var pre = new Image();
+    pre.onload = function () { img.src = src; img.alt = cur.t + ', ' + names()[idx]; requestAnimationFrame(function () { img.classList.add('on'); }); };
+    pre.src = src;
+    if (L.length > 1) { var nx = new Image(); nx.src = L[(idx + 1) % L.length] + '.jpg'; }
+    num.textContent = names()[idx] + '  ' + (idx + 1) + ' / ' + L.length;
+    full.href = src;
+    stage.classList.toggle('plan', set === 'p');
+    $$('button', thumbs).forEach(function (b, k) { b.setAttribute('aria-current', k === idx ? 'true' : 'false'); });
+    var on = thumbs.children[idx]; if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' });
+    $('#v-prev').hidden = $('#v-next').hidden = L.length < 2;
+  }
+  function useSet(s) {
+    set = s; tViews.setAttribute('aria-pressed', s === 'v'); tPlans.setAttribute('aria-pressed', s === 'p');
+    thumbs.innerHTML = '';
+    list().forEach(function (b, k) {
+      var t = document.createElement('button'); t.type = 'button'; t.setAttribute('aria-label', names()[k]);
+      t.innerHTML = '<img src="' + b + '-s.jpg" alt="" loading="lazy">';
+      t.addEventListener('click', function () { show(k); });
+      thumbs.appendChild(t);
+    });
+    show(0);
+  }
+  function open(key) {
+    cur = P[key]; if (!cur) return;
+    lastFocus = document.activeElement;
+    $('#v-title').innerHTML = cur.t + '<small>' + cur.m + '</small>';
+    $('#v-desc').textContent = cur.d;
+    $('#v-facts').innerHTML = cur.f.map(function (x) { return '<div><dt>' + x[0] + '</dt><dd>' + x[1] + '</dd></div>'; }).join('');
+    tPlans.hidden = !cur.p.length;
+    V.hidden = false; body.classList.add('viewing');
+    useSet('v');
+    $('#v-close').focus();
+  }
+  function close() { V.hidden = true; body.classList.remove('viewing'); img.removeAttribute('src'); if (lastFocus) lastFocus.focus(); }
+  $$('[data-p]').forEach(function (b) { b.addEventListener('click', function () { open(b.getAttribute('data-p')); }); });
+  $('#v-close').addEventListener('click', close);
+  $('#v-prev').addEventListener('click', function () { show(idx - 1); });
+  $('#v-next').addEventListener('click', function () { show(idx + 1); });
+  tViews.addEventListener('click', function () { if (set !== 'v') useSet('v'); });
+  tPlans.addEventListener('click', function () { if (set !== 'p') useSet('p'); });
+  document.addEventListener('keydown', function (e) {
+    if (V.hidden) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+    else if (e.key === 'ArrowRight') show(idx + 1);
+    else if (e.key === 'Tab') { // garder le focus dans la visionneuse
+      var f = $$('button:not([hidden]), a[href]', V).filter(function (el) { return el.offsetParent !== null; });
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  // glisser du doigt pour changer d'image
+  var x0 = null, y0 = 0;
+  stage.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) show(idx + (dx < 0 ? 1 : -1));
+  });
+})();
+
 /* =====================================================================
    Rendu 3D réaliste
    ===================================================================== */
