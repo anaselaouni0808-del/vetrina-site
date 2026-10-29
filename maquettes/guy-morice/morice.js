@@ -293,7 +293,7 @@ var sun = new T.DirectionalLight(0xFFCF98, 3.0);
 sun.position.copy(sunDir).multiplyScalar(100);
 sun.castShadow = true;
 var SM = SMALL ? 2048 : 4096; sun.shadow.mapSize.set(SM, SM);
-var sc = sun.shadow.camera; sc.left = -36; sc.right = 36; sc.top = 32; sc.bottom = -32; sc.near = 30; sc.far = 220;
+var sc = sun.shadow.camera; sc.left = -44; sc.right = 44; sc.top = 40; sc.bottom = -40; sc.near = 30; sc.far = 220;
 sun.shadow.bias = -.00025; sun.shadow.normalBias = .025;
 scene.add(sun); scene.add(sun.target);
 scene.add(new T.HemisphereLight(0xBFD3EA, 0x5E5A40, .45));
@@ -347,16 +347,29 @@ function volume(x0, x1, y0, y1, z0, z1, mat, openings, depth) {
 }
 
 await pause();
-/* ---------- Terrain et horizon ---------- */
-var ground = new T.Mesh(new T.PlaneGeometry(1200, 1200), M.grass);
-ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+/* ---------- Terrain en pente et horizon ----------
+   La maison est celle d'un projet de l'atelier (villa sur sous-sol, plans RDC et sous-sol).
+   Coordonnées du plan : x de 0 à 27,87 m (cuisine à gauche du plan), z de 0 (côté piscine) vers l'arrière.
+   Monde : la façade piscine regarde +z, le plan est tourné de 180° pour retrouver la vue des rendus. */
+var PX = 13.9, PZ = 7;
+function wx(x) { return PX - x; }
+function wz(z) { return PZ - z; }
+function sm(t) { t = Math.min(1, Math.max(0, t)); return t * t * (3 - 2 * t); }
+function groundAt(worldZ) { var z = PZ - worldZ; return 3.0 * sm((z - 1.0) / 14); }
+(function () {
+  var g = new T.PlaneGeometry(1200, 1200, 1, 300); g.rotateX(-Math.PI / 2);
+  var p = g.attributes.position;
+  for (var i = 0; i < p.count; i++) p.setY(i, groundAt(p.getZ(i)));
+  g.computeVertexNormals();
+  var m = new T.Mesh(g, M.grass); m.receiveShadow = true; scene.add(m);
+})();
 (function () { // coteaux lointains
   var g = new T.PlaneGeometry(2200, 2200, 180, 180); g.rotateX(-Math.PI / 2);
   var p = g.attributes.position;
   for (var i = 0; i < p.count; i++) {
     var x = p.getX(i), z = p.getZ(i), d = Math.hypot(x, z);
     var k = Math.min(1, Math.max(0, (d - 170) / 260));
-    p.setY(i, (Math.sin(x * .009) * 10 + Math.sin(z * .007 + 1.3) * 14 + Math.sin((x + z) * .018) * 5 + 16) * k - .3);
+    p.setY(i, (Math.sin(x * .009) * 10 + Math.sin(z * .007 + 1.3) * 14 + Math.sin((x + z) * .018) * 5 + 16) * k - .3 + groundAt(z) * (1 - k));
   }
   g.computeVertexNormals();
   scene.add(new T.Mesh(g, new T.MeshStandardMaterial({ color: 0x6E7A4E, roughness: 1 })));
@@ -371,43 +384,86 @@ ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground)
 })();
 
 await pause();
-/* ---------- Maison ---------- */
-var H1 = 3.2, H2 = 3.1, Y2 = H1 + .25;
-// rez-de-chaussée, x -8..5, baies du séjour plein sud
-volume(-8, 5, 0, H1, -4.5, 4.5, M.render, [{ x0: -7.4, x1: -1.2, y0: 0, y1: 2.75 }, { x0: .3, x1: 3.8, y0: 0, y1: 2.75 }], .55);
-box(13.4, .25, 9.4, -1.5, H1, 0, M.coping);
-// étage : partie enduite (x -3..3.8) avec fenêtre en bandeau, partie bardée bois (x 3.8..8) en porte-à-faux
-volume(-3, 3.8, Y2, Y2 + H2, -4.5, 3.5, M.render, [{ x0: -2.5, x1: 3.3, y0: Y2 + .8, y1: Y2 + 2.55 }], .5);
-box(4.2, H2, 8, 5.9, Y2, -.5, woodMat(3, 2.4));
-box(1.8, 1.6, .05, 6.1, Y2 + .8, 3.53, M.win, { noCast: true });
-box(.05, 1.6, 2.6, 8.03, Y2 + .8, -1.2, M.win, { noCast: true });
-box(11.5, .32, 8.5, 2.5, Y2 + H2, -.5, M.coping);
-box(11, .05, 8, 2.5, Y2 + H2 + .32, -.5, M.roof, { noCast: true });
-// brise-soleil verticaux en bois devant le bandeau
-var fins = woodMat(.15, 1);
-for (var i = 0; i < 16; i++) box(.07, 1.95, .36, -2.4 + i * .38, Y2 + .7, 3.72, fins);
-// auvent / garage sous le porte-à-faux
-box(.35, H1, .35, 7.6, 0, 3.2, M.render);
-box(2.9, H1 - .1, .08, 6.5, 0, -4.4, M.alu);
-// toit-terrasse ouest : garde-corps vitré
-box(5.2, 1.05, .05, -5.4, H1 + .25, 4.62, M.balcony, { noCast: true });
-box(.05, 1.05, 9.2, -8.1, H1 + .25, 0, M.balcony, { noCast: true });
-box(5.2, .05, .07, -5.4, H1 + 1.3, 4.62, M.alu);
-box(.07, .05, 9.2, -8.1, H1 + 1.3, 0, M.alu);
-box(5, .04, 9, -5.5, H1 + .25, 0, M.tiles, { noCast: true });
-// pergola bioclimatique à lames
-var px0 = -8.4, px1 = -1.4, pz0 = 4.7, pz1 = 9.4;
-[[px0, pz1], [px1, pz1]].forEach(function (p) { box(.18, 2.9, .18, p[0], 0, p[1], M.alu); });
-box(px1 - px0 + .18, .22, .18, (px0 + px1) / 2, 2.8, pz1, M.alu);
-box(.16, .22, pz1 - pz0, px0, 2.8, (pz0 + pz1) / 2, M.alu);
-box(.16, .22, pz1 - pz0, px1, 2.8, (pz0 + pz1) / 2, M.alu);
-for (i = 0; i < 18; i++) { var sl = box(px1 - px0 - .2, .03, .2, (px0 + px1) / 2, 2.88, pz0 + .2 + i * .26, M.alu); sl.rotation.x = .55; }
-// terrasse, piscine, plage
-box(17, .12, 6, -1.6, 0, 7.5, M.tiles, { noCast: true });
-box(11.4, .14, 5.6, -3.2, 0, 13.6, M.coping, { noCast: true });
-box(10, .03, 4.2, -3.2, .12, 13.6, M.water, { noCast: true });
-[-6.4, -4.8].forEach(function (x) { box(.7, .28, 1.9, x, .14, 17.5, M.coping); var b = box(.7, .06, .7, x, .62, 16.6, M.coping); b.rotation.x = -.7; });
-box(3.2, .03, 24, 6.4, 0, 16, M.gravel, { noCast: true });
+/* ---------- La villa, d'après les plans ---------- */
+// bloc en coordonnées du plan
+function pbox(x0, x1, z0, z1, y0, y1, mat, opt) { return box(x1 - x0, y1 - y0, z1 - z0, wx((x0 + x1) / 2), y0, wz((z0 + z1) / 2), mat, opt); }
+// ouverture sur une face « avant » (plan z = zf, regardant la piscine) ou « arrière »
+function bayZ(x0, x1, zf, y0, y1, back) {
+  var s = back ? -1 : 1, z = wz(zf) + s * .035, w = x1 - x0, cx = wx((x0 + x1) / 2), h = y1 - y0;
+  box(w, h, .05, cx, y0, z, M.win, { noCast: true });
+  var n = Math.max(1, Math.round(w / 1.2));
+  for (var k = 0; k <= n; k++) box(.06, h, .09, wx(x0 + k * (w / n)), y0, z + s * .02, M.alu, { noCast: true });
+  box(w + .06, .07, .1, cx, y1 - .07, z + s * .02, M.alu, { noCast: true }); box(w + .06, .06, .1, cx, y0, z + s * .02, M.alu, { noCast: true });
+}
+function bayX(xf, z0, z1, y0, y1, left) { // sur une face latérale (plan x = xf)
+  var s = left ? 1 : -1, x = wx(xf) + s * .035, d = z1 - z0, cz = wz((z0 + z1) / 2), h = y1 - y0;
+  box(.05, h, d, x, y0, cz, M.win, { noCast: true });
+  var n = Math.max(1, Math.round(d / 1.2));
+  for (var k = 0; k <= n; k++) box(.09, h, .06, x + s * .02, y0, wz(z0 + k * (d / n)), M.alu, { noCast: true });
+  box(.1, .07, d + .06, x + s * .02, y1 - .07, cz, M.alu, { noCast: true });
+}
+var L0 = 3.0, L1 = 3.25; // niveau du rez-de-chaussée (dessus de dalle)
+// Sous-sol : aile droite, partie centrale en retrait, bassin de la piscine en saillie
+pbox(22.15, 27.87, .3, 13.4, 0, L1, M.render);
+pbox(0, 22.15, 2.0, 13.4, 0, L0, M.render);
+pbox(8.7, 19.5, 0, 2.0, 0, L0, M.render);
+// ouvertures du sous-sol
+pbox(.6, 5.2, 1.94, 2.0, 0, 2.45, M.alu, { noCast: true });            // porte de garage
+for (var gi = 0; gi < 6; gi++) pbox(.6, 5.2, 1.9, 1.94, .3 + gi * .36, .32 + gi * .36, M.coping, { noCast: true });
+bayZ(6.2, 7.8, 2.0, 0, 2.2);                                            // porte vitrée
+bayZ(20.0, 21.6, 2.0, 1.1, 2.2);
+bayZ(23.4, 25.4, .3, 1.0, 2.2);
+// dalle du rez-de-chaussée, terrasse et piscine à débordement
+pbox(0, 8.7, 0, 6.3, L0, L1, M.tiles);
+pbox(19.5, 22.15, 0, 6.3, L0, L1, M.tiles);
+pbox(8.7, 19.5, 4.0, 6.3, L0, L1, M.tiles);
+pbox(8.7, 9.075, 0, 4.0, L0, L1, M.tiles);
+pbox(19.075, 19.5, 0, 4.0, L0, L1, M.tiles);
+pbox(9.075, 19.075, .04, 4.0, L0 - .2, L1 - .03, M.water, { noCast: true });
+pbox(9.0, 19.15, 0, .04, L0 - .25, L0 - .05, M.alu, { noCast: true });   // goulotte de débordement
+// garde-corps vitrés
+function glass(x0, x1, z0, z1) { pbox(x0, x1, z0, z1, L1, L1 + 1.0, M.balcony, { noCast: true }); }
+glass(0, 8.7, -.02, .03); glass(19.5, 22.15, -.02, .03); glass(-.03, .02, 0, 3.16);
+pbox(0, 8.7, -.04, .05, L1 + .98, L1 + 1.03, M.alu); pbox(19.5, 22.15, -.04, .05, L1 + .98, L1 + 1.03, M.alu);
+// volumes du rez-de-chaussée (hauteurs relevées sur les façades)
+var blocks = [
+  [0, 6.0, 3.16, 9.16, 6.55],      // cuisine
+  [6.0, 15.0, 6.3, 13.4, 7.0],     // salon
+  [15.0, 22.15, 6.3, 13.4, 7.0],   // chambres
+  [22.15, 27.87, .3, 13.4, 6.75],  // aile des chambres
+  [4.6, 10.1, 13.4, 17.1, 6.55]    // entrée et escalier
+];
+blocks.forEach(function (b) {
+  pbox(b[0], b[1], b[2], b[3], b[0] > 22 ? L1 : L1, b[4], M.render);
+  pbox(b[0] - .12, b[1] + .12, b[2] - .12, b[3] + .12, b[4], b[4] + .22, M.coping);
+  pbox(b[0] + .1, b[1] - .1, b[2] + .1, b[3] - .1, b[4] + .22, b[4] + .26, M.roof, { noCast: true });
+});
+// baies côté piscine
+bayZ(1.3, 3.45, 3.16, L1, L1 + 2.15); bayZ(3.65, 5.8, 3.16, L1, L1 + 2.15);
+bayZ(7.5, 9.9, 6.3, L1, L1 + 2.15); bayZ(10.1, 12.5, 6.3, L1, L1 + 2.15);
+bayZ(15.9, 17.7, 6.3, L1, L1 + 2.15); bayZ(18.6, 20.4, 6.3, L1, L1 + 2.15);
+bayZ(23.6, 25.4, .3, L1 + .95, L1 + 2.15);
+bayX(22.15, 1.2, 3.0, L1, L1 + 2.15);
+// façades latérales et arrière
+bayX(27.87, 2.0, 3.8, L1 + .95, L1 + 2.15, true); bayX(27.87, 7.4, 9.0, L1 + .95, L1 + 2.15, true); bayX(27.87, 10.6, 11.8, L1 + .95, L1 + 2.15, true);
+bayZ(16.0, 17.5, 13.4, L1 + .95, L1 + 2.15, true); bayZ(19.0, 20.5, 13.4, L1 + .95, L1 + 2.15, true); bayZ(23.2, 24.7, 13.4, L1 + .95, L1 + 2.15, true);
+bayZ(6.4, 7.4, 17.1, L1, L1 + 2.15, true);
+bayX(0, 4.4, 6.0, L1 + .9, L1 + 2.15);
+// auvent sur colonnes devant la cuisine (terrasse couverte et garage)
+pbox(-.25, 6.25, -.45, 3.16, 6.33, 6.55, M.coping);
+[[.45, .05], [5.55, .05]].forEach(function (c) { var m = pbox(c[0] - .11, c[0] + .11, c[1] - .11, c[1] + .11, 0, 6.33, M.coping); });
+// escalier extérieur le long de la façade du garage
+(function () {
+  var n = 17;
+  for (var i = 0; i < n; i++) {
+    var z0 = 1.2 + i * .47, y = (i + 1) * (L0 / n);
+    pbox(-1.25, -.05, z0, z0 + .47, Math.max(0, y - .18), y, M.coping);
+  }
+  pbox(-1.32, -1.26, 1.2, 1.2 + n * .47, L0 + 1.0, L0 + 1.04, M.alu); // main courante (simplifiée)
+  for (i = 0; i <= n; i += 2) { var zz = 1.2 + i * .47; pbox(-1.31, -1.27, zz, zz + .04, (i * L0 / n), (i * L0 / n) + 1.02, M.alu, { noCast: true }); }
+})();
+// cour pavée devant le garage
+pbox(-2.0, 9.0, -9.0, 2.0, 0, .03, M.tiles, { noCast: true });
 
 await pause();
 /* ---------- Végétation : feuillage en milliers de touffes ---------- */
@@ -429,44 +485,45 @@ function foliage(cx, cy, cz, h, shape, count, size, hue, sat, lum) {
   im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true;
   im.castShadow = true; im.receiveShadow = true; scene.add(im); return im;
 }
-function trunk(x, z, h, r) { var t = new T.Mesh(new T.CylinderGeometry(r * .6, r, h, 7), M.bark); t.position.set(x, h / 2, z); t.castShadow = true; scene.add(t); }
+function trunk(x, z, h, r) { var y0 = groundAt(z); var t = new T.Mesh(new T.CylinderGeometry(r * .6, r, h, 7), M.bark); t.position.set(x, y0 + h / 2, z); t.castShadow = true; scene.add(t); }
 function tree(x, z, h, r, hue, lum) {
   trunk(x, z, h * .55, r * .09);
-  var H = r * 1.9;
-  foliage(x, h * .45, z, H, function (u) { return r * Math.sin(Math.PI * Math.min(1, u * 1.05 + .08)) * 1.05; }, 1500, r * .14, hue, .45, lum);
+  foliage(x, groundAt(z) + h * .45, z, r * 1.9, function (u) { return r * Math.sin(Math.PI * Math.min(1, u * 1.05 + .08)) * 1.05; }, 1500, r * .14, hue, .45, lum);
 }
 function olive(x, z) {
   trunk(x, z, 1.5, .2);
-  foliage(x, 1.3, z, 1.8, function (u) { return 1.5 * Math.sin(Math.PI * (u * .9 + .1)); }, 700, .17, .2, .18, .34);
+  foliage(x, groundAt(z) + 1.3, z, 1.8, function (u) { return 1.5 * Math.sin(Math.PI * (u * .9 + .1)); }, 700, .17, .2, .18, .34);
 }
 function cypress(x, z, h) {
   trunk(x, z, 1, .14);
-  foliage(x, .4, z, h, function (u) { return .85 * Math.sin(Math.PI * Math.min(1, .15 + u * .9)) * (1 - u * .55); }, 900, .17, .28, .42, .19);
+  foliage(x, groundAt(z) + .4, z, h, function (u) { return .85 * Math.sin(Math.PI * Math.min(1, .15 + u * .9)) * (1 - u * .55); }, 900, .17, .28, .42, .19);
 }
+function bush(x, z, r, hue, sat, lum) { foliage(x, groundAt(z), z, r * 1.3, function (u) { return r * Math.sin(Math.PI * (u * .8 + .2)); }, 160, r * .22, hue, sat, lum); }
 await pause();
-tree(-17, -13, 4.5, 3.6, .24, .3); tree(-6, -17, 5.5, 4.2, .25, .27); tree(9, -16, 5, 3.8, .23, .31);
-tree(20, -6, 4, 3.2, .22, .33); tree(-26, 2, 4.2, 3.4, .25, .28); tree(25, 11, 3.6, 3, .23, .32);
-olive(3.6, 11); olive(-11.6, 12); olive(2.4, 18);
-for (i = 0; i < 6; i++) cypress(-13.8, -3 + i * 3.4, rr(8, 10.5));
-box(20, 1.3, .9, -3, 0, 22.5, M.hedge);
-for (var lv = 0; lv < 14; lv++) { // lavandes le long de l'allée
-  foliage(8.6, .05, 6 + lv * 1.12, .7, function (u) { return .5 * Math.sin(Math.PI * (u * .8 + .2)); }, 70, .1, .72, .22, .42);
-}
-(function () { // ombre de contact sous la maison
-  var m = new T.Mesh(new T.PlaneGeometry(21, 15), new T.MeshBasicMaterial({ map: TX.ao(), transparent: true, depthWrite: false }));
-  m.rotation.x = -Math.PI / 2; m.position.set(-.8, .015, .2); scene.add(m);
+// grands arbres derrière la maison, sur le haut du terrain
+tree(-4, -16, 5, 4, .24, .3); tree(8, -18, 5.5, 4.2, .25, .27); tree(22, -12, 4.8, 3.8, .23, .31);
+tree(-20, -6, 4.5, 3.6, .25, .28); tree(30, 4, 4, 3.4, .23, .32); tree(-26, 12, 4, 3.2, .24, .3);
+// oliviers et cyprès sur le jardin bas
+olive(-9, 13); olive(4, 15.5); olive(-20, 4);
+for (var ci = 0; ci < 5; ci++) cypress(-21.5, -8 + ci * 3.2, rr(8, 10.5));
+// massifs le long de la façade et lavandes devant la cour
+for (var bi = 0; bi < 6; bi++) bush(-12 + bi * 2.6, 8.4, .8, .33, .4, .26);
+for (var lv = 0; lv < 8; lv++) bush(16.6, -1 + lv * 1.05, .42, .72, .22, .42);
+(function () { // ombre de contact au pied de la maison
+  var m = new T.Mesh(new T.PlaneGeometry(34, 4), new T.MeshBasicMaterial({ map: TX.ao(), transparent: true, depthWrite: false, opacity: .8 }));
+  m.rotation.x = -Math.PI / 2; m.position.set(0, .02, 6.3); scene.add(m);
 })();
 
 await pause();
 /* ---------- Caméra : lent travelling, sans interaction ---------- */
-var CAM = { az: .6, el: .1, R: 38, cx: -.5, cy: 2.6, cz: 2.5, sx: 0, sy: 0 };
+var CAM = { az: .55, el: .12, R: 48, cx: 0, cy: 3.4, cz: 1, sx: 0, sy: 0 };
 // sx / sy décalent le cadrage : la maison se place en haut à droite, le titre en bas à gauche
 function fit() {
   var w = stage.clientWidth, h = stage.clientHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h;
   var narrow = camera.aspect < 1.1;
   camera.fov = narrow ? 44 : 32; camera.updateProjectionMatrix();
-  CAM.R = narrow ? 37 : 40; CAM.sx = narrow ? -1.2 : 6.5; CAM.sy = narrow ? -1.4 : -1.6;
+  CAM.R = narrow ? 50 : 48; CAM.sx = narrow ? 0 : 5.5; CAM.sy = narrow ? -1.5 : -2.2;
 }
 function place(t) {
   var a = CAM.az + (REDUCE ? 0 : Math.sin(t * .045) * .07), r = CAM.R - (REDUCE ? 0 : (1 - Math.cos(t * .03)) * 1.2);
