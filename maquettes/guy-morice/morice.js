@@ -222,7 +222,6 @@ var TX = {
         g.strokeStyle = 'rgba(' + [rr(60, 105), rr(80, 125), rr(40, 65)].map(Math.round).join(',') + ',' + rr(.35, .8) + ')'; g.lineWidth = rr(.6, 1.6);
         var x = rr(0, s), y = rr(0, s); g.beginPath(); g.moveTo(x, y); g.lineTo(x + rr(-2, 2), y - rr(3, 8)); g.stroke();
       }
-      for (i = 0; i < 40; i++) { g.fillStyle = 'rgba(160,150,80,' + rr(.04, .1) + ')'; g.beginPath(); g.arc(rr(0, s), rr(0, s), rr(20, 60), 0, 7); g.fill(); }
     }, r);
   },
   tiles: function (r) {
@@ -249,6 +248,56 @@ var TX = {
       var rf = g.createLinearGradient(0, 0, s, s); rf.addColorStop(0, 'rgba(200,220,235,.38)'); rf.addColorStop(.45, 'rgba(200,220,235,.12)'); rf.addColorStop(.5, 'rgba(255,255,255,.22)'); rf.addColorStop(.56, 'rgba(200,220,235,.06)'); rf.addColorStop(1, 'rgba(200,220,235,.0)');
       g.fillStyle = rf; g.fillRect(0, 0, s, s);
     });
+  },
+  mosaic: function (r) { // carrelage de piscine, petites tesselles turquoise et reflets de lumière
+    return canvasTex(512, function (g, s) {
+      var n = 32, w = s / n;
+      for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) {
+        g.fillStyle = 'hsl(' + rr(184, 192) + ',' + rr(55, 72) + '%,' + rr(52, 64) + '%)';
+        g.fillRect(i * w + 1, j * w + 1, w - 2, w - 2);
+      }
+      g.strokeStyle = 'rgba(255,255,255,.35)'; g.lineWidth = 2.2;
+      for (var k = 0; k < 26; k++) { g.beginPath(); var x = rr(0, s), y = rr(0, s); g.moveTo(x, y); for (var q = 0; q < 5; q++) { x += rr(-60, 60); y += rr(-60, 60); g.quadraticCurveTo(x + rr(-30, 30), y + rr(-30, 30), x, y); } g.stroke(); }
+    }, r);
+  },
+  pavers: function (r) { // pavés de pierre beige, posés à joints décalés
+    return canvasTex(512, function (g, s) {
+      g.fillStyle = '#8F8371'; g.fillRect(0, 0, s, s);
+      var rows = 8, h = s / rows;
+      for (var j = 0; j < rows; j++) {
+        var off = (j % 2) * h, x = -off;
+        while (x < s) {
+          var w = h * 2, L = rr(-10, 10);
+          g.fillStyle = 'rgb(' + [208 + L, 192 + L, 166 + L].map(Math.round).join(',') + ')';
+          g.fillRect(x + 2, j * h + 2, w - 4, h - 4);
+          for (var d = 0; d < 60; d++) { g.fillStyle = 'rgba(90,70,50,' + rr(.03, .09) + ')'; g.fillRect(x + rr(2, w - 4), j * h + rr(2, h - 4), 2, 2); }
+          x += w;
+        }
+      }
+    }, r);
+  },
+  garage: function () { // porte de garage à panneaux en pointe de diamant, comme sur les rendus
+    return canvasTex(512, function (g, s) {
+      g.fillStyle = '#3E4650'; g.fillRect(0, 0, s, s);
+      var cols = 6, rows = 4, w = s / cols, h = s / rows;
+      for (var i = 0; i < cols; i++) for (var j = 0; j < rows; j++) {
+        var x = i * w, y = j * h, cx = x + w / 2, cy = y + h / 2;
+        [[x, y, x + w, y, '#5B6672'], [x + w, y, x + w, y + h, '#343B44'], [x + w, y + h, x, y + h, '#2A3038'], [x, y + h, x, y, '#4D5763']].forEach(function (t) {
+          g.fillStyle = t[4]; g.beginPath(); g.moveTo(t[0], t[1]); g.lineTo(t[2], t[3]); g.lineTo(cx, cy); g.closePath(); g.fill();
+        });
+      }
+    });
+  },
+  cloud: function () {
+    var c = document.createElement('canvas'); c.width = 512; c.height = 256; var g = c.getContext('2d');
+    for (var i = 0; i < 70; i++) {
+      var x = rr(90, 422), y = rr(95, 175) - Math.sin((x - 90) / 332 * Math.PI) * rr(10, 55), r = rr(26, 62);
+      var gr = g.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, 'rgba(255,255,255,.5)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+      g.fillStyle = gr; g.fillRect(x - r, y - r, 2 * r, 2 * r);
+    }
+    var sh = g.createLinearGradient(0, 120, 0, 210); sh.addColorStop(0, 'rgba(235,238,244,0)'); sh.addColorStop(1, 'rgba(222,228,238,.35)');
+    g.globalCompositeOperation = 'source-atop'; g.fillStyle = sh; g.fillRect(0, 0, 512, 256);
+    var t = new T.CanvasTexture(c); t.encoding = T.sRGBEncoding; return t;
   },
   ao: function () {
     var c = document.createElement('canvas'); c.width = c.height = 256; var g = c.getContext('2d');
@@ -312,7 +361,13 @@ var M = {
   floorIn: new T.MeshStandardMaterial({ color: 0x9B8670, emissive: 0x9A6838, emissiveIntensity: .8, roughness: .8 }),
   tiles: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.tiles([6, 3]), roughness: .75 }),
   win: (function () { var t = TX.win(); return new T.MeshStandardMaterial({ color: 0xFFFFFF, map: t, emissive: 0xFFFFFF, emissiveMap: t, emissiveIntensity: .55, roughness: .08, metalness: .25, envMapIntensity: .6 }); })(),
-  water: new T.MeshStandardMaterial({ color: 0x2A8A96, emissive: 0x0B4650, emissiveIntensity: .35, roughness: .02, metalness: .25, envMapIntensity: 1.5 }),
+  water: new T.MeshStandardMaterial({ color: 0x46B6C6, roughness: .03, metalness: .1, transparent: true, opacity: .5, depthWrite: false, envMapIntensity: 1.8 }),
+  sheet: new T.MeshStandardMaterial({ color: 0x5CC0CD, emissive: 0x1F7C88, emissiveIntensity: .3, roughness: .05, metalness: .1, transparent: true, opacity: .85, envMapIntensity: 1.4 }),
+  liner: (function () { var t = TX.mosaic([10, 4]); return new T.MeshStandardMaterial({ color: 0xFFFFFF, map: t, emissive: 0xFFFFFF, emissiveMap: t, emissiveIntensity: .22, roughness: .35, envMapIntensity: .5 }); })(),
+  weir: new T.MeshStandardMaterial({ color: 0x7E8C93, roughness: .4, envMapIntensity: .7 }),
+  inox: new T.MeshStandardMaterial({ color: 0xDADFE3, roughness: .22, metalness: .95, envMapIntensity: 1.2 }),
+  pavers: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.pavers([6, 6]), roughness: .9 }),
+  garage: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.garage(), roughness: .5, metalness: .35, envMapIntensity: .7 }),
   grass: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.grass([90, 90]), roughness: 1 }),
   gravel: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.gravel([2, 10]), roughness: 1 }),
   hedge: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.hedge([6, 1]), roughness: 1 }),
@@ -408,8 +463,8 @@ pbox(22.15, 27.87, .3, 13.4, 0, L1, M.render);
 pbox(0, 22.15, 2.0, 13.4, 0, L0, M.render);
 pbox(8.7, 19.5, 0, 2.0, 0, L0, M.render);
 // ouvertures du sous-sol
-pbox(.6, 5.2, 1.94, 2.0, 0, 2.45, M.alu, { noCast: true });            // porte de garage
-for (var gi = 0; gi < 6; gi++) pbox(.6, 5.2, 1.9, 1.94, .3 + gi * .36, .32 + gi * .36, M.coping, { noCast: true });
+pbox(.6, 5.2, 1.94, 2.0, 0, 2.45, M.garage, { noCast: true });          // porte de garage
+pbox(.5, 5.3, 1.9, 1.94, 2.45, 2.55, M.alu, { noCast: true });
 bayZ(6.2, 7.8, 2.0, 0, 2.2);                                            // porte vitrée
 bayZ(20.0, 21.6, 2.0, 1.1, 2.2);
 bayZ(23.4, 25.4, .3, 1.0, 2.2);
@@ -419,8 +474,20 @@ pbox(19.5, 22.15, 0, 6.3, L0, L1, M.tiles);
 pbox(8.7, 19.5, 4.0, 6.3, L0, L1, M.tiles);
 pbox(8.7, 9.075, 0, 4.0, L0, L1, M.tiles);
 pbox(19.075, 19.5, 0, 4.0, L0, L1, M.tiles);
-pbox(9.075, 19.075, .04, 4.0, L0 - .2, L1 - .03, M.water, { noCast: true });
-pbox(9.0, 19.15, 0, .04, L0 - .25, L0 - .05, M.alu, { noCast: true });   // goulotte de débordement
+pbox(9.075, 19.075, .25, 4.0, L0, L0 + .06, M.liner, { noCast: true });           // fond carrelé
+pbox(9.075, 9.1, .25, 4.0, L0 + .06, L1 - .07, M.liner, { noCast: true });          // parois
+pbox(19.05, 19.075, .25, 4.0, L0 + .06, L1 - .07, M.liner, { noCast: true });
+pbox(9.1, 19.05, 3.975, 4.0, L0 + .06, L1 - .07, M.liner, { noCast: true });
+pbox(9.075, 19.075, .1, .25, L0, L1 - .1, M.weir, { noCast: true });              // seuil de débordement
+pbox(9.075, 19.075, -.05, 4.0, L1 - .08, L1 - .06, M.water, { noCast: true });     // plan d'eau
+pbox(9.075, 19.075, -.05, .1, L0 - .16, L1 - .08, M.sheet, { noCast: true });       // lame d'eau qui déborde
+pbox(9.0, 19.15, -.2, 0, L0 - .26, L0 - .16, M.alu, { noCast: true });             // goulotte
+// échelle inox
+[17.55, 18.05].forEach(function (x) {
+  pbox(x, x + .04, 3.7, 3.74, L0 + .3, L1 + .72, M.inox, { noCast: true });
+  pbox(x, x + .04, 3.74, 4.3, L1 + .68, L1 + .72, M.inox, { noCast: true });
+  pbox(x, x + .04, 4.26, 4.3, L1, L1 + .7, M.inox, { noCast: true });
+});
 // garde-corps vitrés
 function glass(x0, x1, z0, z1) { pbox(x0, x1, z0, z1, L1, L1 + 1.0, M.balcony, { noCast: true }); }
 glass(0, 8.7, -.02, .03); glass(19.5, 22.15, -.02, .03); glass(-.03, .02, 0, 3.16);
@@ -463,7 +530,7 @@ pbox(-.25, 6.25, -.45, 3.16, 6.33, 6.55, M.coping);
   for (i = 0; i <= n; i += 2) { var zz = 1.2 + i * .47; pbox(-1.31, -1.27, zz, zz + .04, (i * L0 / n), (i * L0 / n) + 1.02, M.alu, { noCast: true }); }
 })();
 // cour pavée devant le garage
-pbox(-2.0, 9.0, -9.0, 2.0, 0, .03, M.tiles, { noCast: true });
+pbox(-2.0, 9.0, -9.0, 2.0, 0, .03, M.pavers, { noCast: true });
 
 await pause();
 /* ---------- Végétation : feuillage en milliers de touffes ---------- */
@@ -507,11 +574,25 @@ tree(-20, -6, 4.5, 3.6, .25, .28); tree(30, 4, 4, 3.4, .23, .32); tree(-26, 12, 
 olive(-9, 13); olive(4, 15.5); olive(-20, 4);
 for (var ci = 0; ci < 5; ci++) cypress(-21.5, -8 + ci * 3.2, rr(8, 10.5));
 // massifs le long de la façade et lavandes devant la cour
-for (var bi = 0; bi < 6; bi++) bush(-12 + bi * 2.6, 8.4, .8, .33, .4, .26);
+function roses(x, z, r, hue) {
+  bush(x, z, r, .31, .42, .24);
+  foliage(x, groundAt(z) + r * .35, z, r * 1.05, function (u) { return r * .95 * Math.sin(Math.PI * (u * .75 + .25)); }, 80, r * .1, hue, .7, .6);
+}
+var fl = [.94, .14, .94, .9, .14, .94];
+for (var bi = 0; bi < 6; bi++) roses(-12 + bi * 2.6, 8.4, .8, fl[bi]);
+roses(-9.5, 6.3, .7, .14); roses(12.5, 3.5, .75, .93); roses(14.5, 9.5, .7, .14);
 for (var lv = 0; lv < 8; lv++) bush(16.6, -1 + lv * 1.05, .42, .72, .22, .42);
 (function () { // ombre de contact au pied de la maison
   var m = new T.Mesh(new T.PlaneGeometry(34, 4), new T.MeshBasicMaterial({ map: TX.ao(), transparent: true, depthWrite: false, opacity: .8 }));
   m.rotation.x = -Math.PI / 2; m.position.set(0, .02, 6.3); scene.add(m);
+})();
+
+(function () { // quelques nuages, loin derrière la maison
+  var ct = TX.cloud();
+  [[-300, 92, -700, 260], [-40, 110, -760, 320], [210, 88, -700, 240], [420, 104, -600, 280], [-560, 80, -520, 220], [90, 70, -640, 170]].forEach(function (c) {
+    var sp = new T.Sprite(new T.SpriteMaterial({ map: ct, transparent: true, depthWrite: false, fog: false, toneMapped: false, opacity: .8 }));
+    sp.position.set(c[0], c[1], c[2]); sp.scale.set(c[3], c[3] / 2, 1); scene.add(sp);
+  });
 })();
 
 await pause();
@@ -526,7 +607,9 @@ function fit() {
   CAM.R = narrow ? 50 : 48; CAM.sx = narrow ? 0 : 5.5; CAM.sy = narrow ? -1.5 : -2.2;
 }
 function place(t) {
-  var a = CAM.az + (REDUCE ? 0 : Math.sin(t * .045) * .07), r = CAM.R - (REDUCE ? 0 : (1 - Math.cos(t * .03)) * 1.2);
+  var k = REDUCE ? 0 : sm((t - 3.5) / 8); // immobile pendant le fondu, puis le travelling démarre en douceur
+  var tt = Math.max(0, t - 3.5);
+  var a = CAM.az + Math.sin(tt * .045) * .07 * k, r = CAM.R - (1 - Math.cos(tt * .03)) * 1.2 * k;
   camera.position.set(CAM.cx + Math.sin(a) * Math.cos(CAM.el) * r, CAM.cy + Math.sin(CAM.el) * r, CAM.cz + Math.cos(a) * Math.cos(CAM.el) * r);
   var rx = Math.cos(a), rz = -Math.sin(a);
   camera.lookAt(CAM.cx - rx * CAM.sx, CAM.cy + CAM.sy, CAM.cz - rz * CAM.sx);
@@ -576,7 +659,7 @@ function boot() {
 if (BAKE) boot();
 else if (LIVE) {
   // le rendu en direct démarre une fois la page chargée ; l'image du rendu reste affichée en attendant
-  var go = function () { setTimeout(boot, 600); };
+  var go = function () { setTimeout(boot, 1200); };
   if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
 }
 })();
