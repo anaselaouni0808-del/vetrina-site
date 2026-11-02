@@ -102,12 +102,12 @@ if ('IntersectionObserver' in window) {
   function names() { return set === 'v' ? cur.vn : cur.pn; }
   function show(i) {
     var L = list(); idx = (i + L.length) % L.length;
-    var src = L[idx] + '.jpg?v=2';
+    var src = L[idx] + '.jpg?v=3';
     img.classList.remove('on');
     var pre = new Image();
     pre.onload = function () { img.src = src; img.alt = cur.t + ', ' + names()[idx]; requestAnimationFrame(function () { img.classList.add('on'); }); };
     pre.src = src;
-    if (L.length > 1) { var nx = new Image(); nx.src = L[(idx + 1) % L.length] + '.jpg?v=2'; }
+    if (L.length > 1) { var nx = new Image(); nx.src = L[(idx + 1) % L.length] + '.jpg?v=3'; }
     num.textContent = names()[idx] + '  ' + (idx + 1) + ' / ' + L.length;
     full.href = src;
     stage.classList.toggle('plan', set === 'p' || !!cur.light);
@@ -120,7 +120,7 @@ if ('IntersectionObserver' in window) {
     thumbs.innerHTML = '';
     list().forEach(function (b, k) {
       var t = document.createElement('button'); t.type = 'button'; t.setAttribute('aria-label', names()[k]);
-      t.innerHTML = '<img src="' + b + '-s.jpg?v=2" alt="" loading="lazy">';
+      t.innerHTML = '<img src="' + b + '-s.jpg?v=3" alt="" loading="lazy">';
       t.addEventListener('click', function () { show(k); });
       thumbs.appendChild(t);
     });
