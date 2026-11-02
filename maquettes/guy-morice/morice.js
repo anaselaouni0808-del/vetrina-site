@@ -84,7 +84,7 @@ if ('IntersectionObserver' in window) {
       v: seq('gd', 'v', 1), p: seq('gd', 'p', 1),
       vn: ['Résidences B et C, et le passage public'], pn: ['Plan de masse du quartier'] },
     ge: { t: 'Maison bioclimatique', m: 'Esquisses à la main, façades au 1/100',
-      d: 'Une maison de plain-pied sous une grande toiture de tuiles. Au sud, le pignon est largement vitré ; la maison s’ouvre sur une terrasse au sud et une autre à l’ouest, avec un abri voitures ouvert à l’écart.',
+      d: 'Une maison sous une grande toiture de tuiles. Au sud, le pignon est largement vitré et s’ouvre sur un balcon ; la maison donne sur une terrasse au sud et une autre à l’ouest, avec un abri voitures ouvert à l’écart.',
       f: [['Toiture', 'Tuiles, faîtage à 5,50 m'], ['Façade sud', 'Pignon vitré'], ['Terrasses', 'Sud et ouest'], ['Voitures', 'Abri ouvert']],
       v: seq('ge', 'v', 2), p: seq('ge', 'p', 3), pl: 'Façades', light: true,
       vn: ['Perspective annotée', 'Perspective'], pn: ['Façade sud', 'Façade est', 'Façade ouest'] },
