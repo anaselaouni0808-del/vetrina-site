@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guy Morice, logos</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Archivo:wdth,wght@62..125,300..700&display=block">
+<style>
+/* Une page par logo, sans texte : papier mat gaufré, carton noir et dorure, puis en usage. */
+:root{color-scheme:light;
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --fibre:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .09' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box}
+html{scroll-snap-type:y mandatory}
+body{margin:0;background:#1a1a1a;font-family:"Archivo",Arial,sans-serif}
+.slide{position:relative;height:100svh;min-height:440px;display:grid;place-items:center;scroll-snap-align:start;padding:6vw;overflow:hidden}
+/* papier mat, lumière douce venant du haut à gauche */
+.paper{background:
+  radial-gradient(120% 90% at 25% 15%,rgba(255,255,255,.55),rgba(255,255,255,0) 60%),
+  radial-gradient(120% 120% at 80% 100%,rgba(0,0,0,.12),rgba(0,0,0,0) 60%),
+  var(--noise),var(--fibre),#E3E1DC;background-blend-mode:normal,normal,soft-light,soft-light,normal}
+/* carton noir mat */
+.board{background:
+  radial-gradient(110% 90% at 30% 10%,rgba(255,255,255,.07),rgba(255,255,255,0) 60%),
+  var(--noise),var(--fibre),#151515;background-blend-mode:normal,overlay,overlay,normal}
+/* pierre claire pour la mise en situation */
+.stone{background:
+  radial-gradient(100% 80% at 50% 0%,rgba(255,255,255,.35),rgba(255,255,255,0) 70%),
+  var(--noise),#CFCCC5;background-blend-mode:normal,soft-light,normal}
+
+.logo{width:min(560px,78vw);height:auto;display:block}
+.logo.round{width:min(440px,70vw)}
+.logo.arch{width:min(330px,56vw)}
+/* gaufrage : encre sombre, lumière dessous, ombre dessus */
+.deboss{--c:#2B2A28;filter:drop-shadow(0 1.2px 0 rgba(255,255,255,.75)) drop-shadow(0 -1px 0 rgba(0,0,0,.28))}
+/* dorure : dégradé bronze et reflet */
+.foil{--c:url(#foil);filter:drop-shadow(0 1px 1px rgba(0,0,0,.6))}
+.f{fill:var(--c,currentColor)}
+.s{stroke:var(--c,currentColor);fill:none}
+.n{position:absolute;left:26px;bottom:20px;font-size:13px;color:rgba(120,118,112,.9);font-variant-numeric:tabular-nums}
+.board .n{color:rgba(160,160,155,.6)}
+
+.scene{display:flex;gap:min(5vw,64px);align-items:center;justify-content:center;flex-wrap:wrap}
+.card{width:min(400px,78vw);aspect-ratio:85/55;display:grid;place-items:center;padding:9%;box-shadow:0 1px 1px rgba(0,0,0,.08),0 30px 50px -24px rgba(0,0,0,.55),0 10px 18px -12px rgba(0,0,0,.3)}
+.card.light{background:radial-gradient(120% 100% at 20% 10%,rgba(255,255,255,.6),rgba(255,255,255,0) 70%),var(--noise),#F1EFEA;background-blend-mode:normal,soft-light,normal;transform:rotate(-3deg)}
+.card.dark{background:radial-gradient(120% 100% at 20% 10%,rgba(255,255,255,.08),rgba(255,255,255,0) 70%),var(--noise),#141414;background-blend-mode:normal,overlay,normal;transform:rotate(2.5deg) translateY(24px)}
+.card .logo{width:100%}
+.card .logo.round{width:58%}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8C6B3E"/><stop offset=".28" stop-color="#E4CC98"/><stop offset=".5" stop-color="#A47E4B"/><stop offset=".72" stop-color="#EBD7AA"/><stop offset="1" stop-color="#8A683C"/>
+    </linearGradient>
+    <path id="ring" d="M160,160 m-118,0 a118,118 0 1,1 236,0 a118,118 0 1,1 -236,0"/>
+
+    <!-- 1. Les volumes : la maison en porte-à-faux réduite à deux blocs pleins, le nom en capitales -->
+    <symbol id="V1" viewBox="0 0 100 100">
+      <rect class="f" x="8" y="54" width="58" height="38"/>
+      <rect class="f" x="32" y="12" width="60" height="36"/>
+          </symbol>
+    <symbol id="L1" viewBox="0 0 560 120">
+      <use href="#V1" x="0" y="10" width="100" height="100"/>
+      <text class="f" x="128" y="68" font-family="Archivo, Arial, sans-serif" font-size="50" font-weight="650" letter-spacing="4" style="font-stretch:108%">GUY MORICE</text>
+      <text x="131" y="102" fill="#9C7B4E" font-family="Archivo, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="9.5">ARCHITECTE</text>
+    </symbol>
+
+    <!-- 2. Le sceau : un anneau épais, le nom et 1982 autour, GM au centre -->
+    <symbol id="L2" viewBox="0 0 320 320">
+      <circle class="s" cx="160" cy="160" r="150" stroke-width="9"/>
+      <text class="f" font-family="Archivo, Arial, sans-serif" font-size="16" font-weight="650" letter-spacing="2"><textPath href="#ring" startOffset="0" textLength="728" lengthAdjust="spacing">GUY MORICE • ARCHITECTE • ESTILLAC • DEPUIS 1982 •</textPath></text>
+      <circle class="s" cx="160" cy="160" r="98" stroke-width="3"/>
+      <text class="f" x="160" y="186" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="74" font-weight="700" letter-spacing="2" style="font-stretch:110%">GM</text>
+    </symbol>
+
+    <!-- 3. Le monogramme dessiné (proposition retenue) -->
+    <symbol id="M3" viewBox="0 0 120 120">
+      <path class="s" d="M52 22H18v76h34V62H36" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
+      <path class="s" d="M68 98V22l17 38 17-38v76" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
+      <rect class="f" x="18" y="108" width="84" height="2.5"/>
+    </symbol>
+    <symbol id="L3" viewBox="0 0 590 170">
+      <use href="#M3" x="0" y="15" width="140" height="140"/>
+      <rect class="f" x="169.4" y="40" width="1.2" height="100" opacity=".4"/>
+      <text class="f" x="200" y="98" font-family="Bodoni Moda, Georgia, serif" font-size="70" font-weight="500" style="font-variation-settings:'opsz' 18">Guy Morice</text>
+      <text class="f" x="203" y="134" font-family="Archivo, Arial, sans-serif" font-size="15" letter-spacing="8" opacity=".85">ARCHITECTE</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- 1 -->
+<section class="slide paper" aria-label="Logo 1"><svg class="logo deboss" viewBox="0 0 560 120" role="img" aria-label="Guy Morice, architecte : deux volumes de maison"><use href="#L1"/></svg><span class="n">1</span></section>
+<section class="slide board" aria-label="Logo 1, dorure"><svg class="logo foil" viewBox="0 0 560 120" aria-hidden="true"><use href="#L1"/></svg><span class="n">1</span></section>
+<section class="slide stone" aria-label="Logo 1, carte de visite"><div class="scene">
+  <div class="card light"><svg class="logo deboss" viewBox="0 0 560 120" aria-hidden="true"><use href="#L1"/></svg></div>
+  <div class="card dark"><svg class="logo foil" viewBox="0 0 100 100" style="width:30%" aria-hidden="true"><use href="#V1"/></svg></div>
+</div><span class="n">1</span></section>
+
+<!-- 2 -->
+<section class="slide paper" aria-label="Logo 2"><svg class="logo round deboss" viewBox="0 0 320 320" role="img" aria-label="Sceau Guy Morice, architecte à Estillac depuis 1982"><use href="#L2"/></svg><span class="n">2</span></section>
+<section class="slide board" aria-label="Logo 2, dorure"><svg class="logo round foil" viewBox="0 0 320 320" aria-hidden="true"><use href="#L2"/></svg><span class="n">2</span></section>
+<section class="slide stone" aria-label="Logo 2, carte de visite"><div class="scene">
+  <div class="card light"><svg class="logo round deboss" viewBox="0 0 320 320" aria-hidden="true"><use href="#L2"/></svg></div>
+  <div class="card dark"><svg class="logo round foil" viewBox="0 0 320 320" aria-hidden="true"><use href="#L2"/></svg></div>
+</div><span class="n">2</span></section>
+
+<!-- 3 -->
+<section class="slide paper" aria-label="Logo 3"><svg class="logo deboss" viewBox="0 0 590 170" role="img" aria-label="Monogramme GM, Guy Morice, architecte"><use href="#L3"/></svg><span class="n">3</span></section>
+<section class="slide board" aria-label="Logo 3, dorure"><svg class="logo foil" viewBox="0 0 590 170" aria-hidden="true"><use href="#L3"/></svg><span class="n">3</span></section>
+<section class="slide stone" aria-label="Logo 3, carte de visite"><div class="scene">
+  <div class="card light"><svg class="logo deboss" viewBox="0 0 590 170" aria-hidden="true"><use href="#L3"/></svg></div>
+  <div class="card dark"><svg class="logo foil" viewBox="0 0 120 120" style="width:34%" aria-hidden="true"><use href="#M3"/></svg></div>
+</div><span class="n">3</span></section>
+</body>
+</html>
