@@ -171,6 +171,7 @@ if ('IntersectionObserver' in window) {
    ===================================================================== */
 var frame = $('#frame'), stage = $('#frame .stage');
 var BAKE = /[?&]bake/.test(location.search);
+var BAKE_T = parseFloat((location.search.match(/[?&]t=([\d.]+)/) || [])[1] || 0); // contrôle : instant du travelling à calculer
 // Sur téléphone et tablette, l'image du rendu (déjà calculée) suffit : aucune attente, aucun calcul.
 var LIVE = BAKE || (!SMALL && !matchMedia('(pointer: coarse)').matches && !REDUCE);
 function pause() { return new Promise(function (r) { requestAnimationFrame(function () { setTimeout(r, 0); }); }); }
@@ -602,16 +603,19 @@ function fit() {
   CAM.R = narrow ? 46 : 41; CAM.sx = narrow ? 0 : 7; CAM.sy = narrow ? -1.2 : -2.6;
 }
 function place(t) {
-  var k = REDUCE ? 0 : sm((t - 3.5) / 8); // immobile pendant le fondu, puis le travelling démarre en douceur
-  var tt = Math.max(0, t - 3.5);
-  var a = CAM.az + Math.sin(tt * .045) * .07 * k, r = CAM.R - (1 - Math.cos(tt * .03)) * 1.2 * k;
-  camera.position.set(CAM.cx + Math.sin(a) * Math.cos(CAM.el) * r, CAM.cy + Math.sin(CAM.el) * r, CAM.cz + Math.cos(a) * Math.cos(CAM.el) * r);
+  // vue de l'image fixe pendant le fondu, puis un travelling ample qui s'installe en douceur
+  var k = REDUCE ? 0 : sm((t - 1.1) / 2.6), tt = Math.max(0, t - 1.1);
+  var a = CAM.az + Math.sin(tt * .1) * .21 * k;
+  var r = CAM.R - Math.sin(tt * .07) * 3.2 * k;
+  var el = CAM.el + Math.sin(tt * .085) * .035 * k;
+  camera.position.set(CAM.cx + Math.sin(a) * Math.cos(el) * r, CAM.cy + Math.sin(el) * r, CAM.cz + Math.cos(a) * Math.cos(el) * r);
   var rx = Math.cos(a), rz = -Math.sin(a);
-  camera.lookAt(CAM.cx - rx * CAM.sx, CAM.cy + CAM.sy, CAM.cz - rz * CAM.sx);
+  var sx = CAM.sx * (1 - (a - CAM.az) * 1.6); // le cadrage suit la rotation : la maison reste en haut à droite
+  camera.lookAt(CAM.cx - rx * sx, CAM.cy + CAM.sy, CAM.cz - rz * sx);
 }
 window.addEventListener('resize', function () { fit(); place((performance.now() - t0) / 1000); renderer.render(scene, camera); });
 var t0 = performance.now();
-fit(); place(0);
+fit(); place(BAKE ? BAKE_T : 0);
 renderer.shadowMap.needsUpdate = true;
 await pause();
 renderer.compile(scene, camera);
@@ -640,7 +644,7 @@ function loop(now) {
   last = now;
   place((now - t0) / 1000); renderer.render(scene, camera);
 }
-requestAnimationFrame(loop);
+if (!BAKE) requestAnimationFrame(loop);
 window.__ready = true;
 }
 function loadJS(src) { return new Promise(function (ok, ko) { var e = document.createElement('script'); e.src = src; e.onload = ok; e.onerror = ko; document.head.appendChild(e); }); }
@@ -648,13 +652,14 @@ function boot() {
   if (window.THREE) return start3D();
   loadJS('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js')
     .then(function () { return loadJS('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/objects/Sky.js'); })
-    .then(function () { if (window.requestIdleCallback) requestIdleCallback(start3D, { timeout: 1000 }); else setTimeout(start3D, 200); })
+    .then(function () { if (window.requestIdleCallback) requestIdleCallback(start3D, { timeout: 300 }); else setTimeout(start3D, 50); })
     .catch(function () { /* l'image du rendu reste affichée */ });
 }
 if (BAKE) boot();
 else if (LIVE) {
   // le rendu en direct démarre une fois la page chargée ; l'image du rendu reste affichée en attendant
-  var go = function () { setTimeout(boot, 1200); };
-  if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
+  // les scripts 3D sont préchargés dans l'en-tête : la construction démarre dès que la page est prête
+  var go = function () { setTimeout(boot, 60); };
+  if (document.readyState !== 'loading') go(); else document.addEventListener('DOMContentLoaded', go);
 }
 })();
