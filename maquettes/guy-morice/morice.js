@@ -63,36 +63,36 @@ if ('IntersectionObserver' in window) {
 (function () {
   function seq(p, kind, n) { var a = []; for (var i = 1; i <= n; i++) a.push('projets/' + p + '-' + kind + i); return a; }
   var P = {
-    pc: { t: 'Villa sur sous-sol et piscine', m: 'Villa contemporaine, Lot-et-Garonne',
-      d: 'Une villa posée sur la pente. Les pièces de vie s’ouvrent sur une grande terrasse et une piscine de 10 mètres, construites au-dessus d’un sous-sol qui accueille le garage et une réserve de près de 200 m².',
-      f: [['Chambres', '4'], ['Salon', '60 m²'], ['Cuisine', '28 m²'], ['Piscine', '10 × 4 m'], ['Réserve en sous-sol', '196 m²']],
-      v: seq('pc', 'v', 4), p: seq('pc', 'p', 5),
-      vn: ['Façade sur la piscine', 'Terrasse couverte et escalier extérieur', 'Entrée côté jardin', 'Façade latérale'],
-      pn: ['Plan du rez-de-chaussée', 'Plan du sous-sol', 'Façades latérale et principale', 'Façades latérale et arrière', 'Plan de masse'] },
-    pa: { t: 'Villa avec étage et piscine', m: 'Villa, Lot-et-Garonne',
-      d: 'Une maison en L sous toitures de tuiles, avec une chambre à l’étage ouverte sur un toit-terrasse. Le séjour de 78 m² donne sur la piscine et la terrasse.',
-      f: [['Chambres', '4 + 1 à l’étage'], ['Séjour', '78 m²'], ['Garage', 'Oui'], ['Piscine', 'Oui']],
-      v: seq('pa', 'v', 7), p: seq('pa', 'p', 3),
-      vn: ['Façade d’entrée', 'Entrée et garage', 'Terrasse et piscine', 'Façade sur jardin', 'Vue d’ensemble sur la piscine', 'Façade latérale', 'Vue aérienne'],
-      pn: ['Plan du rez-de-chaussée', 'Plan de l’étage', 'Plan des toitures'] },
-    pb: { t: 'Maison de plain-pied', m: 'Maison individuelle, Lot-et-Garonne',
-      d: 'Trois volumes sous toitures à quatre pentes, autour d’un séjour de 79 m² ouvert sur une grande terrasse. Les chambres sont regroupées d’un côté, le garage de l’autre.',
-      f: [['Chambres', '4'], ['Séjour', '79 m²'], ['Garage', 'Oui']],
-      v: seq('pb', 'v', 5), p: seq('pb', 'p', 3),
-      vn: ['Façade d’entrée', 'Terrasse côté jardin', 'Terrasse et séjour', 'Façade sur jardin', 'Façade latérale'],
-      pn: ['Plan du rez-de-chaussée', 'Façades principale et arrière', 'Façades latérales'] },
-    pd: { t: 'Maison individuelle', m: 'Beaupuy, Lot-et-Garonne',
-      d: 'Une maison de plain-pied de 138 m² sur un terrain de 601 m². La vue montre le projet inséré dans la photo du terrain, comme dans le dossier de permis de construire.',
-      f: [['Surface habitable', '138 m²'], ['Chambres', '4'], ['Séjour et cuisine', '56 m²'], ['Garage', '17 m²'], ['Terrain', '601 m²'], ['Permis de construire', '2021']],
-      v: seq('pd', 'v', 1), p: seq('pd', 'p', 3),
-      vn: ['Insertion dans le site'],
-      pn: ['Plan du rez-de-chaussée', 'Façade sud', 'Coupe longitudinale'] },
-    pe: { t: 'Deux logements', m: 'Castelnau-sur-Gupie, Lot-et-Garonne',
-      d: 'Deux maisons mitoyennes de 85 m² chacune, avec trois chambres et un garage. Le projet est présenté dans son terrain, tel qu’il figurait au dossier de permis de construire.',
-      f: [['Logements', '2'], ['Surface par logement', '85 m²'], ['Chambres par logement', '3'], ['Séjour et cuisine', '36 m²'], ['Permis de construire', '2021']],
-      v: seq('pe', 'v', 2), p: seq('pe', 'p', 2),
-      vn: ['Insertion dans le site', 'Vue 3D'],
-      pn: ['Plan du rez-de-chaussée', 'Façade sud-ouest'] }
+    ga: { t: 'Villa sous grand toit, avec piscine', m: 'Maison individuelle, vues 3D de l’atelier',
+      d: 'Une maison à étage abritée par un grand toit à une pente, porté par de fins poteaux. Le balcon court sur toute la façade, au-dessus des baies du séjour, qui s’ouvrent de plain-pied sur la terrasse en bois et la piscine.',
+      f: [['Niveaux', '2'], ['Toiture', 'Une pente, débord sur poteaux'], ['Étage', 'Balcon filant'], ['Extérieurs', 'Terrasse bois et piscine']],
+      v: seq('ga', 'v', 2), p: [],
+      vn: ['Façade sur la piscine', 'Vue depuis la terrasse'], pn: [] },
+    gb: { t: 'Maison aux brise-soleil', m: 'Maison individuelle, vues 3D de l’atelier',
+      d: 'Un volume à étage sous un toit à une pente qui déborde largement. Des lames inclinées protègent la façade principale du soleil ; le garage forme un volume à part, au bout de l’allée.',
+      f: [['Niveaux', '2'], ['Toiture', 'Une pente, large débord'], ['Façade', 'Lames brise-soleil'], ['Garage', 'Indépendant']],
+      v: seq('gb', 'v', 2), p: [],
+      vn: ['Façade d’entrée et allée', 'Vue depuis le jardin'], pn: [] },
+    gc: { t: 'Maison habillée de bois', m: 'Maison individuelle, vue 3D de l’atelier',
+      d: 'Une maison à étage entièrement habillée de bois, avec un balcon filant et un toit à une pente porté par des poteaux. Le garage, plus sombre, forme un volume bas accolé à la maison.',
+      f: [['Niveaux', '2'], ['Façades', 'Bardage bois'], ['Toiture', 'Une pente sur poteaux'], ['Garage', 'Accolé']],
+      v: seq('gc', 'v', 1), p: [],
+      vn: ['Façade principale'], pn: [] },
+    gd: { t: 'Les maisons « Bio-Clim »', m: 'Quartier d’habitat, Brax',
+      d: 'Un quartier conçu selon la démarche HQE : vingt-cinq maisons avec jardin, desservies par des rues plantées, et deux résidences de huit logements reliées par un passage public, autour d’un espace vert commun.',
+      f: [['Maisons', '25'], ['Logements', '16, en 2 résidences'], ['Démarche', 'HQE'], ['Espaces communs', 'Espace vert et passage public']],
+      v: seq('gd', 'v', 1), p: seq('gd', 'p', 1),
+      vn: ['Résidences B et C, et le passage public'], pn: ['Plan de masse du quartier'] },
+    ge: { t: 'Maison bioclimatique', m: 'Esquisses à la main, façades au 1/100',
+      d: 'Une maison de plain-pied sous une grande toiture de tuiles. Au sud, le pignon est largement vitré ; la maison s’ouvre sur une terrasse au sud et une autre à l’ouest, avec un abri voitures ouvert à l’écart.',
+      f: [['Toiture', 'Tuiles, faîtage à 5,50 m'], ['Façade sud', 'Pignon vitré'], ['Terrasses', 'Sud et ouest'], ['Voitures', 'Abri ouvert']],
+      v: seq('ge', 'v', 2), p: seq('ge', 'p', 3), pl: 'Façades', light: true,
+      vn: ['Perspective annotée', 'Perspective'], pn: ['Façade sud', 'Façade est', 'Façade ouest'] },
+    gf: { t: 'Maisons en bardage bois', m: 'Esquisses à la main',
+      d: 'Deux esquisses de maisons habillées de bois. La première, longue et basse, est coiffée de tuiles romanes aux couleurs nuancées, avec des gouttières en alu blanc et des poteaux métalliques. La seconde s’ouvre sur un jardin avec piscine et pergola.',
+      f: [['Façades', 'Bardage bois'], ['Toiture', 'Tuiles romanes'], ['Détails', 'Gouttières alu, poteaux métal']],
+      v: seq('gf', 'v', 2), p: [], light: true,
+      vn: ['Perspective de la façade sud', 'Perspective sur le jardin'], pn: [] }
   };
   var V = $('#viewer'); if (!V) return;
   var img = $('#v-img'), stage = $('#v-stage'), thumbs = $('#v-thumbs'), num = $('#v-num'), full = $('#v-full');
@@ -110,7 +110,7 @@ if ('IntersectionObserver' in window) {
     if (L.length > 1) { var nx = new Image(); nx.src = L[(idx + 1) % L.length] + '.jpg'; }
     num.textContent = names()[idx] + '  ' + (idx + 1) + ' / ' + L.length;
     full.href = src;
-    stage.classList.toggle('plan', set === 'p');
+    stage.classList.toggle('plan', set === 'p' || !!cur.light);
     $$('button', thumbs).forEach(function (b, k) { b.setAttribute('aria-current', k === idx ? 'true' : 'false'); });
     var on = thumbs.children[idx]; if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' });
     $('#v-prev').hidden = $('#v-next').hidden = L.length < 2;
@@ -132,7 +132,8 @@ if ('IntersectionObserver' in window) {
     $('#v-title').innerHTML = cur.t + '<small>' + cur.m + '</small>';
     $('#v-desc').textContent = cur.d;
     $('#v-facts').innerHTML = cur.f.map(function (x) { return '<div><dt>' + x[0] + '</dt><dd>' + x[1] + '</dd></div>'; }).join('');
-    tPlans.hidden = !cur.p.length;
+    tPlans.hidden = !cur.p.length; tPlans.textContent = cur.pl || 'Plans';
+    $('.v-tabs').hidden = !cur.p.length;
     V.hidden = false; body.classList.add('viewing');
     useSet('v');
     $('#v-close').focus();
@@ -199,19 +200,20 @@ function speckle(g, s, base, n, alpha) {
 }
 var TX = {
   render: function (r) { return canvasTex(512, function (g, s) { speckle(g, s, '#EEECE7', 26000, .09); }, r); },
-  wood: function (r) {
+  wood: function (r, b) {
+    b = b || [150, 108, 72];
     return canvasTex(512, function (g, s) {
       var n = 12, w = s / n;
       for (var i = 0; i < n; i++) {
         var L = rr(-14, 14);
-        g.fillStyle = 'rgb(' + [150 + L, 108 + L * .8, 72 + L * .6].map(Math.round).join(',') + ')'; g.fillRect(i * w, 0, w, s);
+        g.fillStyle = 'rgb(' + [b[0] + L, b[1] + L * .8, b[2] + L * .6].map(Math.round).join(',') + ')'; g.fillRect(i * w, 0, w, s);
         for (var k = 0; k < 26; k++) {
           g.strokeStyle = 'rgba(70,45,25,' + rr(.05, .18) + ')'; g.lineWidth = rr(.5, 1.6);
           var x = i * w + rr(2, w - 2); g.beginPath(); g.moveTo(x, 0);
           for (var y = 0; y <= s; y += 32) g.lineTo(x + Math.sin(y * .02 + k) * rr(.5, 2.5), y);
           g.stroke();
         }
-        g.fillStyle = 'rgba(30,20,12,.55)'; g.fillRect(i * w, 0, 2, s);
+        g.fillStyle = 'rgba(60,45,30,.45)'; g.fillRect(i * w, 0, 2, s);
       }
     }, r);
   },
@@ -402,15 +404,12 @@ function volume(x0, x1, y0, y1, z0, z1, mat, openings, depth) {
 }
 
 await pause();
-/* ---------- Terrain en pente et horizon ----------
-   La maison est celle d'un projet de l'atelier (villa sur sous-sol, plans RDC et sous-sol).
-   Coordonnées du plan : x de 0 à 27,87 m (cuisine à gauche du plan), z de 0 (côté piscine) vers l'arrière.
-   Monde : la façade piscine regarde +z, le plan est tourné de 180° pour retrouver la vue des rendus. */
-var PX = 13.9, PZ = 7;
-function wx(x) { return PX - x; }
-function wz(z) { return PZ - z; }
+/* ---------- Terrain et horizon ----------
+   La maison est celle d'une vue 3D de l'atelier : villa à étage sous un grand toit à une pente,
+   balcon filant, terrasse en bois et piscine. Façade principale vers +z (le sud), x le long de la façade. */
 function sm(t) { t = Math.min(1, Math.max(0, t)); return t * t * (3 - 2 * t); }
-function groundAt(worldZ) { var z = PZ - worldZ; return 3.0 * sm((z - 1.0) / 14); }
+// terrain plat devant la maison, qui remonte en coteau derrière
+function groundAt(z) { return 3.2 * sm((-z - 10) / 14); }
 (function () {
   var g = new T.PlaneGeometry(1200, 1200, 1, 300); g.rotateX(-Math.PI / 2);
   var p = g.attributes.position;
@@ -439,105 +438,108 @@ function groundAt(worldZ) { var z = PZ - worldZ; return 3.0 * sm((z - 1.0) / 14)
 })();
 
 await pause();
-/* ---------- La villa, d'après les plans ---------- */
-// bloc en coordonnées du plan
-function pbox(x0, x1, z0, z1, y0, y1, mat, opt) { return box(x1 - x0, y1 - y0, z1 - z0, wx((x0 + x1) / 2), y0, wz((z0 + z1) / 2), mat, opt); }
-// ouverture sur une face « avant » (plan z = zf, regardant la piscine) ou « arrière »
-function bayZ(x0, x1, zf, y0, y1, back) {
-  var s = back ? -1 : 1, z = wz(zf) + s * .035, w = x1 - x0, cx = wx((x0 + x1) / 2), h = y1 - y0;
-  box(w, h, .05, cx, y0, z, M.win, { noCast: true });
-  var n = Math.max(1, Math.round(w / 1.2));
-  for (var k = 0; k <= n; k++) box(.06, h, .09, wx(x0 + k * (w / n)), y0, z + s * .02, M.alu, { noCast: true });
-  box(w + .06, .07, .1, cx, y1 - .07, z + s * .02, M.alu, { noCast: true }); box(w + .06, .06, .1, cx, y0, z + s * .02, M.alu, { noCast: true });
-}
-function bayX(xf, z0, z1, y0, y1, left) { // sur une face latérale (plan x = xf)
-  var s = left ? 1 : -1, x = wx(xf) + s * .035, d = z1 - z0, cz = wz((z0 + z1) / 2), h = y1 - y0;
-  box(.05, h, d, x, y0, cz, M.win, { noCast: true });
-  var n = Math.max(1, Math.round(d / 1.2));
-  for (var k = 0; k <= n; k++) box(.09, h, .06, x + s * .02, y0, wz(z0 + k * (d / n)), M.alu, { noCast: true });
-  box(.1, .07, d + .06, x + s * .02, y1 - .07, cz, M.alu, { noCast: true });
-}
-var L0 = 3.0, L1 = 3.25; // niveau du rez-de-chaussée (dessus de dalle)
-// Sous-sol : aile droite, partie centrale en retrait, bassin de la piscine en saillie
-pbox(22.15, 27.87, .3, 13.4, 0, L1, M.render);
-pbox(0, 22.15, 2.0, 13.4, 0, L0, M.render);
-pbox(8.7, 19.5, 0, 2.0, 0, L0, M.render);
-// ouvertures du sous-sol
-pbox(.6, 5.2, 1.94, 2.0, 0, 2.45, M.garage, { noCast: true });          // porte de garage
-pbox(.5, 5.3, 1.9, 1.94, 2.45, 2.55, M.alu, { noCast: true });
-bayZ(6.2, 7.8, 2.0, 0, 2.2);                                            // porte vitrée
-bayZ(20.0, 21.6, 2.0, 1.1, 2.2);
-bayZ(23.4, 25.4, .3, 1.0, 2.2);
-// dalle du rez-de-chaussée, terrasse et piscine à débordement
-pbox(0, 8.7, 0, 6.3, L0, L1, M.tiles);
-pbox(19.5, 22.15, 0, 6.3, L0, L1, M.tiles);
-pbox(8.7, 19.5, 4.0, 6.3, L0, L1, M.tiles);
-pbox(8.7, 9.075, 0, 4.0, L0, L1, M.tiles);
-pbox(19.075, 19.5, 0, 4.0, L0, L1, M.tiles);
-pbox(9.075, 19.075, .25, 4.0, L0, L0 + .06, M.liner, { noCast: true });           // fond carrelé
-pbox(9.075, 9.1, .25, 4.0, L0 + .06, L1 - .07, M.liner, { noCast: true });          // parois
-pbox(19.05, 19.075, .25, 4.0, L0 + .06, L1 - .07, M.liner, { noCast: true });
-pbox(9.1, 19.05, 3.975, 4.0, L0 + .06, L1 - .07, M.liner, { noCast: true });
-pbox(9.075, 19.075, .1, .25, L0, L1 - .1, M.weir, { noCast: true });              // seuil de débordement
-pbox(9.075, 19.075, -.05, 4.0, L1 - .08, L1 - .06, M.water, { noCast: true });     // plan d'eau
-pbox(9.075, 19.075, -.05, .1, L0 - .16, L1 - .08, M.sheet, { noCast: true });       // lame d'eau qui déborde
-pbox(9.0, 19.15, -.2, 0, L0 - .26, L0 - .16, M.alu, { noCast: true });             // goulotte
-// échelle inox
-[17.55, 18.05].forEach(function (x) {
-  pbox(x, x + .04, 3.7, 3.74, L0 + .3, L1 + .72, M.inox, { noCast: true });
-  pbox(x, x + .04, 3.74, 4.3, L1 + .68, L1 + .72, M.inox, { noCast: true });
-  pbox(x, x + .04, 4.26, 4.3, L1, L1 + .7, M.inox, { noCast: true });
-});
-// garde-corps vitrés
-function glass(x0, x1, z0, z1) { pbox(x0, x1, z0, z1, L1, L1 + 1.0, M.balcony, { noCast: true }); }
-glass(0, 8.7, -.02, .03); glass(19.5, 22.15, -.02, .03); glass(-.03, .02, 0, 3.16);
-pbox(0, 8.7, -.04, .05, L1 + .98, L1 + 1.03, M.alu); pbox(19.5, 22.15, -.04, .05, L1 + .98, L1 + 1.03, M.alu);
-// volumes du rez-de-chaussée (hauteurs relevées sur les façades)
-var blocks = [
-  [0, 6.0, 3.16, 9.16, 6.55],      // cuisine
-  [6.0, 15.0, 6.3, 13.4, 7.0],     // salon
-  [15.0, 22.15, 6.3, 13.4, 7.0],   // chambres
-  [22.15, 27.87, .3, 13.4, 6.75],  // aile des chambres
-  [4.6, 10.1, 13.4, 17.1, 6.55]    // entrée et escalier
-];
-blocks.forEach(function (b) {
-  pbox(b[0], b[1], b[2], b[3], b[0] > 22 ? L1 : L1, b[4], M.render);
-  pbox(b[0] - .12, b[1] + .12, b[2] - .12, b[3] + .12, b[4], b[4] + .22, M.coping);
-  pbox(b[0] + .1, b[1] - .1, b[2] + .1, b[3] - .1, b[4] + .22, b[4] + .26, M.roof, { noCast: true });
-});
-// baies côté piscine
-bayZ(1.3, 3.45, 3.16, L1, L1 + 2.15); bayZ(3.65, 5.8, 3.16, L1, L1 + 2.15);
-bayZ(7.5, 9.9, 6.3, L1, L1 + 2.15); bayZ(10.1, 12.5, 6.3, L1, L1 + 2.15);
-bayZ(15.9, 17.7, 6.3, L1, L1 + 2.15); bayZ(18.6, 20.4, 6.3, L1, L1 + 2.15);
-bayZ(23.6, 25.4, .3, L1 + .95, L1 + 2.15);
-bayX(22.15, 1.2, 3.0, L1, L1 + 2.15);
-// façades latérales et arrière
-bayX(27.87, 2.0, 3.8, L1 + .95, L1 + 2.15, true); bayX(27.87, 7.4, 9.0, L1 + .95, L1 + 2.15, true); bayX(27.87, 10.6, 11.8, L1 + .95, L1 + 2.15, true);
-bayZ(16.0, 17.5, 13.4, L1 + .95, L1 + 2.15, true); bayZ(19.0, 20.5, 13.4, L1 + .95, L1 + 2.15, true); bayZ(23.2, 24.7, 13.4, L1 + .95, L1 + 2.15, true);
-bayZ(6.4, 7.4, 17.1, L1, L1 + 2.15, true);
-bayX(0, 4.4, 6.0, L1 + .9, L1 + 2.15);
-// auvent sur colonnes devant la cuisine (terrasse couverte et garage)
-pbox(-.25, 6.25, -.45, 3.16, 6.33, 6.55, M.coping);
-[[.45, .05], [5.55, .05]].forEach(function (c) { var m = pbox(c[0] - .11, c[0] + .11, c[1] - .11, c[1] + .11, 0, 6.33, M.coping); });
-// escalier extérieur le long de la façade du garage
+/* ---------- La villa ---------- */
+function B(x0, x1, y0, y1, z0, z1, mat, opt) { return box(x1 - x0, y1 - y0, z1 - z0, (x0 + x1) / 2, y0, (z0 + z1) / 2, mat, opt); }
+var MX = {
+  grey: new T.MeshStandardMaterial({ color: 0xA7A9AA, map: TX.render([2, 2]), roughness: .92, envMapIntensity: .6 }),
+  slab: new T.MeshStandardMaterial({ color: 0x3E4144, roughness: .7, envMapIntensity: .6 }),
+  post: new T.MeshStandardMaterial({ color: 0x3A3836, roughness: .5, metalness: .5, envMapIntensity: .8 }),
+  soffit: new T.MeshStandardMaterial({ color: 0x5A5D60, roughness: .85, envMapIntensity: .5 }),
+  roofTop: new T.MeshStandardMaterial({ color: 0x9A9894, roughness: .9 }),
+  deck: new T.MeshStandardMaterial({ color: 0xFFFFFF, map: TX.wood([10, 6], [192, 170, 142]), roughness: .8, envMapIntensity: .5 }),
+  cloth: new T.MeshStandardMaterial({ color: 0xF6F5F1, roughness: .85 }),
+  wood2: new T.MeshStandardMaterial({ color: 0xB08A5E, roughness: .7 })
+};
+var X0 = -7, X1 = 7, ZB = -9, ZF = 0, DY = .6;      // volume principal 14 × 9 m, posé sur la terrasse
+var RB = -9.8, RF = 3.4, YB = 6.55, YF = 8.35;       // toit : bords arrière et avant, sous-face
+function roofY(z) { return YB + (z - RB) * (YF - YB) / (RF - RB); }
+// volume principal : profil latéral extrudé sur la longueur, le haut suit la pente du toit
 (function () {
-  var n = 17;
-  for (var i = 0; i < n; i++) {
-    var z0 = 1.2 + i * .47, y = (i + 1) * (L0 / n);
-    pbox(-1.25, -.05, z0, z0 + .47, Math.max(0, y - .18), y, M.coping);
-  }
-  pbox(-1.32, -1.26, 1.2, 1.2 + n * .47, L0 + 1.0, L0 + 1.04, M.alu); // main courante (simplifiée)
-  for (i = 0; i <= n; i += 2) { var zz = 1.2 + i * .47; pbox(-1.31, -1.27, zz, zz + .04, (i * L0 / n), (i * L0 / n) + 1.02, M.alu, { noCast: true }); }
+  var s = new T.Shape(), y0 = 0;
+  s.moveTo(-ZF, y0); s.lineTo(-ZB, y0); s.lineTo(-ZB, roofY(ZB) - .03); s.lineTo(-ZF, roofY(ZF) - .03); s.lineTo(-ZF, y0);
+  var g = new T.ExtrudeGeometry(s, { depth: X1 - X0, bevelEnabled: false });
+  g.rotateY(Math.PI / 2); g.translate(X0, 0, 0);
+  var m = new T.Mesh(g, [MX.grey, M.render]); m.castShadow = m.receiveShadow = true; scene.add(m);
 })();
-// cour pavée devant le garage
-pbox(-2.0, 9.0, -9.0, 2.0, 0, .03, M.pavers, { noCast: true });
+// baies vitrées du rez-de-chaussée, sur la terrasse
+function bayF(x0, x1, y0, y1, z) {
+  var w = x1 - x0, h = y1 - y0, cx = (x0 + x1) / 2;
+  B(x0, x1, y0, y1, z - .02, z + .02, M.win, { noCast: true });
+  var n = Math.max(1, Math.round(w / 1.5));
+  for (var k = 0; k <= n; k++) B(x0 + k * w / n - .035, x0 + k * w / n + .035, y0, y1, z, z + .06, M.alu, { noCast: true });
+  B(x0 - .03, x1 + .03, y1 - .07, y1, z, z + .07, M.alu, { noCast: true });
+}
+bayF(-4.5, -1.3, DY, DY + 2.3, ZF); bayF(-.6, 2.6, DY, DY + 2.3, ZF); bayF(3.3, 6.4, DY, DY + 2.3, ZF);
+// fenêtres de l'étage, sur le balcon
+var UF = DY + 2.95;
+[[-4.6, -2.5], [-1.3, .7], [1.9, 3.7], [4.6, 6.4]].forEach(function (w) { bayF(w[0], w[1], UF, UF + 2.15, ZF); });
+// dalle du balcon, filante, et garde-corps inox
+B(X0 - .2, 9.4, DY + 2.55, UF, ZF, 2.0, MX.slab);
+(function () {
+  var y = UF, h = 1.0;
+  B(X0 - .2, 9.4, y + h - .05, y + h, 1.92, 1.98, M.inox, { noCast: true });
+  for (var r = 1; r <= 4; r++) B(X0 - .2, 9.4, y + r * .2, y + r * .2 + .025, 1.94, 1.96, M.inox, { noCast: true });
+  for (var x = X0 - .2; x <= 9.41; x += 1.6) B(x - .025, x + .025, y, y + h, 1.92, 1.98, M.inox, { noCast: true });
+  [X0 - .2, 9.4].forEach(function (x) { B(x - .025, x + .025, y + h - .05, y + h, ZF, 1.98, M.inox, { noCast: true }); for (var r = 1; r <= 4; r++) B(x - .015, x + .015, y + r * .2, y + r * .2 + .025, ZF, 1.98, M.inox, { noCast: true }); });
+})();
+// grand toit à une pente, en débord sur des poteaux fins
+(function () {
+  var L = Math.hypot(RF - RB, YF - YB), ang = Math.atan2(YF - YB, RF - RB), t = .24;
+  var g = new T.BoxGeometry(X1 - X0 + 4.2, t, L);
+  var m = new T.Mesh(g, [M.coping, M.coping, MX.roofTop, MX.soffit, M.coping, M.coping]);
+  m.rotation.x = -ang; m.position.set((X0 + X1 + 4.2) / 2 - 1.1 + .0, (YB + YF) / 2 + t / 2 * Math.cos(ang), (RB + RF) / 2);
+  m.castShadow = true; m.receiveShadow = true; scene.add(m);
+  [-6.2, -1.3, 3.7, 8.7].forEach(function (x) {
+    var zp = 2.65, h = roofY(zp) - DY;
+    var c = new T.Mesh(new T.CylinderGeometry(.085, .085, h, 10), MX.post);
+    c.position.set(x, DY + h / 2, zp); c.castShadow = true; scene.add(c);
+  });
+})();
+// façade latérale ouest : petites fenêtres verticales, porte et escalier extérieur
+function winX(z0, z1, y0, y1) { B(X0 - .04, X0 + .01, y0, y1, z0, z1, M.win, { noCast: true }); B(X0 - .07, X0 - .02, y1 - .06, y1, z0 - .03, z1 + .03, M.alu, { noCast: true }); }
+winX(-2.2, -1.6, UF + .6, UF + 1.9); winX(-3.6, -3.0, UF + .6, UF + 1.9);
+winX(-2.2, -1.6, DY + .9, DY + 2.0); winX(-4.3, -3.4, DY, DY + 2.15);
+(function () { // escalier qui monte vers l'arrière, le long du pignon
+  var n = 14, z0 = -1.2, run = .42;
+  for (var i = 0; i < n; i++) { var y = DY + (i + 1) * (2.6 / n), z = z0 - i * run; B(X0 - 1.3, X0 - .05, Math.max(0, y - .2), y, z - run, z, M.coping); }
+  B(X0 - 1.36, X0 - 1.3, DY + 1, DY + 1.04 + 2.6, z0 - n * run, z0, M.alu);
+})();
+
+await pause();
+// terrasse en bois surélevée, avec la piscine creusée dedans
+var PX0 = 0, PX1 = 10, PZ0 = 6.2, PZ1 = 11.2;
+B(-9.5, 16.5, 0, DY, ZF, PZ0, MX.deck); B(-9.5, PX0, 0, DY, PZ0, PZ1, MX.deck); B(PX1, 16.5, 0, DY, PZ0, PZ1, MX.deck); B(-9.5, 16.5, 0, DY, PZ1, 13.2, MX.deck);
+B(-9.5, 16.5, 0, DY, ZB, ZF, MX.deck, { noCast: true });                     // terrasse sous la maison et sur les côtés
+B(PX0, PX1, .02, .06, PZ0, PZ1, M.liner, { noCast: true });
+B(PX0, PX0 + .03, .06, DY - .06, PZ0, PZ1, M.liner, { noCast: true }); B(PX1 - .03, PX1, .06, DY - .06, PZ0, PZ1, M.liner, { noCast: true });
+B(PX0 + .03, PX1 - .03, .06, DY - .06, PZ0, PZ0 + .03, M.liner, { noCast: true }); B(PX0 + .03, PX1 - .03, .06, DY - .06, PZ1 - .03, PZ1, M.liner, { noCast: true });
+B(PX0, PX1, DY - .14, DY - .12, PZ0, PZ1, M.water, { noCast: true });
+// margelles
+B(PX0 - .3, PX1 + .3, DY, DY + .05, PZ0 - .3, PZ0, M.coping, { noCast: true }); B(PX0 - .3, PX1 + .3, DY, DY + .05, PZ1, PZ1 + .3, M.coping, { noCast: true });
+B(PX0 - .3, PX0, DY, DY + .05, PZ0, PZ1, M.coping, { noCast: true }); B(PX1, PX1 + .3, DY, DY + .05, PZ0, PZ1, M.coping, { noCast: true });
+// échelle inox
+[1.3, 1.8].forEach(function (x) {
+  B(x, x + .04, .3, DY + .75, PZ0 + .05, PZ0 + .09, M.inox, { noCast: true });
+  B(x, x + .04, DY + .71, DY + .75, PZ0 - .45, PZ0 + .09, M.inox, { noCast: true });
+  B(x, x + .04, DY, DY + .75, PZ0 - .45, PZ0 - .41, M.inox, { noCast: true });
+});
+// transats et table
+function lounger(x, z) {
+  B(x - .33, x + .33, DY + .32, DY + .38, z - .2, z + 1.1, MX.cloth);
+  var b = new T.Mesh(new T.BoxGeometry(.66, .06, .8), MX.cloth); b.position.set(x, DY + .62, z - .5); b.rotation.x = .75; b.castShadow = true; scene.add(b);
+  [[-.28, -.15], [.28, -.15], [-.28, 1.0], [.28, 1.0]].forEach(function (l) { B(x + l[0] - .02, x + l[0] + .02, DY, DY + .33, z + l[1] - .02, z + l[1] + .02, MX.wood2, { noCast: true }); });
+}
+lounger(-6.6, 6.8); lounger(-4.6, 6.8); lounger(-2.6, 6.8);
+B(12.2, 14.4, DY + .72, DY + .77, .9, 1.8, MX.cloth); [[12.35, 1.0], [14.25, 1.0], [12.35, 1.7], [14.25, 1.7]].forEach(function (l) { B(l[0] - .03, l[0] + .03, DY, DY + .72, l[1] - .03, l[1] + .03, MX.cloth, { noCast: true }); });
+B(12.2, 14.4, DY + .42, DY + .46, .35, .65, MX.cloth); B(12.2, 14.4, DY + .42, DY + .46, 2.05, 2.35, MX.cloth);
+// mur de soutènement du coteau, derrière la terrasse à droite
+B(9.4, 16.5, 0, 1.9, ZB - .3, ZB, M.render);
 
 await pause();
 /* ---------- Végétation : feuillage en milliers de touffes ---------- */
 var clumpGeo = new T.IcosahedronGeometry(1, 1);
 var leafMat = new T.MeshStandardMaterial({ color: 0xFFFFFF, roughness: .92, flatShading: false });
 var tmpO = new T.Object3D(), tmpC = new T.Color();
-// shape(u) renvoie le rayon horizontal à la hauteur relative u (0 bas, 1 haut)
 function foliage(cx, cy, cz, h, shape, count, size, hue, sat, lum) {
   var im = new T.InstancedMesh(clumpGeo, leafMat, count);
   for (var i = 0; i < count; i++) {
@@ -565,27 +567,20 @@ function cypress(x, z, h) {
   trunk(x, z, 1, .14);
   foliage(x, groundAt(z) + .4, z, h, function (u) { return .85 * Math.sin(Math.PI * Math.min(1, .15 + u * .9)) * (1 - u * .55); }, 900, .17, .28, .42, .19);
 }
-function bush(x, z, r, hue, sat, lum) { foliage(x, groundAt(z), z, r * 1.3, function (u) { return r * Math.sin(Math.PI * (u * .8 + .2)); }, 160, r * .22, hue, sat, lum); }
-await pause();
-// grands arbres derrière la maison, sur le haut du terrain
-tree(-4, -16, 5, 4, .24, .3); tree(8, -18, 5.5, 4.2, .25, .27); tree(22, -12, 4.8, 3.8, .23, .31);
-tree(-20, -6, 4.5, 3.6, .25, .28); tree(30, 4, 4, 3.4, .23, .32); tree(-26, 12, 4, 3.2, .24, .3);
-// oliviers et cyprès sur le jardin bas
-olive(-9, 13); olive(4, 15.5); olive(-20, 4);
-for (var ci = 0; ci < 5; ci++) cypress(-21.5, -8 + ci * 3.2, rr(8, 10.5));
-// massifs le long de la façade et lavandes devant la cour
+function bush(x, z, r, hue, sat, lum, y0) { foliage(x, (y0 === undefined ? groundAt(z) : y0), z, r * 1.3, function (u) { return r * Math.sin(Math.PI * (u * .8 + .2)); }, 160, r * .22, hue, sat, lum); }
 function roses(x, z, r, hue) {
   bush(x, z, r, .31, .42, .24);
   foliage(x, groundAt(z) + r * .35, z, r * 1.05, function (u) { return r * .95 * Math.sin(Math.PI * (u * .75 + .25)); }, 80, r * .1, hue, .7, .6);
 }
-var fl = [.94, .14, .94, .9, .14, .94];
-for (var bi = 0; bi < 6; bi++) roses(-12 + bi * 2.6, 8.4, .8, fl[bi]);
-roses(-9.5, 6.3, .7, .14); roses(12.5, 3.5, .75, .93); roses(14.5, 9.5, .7, .14);
-for (var lv = 0; lv < 8; lv++) bush(16.6, -1 + lv * 1.05, .42, .72, .22, .42);
-(function () { // ombre de contact au pied de la maison
-  var m = new T.Mesh(new T.PlaneGeometry(34, 4), new T.MeshBasicMaterial({ map: TX.ao(), transparent: true, depthWrite: false, opacity: .8 }));
-  m.rotation.x = -Math.PI / 2; m.position.set(0, .02, 6.3); scene.add(m);
-})();
+await pause();
+// grands arbres derrière la maison, sur le coteau
+tree(-15, -17, 7, 5, .27, .17); tree(-4, -21, 7.5, 5.4, .26, .16); tree(8, -20, 7, 5.2, .27, .18); tree(19, -17, 6.5, 4.8, .25, .19);
+tree(-26, -8, 5.5, 4.2, .27, .2); tree(29, -6, 5.5, 4, .26, .21); tree(-28, 14, 4.4, 3.4, .25, .24);
+for (var ci = 0; ci < 4; ci++) cypress(-14.5, -8 + ci * 3.1, rr(8, 10.5));
+olive(23, 10); olive(-15, 17);
+// massifs au bord de la terrasse
+var fl = [.94, .14, .94, .9, .14, .94, .14];
+for (var bi = 0; bi < 7; bi++) roses(-8 + bi * 4, 14.2, .75, fl[bi]);
 
 (function () { // quelques nuages, loin derrière la maison
   var ct = TX.cloud();
@@ -597,14 +592,14 @@ for (var lv = 0; lv < 8; lv++) bush(16.6, -1 + lv * 1.05, .42, .72, .22, .42);
 
 await pause();
 /* ---------- Caméra : lent travelling, sans interaction ---------- */
-var CAM = { az: .55, el: .12, R: 48, cx: 0, cy: 3.4, cz: 1, sx: 0, sy: 0 };
+var CAM = { az: -.38, el: .17, R: 36, cx: 3, cy: 3.6, cz: 2.5, sx: 0, sy: 0 };
 // sx / sy décalent le cadrage : la maison se place en haut à droite, le titre en bas à gauche
 function fit() {
   var w = stage.clientWidth, h = stage.clientHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h;
   var narrow = camera.aspect < 1.1;
   camera.fov = narrow ? 44 : 32; camera.updateProjectionMatrix();
-  CAM.R = narrow ? 50 : 48; CAM.sx = narrow ? 0 : 5.5; CAM.sy = narrow ? -1.5 : -2.2;
+  CAM.R = narrow ? 46 : 41; CAM.sx = narrow ? 0 : 7; CAM.sy = narrow ? -1.2 : -2.6;
 }
 function place(t) {
   var k = REDUCE ? 0 : sm((t - 3.5) / 8); // immobile pendant le fondu, puis le travelling démarre en douceur

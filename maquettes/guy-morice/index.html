@@ -8,8 +8,8 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F6F6F4">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23fff'/%3E%3Crect x='8' y='54' width='58' height='38' fill='%23111'/%3E%3Crect x='32' y='12' width='60' height='36' fill='%23111'/%3E%3C/svg%3E">
-<link rel="preload" as="image" href="img/hero-desktop.jpg?v=2" media="(min-width: 861px)">
-<link rel="preload" as="image" href="img/hero-mobile.jpg?v=2" media="(max-width: 860px)">
+<link rel="preload" as="image" href="img/hero-desktop.jpg?v=3" media="(min-width: 861px)">
+<link rel="preload" as="image" href="img/hero-mobile.jpg?v=3" media="(max-width: 860px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Archivo:wdth,wght@62..125,300..700&display=swap">
@@ -110,8 +110,8 @@ section[id]{scroll-margin-top:76px}
   .hero-copy .wrap{grid-template-columns:1fr;padding-block:26px 34px}
   .hero h1{font-size:clamp(54px,16vw,96px);text-shadow:none}
 }
-.stage{position:absolute;inset:0;background:#C9D6E0 url(img/hero-desktop.jpg?v=2) center/cover no-repeat}
-@media (max-width:860px){.stage{background-image:url(img/hero-mobile.jpg?v=2)}}
+.stage{position:absolute;inset:0;background:#C9D6E0 url(img/hero-desktop.jpg?v=3) center/cover no-repeat}
+@media (max-width:860px){.stage{background-image:url(img/hero-mobile.jpg?v=3)}}
 
 /* ---------- Introduction et savoir-faire ---------- */
 .sec{padding-block:clamp(90px,12vw,170px)}
@@ -149,12 +149,13 @@ section[id]{scroll-margin-top:76px}
 .cta span{color:#BDBDB9;font-size:15px}
 .cta i{font-style:normal;display:inline-flex;align-self:end;justify-self:start;border:1px solid #6F7072;padding:12px 18px;font-size:15px;transition:border-color .3s,color .3s}
 .cta:hover i{border-color:var(--bronze-l);color:var(--bronze-l)}
+@media (min-width:901px){.cta{grid-column:1/-1;min-height:0;grid-template-columns:auto 1fr auto;align-items:center;gap:40px}.cta span{max-width:52ch}.cta i{align-self:center}}
 @media (max-width:900px){.vitrine{grid-template-columns:1fr 1fr}.proj.big{grid-column:1/-1;grid-row:auto}.proj.big .pic{aspect-ratio:16/10;min-height:0}}
 @media (max-width:560px){.vitrine{grid-template-columns:1fr}.cta{min-height:0}.cap{flex-direction:column;gap:2px}.cap span{text-align:left}}
 
 /* ---------- Visionneuse de projet ---------- */
 .viewer{position:fixed;inset:0;z-index:80;background:#0B0B0B;color:var(--white);display:grid;grid-template-columns:minmax(0,1fr) 360px;grid-template-rows:auto minmax(0,1fr) auto}
-.viewer[hidden],.v-nav[hidden],.v-tabs button[hidden]{display:none!important}
+.viewer[hidden],.v-nav[hidden],.v-tabs[hidden],.v-tabs button[hidden]{display:none!important}
 .v-top{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:calc(14px + env(safe-area-inset-top,0px)) max(22px,env(safe-area-inset-right,0px)) 14px max(22px,env(safe-area-inset-left,0px));border-bottom:1px solid #222}
 .v-top h2{font-size:clamp(22px,2.2vw,30px);line-height:1.1}
 .v-top h2 small{display:block;font-family:var(--sans);font-size:13px;color:#9C9D9A;font-weight:400;margin-top:5px;font-variation-settings:normal}
@@ -308,8 +309,8 @@ body.viewing{overflow:hidden}
 
 <main id="top">
 <section class="hero" id="frame" aria-labelledby="nom">
-  <div class="stage" role="img" aria-label="Maquette 3D d'une villa de Guy Morice : deux niveaux sur un terrain en pente, piscine à débordement en terrasse, en fin de journée."></div>
-  <span class="hero-tag">Villa sur sous-sol, projet de l'atelier en 3D</span>
+  <div class="stage" role="img" aria-label="Maquette 3D d'une villa de Guy Morice : deux niveaux sous un grand toit à une pente porté par des poteaux, balcon filant, terrasse en bois et piscine, en fin de journée."></div>
+  <span class="hero-tag">Villa sous grand toit, projet de l'atelier en 3D</span>
   <div class="hero-copy">
     <div class="wrap">
       <h1 id="nom" class="sf">Guy Morice<em>architecte à Estillac</em></h1>
@@ -337,14 +338,15 @@ body.viewing{overflow:hidden}
   <div class="wrap">
     <div class="head rv">
       <div><span class="kicker">Réalisations</span><h2 id="t-real" class="sf">La vitrine de l'atelier</h2></div>
-      <p>Quelques projets récents de l'atelier, avec leurs vues 3D et leurs plans. Touchez un projet pour l'ouvrir.</p>
+      <p>Des projets de l'atelier, des premières esquisses à la main jusqu'aux vues 3D. Touchez un projet pour l'ouvrir.</p>
     </div>
     <div class="vitrine" id="vitrine">
-      <button class="proj big rv" type="button" data-p="pc"><span class="pic"><img src="projets/pc-v1.jpg" width="1280" height="720" alt="Villa contemporaine sur sous-sol, avec sa piscine en terrasse" loading="lazy" decoding="async"><span class="count">4 vues, 5 plans</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Villa sur sous-sol et piscine</b><span>4 chambres, piscine de 10 m</span></span></button>
-      <button class="proj rv" type="button" data-p="pa"><span class="pic"><img src="projets/pa-v1-s.jpg" width="720" height="405" alt="Villa avec étage, toitures en tuiles et enduit clair" loading="lazy" decoding="async"><span class="count">7 vues, 3 plans</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Villa avec étage et piscine</b><span>5 chambres</span></span></button>
-      <button class="proj rv" type="button" data-p="pb"><span class="pic"><img src="projets/pb-v1-s.jpg" width="720" height="405" alt="Maison de plain-pied aux toitures à quatre pentes" loading="lazy" decoding="async"><span class="count">5 vues, 3 plans</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Maison de plain-pied</b><span>Séjour de 79 m²</span></span></button>
-      <button class="proj rv" type="button" data-p="pd"><span class="pic"><img src="projets/pd-v1-s.jpg" width="720" height="576" alt="Maison individuelle insérée dans la photo de son terrain, à Beaupuy" loading="lazy" decoding="async"><span class="count">1 vue, 3 plans</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Maison individuelle</b><span>Beaupuy</span></span></button>
-      <button class="proj rv" type="button" data-p="pe"><span class="pic"><img src="projets/pe-v1-s.jpg" width="720" height="576" alt="Deux logements insérés dans la photo du terrain, à Castelnau-sur-Gupie" loading="lazy" decoding="async"><span class="count">2 vues, 2 plans</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Deux logements</b><span>Castelnau-sur-Gupie</span></span></button>
+      <button class="proj big rv" type="button" data-p="ga"><span class="pic"><img src="projets/ga-v1.jpg" width="1600" height="1200" alt="Villa à étage sous un grand toit à une pente, avec balcon filant, terrasse en bois et piscine" loading="lazy" decoding="async"><span class="count">2 vues 3D</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Villa sous grand toit, avec piscine</b><span>Toit sur poteaux, balcon filant</span></span></button>
+      <button class="proj rv" type="button" data-p="gb"><span class="pic"><img src="projets/gb-v1-s.jpg" width="760" height="570" alt="Maison à étage avec lames brise-soleil sur la façade et garage indépendant" loading="lazy" decoding="async"><span class="count">2 vues 3D</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Maison aux brise-soleil</b><span>Garage indépendant</span></span></button>
+      <button class="proj rv" type="button" data-p="gc"><span class="pic"><img src="projets/gc-v1-s.jpg" width="760" height="570" alt="Maison à étage en bardage bois avec balcon filant" loading="lazy" decoding="async"><span class="count">1 vue 3D</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Maison habillée de bois</b><span>Bardage bois</span></span></button>
+      <button class="proj rv" type="button" data-p="gd"><span class="pic"><img src="projets/gd-card-s.jpg" width="760" height="570" alt="Plan de masse du quartier des maisons Bio-Clim à Brax" loading="lazy" decoding="async"><span class="count">1 vue, 1 plan</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Les maisons « Bio-Clim »</b><span>Brax, 25 maisons</span></span></button>
+      <button class="proj rv" type="button" data-p="ge"><span class="pic"><img src="projets/ge-v1-s.jpg" width="760" height="570" alt="Esquisse à la main d'une maison bioclimatique sous grande toiture de tuiles" loading="lazy" decoding="async"><span class="count">2 esquisses, 3 façades</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Maison bioclimatique</b><span>Esquisses à la main</span></span></button>
+      <button class="proj rv" type="button" data-p="gf"><span class="pic"><img src="projets/gf-v1-s.jpg" width="760" height="570" alt="Esquisse à la main d'une maison longue en bardage bois sous tuiles romanes" loading="lazy" decoding="async"><span class="count">2 esquisses</span><span class="open">Voir le projet</span></span><span class="cap"><b class="sf">Maisons en bardage bois</b><span>Esquisses à la main</span></span></button>
       <a class="cta rv" href="#contact"><b class="sf">Et votre projet ?</b><span>Maison neuve, extension ou rénovation : un premier échange suffit pour savoir comment le mener.</span><i>Prendre rendez-vous</i></a>
     </div>
   </div>
