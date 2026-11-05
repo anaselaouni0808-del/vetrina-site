@@ -63,21 +63,24 @@ if ('IntersectionObserver' in window) {
 (function () {
   function seq(p, kind, n) { var a = []; for (var i = 1; i <= n; i++) a.push('projets/' + p + '-' + kind + i); return a; }
   var P = {
-    ga: { t: 'Villa sous grand toit, avec piscine', m: 'Maison individuelle, vues 3D de l’atelier',
-      d: 'Une maison à étage abritée par un grand toit à une pente, porté par de fins poteaux. Le balcon court sur toute la façade, au-dessus des baies du séjour, qui s’ouvrent de plain-pied sur la terrasse en bois et la piscine.',
-      f: [['Niveaux', '2'], ['Toiture', 'Une pente, débord sur poteaux'], ['Étage', 'Balcon filant'], ['Extérieurs', 'Terrasse bois et piscine']],
-      v: seq('ga', 'v', 2), p: [],
-      vn: ['Façade sur la piscine', 'Vue depuis la terrasse'], pn: [] },
-    gb: { t: 'Maison aux brise-soleil', m: 'Maison individuelle, vues 3D de l’atelier',
-      d: 'Un volume à étage sous un toit à une pente qui déborde largement. Des lames inclinées protègent la façade principale du soleil ; le garage forme un volume à part, au bout de l’allée.',
-      f: [['Niveaux', '2'], ['Toiture', 'Une pente, large débord'], ['Façade', 'Lames brise-soleil'], ['Garage', 'Indépendant']],
-      v: seq('gb', 'v', 2), p: [],
-      vn: ['Façade d’entrée et allée', 'Vue depuis le jardin'], pn: [] },
-    gc: { t: 'Maison habillée de bois', m: 'Maison individuelle, vue 3D de l’atelier',
-      d: 'Une maison à étage entièrement habillée de bois, avec un balcon filant et un toit à une pente porté par des poteaux. Le garage, plus sombre, forme un volume bas accolé à la maison.',
-      f: [['Niveaux', '2'], ['Façades', 'Bardage bois'], ['Toiture', 'Une pente sur poteaux'], ['Garage', 'Accolé']],
-      v: seq('gc', 'v', 1), p: [],
-      vn: ['Façade principale'], pn: [] },
+    pc: { t: 'Villa sur sous-sol et piscine', m: 'Villa contemporaine, Lot-et-Garonne',
+      d: 'Une villa posée sur la pente. Les pièces de vie s’ouvrent sur une grande terrasse et une piscine de 10 mètres, construites au-dessus d’un sous-sol qui accueille le garage et une réserve de près de 200 m².',
+      f: [['Chambres', '4'], ['Salon', '60 m²'], ['Cuisine', '28 m²'], ['Piscine', '10 × 4 m'], ['Réserve en sous-sol', '196 m²']],
+      v: seq('pc', 'v', 4), p: seq('pc', 'p', 5),
+      vn: ['Façade sur la piscine', 'Terrasse couverte et escalier extérieur', 'Entrée côté jardin', 'Façade latérale'],
+      pn: ['Plan du rez-de-chaussée', 'Plan du sous-sol', 'Façades latérale et principale', 'Façades latérale et arrière', 'Plan de masse'] },
+    pa: { t: 'Villa avec étage et piscine', m: 'Villa, Lot-et-Garonne',
+      d: 'Une maison en L sous toitures de tuiles, avec une chambre à l’étage ouverte sur un toit-terrasse. Le séjour de 78 m² donne sur la piscine et la terrasse.',
+      f: [['Chambres', '4 + 1 à l’étage'], ['Séjour', '78 m²'], ['Garage', 'Oui'], ['Piscine', 'Oui']],
+      v: ['pa-v3', 'pa-v1', 'pa-v2', 'pa-v4', 'pa-v5', 'pa-v6', 'pa-v7'].map(function (x) { return 'projets/' + x; }), p: seq('pa', 'p', 3),
+      vn: ['Terrasse et piscine', 'Façade d’entrée', 'Entrée et garage', 'Façade sur jardin', 'Vue d’ensemble sur la piscine', 'Façade latérale', 'Vue aérienne'],
+      pn: ['Plan du rez-de-chaussée', 'Plan de l’étage', 'Plan des toitures'] },
+    pb: { t: 'Maison de plain-pied', m: 'Maison individuelle, Lot-et-Garonne',
+      d: 'Trois volumes sous toitures à quatre pentes, autour d’un séjour de 79 m² ouvert sur une grande terrasse. Les chambres sont regroupées d’un côté, le garage de l’autre.',
+      f: [['Chambres', '4'], ['Séjour', '79 m²'], ['Garage', 'Oui']],
+      v: seq('pb', 'v', 5), p: seq('pb', 'p', 3),
+      vn: ['Façade d’entrée', 'Terrasse côté jardin', 'Terrasse et séjour', 'Façade sur jardin', 'Façade latérale'],
+      pn: ['Plan du rez-de-chaussée', 'Façades principale et arrière', 'Façades latérales'] },
     gd: { t: 'Les maisons « Bio-Clim »', m: 'Quartier d’habitat, Brax',
       d: 'Un quartier conçu selon la démarche HQE : vingt-cinq maisons avec jardin, desservies par des rues plantées, et deux résidences de huit logements reliées par un passage public, autour d’un espace vert commun.',
       f: [['Maisons', '25'], ['Logements', '16, en 2 résidences'], ['Démarche', 'HQE'], ['Espaces communs', 'Espace vert et passage public']],
@@ -87,12 +90,7 @@ if ('IntersectionObserver' in window) {
       d: 'Une maison sous une grande toiture de tuiles. Au sud, le pignon est largement vitré et s’ouvre sur un balcon ; la maison donne sur une terrasse au sud et une autre à l’ouest, avec un abri voitures ouvert à l’écart.',
       f: [['Toiture', 'Tuiles, faîtage à 5,50 m'], ['Façade sud', 'Pignon vitré'], ['Terrasses', 'Sud et ouest'], ['Voitures', 'Abri ouvert']],
       v: seq('ge', 'v', 2), p: seq('ge', 'p', 3), pl: 'Façades', light: true,
-      vn: ['Perspective annotée', 'Perspective'], pn: ['Façade sud', 'Façade est', 'Façade ouest'] },
-    gf: { t: 'Maisons en bardage bois', m: 'Esquisses à la main',
-      d: 'Deux esquisses de maisons habillées de bois. La première, longue et basse, est coiffée de tuiles romanes aux couleurs nuancées, avec des gouttières en alu blanc et des poteaux métalliques. La seconde s’ouvre sur un jardin avec piscine et pergola.',
-      f: [['Façades', 'Bardage bois'], ['Toiture', 'Tuiles romanes'], ['Détails', 'Gouttières alu, poteaux métal']],
-      v: seq('gf', 'v', 2), p: [], light: true,
-      vn: ['Perspective de la façade sud', 'Perspective sur le jardin'], pn: [] }
+      vn: ['Perspective annotée', 'Perspective'], pn: ['Façade sud', 'Façade est', 'Façade ouest'] }
   };
   var V = $('#viewer'); if (!V) return;
   var img = $('#v-img'), stage = $('#v-stage'), thumbs = $('#v-thumbs'), num = $('#v-num'), full = $('#v-full');
