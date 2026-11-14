@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vetrina · Un site pour votre commerce, prêt en 7 jours</title>
-<meta name="description" content="Vetrina crée le site de votre commerce en 7 jours. À partir de 69 € par mois, domaine et hébergement inclus, sans frais de création.">
+<meta name="description" content="Vetrina crée le site de votre commerce en 7 jours. 940 € en une fois ou 49 € par mois sans engagement, domaine et hébergement inclus. Acompte remboursé si le site ne vous plaît pas.">
 <meta property="og:title" content="Vetrina · La vitrine en ligne de votre commerce">
 <meta property="og:description" content="Un site conçu, hébergé et entretenu pour votre commerce, sans rien avancer.">
 <meta property="og:type" content="website">
@@ -37,10 +37,10 @@
   "description": "Création, hébergement et entretien de sites internet pour les commerces de quartier, facturés au mois.",
   "areaServed": { "@type": "Country", "name": "France" },
   "founder": { "@type": "Person", "name": "Anas Elaouni" },
-  "priceRange": "69 € - 99 € par mois",
+  "priceRange": "49 € par mois ou 940 € en une fois",
   "makesOffer": [
-    { "@type": "Offer", "name": "Essentielle", "price": "69", "priceCurrency": "EUR", "description": "Site de 1 à 5 pages, domaine, hébergement, 2 modifications par mois", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "69", "priceCurrency": "EUR", "unitText": "mois" } },
-    { "@type": "Offer", "name": "Plus", "price": "99", "priceCurrency": "EUR", "description": "Jusqu'à 8 pages, commande ou réservation en ligne, 4 modifications par mois", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "99", "priceCurrency": "EUR", "unitText": "mois" } }
+    { "@type": "Offer", "name": "En une fois", "price": "940", "priceCurrency": "EUR", "description": "Site, fiche Google, référencement sur Google et les assistants IA, hébergement la première année. Acompte de 470 € à la commande, remboursé si le site ne plaît pas." },
+    { "@type": "Offer", "name": "Abonnement", "price": "49", "priceCurrency": "EUR", "description": "Site, fiche Google, référencement, hébergement et une modification par mois, sans engagement. Acompte de 190 € à la commande, remboursé si le site ne plaît pas.", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "49", "priceCurrency": "EUR", "unitText": "mois" } }
   ]
 }
 </script>
@@ -380,6 +380,13 @@ p { margin: 0; }
 .price b { font-family: var(--font-display); font-weight: 800; font-size: 3.4rem; line-height: 1; letter-spacing: -0.035em; }
 .price .per { color: var(--muted); transition: opacity 0.25s; }
 .price .per.swap { opacity: 0; }
+.pay { display: grid; gap: 6px; padding: 12px 14px; border-radius: 12px; background: var(--tint); font-size: 0.95rem; color: var(--muted); }
+.pay span { display: flex; gap: 8px; align-items: baseline; }
+.pay b { color: var(--ink); font-family: var(--font-display); font-weight: 750; font-variant-numeric: tabular-nums; min-width: 4.2em; }
+.promise { margin-top: 22px; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; align-items: start; padding: 20px 22px; border-radius: 18px; background: var(--surface); border: 2px solid var(--ok); }
+.promise svg { width: 40px; height: 40px; fill: none; stroke: var(--ok); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.promise p { margin: 0; font-size: 1.02rem; line-height: 1.55; }
+.promise strong { display: block; font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 2px; color: var(--ink); }
 .plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .plan li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; font-size: 0.98rem; }
 .plan li .tick { stroke: var(--ok); margin-top: 4px; }
@@ -649,7 +656,7 @@ html.lenis, html.lenis body { height: auto; }
       <div class="hero-copy">
         <p class="kicker">Sites pour commerces de quartier</p>
         <h1 id="hero-title"><span class="line">Un site pour votre commerce,</span> <span class="line">prêt en 7 jours.</span></h1>
-        <p class="lead">À partir de <strong>69 € par mois</strong>, nom de domaine et hébergement inclus.</p>
+        <p class="lead"><strong>940 € en une fois</strong> ou <strong>49 € par mois</strong> sans engagement, nom de domaine et hébergement inclus.</p>
         <div class="hero-actions">
           <a class="btn btn-sun" href="#contact" data-intent="maquette">Voir la maquette gratuite</a>
           <a class="btn btn-glass" href="#contact" data-intent="rappel">Être rappelé</a>
@@ -890,7 +897,7 @@ html.lenis, html.lenis body { height: auto; }
   <section class="section" id="inclus" aria-labelledby="included-title">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="included-title" class="split">Ce que comprend l'abonnement</h2>
+        <h2 id="included-title" class="split">Ce que comprend votre site</h2>
         <p class="lead">Six choses dont vous n'avez plus à vous occuper.</p>
       </div>
       <ul class="plaques" id="plaques">
@@ -915,7 +922,7 @@ html.lenis, html.lenis body { height: auto; }
         <span class="route-car" id="route-car" aria-hidden="true"></span>
         <ol class="steps">
           <li><span class="node" aria-hidden="true">1</span><span class="when">Premier appel</span><h3>On échange 15 minutes</h3><p>Par téléphone. Vous me parlez de votre commerce, de vos clients et de ce que le site doit faire.</p></li>
-          <li><span class="node" aria-hidden="true">2</span><span class="when">Avant de décider</span><h3>Vous voyez une maquette à votre nom</h3><p>Gratuite et sans engagement. Vous décidez seulement après l'avoir vue sur votre téléphone.</p></li>
+          <li><span class="node" aria-hidden="true">2</span><span class="when">Avant de décider</span><h3>Vous voyez une maquette à votre nom</h3><p>Gratuite et sans engagement. Vous ne versez l'acompte que si elle vous plaît.</p></li>
           <li><span class="node" aria-hidden="true">3</span><span class="when">Sous 7 jours</span><h3>Votre site est en ligne</h3><p>Dès que vous avez envoyé vos photos et vos infos. Ensuite, je m'occupe de tout.</p></li>
         </ol>
       </div>
@@ -925,52 +932,58 @@ html.lenis, html.lenis body { height: auto; }
   <section class="section" id="tarifs" aria-labelledby="pricing-title">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="pricing-title" class="split">Un prix par mois, rien à avancer</h2>
-        <p class="lead">Vous payez chaque mois par prélèvement automatique. Pas de devis surprise.</p>
-      </div>
-      <div class="bill" id="bill" role="group" aria-label="Affichage du prix">
-        <span class="knob" aria-hidden="true"></span>
-        <button type="button" aria-pressed="true" data-mode="m">Par mois</button>
-        <button type="button" aria-pressed="false" data-mode="y">Sur 12 mois</button>
+        <h2 id="pricing-title" class="split">Deux façons de payer, aucun risque</h2>
+        <p class="lead">Votre site en une fois, ou au mois sans engagement. Dans les deux cas, vous ne payez rien avant d'avoir vu votre maquette.</p>
       </div>
       <div class="plans">
         <article class="plan featured">
-          <div class="plan-top"><span class="plan-name">Essentielle</span><span class="mini-plaque">Pour démarrer</span></div>
-          <div class="price"><b class="amt" data-m="69" data-y="828">69 €</b><span class="per">par mois</span></div>
+          <div class="plan-top"><span class="plan-name">En une fois</span><span class="mini-plaque">Le plus simple</span></div>
+          <div class="price"><b class="amt" data-m="940" data-y="940">940 €</b><span class="per">une seule fois</span></div>
+          <div class="pay" aria-label="Échéancier">
+            <span><b>470 €</b> d'acompte à la commande</span>
+            <span><b>470 €</b> à la mise en ligne</span>
+          </div>
           <ul>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Site de 1 à 5 pages, pensé pour le téléphone</li>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Nom de domaine à votre nom, hébergement, HTTPS</li>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Bouton d'appel et formulaire de contact</li>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Fiche Google soignée</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Site sur mesure, pensé pour le téléphone</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Nom de domaine à votre nom, hébergement et HTTPS la première année</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Fiche Google créée et complétée</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Référencement sur Google et les assistants IA</li>
             <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Mentions légales</li>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>2 demandes de modification par mois</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Ensuite 15 € par mois d'hébergement, à partir de la deuxième année</li>
           </ul>
           <a class="btn btn-primary" href="#contact">Demander une maquette</a>
         </article>
         <article class="plan">
-          <div class="plan-top"><span class="plan-name">Plus</span><span class="mini-plaque">Pour aller plus loin</span></div>
-          <div class="price"><b class="amt" data-m="99" data-y="1188">99 €</b><span class="per">par mois</span></div>
+          <div class="plan-top"><span class="plan-name">Abonnement</span><span class="mini-plaque">Sans engagement</span></div>
+          <div class="price"><b class="amt" data-m="49" data-y="49">49 €</b><span class="per">par mois</span></div>
+          <div class="pay" aria-label="Échéancier">
+            <span><b>190 €</b> d'acompte à la commande</span>
+            <span><b>49 €</b> par mois dès la mise en ligne</span>
+          </div>
           <ul>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Tout ce que comprend l'Essentielle</li>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Jusqu'à 8 pages</li>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Commande ou réservation en ligne, reçue par email</li>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Galerie photos mise à jour</li>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Vos avis Google affichés sur le site</li>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>4 demandes de modification par mois</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Le même site sur mesure, pensé pour le téléphone</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Nom de domaine à votre nom, hébergement et HTTPS</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Fiche Google et référencement sur Google et les IA</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Une demande de modification par mois</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg>Résiliable chaque mois, avec un mois de préavis</li>
           </ul>
           <a class="btn btn-ghost" href="#contact">Demander une maquette</a>
         </article>
+      </div>
+      <div class="promise">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3z"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/></svg>
+        <p><strong>Acompte remboursé si le site ne vous plaît pas.</strong> Vous voyez d'abord votre maquette, gratuitement, et vous ne versez l'acompte que si elle vous plaît. Si le site terminé ne vous convient pas, je vous rembourse l'acompte en entier.</p>
       </div>
       <div class="calc">
         <div>
           <label for="basket">Le panier moyen de vos clients</label>
           <div class="range-row"><input type="range" id="basket" min="3" max="60" step="1" value="12"><output id="basket-out" for="basket">12 €</output></div>
         </div>
-        <p class="calc-out" aria-live="polite"><b id="calc-n">6</b><span id="calc-txt">paniers de 12 € par mois, et vous avez le prix de l'abonnement Essentielle.</span></p>
+        <p class="calc-out" aria-live="polite"><b id="calc-n">6</b><span id="calc-txt">paniers de 12 € par mois, et vous avez le prix de l'abonnement.</span></p>
       </div>
       <div class="terms">
-        <span>Création offerte pour nos premiers commerces</span>
-        <span>Engagement 12 mois, puis résiliable chaque mois</span>
+        <span>Maquette gratuite, avant tout paiement</span>
+        <span>Acompte remboursé si le site ne vous plaît pas</span>
         <span>Prix nets, TVA non applicable (art. 293 B du CGI)</span>
       </div>
     </div>
@@ -1012,7 +1025,7 @@ html.lenis, html.lenis body { height: auto; }
         <p class="kicker">Qui est derrière Vetrina</p>
         <h2 id="who-title" class="split">Une personne, pas une plateforme</h2>
         <p>Je m'appelle Anas, j'ai grandi à Bordeaux. Je fais moi-même chaque site, de la maquette aux modifications, et c'est moi qui vous réponds au téléphone comme par e-mail.</p>
-        <p>Vetrina démarre : vous serez parmi les premiers commerces accompagnés. C'est pour ça que la création est offerte.</p>
+        <p>Vetrina démarre : vous serez parmi les premiers commerces accompagnés. C'est pour ça que les prix sont bas, et que l'acompte vous est remboursé si le site ne vous plaît pas.</p>
         <p class="sign">Anas, fondateur de Vetrina</p>
       </div>
     </div>
@@ -1024,11 +1037,11 @@ html.lenis, html.lenis body { height: auto; }
         <h2 id="faq-title" class="split">Les questions qu'on nous pose</h2>
       </div>
       <div class="faq">
-        <details><summary>Est-ce que je dois avancer de l'argent ?<i aria-hidden="true"></i></summary><div class="faq-body"><p>Non. La maquette est gratuite, et la création est offerte pour nos premiers commerces. Vous payez ensuite l'abonnement chaque mois, par prélèvement automatique.</p></div></details>
-        <details><summary>Que se passe-t-il au bout d'un an ?<i aria-hidden="true"></i></summary><div class="faq-body"><p>L'abonnement continue au mois, et vous pouvez l'arrêter à tout moment avec un mois de préavis. Rien ne change pour votre site.</p></div></details>
+        <details><summary>Est-ce que je dois avancer de l'argent ?<i aria-hidden="true"></i></summary><div class="faq-body"><p>Seulement un acompte, et seulement si votre maquette vous plaît : 470 € pour l'achat en une fois, 190 € pour l'abonnement. Si le site terminé ne vous convient pas, l'acompte vous est remboursé en entier.</p></div></details>
+        <details><summary>Que se passe-t-il au bout d'un an ?<i aria-hidden="true"></i></summary><div class="faq-body"><p>Avec l'achat en une fois, l'hébergement continue pour 15 € par mois à partir de la deuxième année. Avec l'abonnement, rien ne change : 49 € par mois, que vous pouvez arrêter à tout moment avec un mois de préavis.</p></div></details>
         <details><summary>Si j'arrête, qu'est-ce que je garde ?<i aria-hidden="true"></i></summary><div class="faq-body"><p>Votre nom de domaine, qui est à votre nom. Vous pouvez aussi racheter le site pour le confier à quelqu'un d'autre, au prix fixé dès le départ dans le contrat.</p></div></details>
         <details><summary>Qu'est-ce que je dois fournir ?<i aria-hidden="true"></i></summary><div class="faq-body"><p>Votre logo si vous en avez un, quelques photos de votre boutique et de vos produits, vos horaires et vos services. Le reste, je le rédige avec vous pendant notre appel.</p></div></details>
-        <details><summary>Comment je demande une modification ?<i aria-hidden="true"></i></summary><div class="faq-body"><p>Par SMS ou par email, avec la photo ou le texte à changer. Deux demandes par mois sont comprises dans l'Essentielle, quatre dans la formule Plus.</p></div></details>
+        <details><summary>Comment je demande une modification ?<i aria-hidden="true"></i></summary><div class="faq-body"><p>Par SMS ou par email, avec la photo ou le texte à changer. Une demande par mois est comprise dans l'abonnement. Avec l'achat en une fois, les retouches après la mise en ligne sont comprises, puis je vous fais un prix au cas par cas.</p></div></details>
         <details><summary>Vous travaillez où ?<i aria-hidden="true"></i></summary><div class="faq-body"><p>Vetrina est basée à Bordeaux et travaille avec des commerces partout en France. Tout se fait par téléphone et par email : pas besoin de vous déplacer.</p></div></details>
       </div>
     </div>
@@ -2520,8 +2533,9 @@ window.VetrinaStreet = function (canvas, opts) {
   }
 
   /* ---------- Pricing ---------- */
-  var bill = $('#bill'), knob = $('.knob', bill), billBtns = $$('button', bill), mode = 'm';
+  var bill = $('#bill'), knob = bill && $('.knob', bill), billBtns = bill ? $$('button', bill) : [], mode = 'm';
   function placeKnob() {
+    if (!knob) return;
     var on = billBtns.filter(function (b) { return b.getAttribute('aria-pressed') === 'true'; })[0];
     knob.style.width = on.offsetWidth + 'px';
     knob.style.transform = 'translateX(' + on.offsetLeft + 'px)';
@@ -2566,11 +2580,11 @@ window.VetrinaStreet = function (canvas, opts) {
 
   var basket = $('#basket'), basketOut = $('#basket-out'), calcN = $('#calc-n'), calcTxt = $('#calc-txt'), lastN = 6;
   function calc() {
-    var v = Number(basket.value), n = Math.ceil(69 / v);
+    var v = Number(basket.value), n = Math.ceil(49 / v);
     basket.style.setProperty('--fill', ((v - basket.min) / (basket.max - basket.min) * 100).toFixed(1) + '%');
     basketOut.textContent = v + ' €';
     calcN.textContent = n;
-    calcTxt.textContent = (n > 1 ? 'paniers' : 'panier') + ' de ' + v + ' € par mois, et vous avez le prix de l’abonnement Essentielle.';
+    calcTxt.textContent = (n > 1 ? 'paniers' : 'panier') + ' de ' + v + ' € par mois, et vous avez le prix de l’abonnement.';
     if (n !== lastN && !reduce && calcN.animate) calcN.animate([{ transform: 'translateY(-10px) scale(1.15)', opacity: 0.4 }, { transform: 'none', opacity: 1 }], { duration: 380, easing: 'cubic-bezier(.2,.8,.2,1)' });
     lastN = n;
   }
