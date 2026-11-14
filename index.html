@@ -23,6 +23,8 @@
 <link rel="preload" as="image" href="img/rue-mobile.webp" type="image/webp" media="(max-aspect-ratio: 23/20)" fetchpriority="high">
 <link rel="preload" as="image" href="img/rue-desktop.webp" type="image/webp" media="(min-aspect-ratio: 23/20)" fetchpriority="high">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:wght@400..700&family=Young+Serif&display=swap">
+<!-- Polices du site de Guy Morice, réduites aux lettres de l'aperçu -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Archivo:wdth,wght@100..125,400..650&display=swap&text=GuyMoricearchitecteàEstillacGUYMORICEARCHITECTERéalisationsExpérience0123456789MaisonsneuvesextensionsetrénovationsdanslepaysdAgendepuis1982%2C.%27%20">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -552,6 +554,54 @@ a.plaque { min-height: 44px; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
+
+/* ---------- Réalisation : le site de Guy Morice, rendu en direct dans un écran et un téléphone ---------- */
+.real-grid { display: grid; gap: 48px; align-items: center; }
+@media (min-width: 980px) { .real-grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 64px; } }
+.real-text { display: grid; gap: 18px; align-content: start; min-width: 0; }
+.real-text h2 { font-family: var(--font-display); font-size: clamp(2rem, 4.2vw, 3.1rem); line-height: 1.04; letter-spacing: -0.025em; }
+.real-list { list-style: none; margin: 4px 0 6px; padding: 0; display: grid; gap: 12px; }
+.real-list li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; }
+.real-list .tick { width: 22px; height: 22px; fill: none; stroke: var(--ok); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; margin-top: 1px; }
+.real-list b { font-weight: 650; }
+.real-cta { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; }
+.real-cta small { color: var(--muted); font-size: 0.92rem; }
+
+.gm { --gm-bronze: #c9ac7e; --gm-paper: #f6f6f4; position: relative; padding-bottom: 7%; margin-right: 4%; text-decoration: none; display: block; color: inherit; }
+.gm-browser { container-type: inline-size; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: var(--shadow), 0 0 0 1px var(--line); transition: transform 0.6s var(--ease); }
+.gm-bar { display: flex; align-items: center; gap: 6px; height: 30px; padding-inline: 12px; background: #eceef3; border-bottom: 1px solid #dfe2ea; }
+.gm-bar i { width: 9px; height: 9px; border-radius: 50%; background: #c9cdd8; }
+.gm-bar span { margin-left: 10px; flex: 1; max-width: 260px; height: 18px; border-radius: 6px; background: #fff; color: #6b7286; font-size: 11px; line-height: 18px; padding-inline: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.gm-screen { position: relative; aspect-ratio: 1440 / 794; background: #9aa58a center / cover no-repeat; }
+.gm-hdr { position: absolute; inset: 0 0 auto; height: 8.5cqw; background: rgba(255, 255, 255, 0.94); display: flex; align-items: center; gap: 1.2cqw; padding-inline: 3.6cqw; color: #000; }
+.gm-hdr svg { width: 2.6cqw; height: 2.6cqw; flex: none; }
+.gm-name { display: flex; flex-direction: column; line-height: 1.05; font-family: "Archivo", var(--font-body); }
+.gm-name b { font-size: 1.45cqw; font-weight: 650; letter-spacing: 0.09em; }
+.gm-name small { font-size: 0.78cqw; font-weight: 600; letter-spacing: 0.42em; color: #9c7b4e; margin-top: 0.35cqw; }
+.gm-nav { margin-left: auto; display: flex; gap: 2.4cqw; font-family: "Archivo", var(--font-body); font-size: 1.1cqw; }
+.gm-nav span:last-child { background: #000; color: #fff; padding: 0.7cqw 1.2cqw; }
+.gm-title { position: absolute; left: 3.6cqw; bottom: 5cqw; color: #fff; font-family: "Bodoni Moda", "Didot", Georgia, serif; line-height: 0.9; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3); }
+.gm-title b { display: block; font-weight: 400; font-size: 8.4cqw; letter-spacing: -0.015em; }
+.gm-title em { display: block; font-size: 4.3cqw; color: var(--gm-bronze); margin-top: 0.6cqw; }
+
+.gm-phone { position: absolute; right: -4%; bottom: 0; width: 27%; border-radius: clamp(18px, 2.6vw, 34px); padding: clamp(4px, 0.55vw, 8px); background: #10131b; box-shadow: var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.06) inset; transition: transform 0.6s var(--ease); }
+.gm-phone-screen { container-type: inline-size; border-radius: clamp(14px, 2.1vw, 27px); overflow: hidden; background: #000; aspect-ratio: 9 / 19; display: flex; flex-direction: column; }
+.gm-phone-hdr { display: flex; align-items: center; gap: 4cqw; height: 15cqw; padding: 5cqw 6cqw 0; background: #fff; color: #000; flex: none; }
+.gm-phone-hdr svg { width: 8cqw; height: 8cqw; flex: none; }
+.gm-phone-hdr .gm-name b { font-size: 5cqw; }
+.gm-phone-hdr .gm-name small { font-size: 2.6cqw; margin-top: 1cqw; }
+.gm-phone-img { flex: 1 1 auto; min-height: 0; background: #9aa58a center / cover no-repeat; }
+.gm-phone-txt { flex: none; padding: 6cqw 6cqw 8cqw; color: #fff; }
+.gm-phone-txt b { display: block; font-family: "Bodoni Moda", Georgia, serif; font-weight: 400; font-size: 13cqw; line-height: 0.95; }
+.gm-phone-txt em { display: block; font-family: "Bodoni Moda", Georgia, serif; font-size: 7cqw; color: var(--gm-bronze); margin-top: 1.5cqw; }
+.gm-phone-txt p { margin: 4cqw 0 0; font-family: "Archivo", var(--font-body); font-size: 4.2cqw; line-height: 1.35; color: #d8d8d4; }
+@media (hover: hover) {
+  .gm:hover .gm-browser { transform: translateY(-4px); }
+  .gm:hover .gm-phone { transform: translateY(-10px) rotate(-1.5deg); }
+}
+.gm:focus-visible { outline: 3px solid var(--accent); outline-offset: 8px; border-radius: 14px; }
+@media (max-width: 560px) { .gm-bar span { display: none; } .gm-phone { width: 32%; right: -2%; } }
+@media (prefers-reduced-motion: reduce) { .gm-browser, .gm-phone { transition: none; } }
 </style>
 </head>
 <body>
@@ -576,6 +626,7 @@ html.lenis, html.lenis body { height: auto; }
       <ul>
         <li><a href="#rue-1" data-go="0">La rue</a></li>
         <li><a href="#site">Exemple</a></li>
+        <li><a href="#realisation">Réalisation</a></li>
         <li><a href="#tarifs">Tarifs</a></li>
         <li><a href="#questions">Questions</a></li>
       </ul>
@@ -790,6 +841,49 @@ html.lenis, html.lenis body { height: auto; }
           <button class="flip" type="button" id="flip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg>Retourner le téléphone</button>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section band" id="realisation" aria-labelledby="real-title">
+    <div class="wrap real-grid">
+      <div class="real-text">
+        <p class="kicker">Première réalisation</p>
+        <h2 id="real-title" class="split">Guy Morice, architecte à Estillac</h2>
+        <p class="lead">Architecte près d'Agen depuis 1982, il n'avait pas de site. Voici celui qu'on a créé avec lui.</p>
+        <ul class="real-list">
+          <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg><span><b>Une de ses villas en 3D</b> sur la page d'accueil, refaite d'après ses propres vues.</span></li>
+          <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg><span><b>Ses projets en vitrine</b>, avec leurs vues 3D, leurs plans et ses esquisses à la main.</span></li>
+          <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg><span><b>Son logo</b>, dessiné pour l'occasion, et une version pensée pour le téléphone.</span></li>
+        </ul>
+        <div class="real-cta">
+          <a class="btn btn-primary" href="maquettes/guy-morice/">Voir son site</a>
+          <small>Le vôtre peut ressembler à votre métier, pas à un modèle.</small>
+        </div>
+      </div>
+
+      <a class="gm" href="maquettes/guy-morice/" aria-label="Ouvrir le site de Guy Morice, architecte">
+        <div class="gm-browser" aria-hidden="true">
+          <div class="gm-bar"><i></i><i></i><i></i><span>Guy Morice, architecte à Estillac</span></div>
+          <div class="gm-screen" style="background-image:url('img/realisations/guy-morice-ordinateur.jpg')">
+            <div class="gm-hdr">
+              <svg viewBox="0 0 100 100"><rect x="8" y="54" width="58" height="38"/><rect x="32" y="12" width="60" height="36"/></svg>
+              <span class="gm-name"><b>GUY MORICE</b><small>ARCHITECTE</small></span>
+              <span class="gm-nav"><span>Réalisations</span><span>Expérience</span><span>06 09 61 26 41</span></span>
+            </div>
+            <div class="gm-title"><b>Guy Morice</b><em>architecte à Estillac</em></div>
+          </div>
+        </div>
+        <div class="gm-phone" aria-hidden="true">
+          <div class="gm-phone-screen">
+            <div class="gm-phone-hdr">
+              <svg viewBox="0 0 100 100"><rect x="8" y="54" width="58" height="38"/><rect x="32" y="12" width="60" height="36"/></svg>
+              <span class="gm-name"><b>GUY MORICE</b><small>ARCHITECTE</small></span>
+            </div>
+            <div class="gm-phone-img" style="background-image:url('img/realisations/guy-morice-telephone.jpg')"></div>
+            <div class="gm-phone-txt"><b>Guy Morice</b><em>architecte à Estillac</em><p>Maisons neuves, extensions et rénovations dans le pays d'Agen, depuis 1982.</p></div>
+          </div>
+        </div>
+      </a>
     </div>
   </section>
 
