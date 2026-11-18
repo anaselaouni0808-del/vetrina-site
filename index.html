@@ -186,6 +186,7 @@ p { margin: 0; }
 .is-3d .rue-canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.4s ease; touch-action: pan-y; }
 .street-ready .rue-canvas { opacity: 1; }
 .street-ready .rue-poster { opacity: 0; }
+.is-3d .rue-poster { display: none; } /* pas d'image floue avant la rue 3D : fond nuit net, puis la rue apparaît */
 .is-3d .rue-stage.pointing { cursor: pointer; }
 .is-3d .rue-poster, .is-3d .rue-scrim { height: 100%; }
 .is-3d .rue-scrim { background: linear-gradient(90deg, rgba(11, 20, 51, 0.9) 0%, rgba(11, 20, 51, 0.62) 30%, rgba(11, 20, 51, 0) 56%); }
@@ -632,7 +633,7 @@ html.lenis, html.lenis body { height: auto; }
     <nav class="nav" aria-label="Navigation principale">
       <ul>
         <li><a href="#rue-1" data-go="0">La rue</a></li>
-        <li><a href="#site">Exemple</a></li>
+        <li><a href="#realisation">Réalisation</a></li>
         <li><a href="#realisation">Réalisation</a></li>
         <li><a href="#tarifs">Tarifs</a></li>
         <li><a href="#questions">Questions</a></li>
@@ -677,7 +678,6 @@ html.lenis, html.lenis body { height: auto; }
               <li style="--i:1">Horaires et fournées du jour</li>
               <li style="--i:2">Gâteaux sur commande</li>
             </ul>
-            <a class="stop-link" href="boulangerie/">Voir l'exemple complet</a>
           </div>
         </article>
         <article class="stop" id="rue-2" style="--c:#a8321c" aria-labelledby="stop-1">
@@ -758,98 +758,6 @@ html.lenis, html.lenis body { height: auto; }
     </div>
   </section>
 
-  <section class="lab" id="site" aria-labelledby="lab-title">
-    <div class="wrap lab-grid">
-      <div class="lab-head">
-        <p class="kicker">Exemple : Maison Escoubès, boulangerie</p>
-        <h2 id="lab-title" class="split">Ce que vos clients voient sur leur téléphone</h2>
-        <p class="lead">Le site de démonstration, en vrai. Touchez les onglets, ajoutez un canelé au panier, retournez le téléphone.</p>
-      </div>
-
-      <div class="tabs" id="tabs" role="tablist" aria-label="Ce que fait le site">
-        <button class="tab" role="tab" id="tab-0" aria-controls="pane-0" aria-selected="true" tabindex="0"><b>Ouvert ou fermé, en direct</b><span class="desc"><span>Vos horaires sont toujours à jour. Le client voit tout de suite si vous êtes ouvert, à l'heure où il regarde.</span></span><span class="bar"></span></button>
-        <button class="tab" role="tab" id="tab-1" aria-controls="pane-1" aria-selected="false" tabindex="-1"><b>Ce qui fait venir aujourd'hui</b><span class="desc"><span>Les fournées, le menu du jour, l'arrivage de la semaine : vous l'envoyez par SMS, on le met en ligne.</span></span><span class="bar"></span></button>
-        <button class="tab" role="tab" id="tab-2" aria-controls="pane-2" aria-selected="false" tabindex="-1"><b>La commande en ligne</b><span class="desc"><span>Vos clients réservent la veille et passent récupérer. Vous recevez la commande par email.</span></span><span class="bar"></span></button>
-        <button class="tab" role="tab" id="tab-3" aria-controls="pane-3" aria-selected="false" tabindex="-1"><b>Vos avis, et un bouton pour appeler</b><span class="desc"><span>Les avis Google rassurent, et le bouton d'appel reste visible sur toutes les pages.</span></span><span class="bar"></span></button>
-      </div>
-
-      <p class="lab-note">La boulangerie est fictive, le site est réel. <a href="boulangerie/">Ouvrir le site en entier</a></p>
-
-      <div class="lab-stage" id="lab-stage" data-cursor="Faites-le tourner">
-        <div class="p-wrap">
-          <div class="p3d" id="p3d">
-            <div class="p-face p-front">
-              <div class="p-screen">
-                <span class="p-island" aria-hidden="true"></span>
-                <div class="m-toast" id="m-toast" role="status"></div>
-
-                <div class="pane on" id="pane-0" role="tabpanel" aria-labelledby="tab-0">
-                  <div class="m-awning" aria-hidden="true"><div class="band-top"></div><div class="edge"></div></div>
-                  <div class="m-front">
-                    <span class="m-since">Depuis 1994</span>
-                    <span class="m-name"><small>Maison</small><b>Escoubès</b></span>
-                    <span class="m-lead">Pain au levain, canelés et chocolatines, cuits chaque jour au cœur des Chartrons.</span>
-                    <span class="m-pill" id="m-status"><i></i><span>Ouvert jusqu'à 19 h 30</span></span>
-                    <span class="m-btn">Commander en ligne</span>
-                  </div>
-                  <div class="m-block">
-                    <span class="m-label">Horaires</span>
-                    <div class="m-hours" id="m-hours"></div>
-                  </div>
-                </div>
-
-                <div class="pane" id="pane-1" role="tabpanel" aria-labelledby="tab-1">
-                  <div class="m-block" style="padding-top:50px">
-                    <span class="m-label">Les fournées</span>
-                    <span class="m-title">Le pain sort du four trois fois par jour</span>
-                    <div class="m-oven" aria-hidden="true"></div>
-                    <div id="m-batches"></div>
-                  </div>
-                </div>
-
-                <div class="pane" id="pane-2" role="tabpanel" aria-labelledby="tab-2">
-                  <div class="m-block" style="padding-top:50px">
-                    <span class="m-label">La vitrine</span>
-                    <span class="m-title">Réservez pour demain matin</span>
-                    <div class="m-shop">
-                      <div class="m-card"><span class="art"><i></i></span><b>Canelé bordelais</b><span class="row">1,90 €<button class="m-add" type="button" data-p="1.90" data-n="Canelé">Ajouter</button></span></div>
-                      <div class="m-card"><span class="art"><i class="bag"></i></span><b>Baguette tradition</b><span class="row">1,30 €<button class="m-add" type="button" data-p="1.30" data-n="Baguette">Ajouter</button></span></div>
-                      <div class="m-card"><span class="art"><i class="croi"></i></span><b>Chocolatine</b><span class="row">1,20 €<button class="m-add" type="button" data-p="1.20" data-n="Chocolatine">Ajouter</button></span></div>
-                      <div class="m-card"><span class="art"><i class="tart"></i></span><b>Tarte aux pommes</b><span class="row">3,50 €<button class="m-add" type="button" data-p="3.50" data-n="Tarte">Ajouter</button></span></div>
-                    </div>
-                    <div class="m-bag empty" id="m-bag"><span id="m-bag-text">Votre panier est vide</span><button type="button" id="m-reserve">Réserver</button></div>
-                  </div>
-                </div>
-
-                <div class="pane" id="pane-3" role="tabpanel" aria-labelledby="tab-3">
-                  <div class="m-block" style="padding-top:50px">
-                    <span class="m-label">Avis clients</span>
-                    <div class="m-rating"><b>4,9</b><span class="stars" aria-label="4,9 sur 5">★★★★★<span aria-hidden="true">★★★★★</span></span></div>
-                    <span class="m-count">128 avis sur Google</span>
-                    <p class="m-review">« Les meilleurs canelés du quartier. On commande la veille sur le site. »<small>Hélène R., Chartrons</small></p>
-                    <p class="m-review">« La tradition de 16 h 30 est encore tiède quand on la récupère. »<small>Karim B., Bacalan</small></p>
-                  </div>
-                </div>
-
-                <span class="m-call" id="m-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Appeler la boulangerie</span>
-              </div>
-            </div>
-            <div class="p-face p-back" aria-hidden="true">
-              <span class="cam"></span>
-              <span class="plaque"><svg><use href="#mark"/></svg><span>vetrina</span></span>
-              <small>Le site de votre commerce, fait à Bordeaux</small>
-            </div>
-            <span class="p-edge l" aria-hidden="true"></span><span class="p-edge r" aria-hidden="true"></span>
-            <span class="p-edge t" aria-hidden="true"></span><span class="p-edge b" aria-hidden="true"></span>
-          </div>
-        </div>
-        <span class="p-shadow" id="p-shadow" aria-hidden="true"></span>
-        <div class="lab-controls">
-          <button class="flip" type="button" id="flip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg>Retourner le téléphone</button>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="section band" id="realisation" aria-labelledby="real-title">
     <div class="wrap real-grid">
@@ -1108,7 +1016,7 @@ html.lenis, html.lenis body { height: auto; }
         <a href="mailto:bonjour@vetrina.fr">bonjour@vetrina.fr</a>
       </div>
       <nav class="foot-links" aria-label="Liens du pied de page">
-        <a href="boulangerie/">Exemple de site</a>
+        <a href="maquettes/guy-morice/">Réalisation</a>
         <a href="mentions-legales/">Mentions légales</a>
       </nav>
     </div>
@@ -2310,6 +2218,8 @@ window.VetrinaStreet = function (canvas, opts) {
     if (i >= 0) goToStop(i);
   });
 
+  var setAuto = function () {};
+  if ($('#lab-stage')) {
   /* ---------- Phone lab ---------- */
   var tabs = $$('.tab'), panes = $$('.pane'), tabsWrap = $('#tabs');
   var labIdx = 0, autoOn = false, userTook = false;
@@ -2478,6 +2388,7 @@ window.VetrinaStreet = function (canvas, opts) {
     bag.n = 0; bag.total = 0; bagEl.classList.add('empty'); bagText.textContent = 'Votre panier est vide';
   });
 
+  }
   /* ---------- Plaques that swing ---------- */
   var plaques = $$('.hanger').map(function (el) { return { el: el, card: $('.enamel', el), a: 0, v: 0 }; });
   var swing = { running: false, last: 0 };
@@ -2626,7 +2537,6 @@ window.VetrinaStreet = function (canvas, opts) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         var t = en.target;
-        if (t.id === 'site') { setAuto(en.isIntersecting); return; }
         if (!en.isIntersecting) return;
         if (t.classList.contains('split')) t.classList.add('in');
         if (t.id === 'neon') t.classList.add('lit');
@@ -2636,7 +2546,6 @@ window.VetrinaStreet = function (canvas, opts) {
       });
     }, { threshold: 0.25 });
     $$('.split, #neon, #plaques, .plans').forEach(function (el) { io.observe(el); });
-    io.observe($('#site'));
   } else {
     $$('.split').forEach(function (el) { el.classList.add('in'); });
     $('#neon').classList.add('lit');
