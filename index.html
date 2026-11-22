@@ -15,7 +15,7 @@
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://vetrina.fr/">
-<meta name="theme-color" content="#2a44c9">
+<meta name="theme-color" content="#141414">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -328,13 +328,42 @@ p { margin: 0; }
 .contact { background: radial-gradient(60% 80% at 0% 100%, rgba(255, 194, 61, .22), transparent 70%), var(--enamel); }
 .contact .btn-primary { background: var(--enamel); }
 .site-footer { background: var(--navy); }
+
+/* ===== Palette finale : noir, blanc, vert sapin ===== */
+:root { --enamel: #1f4d3a; --enamel-deep: #163a2b; --ink: #141414; --muted: #55595f; --paper: #fafaf9; --line: #e4e4e1; --tint: #e9f0ec; --navy: #141414; --sun: #8fd3ad; }
+body { background: var(--paper); }
+.site-header { background: rgba(250, 250, 249, .92); }
+.plaque { background: #141414; box-shadow: none; }
+.plaque svg path:first-child { fill: #8fd3ad; }
+.hero { background: radial-gradient(50% 60% at 85% 45%, rgba(31, 77, 58, .10), transparent 70%), var(--paper) !important; }
+.hero::after { display: none; }
+.hero .kicker { background: none; color: var(--enamel); padding: 0; }
+.hero h1 { font-weight: 700; letter-spacing: -0.04em; }
+.browser { box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .45); }
+.included svg { background: var(--tint); color: var(--enamel); }
+.tinted { background: #eef3f0; border-color: #dde7e1; }
+.tinted .trades > div { border-top-color: #d3ded8; }
+.trades dt { color: var(--enamel); }
+.enamel { background: var(--enamel); }
+.enamel .steps p { color: #cfe0d6; }
+.enamel .steps li::before { color: #10291f; }
+.plan.featured .btn-primary, .featured .plan-tag { color: #10291f; }
+.plan.featured .btn-primary:hover { background: #a9e0c1; }
+.guarantee { background: var(--tint); }
+.contact { background: radial-gradient(60% 80% at 0% 100%, rgba(143, 211, 173, .18), transparent 70%), var(--enamel); }
+.contact .lead { color: #d3e3da; }
+.direct .hours { color: #bcd3c6; }
+.form .btn-primary { background: var(--enamel); }
+.mono { background: #141414; box-shadow: none; }
+.site-footer { background: #141414; }
+:focus-visible { outline-color: #2f7a5a; }
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="mark" viewBox="0 0 32 32">
-      <path d="M9 26V14a7 7 0 0 1 14 0v12z" fill="#ffc23d"/>
+      <path d="M9 26V14a7 7 0 0 1 14 0v12z" fill="#8fd3ad"/>
       <path d="M9 26V14a7 7 0 0 1 14 0v12M9 19h14" fill="none" stroke="#fff" stroke-width="2"/>
       <path d="M6.5 26h19" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
     </symbol>
@@ -363,7 +392,6 @@ p { margin: 0; }
 
 <main id="top">
   <section class="hero grainy" aria-labelledby="hero-title">
-    <div class="awning" aria-hidden="true"></div>
     <div class="wrap">
       <div>
         <p class="kicker">Sites internet pour commerces et artisans</p>
