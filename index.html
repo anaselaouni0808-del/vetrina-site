@@ -211,7 +211,7 @@ p { margin: 0; }
 @media (max-width: 480px) { .guarantee { grid-template-columns: 1fr; } }
 
 /* Qui */
-.who { display: grid; grid-template-columns: auto minmax(0, 720px); gap: clamp(24px, 4vw, 56px); align-items: start; }
+.who { display: grid; justify-content: start; grid-template-columns: auto minmax(0, 720px); gap: clamp(24px, 4vw, 56px); align-items: start; }
 .mono { width: clamp(96px, 14vw, 148px); aspect-ratio: 1; border-radius: 22px; background: var(--enamel); color: #fff; display: grid; place-items: center; font: 800 clamp(44px, 6vw, 64px)/1 var(--display); box-shadow: inset 0 0 0 4px var(--enamel), inset 0 0 0 7px rgba(255,255,255,.85); overflow: hidden; position: relative; }
 .mono img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .who p { margin-top: 16px; color: var(--muted); max-width: 60ch; }
@@ -275,6 +275,59 @@ p { margin: 0; }
   .site-footer { padding-bottom: calc(100px + env(safe-area-inset-bottom)); }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+/* ===== Couleur et texture ===== */
+:root {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --navy: #0f1736;
+}
+.grainy { position: relative; isolation: isolate; }
+.grainy::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: var(--grain); opacity: .18; mix-blend-mode: soft-light; pointer-events: none; }
+
+/* Le store de la vitrine : rayé bleu et blanc, bord festonné */
+.awning { height: 34px; background: repeating-linear-gradient(90deg, var(--enamel) 0 40px, #fff 40px 80px); -webkit-mask: radial-gradient(20px at 20px 14px, #000 98%, transparent) 0 0 / 40px 100% repeat-x, linear-gradient(#000 0 0) top / 100% 14px no-repeat; mask: radial-gradient(20px at 20px 14px, #000 98%, transparent) 0 0 / 40px 100% repeat-x, linear-gradient(#000 0 0) top / 100% 14px no-repeat; filter: drop-shadow(0 6px 6px rgba(17, 26, 58, .12)); position: relative; z-index: 2; }
+
+.hero { position: relative; overflow: hidden; padding-top: 0; background:
+  radial-gradient(60% 70% at 85% 45%, rgba(255, 194, 61, .38), transparent 70%),
+  radial-gradient(50% 60% at 10% 0%, rgba(42, 68, 201, .14), transparent 70%),
+  #eef1fb; }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(42, 68, 201, .16) 1.2px, transparent 1.3px); background-size: 22px 22px; -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%); mask-image: linear-gradient(180deg, #000, transparent 85%); }
+.hero .wrap { position: relative; z-index: 1; margin-top: clamp(32px, 5vw, 64px); }
+.hero .kicker { display: inline-block; background: var(--sun); color: var(--navy); padding: 6px 12px; border-radius: 8px; }
+.site-header { background: rgba(238, 241, 251, .92); }
+
+.promises { background: var(--navy); color: #fff; border: 0; }
+.promises li + li { border-color: rgba(255, 255, 255, .12); }
+.promises svg { color: var(--sun); }
+.promises span { color: #b9c1e2; }
+
+.included svg { width: 52px; height: 52px; padding: 11px; border-radius: 14px; background: #fff3d1; color: var(--enamel); }
+
+.tinted { background: #e7ebfa; border-top: 1px solid #d6dcf3; border-bottom: 1px solid #d6dcf3; }
+.tinted .trades > div { border-top-color: #cbd3f0; }
+.trades dt { color: var(--enamel-deep); }
+
+.enamel { background: var(--enamel); color: #fff; }
+.enamel h2, .enamel h3 { color: #fff; }
+.enamel .steps p { color: #d9dffa; }
+.enamel .steps .when { color: var(--sun); }
+.enamel .steps li::before { background: var(--sun); color: var(--navy); }
+.enamel::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(40% 80% at 100% 0%, rgba(255, 255, 255, .12), transparent 70%); }
+
+.plan.featured { background: var(--navy); color: #fff; border-color: var(--navy); box-shadow: 0 30px 60px -30px rgba(15, 23, 54, .7); }
+.plan.featured .amount small, .plan.featured .pay { color: #b9c1e2; }
+.plan.featured .pay { border-color: rgba(255, 255, 255, .18); }
+.plan.featured .pay b { color: #fff; }
+.plan.featured .tick { color: var(--sun); }
+.featured .plan-tag { background: var(--sun); color: var(--navy); }
+.plan.featured .btn-primary { background: var(--sun); color: var(--navy); }
+.plan.featured .btn-primary:hover { background: #ffd56f; }
+.guarantee { background: #fff3d1; }
+.guarantee svg { color: var(--navy); }
+
+.contact { background: radial-gradient(60% 80% at 0% 100%, rgba(255, 194, 61, .22), transparent 70%), var(--enamel); }
+.contact .btn-primary { background: var(--enamel); }
+.site-footer { background: var(--navy); }
 </style>
 </head>
 <body>
@@ -309,7 +362,8 @@ p { margin: 0; }
 </header>
 
 <main id="top">
-  <section class="hero" aria-labelledby="hero-title">
+  <section class="hero grainy" aria-labelledby="hero-title">
+    <div class="awning" aria-hidden="true"></div>
     <div class="wrap">
       <div>
         <p class="kicker">Sites internet pour commerces et artisans</p>
@@ -332,7 +386,7 @@ p { margin: 0; }
     </div>
   </section>
 
-  <section class="promises" aria-label="Nos engagements">
+  <section class="promises grainy" aria-label="Nos engagements">
     <ul class="wrap">
       <li><svg aria-hidden="true"><use href="#check-circle"/></svg><div><strong>Maquette gratuite</strong><span>Vous voyez votre site avant de payer.</span></div></li>
       <li><svg aria-hidden="true"><use href="#check-circle"/></svg><div><strong>Acompte remboursé</strong><span>Si le site terminé ne vous plaît pas.</span></div></li>
@@ -375,7 +429,7 @@ p { margin: 0; }
     </div>
   </section>
 
-  <section class="section" id="metiers" aria-labelledby="trades-title">
+  <section class="section tinted grainy" id="metiers" aria-labelledby="trades-title">
     <div class="wrap">
       <div class="section-head">
         <h2 id="trades-title">Un site qui fait ce dont votre métier a besoin</h2>
@@ -391,7 +445,7 @@ p { margin: 0; }
     </div>
   </section>
 
-  <section class="section band" id="deroulement" aria-labelledby="steps-title">
+  <section class="section enamel grainy" id="deroulement" aria-labelledby="steps-title">
     <div class="wrap">
       <div class="section-head">
         <h2 id="steps-title">De l'appel au site en ligne, en une semaine</h2>
@@ -475,7 +529,7 @@ p { margin: 0; }
     </div>
   </section>
 
-  <section class="section contact" id="contact" aria-labelledby="contact-title">
+  <section class="section contact grainy" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
       <div>
         <h2 id="contact-title">Parlons de votre commerce</h2>
